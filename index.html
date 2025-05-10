@@ -1,101 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Matthew Dubea – Senior Design Project</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      color: #333;
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    h1, h2 {
-      color: #aa1e1e;
-    }
-    .card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
-    .button {
-      background-color: #007acc;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      margin-top: 10px;
-    }
-    #posterModal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    #posterModal iframe {
-      width: 90%;
-      height: 90%;
-      border: none;
-    }
-    #posterModal span {
-      position: absolute;
-      top: 20px;
-      right: 40px;
-      font-size: 40px;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Dubea – Engineering Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <h1>Matthew Dubea – Senior Design Project</h1>
-  <p>Welcome! This site showcases my senior design project from UL Lafayette: a custom-built racing tricycle that won 1st place in the 2025 Acadiana 500 competition.</p>
-
-  <div class="card">
-    <h2>📄 Project Poster</h2>
-    <p>Click the button to view my final design and analysis poster in full-screen mode.</p>
-    <a id="posterLink" class="button" href="#">🖼️ View Poster</a>
-  </div>
-
-  <div class="card">
-    <h2>📂 Project Files</h2>
-    <ul>
-      <li><a href="02_Senior_Design_Project/FEA_Results.pdf">FEA Report (PDF)</a></li>
-      <li><a href="02_Senior_Design_Project/Engineering_Memo_Report.pdf">Engineering Memo (PDF)</a></li>
-      <li><a href="02_Senior_Design_Project/Race_Performance_Data.xlsx">Race Performance Data (XLSX)</a></li>
-      <li><a href="02_Senior_Design_Project/Assembly/Trike_Assembly.zip">Download SolidWorks Assembly</a></li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>📬 Contact</h2>
-    <p>Email: <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
-    <p>GitHub: <a href="https://github.com/mtdubea" target="_blank">mtdubea</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/matthew-dubea-4188ac311" target="_blank">linkedin.com/in/matthew-dubea-4188ac311</a></p>
-  </div>
-
-  <!-- Poster Modal -->
-  <div id="posterModal">
-    <span onclick="document.getElementById('posterModal').style.display='none'">&times;</span>
-    <iframe src="02_Senior_Design_Project/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"></iframe>
-  </div>
-
-  <script>
-    document.getElementById("posterLink").onclick = function(event) {
-      event.preventDefault();
-      document.getElementById("posterModal").style.display = "flex";
-    };
-  </script>
-
+  <header>
+    <h1>Matthew Dubea</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reports.html">Reports</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <h2>Welcome to My Mechanical Engineering Portfolio</h2>
+      <p>Explore the design, testing, and results from my senior design project: a custom-built human-powered racing trike.</p>
+    </section>
+    <section class="videos">
+      <h3>📹 Highlight Videos</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Matthew Dubea</p>
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="topBtn">Top ↑</button>
+  </footer>
 </body>
 </html>
