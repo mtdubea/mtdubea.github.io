@@ -1,9 +1,98 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><title>Home – Matthew Dubea</title>
-<link rel="stylesheet" href="style.css"></head><body>
-<header><h1>Matthew Dubea – Senior Project Portfolio</h1><nav>
-<a href="index.html">Home</a><a href="about.html">About</a><a href="gallery.html">Gallery</a><a href="reports.html">Reports</a>
-</nav></header>
-<main><div class="card"><h2>🏁 Welcome</h2>
-<p>This site hosts all documentation, visuals, and design files related to my mechanical engineering senior design project.</p>
-<iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" allowfullscreen></iframe></div></main></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Matthew Dubea – Mechanical Engineering Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+    header {
+      background: #0a192f;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    nav a {
+      color: #64ffda;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .container {
+      padding: 2rem;
+    }
+    .video-section, .cad-section {
+      margin-top: 2rem;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      margin-bottom: 1rem;
+    }
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    footer {
+      background: #0a192f;
+      color: #888;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Matthew Dubea</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reports.html">Reports</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>Welcome to My Mechanical Engineering Portfolio</h2>
+      <p>Explore the development of our senior design project: a human-powered racing tricycle engineered for performance, speed, and precision fabrication. Below are videos and previews from the final design and race event.</p>
+    </section>
+
+    <section class="video-section">
+      <h2>📹 Project Videos</h2>
+      <div class="video-grid">
+        <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="cad-section">
+      <h2>🧩 3D Model Preview</h2>
+      <iframe title="Interactive CAD Viewer" src="https://cad.onshape.com/documents" height="480"></iframe>
+      <p><em>NOTE: Replace with your actual Onshape or Sketchfab viewer URL for live 3D interaction.</em></p>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 Matthew Dubea • Mechanical Engineering @ UL Lafayette
+  </footer>
+</body>
+</html>
