@@ -1,131 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Matthew Dubea – Engineering Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Matthew Dubea – Senior Design Project</title>
   <style>
     body {
-      font-family: "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      background: #f4f5f7;
-      color: #1c1e21;
-    }
-    header {
-      background: #0c1d34;
-      padding: 1rem 2rem;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      max-width: 960px;
-      margin: auto;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #333;
       padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #aa1e1e;
     }
     .card {
       background: white;
       padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       margin-bottom: 2rem;
     }
-    h1, h2 {
-      color: #102a43;
+    .button {
+      background-color: #007acc;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
     }
-    ul {
-      padding-left: 1.25rem;
+    #posterModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    iframe {
-      width: 100%;
-      max-width: 720px;
-      height: 400px;
-      margin-top: 1rem;
+    #posterModal iframe {
+      width: 90%;
+      height: 90%;
       border: none;
     }
-    .back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #007acc;
+    #posterModal span {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
       color: white;
-      padding: 0.7rem 1rem;
-      border-radius: 30px;
       cursor: pointer;
-      font-weight: bold;
-      display: none;
-      z-index: 1000;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div><strong>Matthew Dubea</strong></div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="reports.html">Reports</a>
-  </nav>
-</header>
+  <h1>Matthew Dubea – Senior Design Project</h1>
+  <p>Welcome! This site showcases my senior design project from UL Lafayette: a custom-built racing tricycle that won 1st place in the 2025 Acadiana 500 competition.</p>
 
-<div class="container">
   <div class="card">
-    <h1>Welcome to My Engineering Portfolio</h1>
-    <p>This site showcases my mechanical engineering senior project — a human-powered racing trike that placed 🥇1st in the 2025 Acadiana 500.</p>
+    <h2>📄 Project Poster</h2>
+    <p>Click the button to view my final design and analysis poster in full-screen mode.</p>
+    <a id="posterLink" class="button" href="#">🖼️ View Poster</a>
   </div>
 
   <div class="card">
-    <h2>📽️ Race Videos</h2>
-    <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" allowfullscreen></iframe>
-  </div>
-
-  <div class="card">
-    <h2>📦 Project Files & CAD</h2>
+    <h2>📂 Project Files</h2>
     <ul>
-      <li><a href="MCHE484_FinalPoster_TrikeDesignAndFab.pdf">Senior Design Poster</a></li>
-      <li><a href="FEA_Results.pdf">FEA Report</a></li>
-      <li><a href="Engineering_Memo_Report.pdf">Engineering Memo</a></li>
-      <li><a href="Race_Performance_Data.xlsx">Race Performance Data</a></li>
-      <li><a href="Trike_Assembly.zip">SolidWorks Trike Assembly (ZIP)</a></li>
+      <li><a href="02_Senior_Design_Project/FEA_Results.pdf">FEA Report (PDF)</a></li>
+      <li><a href="02_Senior_Design_Project/Engineering_Memo_Report.pdf">Engineering Memo (PDF)</a></li>
+      <li><a href="02_Senior_Design_Project/Race_Performance_Data.xlsx">Race Performance Data (XLSX)</a></li>
+      <li><a href="02_Senior_Design_Project/Assembly/Trike_Assembly.zip">Download SolidWorks Assembly</a></li>
     </ul>
-  </div>
-
-  <div class="card">
-    <h2>🔧 Embedded CAD Viewer</h2>
-    <p>Live CAD assembly model (external):</p>
-    <iframe src="https://cad.onshape.com/documents" title="Onshape CAD Viewer"></iframe>
   </div>
 
   <div class="card">
     <h2>📬 Contact</h2>
     <p>Email: <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
-    <p>GitHub: <a href="https://github.com/mtdubea" target="_blank">github.com/mtdubea</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/matthew-dubea-4188a6311/" target="_blank">linkedin.com/in/matthew-dubea</a></p>
+    <p>GitHub: <a href="https://github.com/mtdubea" target="_blank">mtdubea</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/matthew-dubea-4188ac311" target="_blank">linkedin.com/in/matthew-dubea-4188ac311</a></p>
   </div>
-</div>
 
-<div id="backToTop" class="back-to-top" onclick="scrollToTop()">↑ Back to Top</div>
+  <!-- Poster Modal -->
+  <div id="posterModal">
+    <span onclick="document.getElementById('posterModal').style.display='none'">&times;</span>
+    <iframe src="02_Senior_Design_Project/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"></iframe>
+  </div>
 
-<script>
-  const backBtn = document.getElementById("backToTop");
-  window.onscroll = () => {
-    backBtn.style.display = window.scrollY > 400 ? "block" : "none";
-  };
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-</script>
+  <script>
+    document.getElementById("posterLink").onclick = function(event) {
+      event.preventDefault();
+      document.getElementById("posterModal").style.display = "flex";
+    };
+  </script>
 
 </body>
 </html>
