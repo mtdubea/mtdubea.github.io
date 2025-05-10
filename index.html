@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+# Generate a new index.html file with all file references corrected for root directory (no subfolders)
+
+corrected_index_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Matthew Dubea – Senior Design Project Portfolio</title>
+  <title>Matthew Dubea – Senior Design Project</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f2f2f2;
       color: #333;
-      line-height: 1.6;
       padding: 2rem;
       max-width: 900px;
       margin: auto;
@@ -17,51 +18,89 @@
       color: #aa1e1e;
     }
     .card {
-      background-color: white;
+      background: white;
       padding: 1.5rem;
-      margin-bottom: 1.5rem;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
     }
     .button {
-      display: inline-block;
       background-color: #007acc;
       color: white;
       padding: 10px 15px;
-      border-radius: 5px;
-      margin-top: 10px;
       text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .image-gallery {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .image-gallery img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+    #posterModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #posterModal iframe {
+      width: 90%;
+      height: 90%;
+      border: none;
+    }
+    #posterModal span {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
   <h1>Matthew Dubea – Senior Design Project Portfolio</h1>
-  <p>Welcome to my GitHub Pages portfolio! I'm a graduating senior in Mechanical Engineering from UL Lafayette. Below you'll find documentation, reports, CAD models, and performance data from my 2025 senior design project — a custom-built, rule-compliant racing tricycle for the Acadiana 500.</p>
+  <p>This is the official documentation and digital archive of my mechanical engineering senior design project – a custom-built, human-powered racing tricycle that placed 1st in the 2025 Acadiana 500.</p>
 
   <div class="card">
-    <h2>🏁 Project Overview</h2>
-    <p>Our team, Fast Pedal Engineers, built a high-performance trike from scratch that achieved 1st place in the race. Key features included TIG-welded steel frame, CNC-machined bushings, optimized center of gravity, and real-world performance testing under race conditions.</p>
-    <a class="button" href="02_Senior_Design_Project/MCHE484_FastPedalEngineers_Poster.pdf">📄 View Poster</a>
+    <h2>🖼️ Poster – Fullscreen Viewer</h2>
+    <p>Click below to view the full project poster in fullscreen.</p>
+    <a id="posterLink" class="button" href="#">📄 View Poster</a>
+  </div>
+
+  <div class="card">
+    <h2>📸 Design Visuals</h2>
+    <div class="image-gallery">
+      <img src="COG.png" alt="Center of Gravity Visualization">
+      <img src="Final_Assembly.png" alt="Final Trike Assembly Model">
+    </div>
   </div>
 
   <div class="card">
     <h2>📂 Project Files</h2>
     <ul>
-      <li><a href="02_Senior_Design_Project/Assembly/Trike_Assembly.zip">Download SolidWorks Assembly (.zip)</a></li>
-      <li><a href="02_Senior_Design_Project/FEA_Results.pdf">FEA Results Report (PDF)</a></li>
-      <li><a href="02_Senior_Design_Project/Engineering_Memo_Report.pdf">Engineering Memo Report (PDF)</a></li>
-      <li><a href="02_Senior_Design_Project/Race_Performance_Data.xlsx">Race Data + Analysis (XLSX)</a></li>
+      <li><a href="MCHE484_FinalPoster_TrikeDesignAndFab.pdf">Download Poster PDF</a></li>
+      <li><a href="MCHE484_FinalPresentation_Acadiana500.pdf">Final Presentation Slides (PDF)</a></li>
+      <li><a href="FEA_Results.pdf">FEA Report (PDF)</a></li>
+      <li><a href="Engineering_Memo_Report.pdf">Engineering Memo (PDF)</a></li>
+      <li><a href="Race_Performance_Data.xlsx">Race Performance Data (XLSX)</a></li>
+      <li><a href="Trike_Assembly.zip">SolidWorks Assembly ZIP</a></li>
     </ul>
   </div>
 
@@ -72,5 +111,26 @@
     <p>LinkedIn: <a href="https://linkedin.com/in/matthew-dubea-4188ac311" target="_blank">linkedin.com/in/matthew-dubea-4188ac311</a></p>
   </div>
 
+  <!-- Poster Modal -->
+  <div id="posterModal">
+    <span onclick="document.getElementById('posterModal').style.display='none'">&times;</span>
+    <iframe src="MCHE484_FinalPoster_TrikeDesignAndFab.pdf"></iframe>
+  </div>
+
+  <script>
+    document.getElementById("posterLink").onclick = function(e) {
+      e.preventDefault();
+      document.getElementById("posterModal").style.display = "flex";
+    };
+  </script>
+
 </body>
 </html>
+"""
+
+# Save to file
+corrected_index_path = "/mnt/data/index.html"
+with open(corrected_index_path, "w") as f:
+    f.write(corrected_index_html)
+
+corrected_index_path
