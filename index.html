@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+# Final updated index.html content based on user-uploaded verified files
+final_index_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,41 +19,37 @@
 <h1>Matthew Dubea – Senior Design Project Portfolio</h1>
 
 <div class="card">
-  <h2>🖼️ Poster (Fullscreen)</h2>
-  <a class="button" href="MCHE484_FinalPoster_TrikeDesignAndFab.pdf" target="_blank">📄 View Poster PDF</a>
+  <h2>📌 Poster</h2>
+  <a class="button" href="MCHE484_FinalPoster_TrikeDesignAndFab.pdf" target="_blank">📄 View Poster (PDF)</a>
 </div>
 
 <div class="card">
-  <h2>📸 Image Gallery</h2>
+  <h2>🖼️ Image Gallery</h2>
   <div class="image-gallery">
-    <img src="COG.png" alt="COG Diagram">
-    <img src="Final_Assembly.png" alt="Final Assembly Drawing">
-    <img src="trike.png" alt="Trike View">
-    <img src="TransitionZones&TeamOrder.PNG" alt="Transition Zone Chart">
+    <img src="Final_Assembly.png" alt="Final Assembly">
+    <img src="trike.png" alt="Trike Image">
+    <img src="COG.png" alt="Center of Gravity Diagram">
+    <img src="TransitionZones&TeamOrder.PNG" alt="Transition Zones and Order">
   </div>
 </div>
 
 <div class="card">
-  <h2>📂 Project Documentation</h2>
+  <h2>📂 Project Files</h2>
   <ul>
     <li><a href="MCHE484_FinalPresentation_Acadiana500.pdf">Final Presentation Slides (PDF)</a></li>
     <li><a href="MCHE484_FinalReport_FastPedalEngineers[1].pdf">Final Report (PDF)</a></li>
     <li><a href="Engineering_Memo_Report.pdf">Engineering Memo</a></li>
     <li><a href="FEA_Results.pdf">FEA Report</a></li>
-    <li><a href="Race_Performance_Data.xlsx">Race Performance Data</a></li>
-    <li><a href="MaterialTable_SubAssembly.xlsx">Sub-Assembly BOM</a></li>
-    <li><a href="MCHE484_FinalReport_FastPedalEngineers[1].docx">Final Report (Word)</a></li>
+    <li><a href="Race_Performance_Data.xlsx">Race Performance Data (XLSX)</a></li>
+    <li><a href="MaterialTable_SubAssembly.xlsx">Sub-Assembly Materials (XLSX)</a></li>
   </ul>
 </div>
 
 <div class="card">
-  <h2>🛠️ SolidWorks Files</h2>
+  <h2>🛠️ CAD and Assembly Files</h2>
   <ul>
-    <li><a href="Trike_Assembly.zip">Download Full Assembly ZIP</a></li>
-    <li><a href="Frame.SLDPRT">Frame</a>, <a href="Forks(Reused).SLDPRT.lnk">Forks</a>, <a href="Seat.SLDPRT">Seat</a></li>
-    <li><a href="Handlebar.SLDPRT">Handlebar</a>, <a href="Quill Stem.SLDPRT">Stem</a></li>
-    <li><a href="Front Tire (20in_Purchased).SLDPRT">Front Tire</a>, <a href="Rear Tire (10in).SLDPRT.lnk">Rear Tire</a></li>
-    <li>All additional CAD parts included in repo</li>
+    <li><a href="Trike_Assembly.zip">Download Full CAD Assembly (.zip)</a></li>
+    <li><a href="APRIL28.SLDASM">Main SolidWorks Assembly File (APRIL28.SLDASM)</a></li>
   </ul>
 </div>
 
@@ -65,3 +62,11 @@
 
 </body>
 </html>
+"""
+
+# Save to downloadable path
+output_path = "/mnt/data/index.html"
+with open(output_path, "w") as f:
+    f.write(final_index_html)
+
+output_path
