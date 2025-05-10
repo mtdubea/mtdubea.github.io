@@ -3,8 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matthew Dubea – Engineering Portfolio</title>
+  <meta name="description" content="Engineering project website for Matthew Dubea's senior trike design, performance analysis, and race documentation." />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Matthew Dubea – Engineering Trike Project</title>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+      color: #1f1f1f;
+    }
+    header, footer {
+      background-color: #0d1b2a;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 100%;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0d1b2a;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,22 +84,30 @@
     </nav>
   </header>
   <main>
-    <section class="hero">
-      <h2>Welcome to My Mechanical Engineering Portfolio</h2>
-      <p>Explore the design, testing, and results from my senior design project: a custom-built human-powered racing trike.</p>
+    <section class="card">
+      <h2>About This Project</h2>
+      <p>
+        A lightweight, front-wheel, direct-pedal-powered tricycle was designed, fabricated, and raced for the 3,400-foot course at the 2025 Acadiana 500 relay. Beginning with a salvaged 1020 steel bicycle frame and fork, the team developed a rigid rear axle assembly using TIG-welded 4130 tubing and a heat-treated 4140 steel axle, supported by brass bushings and sealed ball bearings. Finite Element Analysis (FEA) estimated a maximum von Mises stress of approximately 75 MPa under an 800 N applied rider load, resulting in a factor of safety of 4.5. A static tip-over angle of 23° confirmed the vehicle’s stability under lateral loading. The completed tricycle weighed 35 lbs and was built using less than $120 in materials and donated shop time.
+      </p>
+      <p>
+        On-track testing demonstrated consistent speeds of 14–15 mph and successful rider transitions. Representing the University of Louisiana at Lafayette as the “Fast Pedal Engineers,” the team won all five heats—including the final—without mechanical failure, disqualification, or handling issues. The outcome validates how a low-cost, recycled frame, optimized through FEA and reinforced with CNC-machined and even heat-treated components, can outperform more expensive or complex builds under race constraints. The project offers a repeatable template for future competitions requiring compact, chainless, and stable designs.
+      </p>
+      <p>
+        The vehicle achieved 1st place in competition through exceptional teamwork, testing, TIG welding, and creative mechanical design.
+      </p>
     </section>
-    <section class="videos">
-      <h3>📹 Highlight Videos</h3>
-      <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" frameborder="0" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" frameborder="0" allowfullscreen></iframe>
+    <section class="card">
+      <h3>📷 Team Photo</h3>
+      <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Team Photo" />
+      <h3>🎞️ Race Footage</h3>
+      <div class="video-container">
         <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" frameborder="0" allowfullscreen></iframe>
       </div>
     </section>
   </main>
   <footer>
     <p>&copy; 2025 Matthew Dubea</p>
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="topBtn">Top ↑</button>
   </footer>
+  <button id="topBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Back to Top</button>
 </body>
 </html>
