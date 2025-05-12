@@ -1,60 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About – Matthew Dubea</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #f4f4f4;
-      color: #222;
-    }
-    header {
-      background: #0a192f;
-      color: #fff;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
-    }
-    nav a {
-      color: #64ffda;
-      margin-left: 1rem;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .container {
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h2 {
-      color: #0a192f;
-      margin-top: 0;
-    }
-    .card {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      margin-bottom: 2rem;
-    }
-    footer {
-      background: #0a192f;
-      color: #aaa;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <header>
@@ -64,20 +14,31 @@
       <a href="about.html">About</a>
       <a href="gallery.html">Gallery</a>
       <a href="reports.html">Reports</a>
+      <a href="resume.html">Résumé</a>
+      <button id="themeToggle">🌓</button>
     </nav>
   </header>
-  <div class="container">
-    <div class="card">
-      <h2>About This Project</h2>
-      
-    <p>This project focuses on the development of a custom human-powered racing tricycle
-    built from scratch for the Acadiana 500. Our design emphasizes strength, efficiency, and manufacturability while staying within strict race constraints (no chain, no gear reduction, no suspension).</p>
-    <p>The vehicle achieved 1st place in competition through exceptional teamwork, testing, TIG welding, and creative mechanical design, including brass bushings and a custom-fabricated rear axle.</p>
-    
-    </div>
-  </div>
-  <footer>
-    &copy; 2025 Matthew Dubea • Mechanical Engineering @ UL Lafayette
-  </footer>
+  <main>
+    <section class="card">
+      <h2>About the Trike Project</h2>
+      <p>This senior design project focuses on a custom-built human-powered tricycle engineered for the 2025 Acadiana 500 relay race.</p>
+      <p>It emphasizes structural optimization, low-cost design, TIG welding, FEA simulation, and efficient material usage — resulting in a 1st place win.</p>
+    </section>
+    <section class="card">
+      <h3>📅 Project Timeline</h3>
+      <ul>
+        <li><strong>January:</strong> Design and simulation completed</li>
+        <li><strong>February:</strong> Frame welded and axle machined</li>
+        <li><strong>March:</strong> Assembly and testing</li>
+        <li><strong>April:</strong> Competition tuning</li>
+        <li><strong>May:</strong> 1st place win!</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h3>📷 Team Photo</h3>
+      <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Team Photo" style="max-width:100%; border-radius:10px;"/>
+    </section>
+  </main>
+  <footer><p>&copy; 2025 Matthew Dubea</p><script src="theme.js"></script></footer>
 </body>
 </html>
