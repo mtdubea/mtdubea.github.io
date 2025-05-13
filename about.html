@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About – Matthew Dubea</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -14,31 +14,26 @@
       <a href="about.html">About</a>
       <a href="gallery.html">Gallery</a>
       <a href="reports.html">Reports</a>
-      <a href="resume.html">Résumé</a>
-      <button id="themeToggle">🌓</button>
     </nav>
   </header>
+
   <main>
     <section class="card">
-      <h2>About the Trike Project</h2>
-      <p>This senior design project focuses on a custom-built human-powered tricycle engineered for the 2025 Acadiana 500 relay race.</p>
-      <p>It emphasizes structural optimization, low-cost design, TIG welding, FEA simulation, and efficient material usage — resulting in a 1st place win.</p>
+      <h2>About This Project</h2>
+      <p>A lightweight, front-wheel, direct-pedal-powered tricycle was designed, fabricated, and raced for the 3,400-foot course at the 2025 Acadiana 500 relay. Beginning with a salvaged 1020 steel bicycle frame and fork, the team developed a rigid rear axle assembly using TIG-welded 4130 tubing and a heat-treated 4140 steel axle, supported by brass bushings and sealed ball bearings.</p>
+      <p>FEA estimated a max von Mises stress of 75 MPa under an 800 N rider load, yielding a safety factor of 4.5. The tip-over angle of 23° confirmed stability. At 35 lbs and under $120, the trike proved highly competitive, reaching 14–15 mph during testing. The “Fast Pedal Engineers” won 1st place overall in all 5 heats without failures or penalties.</p>
     </section>
-    <section class="card">
-      <h3>📅 Project Timeline</h3>
-      <ul>
-        <li><strong>January:</strong> Design and simulation completed</li>
-        <li><strong>February:</strong> Frame welded and axle machined</li>
-        <li><strong>March:</strong> Assembly and testing</li>
-        <li><strong>April:</strong> Competition tuning</li>
-        <li><strong>May:</strong> 1st place win!</li>
-      </ul>
-    </section>
+
     <section class="card">
       <h3>📷 Team Photo</h3>
-      <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Team Photo" style="max-width:100%; border-radius:10px;"/>
+      <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Team Photo" />
+      <h3>🎞️ Race Footage</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" frameborder="0" allowfullscreen></iframe>
+      </div>
     </section>
   </main>
-  <footer><p>&copy; 2025 Matthew Dubea</p><script src="theme.js"></script></footer>
+
+  <footer><p>&copy; 2025 Matthew Dubea</p></footer>
 </body>
 </html>
