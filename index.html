@@ -3,9 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Matthew Dubea – Portfolio</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <title>Matthew Dubea – Mechanical Engineering Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -16,23 +22,29 @@
       <a href="gallery.html">Gallery</a>
       <a href="reports.html">Reports</a>
       <a href="resume.html">Résumé</a>
-      <button id="themeToggle">🌓</button>
+      <button id="themeToggle" aria-label="Toggle theme">🌓</button>
     </nav>
   </header>
+
   <main>
     <section class="card">
-      <h2>Welcome to My Portfolio</h2>
-      <p>This website presents my mechanical engineering senior project: a direct-drive, human-powered racing trike designed for the 2025 Acadiana 500.</p>
+      <h2>Welcome</h2>
+      <p>
+        This site presents my 2025 Mechanical Engineering Senior project: design of a front-wheel direct pedal powered  tricycle manufactored to win  the 2025 Acadiana 500 Tricycle competition in New Iberia, Louisiana. The design was custom fabricated using ULL resources, TIG welding, precision CNC machining using UL's Lathe, and FEA-backed structural analysis using Solidworks.
+      </p>
     </section>
+
     <section class="card">
-      <h3>🎥 Highlight Videos</h3>
+      <h3>📽️ Race Highlights</h3>
+      <p style="text-align:center; margin-bottom:1rem;">Click below to view live race footage from the Acadiana 500.</p>
       <div class="video-wrapper">
-        <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" title="Race Clip 1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" title="Race Clip 2" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" title="Final Sprint" allowfullscreen></iframe>
       </div>
     </section>
   </main>
+
   <footer>
     <p>&copy; 2025 Matthew Dubea</p>
     <script src="theme.js"></script>
