@@ -5,32 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reports – Matthew Dubea</title>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+    }
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 45px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Matthew Dubea</h1>
     <nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="reports.html" class="active">Reports</a>
-  <a href="resume.html">Résumé</a>
-  <a href="calculations.html">Calculations – Tricycle Design</a>
-  <button id="themeToggle">🌓</button>
-</nav>
-</header>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reports.html" class="active">Reports</a>
+      <a href="resume.html">Résumé</a>
+      <a href="calculations.html">Calculations – Tricycle Design</a>
+      <button id="themeToggle">🌓</button>
+    </nav>
+  </header>
   <main>
     <section class="card">
       <h2>📄 Documentation</h2>
       <ul>
         <li><a href="MCHE484_FinalPoster_TrikeDesignAndFab.pdf">Poster Presentation</a></li>
-        <li><a href="Engineering_Memo_Report.pdf">Engineering Memo</a></li>
         <li><a href="FEA_Results.pdf">FEA Report</a></li>
-        <li><a href="Race_Performance_Data.xlsx">Race Data</a></li>
         <li><a href="MCHE484_FinalReport_FastPedalEngineers[1].pdf">Full Final Report</a></li>
+        <li><a href="#" onclick="document.getElementById('feamodal').style.display='block'">FEA – von Mises Stress Simulation (Pop-Up Image)</a></li>
       </ul>
     </section>
+
+    <div id="feamodal" class="modal">
+      <span class="close" onclick="document.getElementById('feamodal').style.display='none'">&times;</span>
+      <img class="modal-content" src="FEA_VM.png" alt="von Mises Stress Distribution – Tricycle Frame" />
+    </div>
   </main>
-  <footer><p>&copy; 2025 Matthew Dubea</p><script src="theme.js"></script></footer>
+  <footer>
+    <p>&copy; 2025 Matthew Dubea</p>
+    <script src="theme.js"></script>
+  </footer>
 </body>
 </html>
