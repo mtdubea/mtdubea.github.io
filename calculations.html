@@ -1,114 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Docs – Engineering Calculations</title>
-
-  <!-- ONE Tailwind + ONE font link -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <!-- your overrides -->
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <!-- KaTeX -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.17.0/dist/contrib/auto-render.min.js"
-          onload="renderMathInElement(document.body);"></script>
-
-  <!-- optional schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"TechArticle",
-    "headline":"Engineering Calculations for Acadiana 500 Racing Trike",
-    "author":{"@type":"Person","name":"Matthew Dubea"},
-    "keywords":"mechanical engineering, FEA, tricycle"
-  }
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculations – Tricycle Design</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.6rem;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+  </style>
 </head>
-
-<body class="font-['Inter',sans-serif] bg-gray-50">
-
-<header class="bg-[#05396B] text-white">
-  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
-    <h1 class="text-2xl font-bold">Technical Docs</h1>
-    <nav class="flex flex-wrap gap-4 text-sm font-medium">
-      <a href="index.html"      class="hover:text-[#FF9F1C]">Overview</a>
-      <a href="gallery.html"    class="hover:text-[#FF9F1C]">Build</a>
-      <a href="reports.html"    class="hover:text-[#FF9F1C]">Results</a>
-      <a href="calculations.html" class="underline hover:text-[#FF9F1C]">Docs</a>
-      <a href="about.html"      class="hover:text-[#FF9F1C]">About Me</a>
+<body>
+  <header>
+    <h1>Matthew Dubea</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reports.html">Reports</a>
+      <a href="resume.html">Resume</a>
+      <a href="calculations.html">Calculations</a>
       <button id="themeToggle" aria-label="Toggle theme">🌓</button>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main class="max-w-5xl mx-auto px-4 py-12 space-y-12">
-
-  <!-- Symbol table -->
-  <section class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-2xl font-semibold mb-6">🧮 Symbol Reference</h2>
-    <div class="overflow-x-auto">
-      <table class="min-w-full text-sm border border-gray-200">
-        <thead class="bg-gray-100">
-          <tr class="divide-x divide-gray-200">
-            <th class="p-3 font-semibold">Symbol</th>
-            <th class="p-3 font-semibold">Description</th>
-            <th class="p-3 font-semibold">Units</th>
-            <th class="p-3 font-semibold">Notes</th>
+  <main>
+    <section class="card">
+      <h2>🧮 Symbol Reference Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Meaning / Description</th>
+            <th>Units</th>
+            <th>Typical Value or Notes</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200">
-          <!-- keep your rows exactly as‑is -->
-          <tr class="divide-x divide-gray-200"><td class="p-3">m</td><td class="p-3">Mass</td><td class="p-3">kg / lbm</td><td class="p-3">Trike, rider, or combined</td></tr>
-          <!-- … (rest of rows) … -->
+        <tbody>
+          <tr><td>m</td><td>Mass</td><td>kg / lbm</td><td>Used for trike, rider, or combined</td></tr>
+          <tr><td>W</td><td>Weight</td><td>N / lbf</td><td>W = m × g</td></tr>
+          <tr><td>g</td><td>Gravitational acceleration</td><td>9.81 / 32.174</td><td>Standard gravity</td></tr>
+          <tr><td>v</td><td>Velocity</td><td>m/s / ft/s</td><td>Used in kinetic energy, speed calc</td></tr>
+          <tr><td>t</td><td>Time</td><td>s</td><td>Lap time</td></tr>
+          <tr><td>L</td><td>Lap Length</td><td>ft / m</td><td>3485 ft</td></tr>
+          <tr><td>v<sub>avg</sub></td><td>Average speed</td><td>ft/s</td><td>L / t</td></tr>
+          <tr><td>KE</td><td>Kinetic Energy</td><td>J / ft·lbf</td><td>0.5 × m × v²</td></tr>
+          <tr><td>W<sub>mech</sub></td><td>Mechanical Work</td><td>J / ft·lbf</td><td>W = P × t</td></tr>
+          <tr><td>P</td><td>Power output</td><td>W</td><td>Assume 84 W continuous</td></tr>
+          <tr><td>θ<sub>tip</sub></td><td>Tip-over angle</td><td>deg</td><td>atan(b/2 / h)</td></tr>
+          <tr><td>a<sub>y</sub></td><td>Critical lateral acceleration</td><td>ft/s² / g</td><td>g × tan(θ<sub>tip</sub>)</td></tr>
+          <tr><td>R</td><td>Turn radius</td><td>ft</td><td>Used in tipping speed calc</td></tr>
+          <tr><td>v<sub>max</sub></td><td>Max speed before tipping</td><td>ft/s / mph</td><td>√(a<sub>y</sub> × R)</td></tr>
+          <tr><td>C</td><td>Wheel circumference</td><td>in / ft</td><td>C = π × D</td></tr>
+          <tr><td>D</td><td>Wheel diameter</td><td>in</td><td>20 in front</td></tr>
+          <tr><td>N</td><td>Pedal RPM</td><td>rev/min</td><td>N = v / (C × 60 / 88)</td></tr>
+          <tr><td>τ</td><td>Shear Stress</td><td>psi</td><td>τ = V / A</td></tr>
+          <tr><td>A</td><td>Cross-sectional Area</td><td>in²</td><td>π × d² / 4</td></tr>
+          <tr><td>σ<sub>b</sub></td><td>Bending Stress</td><td>psi</td><td>σ = M / S</td></tr>
+          <tr><td>S</td><td>Section modulus</td><td>in³</td><td>π × d³ / 32</td></tr>
+          <tr><td>M</td><td>Bending moment</td><td>lbf·in</td><td>M = V × L / 2</td></tr>
+          <tr><td>δ</td><td>Deflection</td><td>in</td><td>δ = WL³ / (3EI)</td></tr>
+          <tr><td>E</td><td>Young’s Modulus</td><td>psi</td><td>29e6 psi for steel</td></tr>
+          <tr><td>I</td><td>Moment of inertia</td><td>in⁴</td><td>Based on geometry</td></tr>
+          <tr><td>σ<sub>vm</sub></td><td>Von Mises Stress</td><td>psi</td><td>√(σ² + 3τ²)</td></tr>
+          <tr><td>σ<sub>y</sub></td><td>Yield Stress</td><td>psi</td><td>e.g., 69 ksi for 4140 steel</td></tr>
+          <tr><td>FoS</td><td>Factor of Safety</td><td>—</td><td>σ<sub>y</sub> / σ<sub>vm</sub></td></tr>
+          <tr><td>θ</td><td>Angle</td><td>deg</td><td>Trig use</td></tr>
         </tbody>
       </table>
-    </div>
-  </section>
+    </section>
 
-  <!-- Summary list -->
-  <section class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-2xl font-semibold mb-6">📐 Engineering Highlights</h2>
-    <p class="mb-4">
-      Full derivations are in the downloadable PDF; key takeaways are summarized below.
-    </p>
-    <ul class="list-disc pl-6 space-y-2 font-mono text-sm">
-      <li>W = m·g = 209 lbm × 32.174 ≈ 209 lbf</li>
-      <li>v<sub>avg</sub> = 3485 ft / 211 s ≈ 16.5 ft/s (11.3 mph)</li>
-      <li>KE ≈ 886 ft·lbf → Work/lap ≈ 17.7 kJ</li>
-      <li>θ<sub>tip</sub> ≈ 23° → a<sub>y</sub> ≈ 0.42 g</li>
-      <li>σ<sub>vm,axle</sub> ≈ 39.7 ksi → FoS = 1.7 (4140)</li>
-      <!-- … etc … -->
-    </ul>
+    <section class="card">
+      <h2>📐 Engineering Calculations Summary</h2>
+      <p>All performance, dynamic, and structural formulas for the trike project are detailed in the PDF report. Additional expanded derivations and race metrics will be added as necessary.</p>
+      <ul>
+        <li>Mass + Weight: <code>W = m × g = 209.4 lbm × 32.174 ≈ 209.4 lbf</code></li>
+        <li>Avg Speed: <code>v_avg = 3485 ft / 211 s = 16.5 ft/s ≈ 11.3 mph</code></li>
+        <li>Wheel Rev: <code>C = π × D = 5.24 ft → N = L / C ≈ 665 rev/lap</code></li>
+        <li>KE = <code>0.5 × m × v² ≈ 886 ft·lbf</code> → Work ≈ 17.7 kJ</li>
+        <li>Tip angle: <code>θ_tip ≈ 23°</code> → <code>a_y ≈ 0.42 g</code></li>
+        <li>Turn v<sub>max</sub>: <code>√(a_y × R) ≈ 9.8 mph</code></li>
+        <li>Cadence: <code>v = 0.357 × N → N ≈ 32–41 rpm</code></li>
+        <li>Axle: <code>σ_vm ≈ 39.7 ksi</code>, FoS = 1.7 (Material: 4140)</li>
+        <li>Seat Post: <code>δ ≈ 0.062 in &lt; 0.25 in spec</code></li>
+        <li>Frame FEA: <code>σ_vm = 2.8e8 N/m²</code> → FoS = 2.22</li>
+      </ul>
+    </section>
+  </main>
 
-    <!-- collapsible example -->
-    <details class="mt-6 border-l-4 border-[#FF9F1C] pl-4">
-      <summary class="cursor-pointer font-semibold mb-2">
-        Show tipping‑angle derivation
-      </summary>
-      <p>
-        The critical lateral acceleration is
-        $a_y = g \tan\\bigl(\\theta_{\\text{tip}}\\bigr)$,
-        where $\\theta_{\\text{tip}} = \\arctan\\frac{b/2}{h}$.
-      </p>
-    </details>
-  </section>
-
-</main>
-
-<footer class="text-center py-6 text-sm">
-  &copy; 2025 Matthew Dubea
-  <script src="theme.js"></script>
-</footer>
-
-<!-- GLightbox (optional—only if images here need it) -->
-<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>GLightbox({ selector: '.glightbox' });</script>
+  <footer>
+    <p>&copy; 2025 Matthew Dubea</p>
+    <script src="theme.js"></script>
+  </footer>
 </body>
 </html>

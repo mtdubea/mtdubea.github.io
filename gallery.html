@@ -1,148 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Media Gallery – Matthew Dubea</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery – Matthew Dubea</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
-<body class="font-['Inter',sans-serif] bg-gray-50">
-
-<!-- Consistent hero/nav -->
-<header class="bg-[#05396B] text-white">
-  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
-    <h1 class="text-2xl font-bold">Project Gallery</h1>
-    <nav class="flex flex-wrap gap-4 text-sm font-medium">
-      <a href="index.html"      class="hover:text-[#FF9F1C]">Overview</a>
-      <a href="gallery.html"    class="underline hover:text-[#FF9F1C]">Build</a>
-      <a href="reports.html"    class="hover:text-[#FF9F1C]">Results</a>
-      <a href="calculations.html" class="hover:text-[#FF9F1C]">Docs</a>
-      <a href="about.html"      class="hover:text-[#FF9F1C]">About Me</a>
+<body>
+  <header>
+    <h1>Matthew Dubea</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="reports.html">Reports</a>
+      <a href="resume.html">Resume</a>
+      <a href="calculations.html">Calculations</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main class="max-w-6xl mx-auto px-4 py-12 space-y-16">
+  <main>
+    <section class="gallery">
+      <h2>📸 Project Media Gallery</h2>
+      <ul>
 
-  <!-- Re‑used parts -->
-  <section>
-    <h2 class="text-xl font-semibold mb-4">♻️ Re‑used Components</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="Reusable Bike Frame.jpg" class="glightbox" data-gallery="reused">
-        <img src="Reusable Bike Frame.jpg" alt="Original bike frame before modification"
-             class="w-full rounded-lg shadow">
-      </a>
-      <a href="Reusable Bike with Drawing.jpg" class="glightbox" data-gallery="reused">
-        <img src="Reusable Bike with Drawing.jpg" alt="Annotated drawing over reused frame"
-             class="w-full rounded-lg shadow">
-      </a>
-    </div>
-  </section>
+        <!-- ♻️ Reused Parts -->
+        <li><img src="Reusable Bike Frame.jpg" alt="Reused Bike Frame" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Reusable Bike with Drawing.jpg" alt="Reused Bike Drawing" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
 
-  <!-- CAD / SolidWorks -->
-  <section>
-    <h2 class="text-xl font-semibold mb-4">🛠️ CAD &amp; SolidWorks</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="ExplodedView - Copy.png" class="glightbox" data-gallery="cad">
-        <img src="ExplodedView - Copy.png" alt="Exploded CAD view"
-             class="w-full rounded-lg shadow">
-      </a>
-      <a href="FinalAssembly.drw - Copy.jpg" class="glightbox" data-gallery="cad">
-        <img src="FinalAssembly.drw - Copy.jpg" alt="Final SolidWorks drawing"
-             class="w-full rounded-lg shadow">
-      </a>
-      <!-- PDFs shown as links to keep gallery clean -->
-      <a href="Assem1.pdf" target="_blank" class="bg-white rounded-lg shadow p-4 flex items-center justify-center hover:bg-gray-100">
-        📄 Assem1.pdf
-      </a>
-      <a href="Assembly with dimensions.pdf Radii and Axle Lengths.PDF" target="_blank"
-         class="bg-white rounded-lg shadow p-4 flex items-center justify-center hover:bg-gray-100">
-        📄 Assembly‑Dims.pdf
-      </a>
-    </div>
-  </section>
+        <!-- 🛠️ CAD / SolidWorks -->
+        <li><img src="ExplodedView - Copy.png" alt="Exploded CAD View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><embed src="Assem1.pdf" type="application/pdf" style="width:100%; height:500px;" /></li>
+        <li><embed src="Assembly with dimensions.pdf Radii and Axle Lengths.PDF" type="application/pdf" style="width:100%; height:500px;" /></li>
+        <li><img src="FinalAssembly.drw - Copy.jpg" alt="Final Drawing from SolidWorks" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
 
-  <!-- Analysis & diagrams -->
-  <section>
-    <h2 class="text-xl font-semibold mb-4">🧪 Analysis &amp; Diagrams</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="COG.png" class="glightbox" data-gallery="analysis">
-        <img src="COG.png" alt="Center of gravity diagram"
-             class="w-full rounded-lg shadow">
-      </a>
-      <a href="All_.pdf.png" class="glightbox" data-gallery="analysis">
-        <img src="All_.pdf.png" alt="Combined specs diagram"
-             class="w-full rounded-lg shadow">
-      </a>
-      <a href="RearAxle Assembly.pdf Front View.PDF" target="_blank"
-         class="bg-white rounded-lg shadow p-4 flex items-center justify-center hover:bg-gray-100">
-        📄 Rear‑Axle Assembly PDF
-      </a>
-    </div>
-  </section>
+        <!-- 🧪 Analysis & Diagrams -->
+        <li><img src="COG.png" alt="Center of Gravity Diagram" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="All_.pdf.png" alt="All Specs Diagram" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><embed src="RearAxle Assembly.pdf Front View.PDF" type="application/pdf" style="width:100%; height:500px;" /></li>
 
-  <!-- CNC parts -->
-  <section>
-    <h2 class="text-xl font-semibold mb-4">🛠️ CNC‑Machined Parts</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="Fork Attachment.jpg" class="glightbox" data-gallery="cnc">
-        <img src="Fork Attachment.jpg" alt="Fork‑attachment CNC part" class="w-full rounded-lg shadow">
-      </a>
-      <a href="Modified Stem.jpg" class="glightbox" data-gallery="cnc">
-        <img src="Modified Stem.jpg" alt="Modified stem piece" class="w-full rounded-lg shadow">
-      </a>
-      <a href="T Seat.jpg" class="glightbox" data-gallery="cnc">
-        <img src="T Seat.jpg" alt="Rear T‑seat support" class="w-full rounded-lg shadow">
-      </a>
-      <a href="Lathed Rear Axle Bushings.jpg" class="glightbox" data-gallery="cnc">
-        <img src="Lathed Rear Axle Bushings.jpg" alt="Lathed rear‑axle bushings"
-             class="w-full rounded-lg shadow">
-      </a>
-      <a href="(.drw)Forks.pdf" target="_blank"
-         class="bg-white rounded-lg shadow p-4 flex items-center justify-center hover:bg-gray-100">
-        📄 Forks Drawing PDF
-      </a>
-    </div>
-  </section>
+        <!-- 🛠️ CNC Machined Custom Parts (NEW Section) -->
+        <h3 style="text-align:center;">🛠️ Designed and CNC Lathe Machined Parts at ULL with Jeff Guidry</h3>
+        <li><embed src="(.drw)Forks.pdf" type="application/pdf" style="width:100%; height:500px;" /></li>
+        <li><img src="Fork Attachment.jpg" alt="Fork Attachment CNC Part" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Modified Stem.jpg" alt="Modified Stem New Design" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="T Seat.jpg" alt="Rear T-Seat Support" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Lathed Rear Axle Bushings.jpg" alt="Lathed Rear Axle Bushings" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
 
-  <!-- Final build & victory -->
-  <section>
-    <h2 class="text-xl font-semibold mb-4">🏁 Final Build &amp; Victory</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <a href="Final_Assembly.png" class="glightbox" data-gallery="final">
-        <img src="Final_Assembly.png" alt="Render – final assembly" class="w-full rounded-lg shadow">
-      </a>
-      <a href="Final Assembly.png" class="glightbox" data-gallery="final">
-        <img src="Final Assembly.png" alt="Alternate final assembly view"
-             class="w-full rounded-lg shadow">
-      </a>
-      <a href="trike(side).jpg" class="glightbox" data-gallery="final">
-        <img src="trike(side).jpg" alt="Trike side view" class="w-full rounded-lg shadow">
-      </a>
-      <a href="actual trike (rear).png" class="glightbox" data-gallery="final">
-        <img src="actual trike (rear).png" alt="Actual trike rear" class="w-full rounded-lg shadow">
-      </a>
-      <a href="Holding Trophy.jpg" class="glightbox" data-gallery="final">
-        <img src="Holding Trophy.jpg" alt="Team holding trophy" class="w-full rounded-lg shadow">
-      </a>
-      <a href="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" class="glightbox" data-gallery="final">
-        <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Group photo" class="w-full rounded-lg shadow">
-      </a>
-    </div>
-  </section>
+        <!-- 🏁 Final Product & Victory -->
+        <li><img src="Final_Assembly.png" alt="Final Assembly Render" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Final Assembly.png" alt="Final Assembly Alt View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="trike(side).jpg" alt="Trike Side View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="trike.png" alt="Trike PNG" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="actual trike (rear).png" alt="Actual Trike Rear View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Actual Trike (Side).png" alt="Actual Trike Side View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Holding Trophy.jpg" alt="FPE Team Holding Trophy After Winning" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
+        <li><img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Team Group Photo" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
 
-</main>
+      </ul>
+    </section>
+  </main>
 
-<footer class="text-center py-6 text-sm">
-  &copy; 2025 Matthew Dubea
-</footer>
-
-<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>GLightbox({ selector: '.glightbox' });</script>
+  <footer><p>&copy; 2025 Matthew Dubea</p></footer>
 </body>
 </html>

@@ -1,91 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About – Matthew Dubea</title>
-
-  <!-- one Tailwind + one font link -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <!-- custom overrides -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- Project schema for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Acadiana 500 Racing Trike",
-    "creator": { "@type":"Person", "name":"Matthew Dubea"},
-    "dateCreated": "2025-04-30",
-    "keywords": "mechanical engineering, FEA, CNC, TIG welding"
-  }
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About – Matthew Dubea</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+    }
+  </style>
 </head>
-
-<body class="font-['Inter',sans-serif] bg-gray-50">
-
-<!-- Re‑use hero navbar component -->
-<header class="bg-[#05396B] text-white">
-  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
-    <h1 class="text-2xl font-bold">About the Project</h1>
-    <nav class="flex flex-wrap gap-4 text-sm font-medium">
-      <a href="index.html"      class="hover:text-[#FF9F1C]">Overview</a>
-      <a href="gallery.html"    class="hover:text-[#FF9F1C]">Build</a>
-      <a href="reports.html"    class="hover:text-[#FF9F1C]">Results</a>
-      <a href="calculations.html" class="hover:text-[#FF9F1C]">Docs</a>
-      <a href="about.html"      class="hover:text-[#FF9F1C] underline">About Me</a>
-      <button id="themeToggle" aria-label="Toggle theme">🌓</button>
-    </nav>
-  </div>
+<body>
+  <header>
+    <h1>Matthew Dubea</h1>
+ <nav>
+  <a href="index.html">Home</a>
+  <a href="about.html" class="active">About</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="reports.html">Reports</a>
+  <a href="resume.html">Resume</a>
+  <a href="calculations.html">Calculations</a>
+  <button id="themeToggle">🌓</button>
+</nav>
 </header>
 
-<main class="max-w-4xl mx-auto px-4 py-12 space-y-12">
+  <main>
+    <section class="card">
+      <h2>About This Project</h2>
+      <p>
+        A lightweight, front-wheel, direct-pedal-powered tricycle was designed, fabricated, and raced over a 3,400-foot asphalt course during the 2025 Acadiana 500 relay. 
+        Beginning with a salvaged 1020 steel bicycle frame, fork, and modified handlebars, our team engineered a reinforced rear axle assembly using TIG-welded 4130 tubing and a heat-treated 4140 steel shaft supported by brass bushings and sealed bearings.
+      </p>
+      <p>
+        Finite Element Analysis (FEA) estimated a maximum von Mises stress of 75 MPa under an 800 N rider load, resulting in a factor of safety of 4.5. The static tip-over angle of 23° confirmed high lateral stability. 
+        At 35 lbs and built under a $120 budget, the trike reached test speeds of 14–15 mph. The "Fast Pedal Engineers" swept all five heats to earn 1st place overall, with no mechanical failures or penalties.
+      </p>
+    </section>
 
-  <section class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-2xl font-semibold mb-4">Project Snapshot</h2>
-    <p class="mb-4">
-      Our lightweight, front‑wheel direct‑drive trike tackled the 3 400‑ft asphalt Acadiana 500 relay.
-      Starting from a salvaged 1020‑steel bike frame, we TIG‑welded a reinforced 4130 rear‑axle cradle around a
-      heat‑treated 4140 shaft with brass bushings and sealed bearings.
-    </p>
-    <p>
-      SolidWorks FEA predicted <strong>75 MPa</strong> peak von Mises stress under an 800 N rider,
-      giving a <strong>FoS = 4.5</strong>. Static tip‑over angle was 23°, confirming excellent stability.
-      The 35‑lb build cost under <strong>$120</strong> and hit <strong>14–15 mph</strong> in testing.
-      “Fast Pedal Engineers” swept all five heats for 1ˢᵗ place—zero penalties, zero failures.
-    </p>
-  </section>
+    <section class="card">
+      <h3>📸 Team Photo</h3>
+      <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Fast Pedal Engineers – Team Photo"
+           style="width:60%; max-width:500px; display:block; margin:1rem auto; border-radius:10px;" />
 
-  <section class="bg-white rounded-xl shadow p-6">
-    <h3 class="text-xl font-semibold mb-4">📸 Team Photo</h3>
-    <a href="Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
-       class="glightbox block max-w-md mx-auto">
-      <img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
-           alt="Fast Pedal Engineers team posing with finished trike"
-           class="rounded-lg shadow-lg">
-    </a>
+      <h3>🎞️ Race Footage</h3>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" title="Race Highlight – Final Sprint" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+  </main>
 
-    <h3 class="text-xl font-semibold mt-10 mb-4">🎞️ Race Footage</h3>
-    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-lg">
-      <iframe src="https://www.youtube.com/embed/T5bXXW90K8g"
-              title="Race Highlight – Final Sprint"
-              allowfullscreen class="w-full h-full"></iframe>
-    </div>
-  </section>
-
-</main>
-
-<footer class="text-center py-6 text-sm">
-  &copy; 2025 Matthew Dubea
-  <script src="theme.js"></script>
-</footer>
-
-<!-- GLightbox -->
-<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
-<script>GLightbox({ selector: '.glightbox' });</script>
+  <footer>
+    <p>&copy; 2025 Matthew Dubea</p>
+    <script src="theme.js"></script>
+  </footer>
 </body>
 </html>

@@ -1,59 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Résumé – Matthew Dubea</title>
-
-  <!-- one Tailwind + one font link -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume – Matthew Dubea</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-
-<body class="font-['Inter',sans-serif] bg-gray-50">
-
-<!-- Consistent hero / nav -->
-<header class="bg-[#05396B] text-white">
-  <div class="max-w-6xl mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-4">
-    <h1 class="text-2xl font-bold">Résumé &mdash; Matthew Dubea</h1>
-    <nav class="flex flex-wrap gap-4 text-sm font-medium">
-      <a href="index.html"      class="hover:text-[#FF9F1C]">Overview</a>
-      <a href="gallery.html"    class="hover:text-[#FF9F1C]">Build</a>
-      <a href="reports.html"    class="hover:text-[#FF9F1C]">Results</a>
-      <a href="calculations.html" class="hover:text-[#FF9F1C]">Docs</a>
-      <a href="about.html"      class="hover:text-[#FF9F1C]">About Me</a>
-      <button id="themeToggle" aria-label="Toggle theme">🌓</button>
+<body>
+  <header>
+    <h1>Matthew Dubea</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reports.html">Reports</a>
+      <a href="resume.html">Resume</a>
+      <a href="calculations.html">Calculations</a>
+      <button id="themeToggle">🌓</button>
     </nav>
-  </div>
-</header>
-
-<main class="max-w-4xl mx-auto px-4 py-12">
-
-  <section class="bg-white rounded-xl shadow p-6">
-    <h2 class="text-2xl font-semibold mb-4">📄 Download &amp; View</h2>
-
-    <!-- Responsive PDF embed -->
-    <div class="aspect-[8/11] w-full rounded-lg overflow-hidden shadow mb-4">
-      <iframe src="Resume_Best__original_.pdf"
-              title="Matthew Dubea Résumé PDF"
-              class="w-full h-full"
-              loading="lazy"></iframe>
-    </div>
-
-    <a href="Resume_Best__original_.pdf" download
-       class="inline-block bg-[#05396B] text-white px-6 py-3 rounded-xl font-semibold shadow hover:bg-[#FF9F1C] transition">
-       ⬇️ Download PDF
-    </a>
-  </section>
-
-</main>
-
-<footer class="text-center py-6 text-sm">
-  &copy; 2025 Matthew Dubea
-  <script src="theme.js"></script>
-</footer>
-
+  </header>
+  <main>
+    <section class="card">
+      <h2>📄 My Resume</h2>
+      <embed src="Resume_Best__original_.pdf" type="application/pdf" width="100%" height="600px" />
+      <p><a href="Resume_Best__original_.pdf" download>⬇️ Download Resume</a></p>
+    </section>
+  </main>
+  <footer><p>&copy; 2025 Matthew Dubea</p><script src="theme.js"></script></footer>
 </body>
 </html>
