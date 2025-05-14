@@ -4,8 +4,8 @@ This site documents my senior capstone project: a front-pedal direct-drive tricy
 
 ## 🔧 Key Highlights
 
-- 3D CAD, FEA, and welded fabrication
-- Final weight: 35 lbs | Max speed: 15 mph
+- 3D CAD, FEA, and TIG-welded fabrication
+- Final weight: 35 lbs | Max speed: ~15 mph
 - Built from recycled materials under strict race rules
 - 1st place winning entry
 
