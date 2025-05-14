@@ -11,39 +11,98 @@
     body {
       font-family: 'Inter', 'Segoe UI', sans-serif;
     }
+    .pdf-embed {
+      width: 100%;
+      height: 550px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      margin-top: 1rem;
+    }
+    .cta-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cta-buttons a {
+      background: #064f88;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease-in-out;
+    }
+    .cta-buttons a:hover {
+      background: #05396B;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Matthew Dubea</h1>
-<nav>
-  <a href="index.html" class="active">Home</a>
-  <a href="about.html">About</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="reports.html">Reports</a>
-  <a href="resume.html">Resume</a>
-  <a href="calculations.html">Calculations</a>
-  <button id="themeToggle" aria-label="Toggle theme">🌓</button>
-</nav>
-</header>
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="reports.html">Reports</a>
+      <a href="resume.html">Resume</a>
+      <a href="calculations.html">Calculations</a>
+      <button id="themeToggle" aria-label="Toggle theme">🌓</button>
+    </nav>
+  </header>
 
   <main>
     <section class="card">
       <h2>Welcome</h2>
       <p>
-        This site presents my 2025 Mechanical Engineering Senior project: design of a front-wheel direct pedal powered  tricycle manufactored to win  the 2025 Acadiana 500 Tricycle competition in New Iberia, Louisiana. The design was custom fabricated using ULL resources, TIG welding, precision CNC machining using UL's Lathe, and FEA-backed structural analysis using Solidworks.
+        This site presents my senior capstone project in Mechanical Engineering at the University of Louisiana at Lafayette: a high-performance, front-wheel, direct-pedal-powered racing tricycle, engineered to win the 2025 <strong>Acadiana 500</strong> Tricycle Relay in New Iberia, Louisiana.
       </p>
+      <p>
+        The competition required full compliance with a strict design rule set, including no chains or gears and only foot-powered front-wheel drive. Our final vehicle—built through two semesters of design, analysis, and manufacturing—achieved <strong>first place overall</strong>.
+      </p>
+      <p>
+        Led by UL Lafayette and event coordinator <strong>Hanna Pellerin</strong> (Metal Shark Boats), the Acadiana 500 is a sponsored event supporting engineering innovation. Special thanks to our sponsors including <strong>Raising Cane’s</strong>, who helped cover team entry fees and materials.
+      </p>
+      <div class="cta-buttons">
+        <a href="reports.html">📊 View Final Results</a>
+        <a href="Resume_Best__original_.pdf" download>📄 Download Resume</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>📆 Project Timeline – Gantt Chart</h3>
+      <p>The project spanned multiple months across two semesters (Senior Design I & II), with weekly deliverables including CAD development, FEA, custom machining, and compliance testing.</p>
+      <embed src="Gantt Charts.pdf" type="application/pdf" class="pdf-embed" />
+    </section>
+
+    <section class="card">
+      <h3>📚 Race Constraints & Requirements</h3>
+      <p>Rules were provided by the race committee to ensure safety and fairness. Key constraints included:</p>
+      <ul>
+        <li>Direct pedal-to-wheel drive only (no gears, no chains)</li>
+        <li>Foot-powered operation only — no motors allowed</li>
+        <li>Max seat height: 25 inches; max trike width: 20 inches</li>
+        <li>Transition relays must occur in 30-ft zones between cones</li>
+        <li>Penalties: 10 seconds per violation added to total time</li>
+      </ul>
+      <div class="cta-buttons">
+        <a href="Acadiana 500 Race Rules.pdf" target="_blank">📘 View Official Rulebook</a>
+        <a href="Acadiana 500 Sponsor Info REV1.pdf" target="_blank">💰 Sponsor Details</a>
+        <a href="Acadiana 500 Team Registration Form.pdf" target="_blank">📝 Registration Form</a>
+      </div>
     </section>
 
     <section class="card">
       <h3>📽️ Race Highlights</h3>
       <p style="text-align:center; margin-bottom:1rem;">Click below to view live race footage from the Acadiana 500.</p>
-<div class="video-wrapper">
-  <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" title="Race Clip 1" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs" title="Race Clip 2 – Shorts" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" title="Race Clip 3" allowfullscreen></iframe>
-  <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" title="Final Sprint" allowfullscreen></iframe>
-</div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc" title="Race Clip 1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs" title="Race Clip 2 – Shorts" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/ysaawuGRPBA" title="Race Clip 3" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" title="Final Sprint" allowfullscreen></iframe>
+      </div>
     </section>
   </main>
 
