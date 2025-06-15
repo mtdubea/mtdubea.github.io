@@ -1,0 +1,110 @@
+:root {
+  --bg: #e8f1fb;
+  --text: #0a0a0a;
+  --card-bg: #ffffff;
+  --primary: #064f88;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+body.dark {
+  --bg: #121212;
+  --text: #f4f4f4;
+  --card-bg: #1e1e1e;
+}
+header {
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+}
+header h1 {
+  margin: 0;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+nav a,
+#themeToggle {
+  color: white;
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover,
+#themeToggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  text-decoration: underline;
+}
+
+nav a.active {
+  font-weight: 600;
+  text-decoration: underline;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+main {
+  padding: 2rem;
+}
+.card {
+  background: var(--card-bg);
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.gallery img {
+  width: 65%;
+  max-width: 100%;
+  display: block;
+  margin: 1rem auto;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+.gallery embed {
+  width: 100%;
+  height: 500px;
+  display: block;
+  margin: 2rem 0;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+.video-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.video-wrapper iframe {
+  width: 320px;
+  height: 180px;
+  border-radius: 8px;
+  border: none;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+ul li {
+  margin-bottom: 0.75rem;
+}
