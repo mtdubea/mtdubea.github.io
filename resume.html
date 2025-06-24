@@ -1,22 +1,25 @@
+<!-- resume.html  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Résumé • Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Résumé – Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- styles -->
+  <!-- shared styles / fonts -->
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
 <header>
   <div class="container">
-    <h1 class="site-title">Matthew Dubea</h1>
+    <h1>Matthew Dubea</h1>
 
+    <!-- site-wide nav -->
     <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -26,7 +29,7 @@
         <li><a href="resume.html" aria-current="page">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
         <li class="theme-toggle">
-          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
         </li>
       </ul>
     </nav>
@@ -34,31 +37,28 @@
 </header>
 
 <main class="container">
-
   <section class="card">
-    <h2>📄 My Résumé</h2>
+    <h2>📄 Résumé</h2>
 
-    <!-- Inline PDF preview -->
+    <!-- in-page preview (650 px tall on desktop, scrollable) -->
     <embed src="assets/images/MTD Resume.pdf"
            type="application/pdf"
-           style="width:100%;height:600px;border:none;border-radius:8px;
-                  box-shadow:var(--shadow-sm);" />
+           width="100%" height="650px" />
 
-    <!-- Download button -->
-    <div class="cta-row" style="margin-top:1rem">
+    <!-- download action -->
+    <p style="margin-top:1rem;">
       <a class="btn primary"
-         href="assets/images/MTD Resume.pdf"
-         download>
-        ⬇️ Download PDF
+         href="assets/images/MTD Resume.pdf" download>
+        ⬇️ Download Résumé
       </a>
-    </div>
+    </p>
   </section>
-
 </main>
 
 <footer>
-  <div class="container">© 2025 Matthew Dubea</div>
+  © 2025 Matthew Dubea
 </footer>
+
 <script src="theme.js"></script>
 </body>
 </html>
