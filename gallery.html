@@ -2,226 +2,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <title>Gallery – Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <link rel="stylesheet" href="style.css"/>
-
-  <!-- tiny page-only styles -->
-  <style>
-    /* --- local nav (12 tabs) --- */
-    .folder-nav{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0 1.25rem;}
-    .folder-nav a{
-      font:600 .90rem/1 Inter,Segoe UI,sans-serif;
-      border:1px solid var(--primary);
-      padding:.35rem .75rem;border-radius:6px;
-      text-decoration:none;color:var(--primary);
-      transition:all .18s;
-    }
-    .folder-nav a:hover{background:var(--primary);color:#fff;}
-    /* active tab via :target helper */
-    section:target ~ .folder-nav a[href="#{target}"],
-    section:target + .folder-nav a[href="#{target}"]{background:var(--primary);color:#fff;}
-    /* --- media grid --- */
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1rem;}
-    .grid img{max-width:100%;height:auto;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.12);}
-    .grid a.pdf-link{display:block;font-weight:600;margin:.15rem 0;color:var(--text);}
-    .grid a.pdf-link:hover{text-decoration:underline;color:var(--primary);}
-    .group-title{margin:1.5rem 0 .65rem;font-size:1.17rem;font-weight:600;}
-  </style>
+  <meta charset="utf-8" />
+  <title>Project Gallery – Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
-  <header>
-    <h1>Matthew Dubea</h1>
-    <nav class="main-nav">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="gallery.html" aria-current="page">Gallery</a>
-      <a href="reports.html">Reports</a>
-      <a href="resume.html">Résumé</a>
-      <a href="calculations.html">Calculations</a>
-      <button id="themeToggle">🌓</button>
+<header class="site-header">
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html" aria-current="page">Gallery</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="calculations.html">Calculations</a></li>
+        <li class="theme-toggle">
+          <button id="themeToggle" title="Toggle theme">🌓</button>
+        </li>
+      </ul>
     </nav>
-  </header>
-
-  <main class="container">
-
-<!-- ░░░░░░░░░░░░░░░░ FOLDERS 1–12  ░░░░░░░░░░░░░░░░
-       ► One <section> per numbered folder.
-       ► Insert or delete <img> / <a class="pdf-link"> as needed.
-       ► Keep paths exactly: assets/images/<folder-name>/<file>
-   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ -->
-<!-- 1 — Measurements / Re-used parts -->
-<section id="1">
-  <h2 class="group-title">Component Measurements&nbsp;&amp; Re-used Frame Checks</h2>
-  <div class="grid">
-    <img src="assets/images/1_measure_Reused_Parts/measurment of width from outer to outer pedal (24 inch max).jpg" alt="Pedal-to-pedal width (24 in max)">
-    <img src="assets/images/1_measure_Reused_Parts/Rough measure of wheel base and fork height.jpg" alt="">
-    <img src="assets/images/1_measure_Reused_Parts/rough measure of wheel base to see if recuable parts willwork.jpg" alt="">
-    <img src="assets/images/1_measure_Reused_Parts/roughmeasure(less)wheelbase.jpg" alt="">
-    <img src="assets/images/1_measure_Reused_Parts/roughmeasure(moredistance)wheelbase.jpg" alt="">
-    <img src="assets/images/1_measure_Reused_Parts/seat tube diameter.jpg" alt="">
-    <img src="assets/images/1_measure_Reused_Parts/seat tube width again.jpg" alt="">
-    <img src="assets/images/1_measure_Reused_Parts/top of seat tube diameter.jpg" alt="">
   </div>
-</section>
+</header>
 
-<!-- 2 — Recycled parts -->
-<section id="2">
-  <h2 class="group-title">Recycled Parts – Dismantling</h2>
-  <div class="grid">
-    <img src="assets/images/2_recycled/0.jpg" alt="">
-    <img src="assets/images/2_recycled/1.jpg" alt="">
-    <!-- … (list the remaining 8 images) … -->
-  </div>
-</section>
+<main class="container">
 
-<!-- 3 — Build process -->
-<section id="3">
-  <h2 class="group-title">Build Progress</h2>
-  <div class="grid">
-    <img src="assets/images/3_build/Assembled Prototype.jpg" alt="">
-    <img src="assets/images/3_build/assembling.jpg"    alt="">
-    <img src="assets/images/3_build/Front&Rear_Wheels.jpg" alt="">
-    <img src="assets/images/3_build/gathered parts -recycled parts.jpg" alt="">
-    <img src="assets/images/3_build/Gathers parts and recycled parts.jpg" alt="">
-    <img src="assets/images/3_build/IMG-20250615-WA0006.jpg" alt="">
-    <img src="assets/images/3_build/Parts all came in, just placed next to each other, (not assembled).jpg" alt="">
-    <img src="assets/images/3_build/SeatAttachingToFrame.jpg" alt="">
-    <img src="assets/images/3_build/Welding Table.jpg" alt="">
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       1 · Measurements / Re-used parts
+  ─────────────────────────────────── -->
+  <details class="card" open>
+    <summary><h2>Component Measurements & Re-used Frame Checks</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/1_measure_Reused_Parts/measurement of width from outer to outer pedal (24 inch max).jpg"  alt="Pedal-to-pedal width (spec 24 in max)"  loading="lazy">
+      <img src="assets/images/1_measure_Reused_Parts/Rough measure of wheel base and fork height.jpg"               alt="Rough wheel-base + fork-height check" loading="lazy">
+      <img src="assets/images/1_measure_Reused_Parts/roughmeasure(moredistance)wheelbase.jpg"                       alt="Longer wheel-base trial"              loading="lazy">
+      <img src="assets/images/1_measure_Reused_Parts/seat tube diameter.jpg"                                        alt="Seat-tube diameter"                  loading="lazy">
+      <img src="assets/images/1_measure_Reused_Parts/seat tube width again.jpg"                                     alt="Seat-tube width re-check"           loading="lazy">
+      <img src="assets/images/1_measure_Reused_Parts/top of seat tube diameter.jpg"                                 alt="Top seat-tube I.D."                  loading="lazy">
+    </div>
+  </details>
 
-<!-- 4 — CAD drawings -->
-<section id="4">
-  <h2 class="group-title">CAD Drawings &amp; PDFs</h2>
-  <div class="grid">
-    <!-- PDFs -->
-    <a class="pdf-link" href="assets/images/4_CAD_drawings/(dw)Forks.pdf">Forks drawing (PDF)</a>
-    <a class="pdf-link" href="assets/images/4_CAD_drawings/(0.5 Inch) Spacer – 1015 Steel.pdf">0.5 in Spacer (PDF)</a>
-    <!-- (continue listing the other 9 PDFs) -->
-    <!-- images -->
-    <img src="assets/images/4_CAD_drawings/CAD-FinalAssembly.drw - Copy.jpg" alt="">
-    <img src="assets/images/4_CAD_drawings/CNC- Rear Axle Bushings.jpg" alt="">
-    <img src="assets/images/4_CAD_drawings/Fork Attachment.jpg" alt="">
-    <img src="assets/images/4_CAD_drawings/Modified Stem.jpg" alt="">
-    <img src="assets/images/4_CAD_drawings/T Seat.jpg" alt="">
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       2 · Recycled parts / dismantling
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Recycled Parts – Dismantling</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/2_recycled/0.jpg"                                                              alt="Original donor frame"             loading="lazy">
+      <img src="assets/images/2_recycled/1.jpg"                                                              alt="Fork orientation study"           loading="lazy">
+      <img src="assets/images/2_recycled/analyzing which way forks should be oriented in order to best fit racing specs.jpg" alt="Fork-orientation sketch" loading="lazy">
+      <img src="assets/images/2_recycled/disassembly(before1).jpg"                                            alt="Bike before teardown"             loading="lazy">
+      <img src="assets/images/2_recycled/dzisassembly(after1).jpg"                                            alt="Frame stripped & cleaned"         loading="lazy">
+      <img src="assets/images/2_recycled/Read Wheels Load Specs.jpg"                                         alt="Rear-wheel load specs"            loading="lazy">
+    </div>
+  </details>
 
-<!-- 5 — Analysis / FEA -->
-<section id="5">
-  <h2 class="group-title">Analysis &amp; FEA</h2>
-  <div class="grid">
-    <a class="pdf-link" href="assets/images/5_analysis/Assem1.pdf">Frame Assembly 1 (PDF)</a>
-    <a class="pdf-link" href="assets/images/5_analysis/RearAxleAssembly_MachinedParts(a).PDF">Rear Axle (a)</a>
-    <a class="pdf-link" href="assets/images/5_analysis/RearAxleAssembly_MachinedParts(b).pdf">Rear Axle (b)</a>
-    <!-- 12 images -->
-    <img src="assets/images/5_analysis/aHouseOfQuality.jpg" alt="">
-    <img src="assets/images/5_analysis/First_Frame_Sketch.jpg"       alt="">
-    <!-- … (10 more) … -->
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       3 · Build process snapshots
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Build Progress</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/3_build/assembled parts -recycled parts.jpg"                       alt="Collected recycled parts"        loading="lazy">
+      <img src="assets/images/3_build/Parts all came in, just placed next to each other, (not assembled).jpg" alt="Parts laid-out pre-assembly" loading="lazy">
+      <img src="assets/images/3_build/SeatAttachingToFrame.jpg"                                  alt="Seat mount fabrication"          loading="lazy">
+      <img src="assets/images/3_build/Welding Table.jpg"                                        alt="Jig fixture on welding table"    loading="lazy">
+    </div>
+  </details>
 
-<!-- 6 — CNC & machining -->
-<section id="6">
-  <h2 class="group-title">CNC &amp; Machining</h2>
-  <div class="grid">
-    <img src="assets/images/6_cnc/CNC_Lathe_at_UL_Campus_ForkBushing.jpg" alt="">
-    <img src="assets/images/6_cnc/CNC_RearAxleBushings.jpg" alt="">
-    <img src="assets/images/6_cnc/setting_up_for_Welding.jpg" alt="">
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       4 · CAD drawings & PDFs
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>CAD Drawings & PDFs</h2></summary>
+    <ul class="tight">
+      <li><a href="assets/images/4_CAD_drawings/Assembly with dimensions.pdf Radii and Axle Lengths.PDF" target="_blank">Overall Assembly (dimensions PDF)</a></li>
+      <li><a href="assets/images/4_CAD_drawings/Frame & Rear Bushing, Tube &Axle Bushing_Assem.pdf"      target="_blank">Frame + Bushing Drawing</a></li>
+      <li><a href="assets/images/4_CAD_drawings/Chomoly 4130 Steel - Axle - (6.325 Inches) - drawing.pdf" target="_blank">4140 Axle Machining PDF</a></li>
+      <!-- …add other PDF links similarly … -->
+    </ul>
 
-<!-- 7 — Purchased parts & budget -->
-<section id="7">
-  <h2 class="group-title">Purchased Parts &amp; Budget</h2>
-  <div class="grid">
-    <a class="pdf-link" href="assets/images/7_BudgetChart&PicturesOfPurchasedParts/BOM,Labor,MaterialSelectionByWeight.pdf">BOM – Labour & Material (PDF)</a>
-    <a class="pdf-link" href="assets/images/7_BudgetChart&PicturesOfPurchasedParts/CNC Table Cost.pdf">CNC Table Cost (PDF)</a>
-    <img src="assets/images/7_BudgetChart&PicturesOfPurchasedParts/extensions(forpedals).jpg" alt="">
-    <!-- … 11 more images … -->
-  </div>
-</section>
+    <div class="spec-grid">
+      <img src="assets/images/4_CAD_drawings/CAD-FinalAssembly.drw - Copy.jpg" alt="Final CAD assembly render" loading="lazy">
+      <img src="assets/images/4_CAD_drawings/Fork Attachment.jpg"             alt="Fork attachment drawing"   loading="lazy">
+      <img src="assets/images/4_CAD_drawings/Modified Stem.jpg"               alt="Modified stem drawing"     loading="lazy">
+    </div>
+  </details>
 
-<!-- 8 — Final renders / prototype -->
-<section id="8">
-  <h2 class="group-title">Final Prototype Photos &amp; Renders</h2>
-  <div class="grid">
-    <img src="assets/images/8_final/Trike(side-early).png"            alt="">
-    <img src="assets/images/8_final/fa_Side View of final product.jpg" alt="">
-    <!-- … 5 further images … -->
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       5 · Analysis & FEA
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Analysis & FEA</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/5_analysis/FEA_VM.png"            alt="von Mises stress FEA"                 loading="lazy">
+      <img src="assets/images/5_analysis/CenterOfGravitySketch.png" alt="COG diagram"                      loading="lazy">
+      <img src="assets/images/5_analysis/All_.pdf.png"          alt="Combined spec-sheet overview"        loading="lazy">
+      <img src="assets/images/5_analysis/First_Frame_Sketchh.jpg" alt="Initial frame free-hand sketch"    loading="lazy">
+    </div>
+  </details>
 
-<!-- 9 — Reference docs & specs -->
-<section id="9">
-  <h2 class="group-title">Reference Docs &amp; Specs</h2>
-  <div class="grid">
-    <a class="pdf-link" href="assets/images/9_docs/2025 SAVE THE DATE Flyer_Early Registration Discount.pdf">Save-the-Date Flyer</a>
-    <a class="pdf-link" href="assets/images/9_docs/Acadiana 500 Race Rules.pdf">Official Race Rules</a>
-    <!-- … (other 9 PDFs/PNGs) … -->
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       6 · CNC / machining
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>CNC & Machined Parts</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/6_cnc/CNC_Lathe_at_UL_Campus_ForkBushing.jpg" alt="UL Lathe – fork bushing" loading="lazy">
+      <img src="assets/images/6_cnc/CNC_RearAxleBushings.jpg"               alt="Rear-axle bushings"      loading="lazy">
+      <img src="assets/images/6_cnc/setting_up_for_Welding.jpg"             alt="Welding setup"           loading="lazy">
+    </div>
+  </details>
 
-<!-- 10 — Weekly memos -->
-<section id="10">
-  <h2 class="group-title">Weekly Progress Memos</h2>
-  <ul class="grid">
-    <a class="pdf-link" href="assets/images/10_WeeklyMemos/Week2of10.pdf">Week 2 of 10</a>
-    <a class="pdf-link" href="assets/images/10_WeeklyMemos/Week4of10.pdf">Week 4 of 10</a>
-    <a class="pdf-link" href="assets/images/10_WeeklyMemos/Week6of10.pdf">Week 6 of 10</a>
-    <a class="pdf-link" href="assets/images/10_WeeklyMemos/Week8of10.pdf">Week 8 of 10</a>
-    <a class="pdf-link" href="assets/images/10_WeeklyMemos/Week10of10.pdf">Week 10 of 10</a>
-  </ul>
-</section>
+  <!-- ───────────────────────────────
+       7 · Purchased parts & budget
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Purchased Parts & Budget</h2></summary>
+    <ul class="tight">
+      <li><a href="assets/images/7_BudgetChart&PicturesOfPurchasedParts/BOM,Labor,MaterialSelectionByWeight.pdf" target="_blank">BOM / Material-weight breakdown PDF</a></li>
+      <li><a href="assets/images/7_BudgetChart&PicturesOfPurchasedParts/CNC Table Cost.pdf"                   target="_blank">CNC-Table cost summary PDF</a></li>
+    </ul>
 
-<!-- 11 — Sponsor logos -->
-<section id="11">
-  <h2 class="group-title">Sponsor Logos</h2>
-  <div class="grid">
-    <img src="assets/images/11_Sponsor-Logos/Canes Logo.png"  alt="Raising Cane’s">
-    <img src="assets/images/11_Sponsor-Logos/MetalShark Logo.jpg" alt="Metal Shark Boats">
-    <img src="assets/images/11_Sponsor-Logos/New Iberia Optimist Club.jpg" alt="New Iberia Optimist">
-    <!-- 2 UL Mechanical-Engineering logo PNGs -->
-    <img src="assets/images/11_Sponsor-Logos/MechanicalEngineering_interlocking_UL_over dark colors.png" alt="">
-    <img src="assets/images/11_Sponsor-Logos/MechanicalEngineering_vertical_over dark colors.png"  alt="">
-  </div>
-</section>
+    <div class="spec-grid">
+      <img src="assets/images/7_BudgetChart&PicturesOfPurchasedParts/pedals.jpg"            alt="Pedal set close-up"        loading="lazy">
+      <img src="assets/images/7_BudgetChart&PicturesOfPurchasedParts/frontwheel.jpg"        alt="Front wheel purchase"      loading="lazy">
+      <img src="assets/images/7_BudgetChart&PicturesOfPurchasedParts/extensions(pedals).jpg" alt="Pedal extension kit"      loading="lazy">
+    </div>
+  </details>
 
-<!-- 12 — Race day -->
-<section id="12">
-  <h2 class="group-title">Race Day Shots &amp; Results</h2>
-  <div class="grid">
-    <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="">
-    <img src="assets/images/12_race/Holding Trophy.jpg" alt="">
-    <img src="assets/images/12_race/Transition zones (overview).jpg" alt="">
-    <img src="assets/images/12_race/TransitionZones&TeamOrder.PNG" alt="">
-    <img src="assets/images/12_race/StartingLinewith LeotStartOfRace.jpg" alt="">
-    <img src="assets/images/12_race/RaceResults.pdf" alt="Race results PDF icon">
-    <a class="pdf-link" href="assets/images/12_race/RaceResults.pdf">Official race results (PDF)</a>
-  </div>
-</section>
+  <!-- ───────────────────────────────
+       8 · Final prototype photos
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Final Prototype Photos & Renders</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/8_final/Front(final).jpg"  alt="Front view – finished trike" loading="lazy">
+      <img src="assets/images/8_final/trike(side).jpg"   alt="Side view – assembled trike" loading="lazy">
+      <img src="assets/images/8_final/z_isrometrikview(final).jpg" alt="Isometric render"  loading="lazy">
+    </div>
+  </details>
 
-<!-- === local in-page tab bar === -->
-<nav class="folder-nav">
-  <a href="#1">Measurements / Re-use</a>
-  <a href="#2">Recycled Parts</a>
-  <a href="#3">Build Process</a>
-  <a href="#4">CAD Drawings</a>
-  <a href="#5">Analysis / FEA</a>
-  <a href="#6">CNC & Machining</a>
-  <a href="#7">Purchased Parts + Budget</a>
-  <a href="#8">Final Renders & Photos</a>
-  <a href="#9">Docs & Specs</a>
-  <a href="#10">Weekly Memos</a>
-  <a href="#11">Sponsor Logos</a>
-  <a href="#12">Race Day</a>
-</nav>
+  <!-- ───────────────────────────────
+       9 · Reference documents
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Reference Docs & Specs</h2></summary>
+    <ul class="tight">
+      <li><a href="assets/images/9_docs/2025 SAVE THE DATE Flyer_Early Registration Discount.pdf" target="_blank">“Save-the-Date” flyer PDF</a></li>
+      <li><a href="assets/images/9_docs/acadiana-500-spec-sheet.pdf"                            target="_blank">Full Spec-sheet PDF</a></li>
+      <li><a href="assets/images/9_docs/Gantt Charts(HD).pdf"                                   target="_blank">HD Gantt-chart PDF</a></li>
+      <li><a href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf"           target="_blank">Full final report PDF</a></li>
+      <!-- etc. -->
+    </ul>
+  </details>
 
-  </main>
-  <footer>© 2025 Matthew Dubea</footer>
-  <script src="theme.js"></script>
+  <!-- ───────────────────────────────
+       10 · Weekly memos
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Weekly Progress Memos</h2></summary>
+    <ul class="tight">
+      <li><a href="assets/images/10_WeeklyMemos/Week2of10.pdf"  target="_blank">Week 2 of 10</a></li>
+      <li><a href="assets/images/10_WeeklyMemos/Week4of10.pdf"  target="_blank">Week 4 of 10</a></li>
+      <li><a href="assets/images/10_WeeklyMemos/Week6of10.pdf"  target="_blank">Week 6 of 10</a></li>
+      <li><a href="assets/images/10_WeeklyMemos/Week8of10.pdf"  target="_blank">Week 8 of 10</a></li>
+      <li><a href="assets/images/10_WeeklyMemos/Week10of10.pdf" target="_blank">Week 10 of 10</a></li>
+    </ul>
+  </details>
+
+  <!-- ───────────────────────────────
+       11 · Sponsor logos
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Sponsor Logos</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/11_Sponsor-Logos/Canes Logo.png"                        alt="Raising Cane’s"           loading="lazy">
+      <img src="assets/images/11_Sponsor-Logos/MetalShark Logo.jpg"                  alt="Metal Shark Boats"        loading="lazy">
+      <img src="assets/images/11_Sponsor-Logos/New Iberia Optimist Club.jpg"         alt="New Iberia Optimist Club" loading="lazy">
+    </div>
+  </details>
+
+  <!-- ───────────────────────────────
+       12 · Race-day shots & results
+  ─────────────────────────────────── -->
+  <details class="card">
+    <summary><h2>Race-day Shots & Results</h2></summary>
+    <div class="spec-grid">
+      <img src="assets/images/12_race/Holding Trophy.jpg"                                alt="Team with trophy"         loading="lazy">
+      <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"     alt="Group photo"             loading="lazy">
+      <img src="assets/images/12_race/Transition zones (overview).jpg"                   alt="Course overview"         loading="lazy">
+    </div>
+    <p style="margin-top:1rem;">
+      <a class="btn outline" href="assets/images/12_race/RaceResults.pdf" target="_blank">📄 Official race results (PDF)</a>
+    </p>
+  </details>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">© 2025 Matthew Dubea</div>
+</footer>
+
+<script src="theme.js"></script>
 </body>
 </html>
