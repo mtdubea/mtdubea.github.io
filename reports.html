@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Project Reports • Matthew Dubea Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Documentation • Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <!-- styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet"
@@ -12,74 +14,88 @@
 
 <body>
 <header>
-  <h1 class="site-title">Matthew Dubea</h1>
-  <nav class="main-nav" aria-label="Main navigation">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="reports.html" aria-current="page">Reports</a></li>
-      <li><a href="resume.html">Résumé</a></li>
-      <li><a href="calculations.html">Calculations</a></li>
-      <li class="theme-toggle">
-        <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
-      </li>
-    </ul>
-  </nav>
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
+
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reports.html" aria-current="page">Reports</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="calculations.html">Calculations</a></li>
+        <li class="theme-toggle">
+          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <main class="container">
-  <!-- Master list -->
   <section class="card">
-    <h2>📑 Documentation</h2>
+    <h2>📄 Documentation</h2>
 
-    <!-- Poster -->
-    <article class="doc-card">
-      <img class="doc-thumb"
-           src="assets/images/poster-thumb.jpg"
-           alt="Poster preview" />
-      <div class="doc-info">
-        <h4>Poster Presentation (single page)</h4>
-        <p class="doc-meta">PDF • 1 page • 1.5 MB</p>
-        <a class="btn primary"
-           href="assets/images/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
-           target="_blank">View&nbsp;PDF</a>
-      </div>
-    </article>
+    <div class="docs">
 
-    <!-- Slides -->
-    <article class="doc-card">
-      <img class="doc-thumb"
-           src="assets/images/slides-thumb.jpg"
-           alt="Slides preview" />
-      <div class="doc-info">
-        <h4>Design &amp; FEA Slide Deck</h4>
-        <p class="doc-meta">PDF • 15 slides • 3.2 MB</p>
-        <a class="btn primary"
-           href="assets/images/MCHE484_FinalPresentaion_Acadiana500.pdf"
-           target="_blank">View&nbsp;Slides</a>
-      </div>
-    </article>
+      <!--  Poster  -->
+      <article class="doc">
+        <div class="doc-preview">
+          <embed src="assets/images/MCHE484_FinalPoster_TrikeDesignAndFab.pdf#page=1&zoom=120"
+                 type="application/pdf" />
+        </div>
 
-    <!-- Report -->
-    <article class="doc-card">
-      <img class="doc-thumb"
-           src="assets/images/report-thumb.jpg"
-           alt="Report preview" />
-      <div class="doc-info">
-        <h4>Full Final Report</h4>
-        <p class="doc-meta">PDF • 28 pages • 4.7 MB</p>
-        <a class="btn primary"
-           href="assets/images/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
-           target="_blank">Read&nbsp;Report</a>
-      </div>
-    </article>
+        <div class="doc-body">
+          <h4>Poster Presentation</h4>
+          <p class="doc-meta">PDF · 1 page · 1.5 MB</p>
+          <a class="btn primary sm" target="_blank"
+             href="assets/images/MCHE484_FinalPoster_TrikeDesignAndFab.pdf">
+            View PDF
+          </a>
+        </div>
+      </article>
 
+      <!--  Slide deck  -->
+      <article class="doc">
+        <div class="doc-preview">
+          <embed src="assets/images/MCHE484_FinalPresentaion_Acadiana500.pdf#page=1&zoom=120"
+                 type="application/pdf" />
+        </div>
+
+        <div class="doc-body">
+          <h4>Design &amp; FEA Slide Deck</h4>
+          <p class="doc-meta">PDF · 15 slides · 3.2 MB</p>
+          <a class="btn primary sm" target="_blank"
+             href="assets/images/MCHE484_FinalPresentaion_Acadiana500.pdf">
+            View Slides
+          </a>
+        </div>
+      </article>
+
+      <!--  Full report  -->
+      <article class="doc">
+        <div class="doc-preview">
+          <embed src="assets/images/MCHE484_FinalReport_FastPedalEngineers[1].pdf#page=1&zoom=100"
+                 type="application/pdf" />
+        </div>
+
+        <div class="doc-body">
+          <h4>Full Final Report</h4>
+          <p class="doc-meta">PDF · 28 pages · 4.7 MB</p>
+          <a class="btn primary sm" target="_blank"
+             href="assets/images/MCHE484_FinalReport_FastPedalEngineers[1].pdf">
+            Read Report
+          </a>
+        </div>
+      </article>
+
+    </div><!-- /.docs -->
   </section>
 </main>
 
 <footer>
-  © 2025 Matthew Dubea
+  <div class="container">© 2025 Matthew Dubea</div>
 </footer>
 
 <script src="theme.js"></script>
