@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Project Gallery • Matthew Dubea</title>
+  <title>Gallery | Matthew Dubea</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <!-- gallery-specific styles -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
 </head>
 
 <body>
-<header>
+<header class="site-header">
   <div class="container">
     <h1 class="site-title">Matthew Dubea</h1>
-
     <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -25,70 +24,181 @@
         <li><a href="resume.html">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
         <li class="theme-toggle">
-          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+          <button id="themeToggle">🌓</button>
         </li>
       </ul>
     </nav>
   </div>
 </header>
 
+
 <main class="container">
-  <section class="card">
-    <h2>📸 Project Gallery</h2>
 
+  <!--––––  tab bar  ––––-->
+  <div class="gallery-tabs" role="tablist">
+    <button class="tab active"   data-target="t1">Measurements / Re-use</button>
+    <button class="tab"          data-target="t2">Recycled Parts</button>
+    <button class="tab"          data-target="t3">Build Process</button>
+    <button class="tab"          data-target="t4">CAD Drawings</button>
+    <button class="tab"          data-target="t5">Analysis / FEA</button>
+    <button class="tab"          data-target="t6">CNC & Machining</button>
+    <button class="tab"          data-target="t7">Purchased Parts + Budget</button>
+    <button class="tab"          data-target="t8">Final Renders & Photos</button>
+    <button class="tab"          data-target="t9">Docs & Specs</button>
+    <button class="tab"          data-target="t10">Weekly Memos</button>
+    <button class="tab"          data-target="t11">Sponsor Logos</button>
+    <button class="tab"          data-target="t12">Race Day</button>
+  </div>
+
+
+  <!--––––  tab panels ––––-->
+
+  <!-- 1 • measurements / reused -->
+  <section id="t1" class="panel active">
+    <h2>Component Measurements & Re-used Frame Checks</h2>
     <div class="gallery-grid">
-
-      <!-- CAD & Design -->
-      <figure>
-        <img src="assets/images/ExplodedView.png" alt="Exploded CAD view" />
-        <figcaption>Exploded CAD view</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/images/Final Assembly.png" alt="Final assembly render" />
-        <figcaption>Final assembly render</figcaption>
-      </figure>
-
-      <!-- Fabrication & Parts -->
-      <figure>
-        <img src="assets/images/Reusable Bike Frame.jpg" alt="Salvaged bike frame" />
-        <figcaption>Salvaged bike frame</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/images/Fork Attachment.jpg" alt="CNC-machined fork attachment" />
-        <figcaption>CNC fork attachment</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/images/Lathed Rear Axle Bushings.jpg" alt="Lathed rear-axle bushings" />
-        <figcaption>Lathed axle bushings</figcaption>
-      </figure>
-
-      <!-- Testing & Race -->
-      <figure>
-        <img src="assets/images/trike(side).jpg" alt="Track-day side view" />
-        <figcaption>Track-day side view</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/images/actual trike (rear).png" alt="Rear view before start" />
-        <figcaption>Rear view on race day</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/images/Holding Trophy.jpg" alt="Team with the trophy" />
-        <figcaption>FPE team with trophy</figcaption>
-      </figure>
-
-      <!-- Group / Media -->
-      <figure>
-        <img src="assets/images/Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Group photo" />
-        <figcaption>Group photo – Acadiana 500</figcaption>
-      </figure>
-
-    </div><!-- /.gallery-grid -->
+      <!-- images -->
+      <img src="assets/images/1_measure_Reused_Parts/measurement of width from outer to outer pedal (24 inch max).jpg"
+           alt="Pedal-to-pedal width (24 in max)">
+      <img src="assets/images/1_measure_Reused_Parts/Rough measure of wheel base and fork height.jpg"
+           alt="Wheelbase &amp; fork-height rough check">
+      <!-- …add more <img> lines as desired -->
+    </div>
   </section>
+
+  <!-- 2 • recycled -->
+  <section id="t2" class="panel">
+    <h2>Recycled Parts – Dismantling</h2>
+    <div class="gallery-grid">
+      <img src="assets/images/2_recycled/analyzing which way forks should be oriented in order to best fit racing specs.jpg"
+           alt="Fork orientation study">
+      <img src="assets/images/2_recycled/disassembly(before1).jpg" alt="Bike disassembly (before)">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 3 • build -->
+  <section id="t3" class="panel">
+    <h2>Build Progress</h2>
+    <div class="gallery-grid">
+      <img src="assets/images/3_build/WhatsApp Image 2025-06-15 at 04.42.37_2d348135.jpg"
+           alt="Frame prep">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 4 • cad drawings -->
+  <section id="t4" class="panel">
+    <h2>CAD Drawings & PDFs</h2>
+    <ul class="doc-list">
+      <li><a href="assets/images/4_CAD_drawings/Assembly with dimensions.pdf Radii and Axle Lengths.PDF" target="_blank">Overall assembly dimensions (PDF)</a></li>
+      <li><a href="assets/images/4_CAD_drawings/(.dw)Forks.pdf" target="_blank">Fork drawing (PDF)</a></li>
+      <li><a href="assets/images/4_CAD_drawings/Bushing to BikeFrame - drawing.pdf" target="_blank">Frame bushing drawing</a></li>
+      <!-- … -->
+    </ul>
+  </section>
+
+  <!-- 5 • analysis -->
+  <section id="t5" class="panel">
+    <h2>Analysis &amp; FEA</h2>
+    <div class="gallery-grid">
+      <img src="assets/images/5_analysis/FEA_VM.png"  alt="Von Mises stress plot">
+      <img src="assets/images/5_analysis/CenterOfGravitySketch.png" alt="Center-of-gravity sketch">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 6 • cnc -->
+  <section id="t6" class="panel">
+    <h2>CNC &amp; Machined Parts</h2>
+    <div class="gallery-grid">
+      <img src="assets/images/6_cnc/CNC_Lathe_at_UL_Campus_ForkBushing.jpg"
+           alt="Turning fork bushing on UL lathe">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 7 • purchased parts -->
+  <section id="t7" class="panel">
+    <h2>Purchased Parts &amp; Budget</h2>
+    <ul class="doc-list">
+      <li><a href="assets/images/7_BudgetChart&PicturesOfPurchasedParts/BOM,Labor,MaterialSelectionByWeight.pdf" target="_blank">BOM & weight trade study</a></li>
+      <li><a href="assets/images/7_BudgetChart&PicturesOfPurchasedParts/CNC Table Cost.pdf" target="_blank">Cost table</a></li>
+    </ul>
+    <div class="gallery-grid">
+      <img src="assets/images/7_BudgetChart&PicturesOfPurchasedParts/pedal_specs.jpg" alt="Pedal specs">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 8 • final -->
+  <section id="t8" class="panel">
+    <h2>Final Prototype Photos &amp; Renders</h2>
+    <div class="gallery-grid">
+      <img src="assets/images/8_final/trike(side).jpg" alt="Side view">
+      <img src="assets/images/8_final/Front(final).jpg" alt="Front view">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 9 • docs -->
+  <section id="t9" class="panel">
+    <h2>Reference Docs &amp; Specs</h2>
+    <ul class="doc-list">
+      <li><a href="assets/images/9_docs/2025 SAVE THE DATE Flyer_Early Registration Discount.pdf"
+             target="_blank">Save-the-date flyer</a></li>
+      <li><a href="assets/images/9_docs/Acadiana 500 Race Rules.pdf" target="_blank">Official race rules</a></li>
+      <li><a href="assets/images/9_docs/MCHE484_FinalPoster_TrikeDesignAndFab.pdf" target="_blank">Capstone poster</a></li>
+      <li><a href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf" target="_blank">Full final report</a></li>
+      <!-- … -->
+    </ul>
+  </section>
+
+  <!-- 10 • weekly memos -->
+  <section id="t10" class="panel">
+    <h2>Weekly Progress Memos</h2>
+    <ul class="doc-list">
+      <li><a href="assets/images/10_WeeklyMemos/Week2of10.pdf" target="_blank">Week 2 of 10</a></li>
+      <li><a href="assets/images/10_WeeklyMemos/Week6of10.pdf" target="_blank">Week 6 of 10</a></li>
+      <li><a href="assets/images/10_WeeklyMemos/Week8of10.pdf" target="_blank">Week 8 of 10</a></li>
+      <!-- … -->
+    </ul>
+  </section>
+
+  <!-- 11 • sponsors -->
+  <section id="t11" class="panel">
+    <h2>Sponsor Logos</h2>
+    <div class="gallery-grid logos">
+      <img src="assets/images/11_Sponsor-Logos/Canes Logo.png" alt="Raising Cane’s">
+      <img src="assets/images/11_Sponsor-Logos/MetalShark Logo.jpg" alt="Metal Shark Boats">
+      <img src="assets/images/11_Sponsor-Logos/New Iberia Optimist Club.jpg" alt="New Iberia Optimist Club">
+      <!-- … -->
+    </div>
+  </section>
+
+  <!-- 12 • race -->
+  <section id="t12" class="panel">
+    <h2>Race Day Shots &amp; Results</h2>
+    <div class="gallery-grid">
+      <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
+           alt="Team group photo after the win">
+      <img src="assets/images/12_race/Holding Trophy.jpg" alt="Holding trophy">
+      <img src="assets/images/12_race/Transition zones (overview).jpg" alt="Transition zone overview">
+      <!-- … -->
+    </div>
+
+    <ul class="doc-list">
+      <li><a href="assets/images/12_race/RaceResults.pdf" target="_blank">Official race results (PDF)</a></li>
+    </ul>
+  </section>
+
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="container">© 2025 Matthew Dubea</div>
 </footer>
+
 <script src="theme.js"></script>
+<script src="gallery.js" defer></script>
 </body>
 </html>
