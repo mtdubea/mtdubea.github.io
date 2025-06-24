@@ -1,9 +1,12 @@
-/* ---------- Root palette ---------- */
+/* ───────── Root palette ───────── */
 :root{
   --bg       : #e8f1fb;
   --text     : #0a0a0a;
   --card-bg  : #ffffff;
   --primary  : #064f88;
+  --primary-dark:#05396b;
+  --shadow-sm:0 2px  8px rgba(0,0,0,.08);
+  --shadow-lg:0 6px 18px rgba(0,0,0,.16);
 }
 
 body{
@@ -14,26 +17,44 @@ body{
   transition:background .3s,color .3s;
 }
 
-/* ---------- Dark-mode tokens ---------- */
+/* ───── Dark-mode tokens ───── */
 body.dark{
-  --bg      : #121212;
-  --text    : #f4f4f4;
-  --card-bg : #1e1e1e;
+  --bg:#121212;
+  --text:#f4f4f4;
+  --card-bg:#1e1e1e;
 }
 
-/* ---------- Header / nav ---------- */
+/* ───────── Header / ribbon ───────── */
 header{
+  position:relative;
   background:var(--primary);
   color:#fff;
   padding:1rem;
+  overflow:hidden;             /* hide ribbon overflow */
 }
-header h1{margin:0;}
+header h1{margin:0;font-size:1.65rem;}
 
+/* animated ribbon */
+header::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,.08);
+  transform:skewX(-12deg);
+  transform-origin:0 0;
+  animation:ribbonSlide 9s ease-in-out infinite alternate;
+}
+@keyframes ribbonSlide{
+  from{transform:translateX(-6%)  skewX(-12deg);}
+  to  {transform:translateX(6%)   skewX(-12deg);}
+}
+
+/* nav */
 .main-nav ul{
   display:flex;
   flex-wrap:wrap;
   gap:1rem;
-  margin: .5rem 0 0;
+  margin:.6rem 0 0;
   padding:0;
   list-style:none;
 }
@@ -43,61 +64,60 @@ header h1{margin:0;}
   text-decoration:none;
   background:none;
   border:none;
-  font-weight:500;
-  font-size:1.05rem;
-  padding:.35rem .7rem;
+  font:500 1.05rem/1 'Inter',sans-serif;
+  padding:.35rem .75rem;
   border-radius:4px;
   cursor:pointer;
-  transition:background .2s,color .2s;
+  transition:background .2s;
 }
 .main-nav a:hover,
 #themeToggle:hover{
-  background:rgba(255,255,255,.15);
-  text-decoration:underline;
+  background:rgba(255,255,255,.18);
 }
-.main-nav a[aria-current]{               /* active page */
-  background:rgba(255,255,255,.28);
-  text-decoration:underline;
-}
+.main-nav a[aria-current]{background:rgba(255,255,255,.28);}
 
-/* ---------- Layout ---------- */
+/* ───────── Layout / cards ───────── */
 main{padding:2rem;}
 .container{width:min(92%,1200px);margin-inline:auto;}
 
-/* ---------- Cards ---------- */
 .card{
   background:var(--card-bg);
   margin-block:1.75rem;
-  padding:1.5rem;
-  border-radius:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-
-  /* NEW: smooth hover animation */
-  transition:transform .2s,box-shadow .2s;
+  padding:1.6rem 1.8rem;
+  border-radius:12px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .22s,box-shadow .22s;
 }
 .card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-lg);
 }
 
-/* ---------- Utility media ---------- */
-img,iframe,embed{
-  max-width:100%;
-  border-radius:8px;
-}
-.video-grid{
+/* ───── Doc-card (magazine style) ───── */
+.doc-card{
   display:flex;
-  flex-wrap:wrap;
-  gap:1rem;
-  justify-content:center;
+  gap:1.25rem;
+  align-items:flex-start;
 }
-.video-grid iframe{
-  width:320px;
-  height:180px;
-  border:none;
+.doc-thumb{
+  flex:0 0 140px;
+  aspect-ratio:3/4;
+  object-fit:cover;
+  border-radius:8px;
+  box-shadow:0 1px 4px rgba(0,0,0,.12);
+}
+.doc-info h4{
+  margin:.2rem 0 .4rem;
+  font-size:1.15rem;
+}
+.doc-meta{
+  font-size:.82rem;
+  color:var(--text);
+  opacity:.7;
+  margin-bottom:.7rem;
 }
 
-/* ---------- Buttons / links ---------- */
+/* ───────── Buttons / links ───────── */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -110,12 +130,8 @@ img,iframe,embed{
   line-height:1;
 }
 .btn.primary{background:var(--primary);color:#fff;}
-.btn.primary:hover{background:#05396b;}
-.btn.secondary{
-  background:var(--text);
-  color:#fff;
-}
-.btn.secondary:hover{background:#333;}
+.btn.primary:hover{background:var(--primary-dark);}
+
 .btn.outline{
   background:none;
   border:2px solid var(--primary);
@@ -126,11 +142,7 @@ img,iframe,embed{
   color:#fff;
 }
 
-.cta-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;}
-.tight{margin:.75rem 0 0;padding-left:1.25rem;}
-.tight li{margin:.25rem 0;}
-
-/* ---------- Footer ---------- */
+/* ───────── Footer ───────── */
 footer{
   background:var(--primary);
   color:#fff;
