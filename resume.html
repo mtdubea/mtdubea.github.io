@@ -1,25 +1,18 @@
-<!-- resume.html  -->
+<!--  resume.html  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Résumé – Matthew Dubea</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- shared styles / fonts -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
-<header>
+<header class="site-header">
   <div class="container">
-    <h1>Matthew Dubea</h1>
-
-    <!-- site-wide nav -->
+    <h1 class="site-title">Matthew Dubea</h1>
     <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -37,26 +30,38 @@
 </header>
 
 <main class="container">
+  <!-- ------------------------------------------------------------------ -->
+  <!-- Résumé card ------------------------------------------------------- -->
+  <!-- ------------------------------------------------------------------ -->
   <section class="card">
-    <h2>📄 Résumé</h2>
+    <h2>📄 My Résumé</h2>
 
-    <!-- in-page preview (650 px tall on desktop, scrollable) -->
+    <!-- Inline PDF preview -->
     <embed src="assets/images/MTD Resume.pdf"
            type="application/pdf"
-           width="100%" height="650px" />
+           class="pdf-embed"
+           aria-label="Matthew Dubea résumé preview" />
 
-    <!-- download action -->
-    <p style="margin-top:1rem;">
-      <a class="btn primary"
-         href="assets/images/MTD Resume.pdf" download>
-        ⬇️ Download Résumé
+    <!-- Download & contact -->
+    <div class="cta-row">
+      <a class="btn primary" href="assets/images/MTD Resume.pdf" download>
+        ⬇️ Download PDF
       </a>
-    </p>
+      <a class="btn outline"
+         href="https://www.linkedin.com/in/matthew-dubea-4188a6311/"
+         target="_blank" rel="noopener">
+        🔗 LinkedIn
+      </a>
+      <a class="btn outline"
+         href="mailto:mattdubea@outlook.com?subject=Opportunities%20for%20Matthew%20Dubea">
+        ✉️ Email Me
+      </a>
+    </div>
   </section>
 </main>
 
-<footer>
-  © 2025 Matthew Dubea
+<footer class="site-footer">
+  <div class="container">© 2025 Matthew Dubea</div>
 </footer>
 
 <script src="theme.js"></script>
