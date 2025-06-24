@@ -1,66 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery – Matthew Dubea</title>
+  <meta charset="utf-8" />
+  <title>Project Gallery • Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
 </head>
+
 <body>
-  <header>
-    <h1>Matthew Dubea</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="gallery.html" class="active">Gallery</a>
-      <a href="reports.html">Reports</a>
-      <a href="resume.html">Resume</a>
-      <a href="calculations.html">Calculations</a>
-    </nav>
-  </header>
+<header>
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
 
-  <main>
-    <section class="gallery">
-      <h2>📸 Project Media Gallery</h2>
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
-
-        <!-- ♻️ Reused Parts -->
-        <li><img src="Reusable Bike Frame.jpg" alt="Reused Bike Frame" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Reusable Bike with Drawing.jpg" alt="Reused Bike Drawing" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-
-        <!-- 🛠️ CAD / SolidWorks -->
-        <li><img src="ExplodedView - Copy.png" alt="Exploded CAD View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><embed src="Assem1.pdf" type="application/pdf" style="width:100%; height:500px;" /></li>
-        <li><embed src="Assembly with dimensions.pdf Radii and Axle Lengths.PDF" type="application/pdf" style="width:100%; height:500px;" /></li>
-        <li><img src="FinalAssembly.drw - Copy.jpg" alt="Final Drawing from SolidWorks" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-
-        <!-- 🧪 Analysis & Diagrams -->
-        <li><img src="COG.png" alt="Center of Gravity Diagram" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="All_.pdf.png" alt="All Specs Diagram" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><embed src="RearAxle Assembly.pdf Front View.PDF" type="application/pdf" style="width:100%; height:500px;" /></li>
-
-        <!-- 🛠️ CNC Machined Custom Parts (NEW Section) -->
-        <h3 style="text-align:center;">🛠️ Designed and CNC Lathe Machined Parts at ULL with Jeff Guidry</h3>
-        <li><embed src="(.drw)Forks.pdf" type="application/pdf" style="width:100%; height:500px;" /></li>
-        <li><img src="Fork Attachment.jpg" alt="Fork Attachment CNC Part" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Modified Stem.jpg" alt="Modified Stem New Design" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="T Seat.jpg" alt="Rear T-Seat Support" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Lathed Rear Axle Bushings.jpg" alt="Lathed Rear Axle Bushings" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-
-        <!-- 🏁 Final Product & Victory -->
-        <li><img src="Final_Assembly.png" alt="Final Assembly Render" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Final Assembly.png" alt="Final Assembly Alt View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="trike(side).jpg" alt="Trike Side View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="trike.png" alt="Trike PNG" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="actual trike (rear).png" alt="Actual Trike Rear View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Actual Trike (Side).png" alt="Actual Trike Side View" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Holding Trophy.jpg" alt="FPE Team Holding Trophy After Winning" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-        <li><img src="Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Team Group Photo" style="width:65%; max-width:500px; display:block; margin:1rem auto;" /></li>
-
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html" aria-current="page">Gallery</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="calculations.html">Calculations</a></li>
+        <li class="theme-toggle">
+          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+        </li>
       </ul>
-    </section>
-  </main>
+    </nav>
+  </div>
+</header>
 
-  <footer><p>&copy; 2025 Matthew Dubea</p></footer>
+<main class="container">
+  <section class="card">
+    <h2>📸 Project Gallery</h2>
+
+    <div class="gallery-grid">
+
+      <!-- CAD & Design -->
+      <figure>
+        <img src="assets/images/ExplodedView.png" alt="Exploded CAD view" />
+        <figcaption>Exploded CAD view</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/Final Assembly.png" alt="Final assembly render" />
+        <figcaption>Final assembly render</figcaption>
+      </figure>
+
+      <!-- Fabrication & Parts -->
+      <figure>
+        <img src="assets/images/Reusable Bike Frame.jpg" alt="Salvaged bike frame" />
+        <figcaption>Salvaged bike frame</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/Fork Attachment.jpg" alt="CNC-machined fork attachment" />
+        <figcaption>CNC fork attachment</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/Lathed Rear Axle Bushings.jpg" alt="Lathed rear-axle bushings" />
+        <figcaption>Lathed axle bushings</figcaption>
+      </figure>
+
+      <!-- Testing & Race -->
+      <figure>
+        <img src="assets/images/trike(side).jpg" alt="Track-day side view" />
+        <figcaption>Track-day side view</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/actual trike (rear).png" alt="Rear view before start" />
+        <figcaption>Rear view on race day</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/Holding Trophy.jpg" alt="Team with the trophy" />
+        <figcaption>FPE team with trophy</figcaption>
+      </figure>
+
+      <!-- Group / Media -->
+      <figure>
+        <img src="assets/images/Acadiana500_GroupPhoto_FastPedalEngineers.jpg" alt="Group photo" />
+        <figcaption>Group photo – Acadiana 500</figcaption>
+      </figure>
+
+    </div><!-- /.gallery-grid -->
+  </section>
+</main>
+
+<footer>
+  <div class="container">© 2025 Matthew Dubea</div>
+</footer>
+<script src="theme.js"></script>
 </body>
 </html>
