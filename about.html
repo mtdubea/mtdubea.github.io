@@ -1,11 +1,13 @@
+<!--  about.html  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>About the Tricycle Project • Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Matthew Dubea Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+        content="Background, skills, and project timeline for Matthew Dubea, Mechanical Engineering graduate and lead designer of the 1st-place Acadiana 500 racing tricycle." />
 
-  <!-- styles -->
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet"
@@ -13,7 +15,7 @@
 </head>
 
 <body>
-<header>
+<header class="site-header">
   <div class="container">
     <h1 class="site-title">Matthew Dubea</h1>
 
@@ -26,61 +28,80 @@
         <li><a href="resume.html">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
         <li class="theme-toggle">
-          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
         </li>
       </ul>
     </nav>
   </div>
 </header>
 
+
 <main class="container">
 
-  <!-- Project overview -->
-  <section class="card">
-    <h2>Project Overview</h2>
-    <p>
-      The <strong>Fast Pedal Engineers tricycle</strong> is a front-wheel, direct-pedal-drive
-      racing vehicle designed for the 2025 <em>Acadiana 500</em>.
-      Our goal was to build the lightest, safest, and fastest trike under a rule set
-      that bans chains, gears, and motors.
-    </p>
+  <!-- Profile blurb -->
+  <section class="card" id="profile">
+    <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center">
+      <img src="assets/images/profile-headshot.jpg"
+           alt="Matthew Dubea head-shot"
+           style="width:160px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15)">
+      <div style="flex:1 1 260px">
+        <h2>Hello — I’m Matt!</h2>
+        <p>
+          Mechanical Engineering B.S. (’25), UL Lafayette — passionate about
+          lightweight vehicle design, data-driven optimisation, and hands-on
+          prototyping. I lead projects from napkin sketch → CAD/FEA →
+          CNC/welding shop → podium finish.
+        </p>
+        <p>
+          Toolbox:  SolidWorks, Ansys, MATLAB/Python, Lean six-sigma, root-cause,
+          TIG/MIG, GD&amp;T, and a knack for making teams laugh at 2 a.m. lab
+          sessions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fast facts -->
+  <section class="card" id="fast-facts">
+    <h3>⚙️ Fast Facts</h3>
     <ul class="tight">
-      <li><strong>Frame:</strong> recycled 1020-steel core + TIG-welded 4130 sub-frame</li>
-      <li><strong>Rear axle:</strong> heat-treated 4140 shaft with custom brass bushings</li>
-      <li><strong>Analysis:</strong> FEA predicted a 4.5 FoS under 800 N rider load</li>
-      <li><strong>Total mass:</strong> 35 lb (15.9 kg)</li>
-      <li><strong>Budget:</strong> $120 all-in</li>
+      <li><strong>2000 +</strong> auto-glass ADAS calibrations (Safelite).</li>
+      <li><strong>35 lb</strong> race-ready tricycle built under a <strong>$120</strong> budget.</li>
+      <li><strong>1.7×</strong> rear-axle factor-of-safety verified in FEA.</li>
+      <li><strong>98 %</strong> QA pass-rate on field installs.</li>
     </ul>
   </section>
 
   <!-- Timeline -->
-  <section class="card">
-    <h3>Timeline</h3>
-    <p><strong>August 2024 → April 2025 — 32 weeks</strong></p>
-    <ul class="tight">
-      <li><strong>Design&nbsp;phase (8 wks):</strong> concept sketching, SolidWorks CAD, rule compliance</li>
-      <li><strong>Analysis (6 wks):</strong> FEA, stability calculations, weight optimisation</li>
-      <li><strong>Fabrication (10 wks):</strong> tube notching, TIG welding, CNC bushings, paint</li>
-      <li><strong>Testing (4 wks):</strong> static load checks, track shakedown, rider swaps</li>
-      <li><strong>Race week (1 wk):</strong> final inspection, media day, first-place finish 🏆</li>
-    </ul>
+  <section class="card" id="timeline">
+    <h3>📆 Project Milestones</h3>
+    <ol class="tight">
+      <li><strong>Aug ’23 – Sep ’23:</strong> Concept selection + kinematic study.</li>
+      <li><strong>Oct ’23:</strong> SolidWorks master-assembly &amp; swing-arm FEA.</li>
+      <li><strong>Nov ’23:</strong> CNC-lathe bushings, 4130 axle heat-treat.</li>
+      <li><strong>Dec ’23:</strong> Static tip-over + braking tests — pass.</li>
+      <li><strong>Jan ’24:</strong> Composite seat &amp; sponsor outreach.</li>
+      <li><strong>Mar ’24:</strong> Dynamic track shakedown — 14 mph top-speed.</li>
+      <li><strong>May 24:</strong> Acadiana 500 race — <em>1st place overall</em>.</li>
+    </ol>
   </section>
 
-  <!-- Team photo -->
-  <section class="card">
-    <h3>Meet the Team</h3>
-    <img src="assets/images/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
-         alt="Fast Pedal Engineers team group photo" />
-    <p class="center" style="margin-top:.6rem">
-      From&nbsp;left&nbsp;to&nbsp;right:&nbsp;Matthew,&nbsp;Leo,&nbsp;Leonard,&nbsp;Alejo,&nbsp;Andre,&nbsp;Manny,&nbsp;Oriol,&nbsp;Katie
+  <!-- Call-out to reports -->
+  <section class="card" id="next">
+    <h3>🔎 Deep Dive</h3>
+    <p>
+      Curious about the stress plots, manufacturing drawings, or race telemetry?
+      Head over to the <a href="reports.html">Reports</a> page for full PDFs and
+      slide decks.
     </p>
   </section>
 
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="container">© 2025 Matthew Dubea</div>
 </footer>
+
 <script src="theme.js"></script>
 </body>
 </html>
