@@ -1,10 +1,10 @@
-<!--  resume.html  -->
+<!-- resume.html – full replacement -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Résumé – Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
@@ -21,43 +21,30 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="resume.html" aria-current="page">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
-        <li class="theme-toggle">
-          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
-        </li>
+        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main class="container">
-  <!-- ------------------------------------------------------------------ -->
-  <!-- Résumé card ------------------------------------------------------- -->
-  <!-- ------------------------------------------------------------------ -->
+
+  <!-- résumé viewer -->
   <section class="card">
-    <h2>📄 My Résumé</h2>
-
-    <!-- Inline PDF preview -->
-    <embed src="assets/images/MTD Resume.pdf"
-           type="application/pdf"
-           class="pdf-embed"
-           aria-label="Matthew Dubea résumé preview" />
-
-    <!-- Download & contact -->
-    <div class="cta-row">
-      <a class="btn primary" href="assets/images/MTD Resume.pdf" download>
-        ⬇️ Download PDF
+    <h2>📄 Résumé (2025)</h2>
+    <embed class="pdf-embed"
+           style="height:700px;"
+           src="assets/images/9_docs/MTD%20Resume.pdf"
+           type="application/pdf">
+    <p class="center" style="margin-top:1rem;">
+      <a class="btn primary"
+         href="assets/images/9_docs/MTD%20Resume.pdf"
+         download>
+         ⬇️ Download PDF&nbsp;(1&nbsp;MB)
       </a>
-      <a class="btn outline"
-         href="https://www.linkedin.com/in/matthew-dubea-4188a6311/"
-         target="_blank" rel="noopener">
-        🔗 LinkedIn
-      </a>
-      <a class="btn outline"
-         href="mailto:mattdubea@outlook.com?subject=Opportunities%20for%20Matthew%20Dubea">
-        ✉️ Email Me
-      </a>
-    </div>
+    </p>
   </section>
+
 </main>
 
 <footer class="site-footer">
