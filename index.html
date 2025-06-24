@@ -1,4 +1,4 @@
-<!--  index.html  -->
+<!--  index.html – v2.1  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +19,7 @@
     <a href="reports.html">Reports</a>
     <a href="resume.html">Résumé</a>
     <a href="calculations.html">Calculations</a>
-    <button id="themeToggle">🌓</button>
+    <button id="themeToggle" title="Toggle dark mode">🌓</button>
   </nav>
 </header>
 
@@ -58,17 +58,27 @@
   <h3>📏 Race Compliance – Spec Sheet</h3>
   <p>Official design constraints (seat height, width limits, pedal placement, etc.).</p>
 
+  <!-- PDF preview + three PNG callouts -->
   <figure>
-    <!-- preview image -->
     <a href="assets/images/9_docs/acadiana-500-spec-sheet.pdf" target="_blank">
-      <img src="assets/images/9_docs/Front Wheel Spec Sheet.png"
-           alt="Acadiana 500 official tricycle spec sheet (preview)"/>
+      <img src="assets/images/9_docs/Front%20Wheel%20Spec%20Sheet%20.png"
+           alt="Acadiana 500 – Front wheel spec sheet preview" />
     </a>
-    <figcaption>Click to open full-resolution PDF.</figcaption>
+    <figcaption>
+      Click to open the full-resolution PDF, plus profile and top-view call-outs below.
+    </figcaption>
+
+    <!-- additional static previews -->
+    <img src="assets/images/9_docs/Profile%20%28Right%29%20View%20-%20Spec%20Sheet.png"
+         alt="Side-profile (right) compliance dimensions"
+         loading="lazy" />
+    <img src="assets/images/9_docs/Top%20%28Plan%29%20View%20-%20Spec%20Sheet.png"
+         alt="Top / plan-view compliance dimensions"
+         loading="lazy" />
   </figure>
 </section>
 
-<!-- ░░░ Rules & Docs ░░░ -->
+<!-- ░░░ Rules ░░░ -->
 <section class="card">
   <h3>📚 Race Constraints &amp; Requirements</h3>
   <ul class="tight">
@@ -102,13 +112,13 @@
 
   <div class="video-grid">
     <iframe src="https://youtube.com/shorts/Gqv5KYpIoNs"
-            title="Matt & Andre Testing" loading="lazy" allowfullscreen></iframe>
+            title="Matt & Andre Testing prototype" loading="lazy" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs"
-            title="UL’s Fast Pedal Engineers – Heat 1" loading="lazy" allowfullscreen></iframe>
+            title="UL Fast Pedal Engineers – Heat 1" loading="lazy" allowfullscreen></iframe>
     <iframe src="https://youtube.com/shorts/JxC-39Dx2WM"
-            title="Final Transition / Finish" loading="lazy" allowfullscreen></iframe>
+            title="Last transition / finish" loading="lazy" allowfullscreen></iframe>
     <iframe src="https://www.youtube.com/embed/T5bXXW90K8g"
-            title="Full-length Sprint" loading="lazy" allowfullscreen></iframe>
+            title="Full-length sprint" loading="lazy" allowfullscreen></iframe>
   </div>
 </section>
 
@@ -119,7 +129,7 @@
 
   <embed class="pdf-embed"
          src="assets/images/9_docs/Gantt Charts(HD).pdf"
-         type="application/pdf"/>
+         type="application/pdf" />
 </section>
 </main>
 
