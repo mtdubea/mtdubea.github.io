@@ -1,139 +1,177 @@
-<!--  index.html – v2.1  -->
+<!--  index.html  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Matthew Dubea – Mechanical Engineering Portfolio</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- base styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"       href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
 </head>
 
 <body>
-<header>
-  <h1>Matthew Dubea</h1>
-  <nav class="main-nav">
-    <a href="index.html" aria-current="page">Home</a>
-    <a href="about.html">About</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="reports.html">Reports</a>
-    <a href="resume.html">Résumé</a>
-    <a href="calculations.html">Calculations</a>
-    <button id="themeToggle" title="Toggle dark mode">🌓</button>
-  </nav>
+<header class="site-header">
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="calculations.html">Calculations</a></li>
+        <li class="theme-toggle">
+          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <main class="container">
-<!-- ░░░ Welcome ░░░ -->
-<section class="card">
-  <h2>Welcome</h2>
-  <p>
-    This site documents my senior capstone project in Mechanical Engineering
-    at the University of Louisiana at Lafayette: a lightweight,
-    front-wheel, direct-pedal-powered racing tricycle that won the
-    2025 <strong>Acadiana 500</strong> relay in New Iberia, Louisiana.
-  </p>
-  <p>
-    Designed, analysed, and fabricated over two semesters, the vehicle
-    finished <strong>1st overall</strong> while complying with strict rules
-    (no chains, gears, or motors).
-  </p>
-  <p>
-    Special thanks to event coordinator <strong>Hanna Pellerin</strong>
-    (Metal Shark Boats) and sponsors such as
-    <strong>Raising Cane’s</strong> for supporting materials and entry fees.
-  </p>
 
-  <div class="cta-row">
-    <a class="btn primary" href="reports.html">📊 View Final Results</a>
-    <a class="btn secondary"
-       href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf" download>
-       📄 Download Full Report
-    </a>
-  </div>
-</section>
+  <!-- 1 ▸ Welcome / CTA -->
+  <section class="card" id="welcome">
+    <h2>Welcome</h2>
+    <p>
+      This site documents my senior capstone project in Mechanical Engineering
+      at the University of Louisiana at Lafayette: a lightweight, front-wheel,
+      direct-pedal-powered racing tricycle engineered to win the
+      2025 <strong>Acadiana 500</strong> relay in New Iberia, Louisiana.
+    </p>
+    <p>
+      Designed, analysed, and fabricated over two semesters, the vehicle
+      finished <strong>1st overall</strong> while complying with strict rules
+      (no chains, gears, or motors).
+    </p>
+    <p>
+      Special thanks to event coordinator <strong>Hanna Pellerin</strong>
+      (Metal Shark Boats) and sponsors such as
+      <strong>Raising Cane’s</strong> for supporting materials and entry fees.
+    </p>
 
-<!-- ░░░ Spec sheet ░░░ -->
-<section class="card">
-  <h3>📏 Race Compliance – Spec Sheet</h3>
-  <p>Official design constraints (seat height, width limits, pedal placement, etc.).</p>
+    <div class="cta-row">
+      <a class="btn primary" href="reports.html">📊 View Final Results</a>
+      <a class="btn secondary"
+         href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
+         download>
+        📄 Download Full Report
+      </a>
+    </div>
+  </section>
 
-  <!-- PDF preview + three PNG callouts -->
-  <figure>
-    <a href="assets/images/9_docs/acadiana-500-spec-sheet.pdf" target="_blank">
-      <img src="assets/images/9_docs/Front%20Wheel%20Spec%20Sheet%20.png"
-           alt="Acadiana 500 – Front wheel spec sheet preview" />
-    </a>
-    <figcaption>
-      Click to open the full-resolution PDF, plus profile and top-view call-outs below.
-    </figcaption>
+  <!-- 2 ▸ Official spec-sheet -->
+  <section class="card" id="spec-sheet">
+    <h3>📏 Race Compliance – Spec Sheet</h3>
+    <p>Official design constraints (seat height, width limits, pedal placement, etc.).</p>
 
-    <!-- additional static previews -->
-    <img src="assets/images/9_docs/Profile%20%28Right%29%20View%20-%20Spec%20Sheet.png"
-         alt="Side-profile (right) compliance dimensions"
-         loading="lazy" />
-    <img src="assets/images/9_docs/Top%20%28Plan%29%20View%20-%20Spec%20Sheet.png"
-         alt="Top / plan-view compliance dimensions"
-         loading="lazy" />
-  </figure>
-</section>
+    <!-- PDF preview (pedal limits drawing) -->
+    <figure>
+      <a href="assets/images/9_docs/acadiana-500-spec-sheet.pdf" target="_blank">
+        <img src="assets/images/9_docs/Front Wheel Spec Sheet .png"
+             alt="Front-wheel pedal-limits sketch (click for full PDF)">
+      </a>
+      <figcaption>
+        Click to open the full-resolution PDF, plus profile and top-view call-outs below.
+      </figcaption>
+    </figure>
 
-<!-- ░░░ Rules ░░░ -->
-<section class="card">
-  <h3>📚 Race Constraints &amp; Requirements</h3>
-  <ul class="tight">
-    <li>Direct pedal-to-wheel drive only (no gears / chains).</li>
-    <li>Human-powered only — absolutely no motors.</li>
-    <li>Seat height ≤ 25 in; total width ≤ 20 in.</li>
-    <li>Relay transitions in 30-ft zones between cones.</li>
-    <li>10 s penalty per violation.</li>
-  </ul>
+    <!-- three call-out PNGs – uniform grid -->
+    <div class="spec-grid">
+      <figure>
+        <img src="assets/images/9_docs/Front Wheel Spec Sheet .png"
+             alt="Front-wheel compliance limits">
+        <figcaption>Front-wheel limits</figcaption>
+      </figure>
 
-  <div class="cta-row">
-    <a class="btn outline"
-       href="assets/images/9_docs/Acadiana 500 Race Rules.pdf" target="_blank">
-       📘 Official Rulebook
-    </a>
-    <a class="btn outline"
-       href="assets/images/9_docs/Acadiana 500 Sponsor Info REV1.pdf" target="_blank">
-       💰 Sponsor Details
-    </a>
-    <a class="btn outline"
-       href="assets/images/9_docs/Acadiana 500 Team Registration Form.pdf" target="_blank">
-       📝 Registration Form
-    </a>
-  </div>
-</section>
+      <figure>
+        <img src="assets/images/9_docs/Top (Plan) View - Spec Sheet.png"
+             alt="Plan view compliance limits">
+        <figcaption>Plan view limits</figcaption>
+      </figure>
 
-<!-- ░░░ Highlights ░░░ -->
-<section class="card">
-  <h3>🎬 Race Highlights</h3>
-  <p class="center">Live footage from the 2025 Acadiana 500:</p>
+      <figure>
+        <img src="assets/images/9_docs/Profile (Right) View - Spec Sheet.png"
+             alt="Side-profile (right) compliance dimensions">
+        <figcaption>Side profile limits</figcaption>
+      </figure>
+    </div>
+  </section>
 
-  <div class="video-grid">
-    <iframe src="https://youtube.com/shorts/Gqv5KYpIoNs"
-            title="Matt & Andre Testing prototype" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs"
-            title="UL Fast Pedal Engineers – Heat 1" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://youtube.com/shorts/JxC-39Dx2WM"
-            title="Last transition / finish" loading="lazy" allowfullscreen></iframe>
-    <iframe src="https://www.youtube.com/embed/T5bXXW90K8g"
-            title="Full-length sprint" loading="lazy" allowfullscreen></iframe>
-  </div>
-</section>
+  <!-- 3 ▸ Constraints + links -->
+  <section class="card" id="rules">
+    <h3>📚 Race Constraints &amp; Requirements</h3>
+    <ul class="tight">
+      <li>Direct pedal-to-wheel drive only (no gears / chains)</li>
+      <li>Human-powered only — absolutely no motors</li>
+      <li>Seat height ≤ 25 in; total width ≤ 20 in</li>
+      <li>Relay transitions in 30-ft zones between cones</li>
+      <li>10 s penalty per violation</li>
+    </ul>
 
-<!-- ░░░ Gantt ░░░ -->
-<section class="card">
-  <h3>📆 Project Timeline – Gantt Chart</h3>
-  <p>Two-semester plan covering CAD, FEA, machining, and testing milestones:</p>
+    <div class="cta-row">
+      <a class="btn outline"
+         href="assets/images/9_docs/Acadiana 500 Race Rules.pdf" target="_blank">
+        📘 Official Rulebook
+      </a>
+      <a class="btn outline"
+         href="assets/images/9_docs/Acadiana 500 Sponsor Info REV1.pdf" target="_blank">
+        💰 Sponsor Details
+      </a>
+      <a class="btn outline"
+         href="assets/images/9_docs/Acadiana 500 Team Registration Form.pdf"
+         target="_blank">
+        📝 Registration Form
+      </a>
+    </div>
+  </section>
 
-  <embed class="pdf-embed"
-         src="assets/images/9_docs/Gantt Charts(HD).pdf"
-         type="application/pdf" />
-</section>
+  <!-- 4 ▸ Race highlights (fixed embeds) -->
+  <section class="card" id="highlights">
+    <h3>🎬 Race Highlights</h3>
+    <p class="center">Live footage from the 2025 Acadiana 500:</p>
+
+    <div class="video-grid">
+      <iframe src="https://www.youtube.com/embed/Gqv5KYpIoNs"
+              title="Matt &amp; Andre testing prototype"
+              loading="lazy" allowfullscreen></iframe>
+
+      <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs"
+              title="UL Fast Pedal Engineers – Heat 1"
+              loading="lazy" allowfullscreen></iframe>
+
+      <iframe src="https://www.youtube.com/embed/JxC-39Dx2WM"
+              title="Last transition before finish"
+              loading="lazy" allowfullscreen></iframe>
+
+      <iframe src="https://www.youtube.com/embed/T5bXXW90K8g"
+              title="Full sprint / finish"
+              loading="lazy" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- 5 ▸ Gantt chart -->
+  <section class="card" id="timeline">
+    <h3>📆 Project Timeline – Gantt Chart</h3>
+    <p>Two-semester plan covering CAD, FEA, machining and testing milestones:</p>
+
+    <embed class="pdf-embed"
+           src="assets/images/9_docs/Gantt Charts(HD).pdf"
+           type="application/pdf">
+  </section>
 </main>
 
-<footer>© 2025 Matthew Dubea</footer>
+<footer class="site-footer">
+  <div class="container">© 2025 Matthew Dubea</div>
+</footer>
+
 <script src="theme.js"></script>
 </body>
 </html>
