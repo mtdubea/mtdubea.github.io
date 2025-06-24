@@ -1,13 +1,10 @@
-<!--  about.html  -->
+<!-- about.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>About | Matthew Dubea Portfolio</title>
+  <title>About | Matthew Dubea</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description"
-        content="Background, skills, and project timeline for Matthew Dubea, Mechanical Engineering graduate and lead designer of the 1st-place Acadiana 500 racing tricycle." />
-
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet"
@@ -37,66 +34,55 @@
 
 
 <main class="container">
+  <!-- bio / head-shot card -->
+  <section class="card about-card">
+    <img src="assets/images/profile-headshot.jpg"
+         alt="Matthew Dubea head-shot" class="headshot" loading="lazy" />
 
-  <!-- Profile blurb -->
-  <section class="card" id="profile">
-    <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center">
-      <img src="assets/images/profile-headshot.jpg"
-           alt="Matthew Dubea head-shot"
-           style="width:160px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15)">
-      <div style="flex:1 1 260px">
-        <h2>Hello — I’m Matt!</h2>
-        <p>
-          Mechanical Engineering B.S. (’25), UL Lafayette — passionate about
-          lightweight vehicle design, data-driven optimisation, and hands-on
-          prototyping. I lead projects from napkin sketch → CAD/FEA →
-          CNC/welding shop → podium finish.
-        </p>
-        <p>
-          Toolbox:  SolidWorks, Ansys, MATLAB/Python, Lean six-sigma, root-cause,
-          TIG/MIG, GD&amp;T, and a knack for making teams laugh at 2 a.m. lab
-          sessions.
-        </p>
-      </div>
-    </div>
-  </section>
+    <h2>Mechanical Engineer &nbsp;|&nbsp; FEA • CAD • Manufacturing</h2>
 
-  <!-- Fast facts -->
-  <section class="card" id="fast-facts">
-    <h3>⚙️ Fast Facts</h3>
+    <p>
+      I’m a ​<strong>B.S. Mechanical Engineering</strong> graduate from the
+      University of Louisiana at Lafayette with hands-on experience in
+      <em>design-for-manufacture, FEA, CFD, and project estimation</em>.
+      My capstone team’s direct-pedal tricycle earned <strong>1st place</strong>
+      at the 2025 <a href="index.html#highlights">Acadiana 500</a>.
+    </p>
+
+    <p>
+      Over 3 years in field roles (Safelite, CB&amp;I, industrial HVAC) taught me
+      to translate specs into buildable solutions and to keep projects on
+      schedule. I’m now looking to apply that mix of
+      <strong>analysis&nbsp;+ fabrication know-how</strong> in an R&amp;D or
+      manufacturing engineering position.
+    </p>
+
     <ul class="tight">
-      <li><strong>2000 +</strong> auto-glass ADAS calibrations (Safelite).</li>
-      <li><strong>35 lb</strong> race-ready tricycle built under a <strong>$120</strong> budget.</li>
-      <li><strong>1.7×</strong> rear-axle factor-of-safety verified in FEA.</li>
-      <li><strong>98 %</strong> QA pass-rate on field installs.</li>
+      <li>🛠 <strong>Tools:</strong> SolidWorks (CSWA), ANSYS Fluent, Python, MATLAB</li>
+      <li>🏷 <strong>Certs:</strong> OSHA-10, Lean Six Sigma (Green-Belt in progress)</li>
+      <li>🌐 <strong>Connect:</strong>
+        <a href="https://www.linkedin.com/in/matthew-dubea-4188a6311" target="_blank">LinkedIn</a> ·
+        <a href="https://github.com/mtdubea" target="_blank">GitHub</a> ·
+        <a href="mailto:mattdubea@outlook.com">Email</a>
+      </li>
     </ul>
   </section>
 
-  <!-- Timeline -->
-  <section class="card" id="timeline">
-    <h3>📆 Project Milestones</h3>
-    <ol class="tight">
-      <li><strong>Aug ’23 – Sep ’23:</strong> Concept selection + kinematic study.</li>
-      <li><strong>Oct ’23:</strong> SolidWorks master-assembly &amp; swing-arm FEA.</li>
-      <li><strong>Nov ’23:</strong> CNC-lathe bushings, 4130 axle heat-treat.</li>
-      <li><strong>Dec ’23:</strong> Static tip-over + braking tests — pass.</li>
-      <li><strong>Jan ’24:</strong> Composite seat &amp; sponsor outreach.</li>
-      <li><strong>Mar ’24:</strong> Dynamic track shakedown — 14 mph top-speed.</li>
-      <li><strong>May 24:</strong> Acadiana 500 race — <em>1st place overall</em>.</li>
-    </ol>
-  </section>
+  <!-- team photo / video -->
+  <section class="card">
+    <h3>📸 Team Photo</h3>
+    <img src="assets/images/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
+         alt="Fast Pedal Engineers – group photo"
+         style="max-width:450px;display:block;margin:1rem auto;" />
 
-  <!-- Call-out to reports -->
-  <section class="card" id="next">
-    <h3>🔎 Deep Dive</h3>
-    <p>
-      Curious about the stress plots, manufacturing drawings, or race telemetry?
-      Head over to the <a href="reports.html">Reports</a> page for full PDFs and
-      slide decks.
-    </p>
+    <h3>🎞️ Race Highlight</h3>
+    <div class="video-grid">
+      <iframe src="https://youtube.com/shorts/Gqv5KYpIoNs"
+              title="Prototype test" loading="lazy" allowfullscreen></iframe>
+    </div>
   </section>
-
 </main>
+
 
 <footer class="site-footer">
   <div class="container">© 2025 Matthew Dubea</div>
