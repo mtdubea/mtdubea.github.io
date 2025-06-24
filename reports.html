@@ -1,18 +1,19 @@
-<!--  reports.html  -->
+<!-- reports.html – full replacement -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Reports – Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
 <header class="site-header">
   <div class="container">
     <h1 class="site-title">Matthew Dubea</h1>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -27,38 +28,71 @@
 </header>
 
 <main class="container">
-  <!-- 1 ▸ Document list --------------------------------------------------- -->
+
+  <!-- ───────────── Document hub ───────────── -->
   <section class="card">
-    <h3>📑 Documentation</h3>
-    <ul>
+    <h2>📑 Final Documentation</h2>
+    <p class="muted">
+      Poster, slide deck, and full technical report submitted to the Acadiana 500
+      judging panel.
+    </p>
+
+    <ul class="tight">
       <li>
-        <a href="assets/images/9_docs/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
+        <a class="btn outline"
+           href="assets/images/9_docs/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
            target="_blank">
-          Poster Presentation (single-page PDF)
+          🖼️  Poster Presentation &nbsp;•&nbsp; 1 page&nbsp;PDF (8&nbsp;MB)
         </a>
       </li>
       <li>
-        <a href="assets/images/9_docs/MCHE484_FinalPresentaion_Acadiana500.pdf"
+        <a class="btn outline"
+           href="assets/images/9_docs/MCHE484_FinalPresentaion_Acadiana500.pdf"
            target="_blank">
-          Design&nbsp;&amp;&nbsp;FEA Slide Deck
+          📊  Design & FEA Slide Deck &nbsp;•&nbsp; 24 slides (12 MB)
         </a>
       </li>
       <li>
-        <a href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
+        <a class="btn outline"
+           href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
            target="_blank">
-          Full Final Report (28 pp)
+          📄  Full Final Report &nbsp;•&nbsp; 28 pp (4 MB)
         </a>
       </li>
     </ul>
   </section>
 
-  <!-- 2 ▸ Poster preview -------------------------------------------------- -->
+  <!-- ───────────── Poster preview ───────────── -->
   <section class="card">
     <h3>Poster Preview</h3>
     <embed class="pdf-embed"
            src="assets/images/9_docs/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
-           type="application/pdf">
+           type="application/pdf" />
+    <p class="center" style="margin-top:1rem;">
+      <a class="btn primary"
+         href="assets/images/9_docs/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
+         target="_blank">
+         🔍 Open poster in new tab
+      </a>
+    </p>
   </section>
+
+  <!-- ───────────── Deck cover (optional preview) ───────────── -->
+  <section class="card">
+    <h3>Design & FEA Slide-Deck (cover)</h3>
+    <embed class="pdf-embed"
+           style="height:450px;"
+           src="assets/images/9_docs/MCHE484_FinalPresentaion_Acadiana500.pdf#page=1&zoom=100"
+           type="application/pdf" />
+    <p class="center" style="margin-top:1rem;">
+      <a class="btn primary"
+         href="assets/images/9_docs/MCHE484_FinalPresentaion_Acadiana500.pdf"
+         target="_blank">
+         ▶️ Launch full slide deck
+      </a>
+    </p>
+  </section>
+
 </main>
 
 <footer class="site-footer">
