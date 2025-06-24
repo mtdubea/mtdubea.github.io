@@ -1,71 +1,66 @@
-<!-- reports.html  – replace entire file -->
+<!-- reports.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Project Reports – Matthew Dubea</title>
+  <title>Reports – Matthew Dubea</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- base stylesheets -->
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
 </head>
 
 <body>
 <header class="site-header">
-  <div class="wrap">
-    <h1 class="brand">Matthew Dubea</h1>
-    <nav class="main-nav" aria-label="Main">
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
+
+    <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="gallery.html">Gallery</a></li>
-        <li><a aria-current="page" href="reports.html">Reports</a></li>
+        <li><a href="reports.html" aria-current="page">Reports</a></li>
         <li><a href="resume.html">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
+        <li class="theme-toggle">
+          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+        </li>
       </ul>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="container">
 
   <!-- docs list -->
   <section class="card" id="docs">
     <h2>📄 Documentation</h2>
-    <ul class="bullets">
-      <li>
-        <a href="assets/images/MCHE484_FinalPoster_TrikeDesignAndFab.pdf" target="_blank">
-          Poster Presentation (single-page PDF)
-        </a>
-      </li>
-      <li>
-        <a href="assets/images/MCHE484_FinalPresentation_Acadiana500.pdf" target="_blank">
-          Design &amp; FEA Slide Deck
-        </a>
-      </li>
-      <li>
-        <a href="assets/images/MCHE484_FinalReport_FastPedalEngineers[1].pdf" target="_blank">
-          Full Final Report (28&nbsp;pp)
-        </a>
-      </li>
+    <ul>
+      <li><a href="assets/images/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
+             target="_blank">Poster Presentation (single-page PDF)</a></li>
+      <li><a href="assets/images/MCHE484_FinalPresentaion_Acadiana500.pdf"
+             target="_blank">Design & FEA Slide Deck</a></li>
+      <li><a href="assets/images/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
+             target="_blank">Full Final Report</a></li>
     </ul>
   </section>
 
-  <!-- inline poster preview -->
-  <section class="card" id="poster-preview">
+  <!-- poster preview -->
+  <section class="card" id="poster">
     <h3>Poster Preview</h3>
     <embed class="pdf-embed"
            src="assets/images/MCHE484_FinalPoster_TrikeDesignAndFab.pdf"
-           type="application/pdf"
-           aria-label="Capstone project poster" />
+           type="application/pdf" />
   </section>
 
 </main>
 
 <footer class="site-footer">
-  © 2025 Matthew Dubea
+  <div class="container">© 2025 Matthew Dubea</div>
 </footer>
 
 <script src="theme.js"></script>
