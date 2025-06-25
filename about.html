@@ -1,10 +1,9 @@
-<!--  about.html  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>About – Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
@@ -13,7 +12,7 @@
 <header class="site-header">
   <div class="container">
     <h1 class="site-title">Matthew Dubea</h1>
-    <nav class="main-nav" aria-label="Main navigation">
+    <nav class="main-nav">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" aria-current="page">About</a></li>
@@ -21,67 +20,65 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="resume.html">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
-        <li class="theme-toggle">
-          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
-        </li>
+        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main class="container">
-  <!-- ------------------------------------------------------------------ -->
-  <!-- Profile & summary ------------------------------------------------- -->
-  <!-- ------------------------------------------------------------------ -->
-  <section class="card">
-    <img src="assets/images/profile-headshot.jpg"
-         alt="Matthew Dubea professional head-shot"
-         class="headshot" />
 
-    <h2>Hello — I’m Matt</h2>
-    <p>
-      I’m a mechanical engineer passionate about <strong>design for
-      manufacturing, lightweight structures, and race-day performance
-      under real-world constraints</strong>. From SolidWorks models and FEA to
-      hands-on welding and CNC machining, I enjoy taking concepts the full
-      distance&nbsp;— ending in hardware that wins.
+  <!-- personal bio ---------------------------------------------------- -->
+  <section class="card">
+    <h2>👋 About Me</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
+      <img src="assets/images/profile-headshot.jpg"
+           alt="Matthew Dubea head-shot"
+           style="width:170px;height:170px;border-radius:50%;object-fit:cover;box-shadow:0 1px 6px rgba(0,0,0,.15);">
+
+      <p style="flex:1;min-width:240px;">
+        I’m a graduating <strong>Mechanical Engineer</strong> who loves turning rough
+        sketches into race-winning machines. My focus areas are lightweight
+        welded structures, FEA/CFD validation, and cost-optimised build
+        strategies. Outside the lab you can find me recording bass riffs and
+        volunteering at STEM outreach events.
+      </p>
+    </div>
+  </section>
+
+  <!-- project at-a-glance --------------------------------------------- -->
+  <section class="card">
+    <h3>📌 Project At-a-Glance</h3>
+    <table style="width:100%;border-collapse:collapse;">
+      <tr><th>Item</th><th>Value / Note</th></tr>
+      <tr><td>Final weight</td><td>35&nbsp;lb (15.9&nbsp;kg)</td></tr>
+      <tr><td>Top speed (test)</td><td>15&nbsp;mph (24&nbsp;km/h)</td></tr>
+      <tr><td>Frame material</td><td>1020 main triangle + 4130 chromoly rear</td></tr>
+      <tr><td>Rear axle</td><td>4140 steel, 0.625&nbsp;in Ø</td></tr>
+      <tr><td>FEA peak σ<sub>vm</sub></td><td>2.8&nbsp;×10<sup>8</sup> N/m² &nbsp;→&nbsp; FoS&nbsp;2.2</td></tr>
+      <tr><td>Budget</td><td>$120 (incl. recycled parts)</td></tr>
+      <tr><td>Awards</td><td>🥇 1st overall, Acadiana&nbsp;500 (2025)</td></tr>
+    </table>
+  </section>
+
+  <!-- team photo + race clip ------------------------------------------ -->
+  <section class="card">
+    <h3>🏆 Race-day Moments</h3>
+    <div class="spec-grid" style="--gap:1.5rem;">
+      <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
+           alt="Fast Pedal Engineers – team photo" loading="lazy">
+      <img src="assets/images/12_race/Holding Trophy.jpg"
+           alt="Team holding trophy" loading="lazy">
+    </div>
+
+    <p class="center" style="margin-top:1rem;">
+      <iframe src="https://www.youtube.com/embed/JxC-39Dx2WM"
+              title="Final transition & finish"
+              loading="lazy"
+              style="width:420px;aspect-ratio:16/9;border:none;"></iframe>
     </p>
-    <p>
-      My capstone tricycle project (documented on this site) captured
-      <em>1st overall</em> at the 2025 <strong>Acadiana 500</strong>. Away
-      from the track you’ll find me optimising process flows, crunching data
-      in MATLAB/Python, or restoring vintage bikes.
-    </p>
   </section>
 
-  <!-- ------------------------------------------------------------------ -->
-  <!-- Quick facts ------------------------------------------------------- -->
-  <!-- ------------------------------------------------------------------ -->
-  <section class="card">
-    <h3>📌 Fast Facts</h3>
-    <ul class="tight">
-      <li>B.S. Mechanical Engineering, University of Louisiana at Lafayette (2025).</li>
-      <li>Minor in Mathematics; study-abroad term at UCL + Cambridge.</li>
-      <li>2000+ auto-glass installations → 98 % QA pass rate at Safelite.</li>
-      <li>Lean Six-Sigma Green Belt (in progress).</li>
-      <li>Software stack: SolidWorks | Ansys | Excel | MATLAB | Python.</li>
-    </ul>
-  </section>
-
-  <!-- ------------------------------------------------------------------ -->
-  <!-- Timeline ---------------------------------------------------------- -->
-  <!-- ------------------------------------------------------------------ -->
-  <section class="card">
-    <h3>🗂️ Career Timeline</h3>
-    <ul class="tight">
-      <li><strong>2025 –</strong> Mechanical Engineer (Graduate) — open to
-          full-time design / manufacturing roles.</li>
-      <li><strong>2022 – 2024</strong> Auto-Glass Technician — Safelite.</li>
-      <li><strong>2019 – 2021</strong> Electrician — Ernest P. Breaux Electrical.</li>
-      <li><strong>2018</strong> HVAC Installer — Granger AC.</li>
-      <li><strong>2015 – 2017</strong> Electrical Apprentice — Triad Electric &amp; Controls.</li>
-    </ul>
-  </section>
 </main>
 
 <footer class="site-footer">
