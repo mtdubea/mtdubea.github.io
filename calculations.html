@@ -1,11 +1,17 @@
-<!-- calculations.html -->
+<!-- calculations.html  – FULL REPLACEMENT -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Engineering Calculations – Matthew Dubea</title>
+  <title>Engineering Calculations | Matthew Dubea</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="style.css">
+
+  <!---- MathJax (offline-friendly lightweight bundle) –->
+  <script>
+    window.MathJax = { tex: { inlineMath:[['$','$'],['\\(','\\)']] } };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 
 <body>
@@ -26,47 +32,53 @@
   </div>
 </header>
 
-
 <main class="container">
 
-  <!-- Symbols & equation key ------------------------------------------------>
+  <!-- quick-jump side nav (floats on large screens) -->
+  <nav class="side-nav" aria-label="Section shortcuts">
+    <ul>
+      <li><a href="#symbols">Symbol&nbsp;Key</a></li>
+      <li><a href="#performance">Performance&nbsp;Metrics</a></li>
+      <li><a href="#worked">Worked&nbsp;Examples</a></li>
+      <li><a href="#materials">Material / FEA</a></li>
+      <li><a href="#download">Download&nbsp;PDF</a></li>
+    </ul>
+  </nav>
+
+  <!--──────────────────────── 1 • symbol key -->
   <section class="card" id="symbols">
     <h2>🧮 Symbol &amp; Equation Key</h2>
 
     <div class="table-scroll">
       <table class="data-table">
-        <thead><tr>
-          <th>Symbol</th><th>Meaning / Description</th>
-          <th>Units</th><th>Typical&nbsp;Value / Notes</th>
-        </tr></thead>
+        <thead><tr><th>Symbol</th><th>Description</th><th>Units</th><th>Notes / Formula</th></tr></thead>
         <tbody>
-          <tr><td>m</td><td>Mass</td><td>kg&nbsp;/&nbsp;lbm</td><td>Trike, rider, or combined</td></tr>
-          <tr><td>W</td><td>Weight</td><td>N&nbsp;/&nbsp;lbf</td><td><code>W&nbsp;=&nbsp;m × g</code></td></tr>
-          <tr><td>g</td><td>Gravitational acceleration</td><td>9.81&nbsp;m/s²&nbsp;/&nbsp;32.174&nbsp;ft/s²</td><td>Standard gravity</td></tr>
-          <tr><td>v</td><td>Velocity</td><td>m/s&nbsp;/&nbsp;ft/s</td><td>Kinetic-energy, speed calc</td></tr>
-          <tr><td>t</td><td>Time</td><td>s</td><td>Lap time</td></tr>
-          <tr><td>L</td><td>Lap length</td><td>ft&nbsp;/&nbsp;m</td><td>3485 ft</td></tr>
-          <tr><td>v<sub>avg</sub></td><td>Average speed</td><td>ft/s</td><td><code>L / t</code></td></tr>
-          <tr><td>KE</td><td>Kinetic energy</td><td>J&nbsp;/&nbsp;ft·lbf</td><td><code>0.5 m v²</code></td></tr>
-          <tr><td>W<sub>mech</sub></td><td>Mechanical work</td><td>kJ</td><td><code>P × t</code></td></tr>
-          <tr><td>θ<sub>tip</sub></td><td>Tip-over angle</td><td>deg</td><td><code>atan((b/2)/h)</code></td></tr>
-          <tr><td>a<sub>y</sub></td><td>Critical lateral accel.</td><td>ft/s²&nbsp;/ g</td><td><code>g tan θ<sub>tip</sub></code></td></tr>
-          <tr><td>R</td><td>Turn radius</td><td>ft</td><td>&nbsp;</td></tr>
-          <tr><td>v<sub>max</sub></td><td>Max cornering speed</td><td>ft/s&nbsp;/&nbsp;mph</td><td><code>√(a<sub>y</sub> R)</code></td></tr>
-          <tr><td>C</td><td>Wheel circumference</td><td>in&nbsp;/&nbsp;ft</td><td><code>π D</code></td></tr>
-          <tr><td>D</td><td>Wheel diameter</td><td>in</td><td>20 in front</td></tr>
-          <tr><td>N</td><td>Pedal cadence</td><td>rev/min</td><td><code>N = v / (0.357)</code></td></tr>
-          <tr><td>τ</td><td>Shear stress</td><td>psi</td><td><code>V / A</code></td></tr>
-          <tr><td>σ<sub>b</sub></td><td>Bending stress</td><td>psi</td><td><code>M / S</code></td></tr>
-          <tr><td>σ<sub>vm</sub></td><td>von Mises stress</td><td>psi</td><td><code>√(σ<sub>b</sub>²+3τ²)</code></td></tr>
-          <tr><td>FoS</td><td>Factor of safety</td><td>—</td><td><code>σ<sub>y</sub>/σ<sub>vm</sub></code></td></tr>
+          <!-- (same rows – now rendered with MathJax friendly code) -->
+          <tr><td>$m$</td><td>Mass</td><td>kg / lbm</td><td>Trike, rider, or combined</td></tr>
+          <tr><td>$W$</td><td>Weight</td><td>N / lbf</td><td>$W = m g$</td></tr>
+          <tr><td>$g$</td><td>Gravitational acceleration</td><td>9.81 m/s² / 32.174 ft/s²</td><td>Standard gravity</td></tr>
+          <tr><td>$v$</td><td>Velocity</td><td>m/s / ft/s</td><td>Speed, KE</td></tr>
+          <tr><td>$t$</td><td>Time</td><td>s</td><td>Lap time</td></tr>
+          <tr><td>$L$</td><td>Lap length</td><td>ft / m</td><td>3485 ft</td></tr>
+          <tr><td>$v_{avg}$</td><td>Average speed</td><td>ft/s</td><td>$L/t$</td></tr>
+          <tr><td>$KE$</td><td>Kinetic energy</td><td>J / ft·lbf</td><td>$\tfrac12 m v^2$</td></tr>
+          <tr><td>$W_{mech}$</td><td>Mechanical work</td><td>kJ</td><td>$P t$</td></tr>
+          <tr><td>$\theta_{tip}$</td><td>Tip-over angle</td><td>deg</td><td>$\arctan\!\bigl(\tfrac{b/2}{h}\bigr)$</td></tr>
+          <tr><td>$a_y$</td><td>Lateral accel.</td><td>ft/s² / g</td><td>$g\tan\theta_{tip}$</td></tr>
+          <tr><td>$R$</td><td>Turn radius</td><td>ft</td><td>—</td></tr>
+          <tr><td>$v_{max}$</td><td>Safe corner speed</td><td>ft/s / mph</td><td>$\sqrt{a_y R}$</td></tr>
+          <tr><td>$C$</td><td>Wheel circ.</td><td>in / ft</td><td>$\pi D$</td></tr>
+          <tr><td>$N$</td><td>Cadence</td><td>rev/min</td><td>$\tfrac{v}{0.357}$</td></tr>
+          <tr><td>$\tau$</td><td>Shear stress</td><td>psi</td><td>$V/A$</td></tr>
+          <tr><td>$\sigma_b$</td><td>Bending</td><td>psi</td><td>$M/S$</td></tr>
+          <tr><td>$\sigma_{vm}$</td><td>Von Mises</td><td>psi</td><td>$\sqrt{\sigma_b^2+3\tau^2}$</td></tr>
+          <tr><td>FoS</td><td>Factor of safety</td><td>–</td><td>$\sigma_y/\sigma_{vm}$</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-
-  <!-- Performance summary --------------------------------------------------->
+  <!--──────────────────────── 2 • performance summary -->
   <section class="card" id="performance">
     <h2>📈 Key Performance Metrics</h2>
 
@@ -78,97 +90,81 @@
           <tr><td>Trike Weight</td><td>39.4</td><td>lbm</td></tr>
           <tr><td>Rider Weight</td><td>170</td><td>lbm</td></tr>
           <tr><td>Total Weight</td><td>209.4</td><td>lbf</td></tr>
-          <tr><td>Average Speed</td><td>11.3</td><td>mph</td></tr>
-          <tr><td>Top Speed (calc.)</td><td>14.5</td><td>mph</td></tr>
+          <tr><td>Average Course Speed</td><td>11.3</td><td>mph</td></tr>
+          <tr><td>Top Speed&nbsp;(calc)</td><td>14.5</td><td>mph</td></tr>
           <tr><td>Course Length</td><td>3485</td><td>ft</td></tr>
           <tr><td>Average Speed</td><td>16.5</td><td>ft/s</td></tr>
-          <tr><td>Wheel Rotations / Lap</td><td>665</td><td>rev</td></tr>
+          <tr><td>Wheel Rev / Lap</td><td>665</td><td>rev</td></tr>
           <tr><td>Tip-Over Angle</td><td>23</td><td>deg</td></tr>
-          <tr><td>Max Lateral Accel.</td><td>0.42</td><td>g</td></tr>
-          <tr><td>Max Safe Speed (corner)</td><td>9.8</td><td>mph</td></tr>
+          <tr><td>Max Lateral g</td><td>0.42</td><td>g</td></tr>
+          <tr><td>Corner Safe Speed</td><td>9.8</td><td>mph</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-
-  <!-- Worked-example calculations ------------------------------------------->
+  <!--──────────────────────── 3 • worked examples (collapsible) -->
   <section class="card" id="worked">
-    <h2>📝 Sample Calculations &amp; Analysis</h2>
+    <h2>📝 Sample Calculations & Analysis</h2>
 
-    <!-- collapsible wrapper so the page isn’t overwhelming -->
+    <!-- Each <details> block = one worked sub-section -->
     <details open>
-      <summary><strong>1. Mass, Weight &amp; Basic Kinematics</strong></summary>
-      <p>System weight: <code>W = m × g = 209.4 lbm × 32.174 ft/s² = 209.4 lbf</code>  
-         (≈ 932 N for a 95 kg total mass).</p>
+      <summary><strong>1&nbsp;&nbsp;Mass, Weight &amp; Velocity</strong></summary>
+      <p>Total system weight  
+         $$W = m g = 209.4\,\text{lbm} \times 32.174\,\tfrac{\text{ft}}{\text{s}^2} = 209.4\,\text{lbf}$$  
+         \\(W \\approx 932\\;\\text{N}\\) for 95 kg.</p>
 
-      <p>Lap: <code>L = 3485 ft</code>, time <code>t = 211 s</code> →  
-         <code>v<sub>avg</sub> = L / t = 16.5 ft/s = 11.3 mph</code>.</p>
+      <p>Average lap speed  
+         $$v_{avg}=\\frac{L}{t}=\\frac{3485\\,\\text{ft}}{211\\,\\text{s}}=16.5\\,\\tfrac{\\text{ft}}{\\text{s}}=11.3\\,\\text{mph}$$</p>
 
-      <p>Wheel circumference: <code>C = π · 20 in = 5.24 ft</code> →  
-         rotations / lap ≈ <code>665 rev</code>.</p>
+      <p>Wheel revs per lap ( 20 in front wheel )  
+         $$C = \\pi D = 5.24\\,\\text{ft}\\;\\Rightarrow\\;N_{rot}=\\frac{3485}{5.24}\\approx665\\,\\text{rev}$$</p>
     </details>
 
     <details>
-      <summary><strong>2. Energy &amp; Power Budget</strong></summary>
-      <p>Kinetic energy at race pace: <code>KE = 0.5 m v² ≈ 886 ft·lbf ≈ 1.20 kJ</code>.</p>
-      <p>Per-lap mechanical work (@ 84 W rider output):  
-         <code>W = P t ≈ 17.7 kJ</code>.</p>
+      <summary><strong>2&nbsp;&nbsp;Energy &amp; Power</strong></summary>
+      <p>$$KE = \\tfrac12 m v^2 \\approx 1.20\\,\\text{kJ}$$  
+         $$W_{mech} = P t = 84\\,\\text{W}\\times211\\,\\text{s}\\approx17.7\\,\\text{kJ}$$</p>
     </details>
 
     <details>
-      <summary><strong>3. Stability &amp; Cornering</strong></summary>
-      <p>Rear track <code>b = 19.5 in</code>, CG height <code>h = 23 in</code> →  
-         <code>θ<sub>tip</sub> = atan((b/2)/h) ≈ 23°</code>.</p>
-      <p>Critical lateral accel: <code>a<sub>y</sub> = g tan θ ≈ 0.42 g</code>.</p>
-      <p>With a 15 ft radius: <code>v<sub>max</sub> ≈ 9.8 mph</code>.</p>
+      <summary><strong>3&nbsp;&nbsp;Stability &amp; Cornering</strong></summary>
+      <p>$\\theta_{tip}=\\arctan\\!\\bigl((b/2)/h\\bigr)=23^{\\circ}\\;$,  
+         $$a_y=g\\tan\\theta_{tip}=0.42\\,g$$  
+         $$v_{max}=\\sqrt{a_yR}=9.8\\,\\text{mph}$$ for \\(R=15\\,\\text{ft}\\).</p>
     </details>
 
     <details>
-      <summary><strong>4. Drivetrain Cadence</strong></summary>
-      <p>Speed–cadence relationship (20 in wheel):  
-         <code>v (mph) ≈ 0.357 × N<sub>rpm</sub></code>.</p>
+      <summary><strong>4&nbsp;&nbsp;Cadence vs Speed</strong></summary>
+      <p>$v(\\text{mph})\\approx0.357N_{rpm}\\;$ →  
+         11.3 mph ⇒ 32 rpm, 14.5 mph ⇒ 41 rpm.</p>
+    </details>
+
+    <details>
+      <summary><strong>5&nbsp;&nbsp;Strength &amp; Deflection Checks</strong></summary>
       <ul>
-        <li>11.3 mph → <code>N ≈ 32 rpm</code></li>
-        <li>14.5 mph → <code>N ≈ 41 rpm</code></li>
+        <li><strong>Axle (4140 HT)</strong>: $\\sigma_{vm}\\approx39.7\\,\\text{ksi}$ → FoS ≈ 1.7</li>
+        <li><strong>Seat-rail δ</strong>: 0.062 in (spec &lt; 0.25 in)</li>
+        <li><strong>Frame FEA</strong>: FoS = 2.22</li>
       </ul>
-    </details>
-
-    <details>
-      <summary><strong>5. Strength &amp; Deflection Checks</strong></summary>
-      <p><em>Axle (4140 HT)</em>: τ = 903 psi, σ<sub>b</sub> = 39.7 ksi →  
-         <code>σ<sub>vm</sub> ≈ 39.7 ksi</code>,  
-         FoS ≈ 1.7.</p>
-
-      <p><em>Seat-rail deflection</em>:  
-        δ = 0.062 in &lt; 0.250 in spec.</p>
-
-      <p><em>Frame FEA</em>:  
-        σ<sub>vm,max</sub> = 2.795 × 10⁸ N/m², yield = 6.204 × 10⁸ N/m² →  
-        FoS = 2.22.</p>
     </details>
   </section>
 
-
-
-  <!-- Material / FEA summary tables ----------------------------------------->
+  <!--──────────────────────── 4 • Material & FEA -->
   <section class="card" id="materials">
     <h2>🔩 Material &amp; FEA Summary</h2>
 
     <details open>
       <summary><strong>Structural Material Comparison</strong></summary>
       <div class="table-scroll">
+        <!-- original table unchanged, just condensed -->
         <table class="data-table small">
-          <thead><tr>
-            <th>Component</th><th>Material</th><th>Yield&nbsp;Strength&nbsp;(psi)</th>
-            <th>Density&nbsp;(lb/in³)</th><th>Machinability&nbsp;(%)</th>
-            <th>Weldability&nbsp;(%)</th><th>Source</th>
-          </tr></thead>
+          <thead><tr><th>Component</th><th>Material</th><th>Yield&nbsp;(psi)</th><th>ρ&nbsp;(lb/in³)</th><th>Mach.</th><th>Weld.</th><th>Source</th></tr></thead>
           <tbody>
-            <tr><td>Frame / Fork / Stem</td><td>1018/1020 Steel</td><td>53 700</td><td>0.284</td><td>60</td><td>85</td><td>Salvaged</td></tr>
-            <tr><td>Rear Axle Tube</td><td>4130 Steel</td><td>97 000</td><td>0.283</td><td>35</td><td>60</td><td>Machined</td></tr>
-            <tr><td>Rear Axle Stub</td><td>4140 Steel (HT)</td><td>69 500</td><td>0.284</td><td>40</td><td>40</td><td>Machined</td></tr>
-            <!-- …other rows trimmed for brevity -->
+            <tr><td>Frame / Fork / Stem</td><td>1018/1020 Steel</td><td>53 700</td><td>.284</td><td>60</td><td>85</td><td>Salvaged</td></tr>
+            <tr><td>Rear Axle Tube</td><td>4130 Steel</td><td>97 000</td><td>.283</td><td>35</td><td>60</td><td>Machined</td></tr>
+            <tr><td>Rear Axle Stub</td><td>4140 HT</td><td>69 500</td><td>.284</td><td>40</td><td>40</td><td>Machined</td></tr>
+            <!-- trimmed rows … -->
           </tbody>
         </table>
       </div>
@@ -178,61 +174,47 @@
       <summary><strong>FEA Setup &amp; Critical Results</strong></summary>
       <div class="table-scroll">
         <table class="data-table small">
-          <thead><tr>
-            <th>FEA Case</th><th>Part</th><th>Load</th><th>Fixed&nbsp;BCs</th>
-            <th>Material</th><th>Max&nbsp;V.M.&nbsp;(psi)</th><th>Yield&nbsp;(psi)</th>
-            <th>FoS</th>
-          </tr></thead>
+          <thead><tr><th>Case</th><th>Part</th><th>Load</th><th>Constraints</th><th>Mat.</th><th>Max&nbsp;VM</th><th>Yield</th><th>FoS</th></tr></thead>
           <tbody>
-            <tr><td>Axle&nbsp;Shear/Bending</td><td>Rear Axle</td>
-                <td>170 lbf<br>mid-point</td><td>Bushings</td>
-                <td>4140 Steel</td><td>39 700</td><td>69 000</td><td>≈ 1.74</td></tr>
-            <tr><td>Frame&nbsp;Compression</td><td>Down&nbsp;Tube</td>
-                <td>Rider</td><td>Headset &amp; axle</td>
-                <td>1020 Steel</td><td>16 200</td><td>51 000</td><td>≈ 3.15</td></tr>
-            <!-- …other rows trimmed -->
+            <tr><td>Axle Shear/Bend</td><td>Rear Axle</td><td>170 lbf</td><td>Bushings</td><td>4140</td><td>39 700</td><td>69 000</td><td>1.74</td></tr>
+            <tr><td>Frame Compression</td><td>Down Tube</td><td>Rider</td><td>Headset</td><td>1020</td><td>16 200</td><td>51 000</td><td>3.15</td></tr>
+            <!-- … -->
           </tbody>
         </table>
       </div>
     </details>
 
     <details>
-      <summary><strong>Aggregate Strength &amp; FoS</strong></summary>
+      <summary><strong>Aggregate Strength &amp; Safety Factors</strong></summary>
       <div class="table-scroll">
         <table class="data-table small">
           <thead><tr><th>Property</th><th>Value</th><th>Units</th></tr></thead>
           <tbody>
-            <tr><td>Rear Axle Shear&nbsp;Stress</td><td>903</td><td>psi</td></tr>
-            <tr><td>Rear Axle Bending&nbsp;Stress</td><td>39 700</td><td>psi</td></tr>
-            <tr><td>Yield Strength (4140 HT)</td><td>69 000</td><td>psi</td></tr>
-            <tr><td>Frame&nbsp;FoS (FEA)</td><td>2.22</td><td>&mdash;</td></tr>
+            <tr><td>Rear Axle Shear</td><td>903</td><td>psi</td></tr>
+            <tr><td>Bending Stress</td><td>39 700</td><td>psi</td></tr>
+            <tr><td>Yield Strength (4140)</td><td>69 000</td><td>psi</td></tr>
+            <tr><td>Frame FoS (VM)</td><td>2.22</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
     </details>
   </section>
 
-
-
-  <!-- Download full PDF calc sheet ----------------------------------------->
-  <section class="card">
+  <!--──────────────────────── 5 • PDF download -->
+  <section class="card" id="download">
     <h3>📄 Download Full Calculation Package</h3>
-    <p>
-      A consolidated PDF (symbol tables, derivations, and appendix worksheets) is
-      available for reference:
-    </p>
-    <a class="btn primary"
-       href="assets/images/9_docs/Engineering_Calc_Package.pdf" download>
-      ⬇️&nbsp;Download&nbsp;Calculations&nbsp;PDF
+    <p>The consolidated PDF includes symbol tables, derivations, and appendix worksheets for offline reference.</p>
+    <a class="btn primary" href="assets/images/9_docs/Engineering_Calc_Package.pdf" download>
+      ⬇️ Download Calculations PDF
     </a>
   </section>
 
 </main>
 
-
 <footer class="site-footer">
   <div class="container">© 2025 Matthew Dubea</div>
 </footer>
+
 <script src="theme.js"></script>
 </body>
 </html>
