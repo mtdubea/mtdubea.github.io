@@ -6,9 +6,13 @@
   --text        : #0a0a0a;
   --card-bg     : #ffffff;
   --primary     : #064f88;
-  --primary-d   : #05396b;   /* hover / active */
+  --primary-d   : #05396b;     /* hover / active */
   --link        : #064f88;
   --link-hover  : #032b50;
+
+  /* tables */
+  --tbl-border  : #b9c7d6;
+  --tbl-row-odd : #f4f8fd;
 }
 
 /* ─────────── Dark-mode overrides ─────────── */
@@ -18,28 +22,36 @@ body.dark{
   --card-bg   : #1e1e1e;
   --link      : #70a8ff;
   --link-hover: #a5c6ff;
+
+  --tbl-border  : #3c3c3c;
+  --tbl-row-odd : #1a1a1a;
 }
 
 /* ─────────── Base / reset ─────────── */
-*,
-*::before,
-*::after{box-sizing:border-box;}
+*,*::before,*::after{box-sizing:border-box;}
 
 body{
   margin:0;
   font-family:'Inter','Segoe UI',sans-serif;
   background:var(--bg);
   color:var(--text);
-  line-height:1.55;
+  line-height:1.6;
   transition:background .3s,color .3s;
 }
 
-img,
-iframe,
-embed{max-width:100%;display:block;border-radius:8px}
+h1,h2,h3,h4{line-height:1.25;margin:.1em 0 .6em}
+h2{font-size:1.35rem;}
+h3{font-size:1.15rem;}
 
-a{color:var(--link);text-underline-offset:2px;}
+img,iframe,embed{max-width:100%;display:block;border-radius:8px}
+
+a{
+  color:var(--link);
+  text-underline-offset:2px;
+  transition:color .15s;
+}
 a:hover{color:var(--link-hover)}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
 
 /* ─────────── Header / nav ─────────── */
 .site-header{
@@ -53,8 +65,7 @@ a:hover{color:var(--link-hover)}
   align-items:center;
   gap:1.2rem;
 }
-
-.site-title{margin:0;font-size:1.45rem;}
+.site-title{margin:0;font-size:1.4rem}
 
 .main-nav ul{
   margin:0;
@@ -98,8 +109,20 @@ main{padding:2rem}
   transform:translateY(-3px);
   box-shadow:0 6px 16px rgba(0,0,0,.14);
 }
-.card > summary{list-style:none;cursor:pointer;}
+.card > summary{
+  list-style:none;
+  cursor:pointer;
+  user-select:none;
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+}
 .card > summary::-webkit-details-marker{display:none;}
+.card > summary::before{
+  content:'▸';
+  transition:transform .3s;
+}
+details[open]>summary::before{transform:rotate(90deg)}
 
 /* ─────────── Buttons ─────────── */
 .btn{
@@ -130,9 +153,9 @@ main{padding:2rem}
   flex-wrap:wrap;
   justify-content:center;
   gap:var(--gap);
-  margin-top:1.1rem;
+  margin-top:1rem;
 }
-.spec-grid figure{                 /* keeps captions tidy */
+.spec-grid figure{
   flex:1 1 clamp(140px,28%,240px);
   margin:0;
   text-align:center;
@@ -163,6 +186,34 @@ figcaption{
   border:none;
 }
 
+/* ─────────── Tables ─────────── */
+.table-scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.data-table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:520px;
+  font-size:.9rem;
+}
+.data-table thead{
+  position:sticky;
+  top:0;
+  background:var(--card-bg);
+}
+.data-table th,
+.data-table td{
+  border:1px solid var(--tbl-border);
+  padding:.45rem .6rem;
+  text-align:left;
+}
+.data-table tbody tr:nth-child(odd){
+  background:var(--tbl-row-odd);
+}
+.data-table.small th,
+.data-table.small td{font-size:.8rem;padding:.38rem .5rem}
+
 /* ─────────── PDF embed (large view) ─────────── */
 .pdf-embed{
   width:100%;
@@ -184,4 +235,11 @@ figcaption{
   text-align:center;
   padding:1rem;
   font-size:.88rem;
+}
+
+/* ─────────── Print tweaks ─────────── */
+@media print{
+  body{background:#fff;color:#000}
+  .card{box-shadow:none}
+  a::after{content:" ("attr(href) ")";font-size:.75em}
 }
