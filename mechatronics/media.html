@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Media Gallery | Mechatronics Payload</title>
+  <title>Project Media Gallery | Mechatronics Payload</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Media Gallery</h1>
+    <h1>Project Media Gallery</h1>
     <nav>
       <a href="index.html">Overview</a>
       <a href="code.html">Source Code</a>
@@ -17,23 +17,110 @@
     </nav>
   </header>
 
-  <section class="gallery">
-    <!-- JPGs auto‑loaded by numeric order -->
-    <!-- Simply drop new images in /media to expand gallery -->
-    <!-- Example thumbnail grid -->
-    <figure><img src="media/1.ThermistorSensor.jpg" alt="Thermistor sensor (heat trigger)" /><figcaption>Thermistor – heat trigger</figcaption></figure>
-    <figure><img src="media/2.UltraSonicSensor.jpg" alt="HC‑SR04 ultrasonic rangefinder" /><figcaption>Ultrasonic sensor</figcaption></figure>
-    <figure><img src="media/3.MPU9250_Gyroscope(back).jpg" alt="MPU9250 IMU (back)" /><figcaption>MPU9250 (back)</figcaption></figure>
-    <figure><img src="media/4.0250_Gyroscope(Front).jpg" alt="MPU9250 IMU (front)" /><figcaption>MPU9250 (front)</figcaption></figure>
-    <figure><img src="media/5.LiquidCrystal.jpg" alt="I²C LCD module" /><figcaption>16×2 I²C LCD</figcaption></figure>
-    <figure><img src="media/7.LCDLiquidCrystalDigitalDisplayofTilt.jpg" alt="LCD displaying tilt" /><figcaption>Tilt angle display</figcaption></figure>
-    <figure><img src="media/8.WaterSensor(Front).jpg" alt="Water sensor front" /><figcaption>Water sensor (front)</figcaption></figure>
-    <figure><img src="media/9.WaterSensor(Back).jpg" alt="Water sensor back" /><figcaption>Water sensor (back)</figcaption></figure>
-    <figure><img src="media/10.DroneTopView_SpeakerCircled.jpg" alt="Payload top view" /><figcaption>Top view – wiring</figcaption></figure>
-    <figure><img src="media/11.DroneSideView.jpg" alt="Payload side view" /><figcaption>Side view</figcaption></figure>
-    <figure><img src="media/12.InsideDrone.jpg" alt="Internal electronics" /><figcaption>Inside – Arduino stack</figcaption></figure>
+  <!-- ─────────────────── SENSOR / BUILD PHOTOS ─────────────────── -->
+  <section>
+    <h2>📸 Build &amp; Sensor Highlights</h2>
+
+    <div class="gallery">
+
+      <!-- 1 Thermistor -->
+      <figure>
+        <img src="media/1. ThermistorSensor.jpg"
+             alt="Thermistor sensor on payload housing" />
+        <figcaption>Thermistor · heat‑trigger release</figcaption>
+      </figure>
+
+      <!-- 2 Ultrasonic -->
+      <figure>
+        <img src="media/2. UltraSonicSensor.jpg"
+             alt="HC‑SR04 ultrasonic sensor mounted" />
+        <figcaption>HC‑SR04 · ±10 in obstacle alert</figcaption>
+      </figure>
+
+      <!-- 3 / 4 MPU‑9250 -->
+      <figure>
+        <img src="media/3. MPU9250_Gyroscope(back).jpg"
+             alt="MPU‑9250 back view" />
+        <figcaption>MPU‑9250 IMU (back)</figcaption>
+      </figure>
+
+      <figure>
+        <img src="media/4. 0250_Gyroscope(Front).jpg"
+             alt="MPU‑9250 front view" />
+        <figcaption>MPU‑9250 IMU (front)</figcaption>
+      </figure>
+
+      <!-- 5 LCD -->
+      <figure>
+        <img src="media/5. LiquidCrystal.jpg"
+             alt="Arduino 1602 LCD module" />
+        <figcaption>LCD 1602 · live tilt display</figcaption>
+      </figure>
+
+      <!-- 6 Retrieval concept -->
+      <figure>
+        <img src="report/4. drone retrival pic example.jpg"
+             alt="Retrieval concept sketch" />
+        <figcaption>Retrieval‑line concept diagram</figcaption>
+      </figure>
+
+      <!-- 7 LCD installed -->
+      <figure>
+        <img src="media/7. LCDLiquidCrystalDigitalDisplayofTilt.jpg"
+             alt="Mounted LCD on payload" />
+        <figcaption>LCD installed on frame</figcaption>
+      </figure>
+
+      <!-- 8 / 9 Water sensor -->
+      <figure>
+        <img src="media/8. WaterSensor(Front).jpg"
+             alt="Water sensor front" />
+        <figcaption>Water contact sensor (front)</figcaption>
+      </figure>
+
+      <figure>
+        <img src="media/9. WaterSensor(Back).jpg"
+             alt="Water sensor back" />
+        <figcaption>Water contact sensor (back)</figcaption>
+      </figure>
+
+      <!-- 10 Top view -->
+      <figure>
+        <img src="media/10. DroneTopView_SpeakerCircled.jpg"
+             alt="Top view of payload wiring" />
+        <figcaption>Top view · wiring &amp; buzzer</figcaption>
+      </figure>
+
+      <!-- 11 Side view -->
+      <figure>
+        <img src="media/11. DroneSideView.jpg"
+             alt="Side view of mounted electronics" />
+        <figcaption>Side view · dual 9 V packs</figcaption>
+      </figure>
+
+      <!-- 12 Inside -->
+      <figure>
+        <img src="media/12. InsideDrone.jpg"
+             alt="Interior electronics through acrylic panel" />
+        <figcaption>Interior electronics (acrylic window)</figcaption>
+      </figure>
+
+    </div>
   </section>
 
-  <footer>High‑resolution originals available upon request.</footer>
+  <!-- ───────────────────── POWER NOTE ───────────────────── -->
+  <section>
+    <h2>🔋 Power Architecture</h2>
+    <p>
+      The payload uses&nbsp;<strong>two isolated supplies</strong>:
+      a 6×AA battery pack drives logic&nbsp;+ sensors, while a dedicated 9 V line
+      (with hot‑swap spare) powers the servo release system.
+      This separation prevents brown‑outs if one rail sags during flight.
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Matthew Dubea — media gallery</p>
+  </footer>
 </body>
 </html>
