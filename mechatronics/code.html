@@ -3,72 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code Documentation | Mechatronics Project</title>
+  <title>Source Code | Mechatronics Payload</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Code Overview</h1>
-    <p>Detailed Description of Arduino Programs for Payload System</p>
+    <h1>Firmware &amp; Libraries</h1>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="code.html" class="active">Source Code</a>
+      <a href="media.html">Media</a>
+      <a href="report.html">Reports</a>
+    </nav>
   </header>
 
   <section>
-    <h2>1. <code>master_payload.ino</code></h2>
+    <h2>Sketch Directory&nbsp;(`\code`)</h2>
+    <table>
+      <tr><th>File</th><th>Description</th></tr>
+      <tr><td><code>master_payload.ino</code></td><td>Unified state‑machine controlling sensor polling &amp; servo release.</td></tr>
+      <tr><td><code>TiltAngle.ino</code></td><td>Isolated IMU angle demo (pitch axis) w/ LCD output.</td></tr>
+      <tr><td><code>Orientation.ino</code></td><td>6‑DOF sensor fusion—roll, pitch (+ future heading).</td></tr>
+      <tr><td><code>task3-6.ino</code></td><td>Mission task block: distance beep, water tone, temp release.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>I²C LCD Support</h2>
     <p>
-      This is the main controller code. It integrates the three mission tasks:
+      The project bundles a local copy of the <code>LiquidCrystal_I2C</code>
+      driver so reviewers can compile without extra installs.
     </p>
     <ul>
-      <li>Detecting nearby objects using ultrasonic sensors</li>
-      <li>Recognizing water via sensor and triggering a unique audio signal</li>
-      <li>Releasing a payload upon detecting elevated temperature</li>
+      <li><code>LiquidCrystal_I2C.h/.cpp</code> – driver source</li>
+      <li><code>keywords.txt</code> – Arduino IDE syntax map</li>
     </ul>
+    <details>
+      <summary>Example test sketches (optional demos)</summary>
+      <ul>
+        <li><code>HelloWorld.ino</code> – verify address &amp; contrast</li>
+        <li><code>BlinkingCursor.ino</code>, <code>CustomChars.ino</code>, <code>SerialDisplay.ino</code></li>
+      </ul>
+    </details>
   </section>
 
   <section>
-    <h2>2. <code>TiltAngle.ino</code></h2>
+    <h2>Power Architecture</h2>
     <p>
-      This program reads data from the MPU9250 accelerometer/gyroscope and calculates
-      the tilt angle. It is used to track drone orientation or pitch/roll movements.
+      Logic &amp; sensors run on a <strong>6×AA pack (≈9 V regulated to 5 V)</strong>;
+      high‑current load (servo/buzzer) uses a dedicated <strong>9 V
+      battery</strong>. A spare 9 V is secured on‑board for quick hot‑swap in
+      field tests.
     </p>
-    <pre><code>// Sample snippet
-float getTiltAngle() {
-  float angle = atan2(accY, accZ) * 180 / PI;
-  return angle;
-}
-    </code></pre>
-  </section>
-
-  <section>
-    <h2>3. <code>Orientation.ino</code></h2>
-    <p>
-      This script calculates the real-time 3D orientation of the drone using sensor fusion from
-      the MPU9250 gyroscope, accelerometer, and magnetometer. It may use complementary or Kalman filters.
-    </p>
-    <pre><code>// Sample snippet
-void computeOrientation() {
-  roll = atan2(accY, accZ) * RAD_TO_DEG;
-  pitch = atan2(-accX, sqrt(accY * accY + accZ * accZ)) * RAD_TO_DEG;
-}
-    </code></pre>
-  </section>
-
-  <section>
-    <h2>4. <code>task3-6.ino</code></h2>
-    <p>This handles the following specific project tasks:</p>
-    <ol>
-      <li><strong>Forward Object Detection (±10 in):</strong> Uses ultrasonic sensor to trigger a beep.</li>
-      <li><strong>Water Source Detection:</strong> Uses a moisture or water presence sensor; triggers unique beep sequence.</li>
-      <li><strong>Elevated Temperature:</strong> Uses temperature sensor to detect threshold and activate servo/release.</li>
-    </ol>
-    <pre><code>// Example condition
-if (temperature &gt; 85) {
-  digitalWrite(payloadServo, HIGH); // Trigger release
-}
-    </code></pre>
   </section>
 
   <footer>
-    <p>Maintained by Matthew Dubea | Mechatronics Engineering Project</p>
+    Last updated 2025‑07‑20
   </footer>
 </body>
 </html>
