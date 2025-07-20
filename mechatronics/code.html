@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Documentation | Mechatronics Project</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Code Overview</h1>
+    <p>Detailed Description of Arduino Programs for Payload System</p>
+  </header>
+
+  <section>
+    <h2>1. <code>master_payload.ino</code></h2>
+    <p>
+      This is the main controller code. It integrates the three mission tasks:
+    </p>
+    <ul>
+      <li>Detecting nearby objects using ultrasonic sensors</li>
+      <li>Recognizing water via sensor and triggering a unique audio signal</li>
+      <li>Releasing a payload upon detecting elevated temperature</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. <code>TiltAngle.ino</code></h2>
+    <p>
+      This program reads data from the MPU9250 accelerometer/gyroscope and calculates
+      the tilt angle. It is used to track drone orientation or pitch/roll movements.
+    </p>
+    <pre><code>// Sample snippet
+float getTiltAngle() {
+  float angle = atan2(accY, accZ) * 180 / PI;
+  return angle;
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>3. <code>Orientation.ino</code></h2>
+    <p>
+      This script calculates the real-time 3D orientation of the drone using sensor fusion from
+      the MPU9250 gyroscope, accelerometer, and magnetometer. It may use complementary or Kalman filters.
+    </p>
+    <pre><code>// Sample snippet
+void computeOrientation() {
+  roll = atan2(accY, accZ) * RAD_TO_DEG;
+  pitch = atan2(-accX, sqrt(accY * accY + accZ * accZ)) * RAD_TO_DEG;
+}
+    </code></pre>
+  </section>
+
+  <section>
+    <h2>4. <code>task3-6.ino</code></h2>
+    <p>This handles the following specific project tasks:</p>
+    <ol>
+      <li><strong>Forward Object Detection (±10 in):</strong> Uses ultrasonic sensor to trigger a beep.</li>
+      <li><strong>Water Source Detection:</strong> Uses a moisture or water presence sensor; triggers unique beep sequence.</li>
+      <li><strong>Elevated Temperature:</strong> Uses temperature sensor to detect threshold and activate servo/release.</li>
+    </ol>
+    <pre><code>// Example condition
+if (temperature &gt; 85) {
+  digitalWrite(payloadServo, HIGH); // Trigger release
+}
+    </code></pre>
+  </section>
+
+  <footer>
+    <p>Maintained by Matthew Dubea | Mechatronics Engineering Project</p>
+  </footer>
+</body>
+</html>
