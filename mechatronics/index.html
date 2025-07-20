@@ -3,82 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mechatronics Final Project | Matthew Dubea</title>
+  <title>Mechatronics Drone Payload | Matthew Dubea</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
-    <h1>Mechatronics Final Project</h1>
-    <p>Autonomous Payload System | MCHE 357</p>
+    <h1>Mechatronics Drone Payload</h1>
+    <p class="subtitle">MCHE 357 · Autonomous Multi‑Sensor System</p>
+    <nav>
+      <a href="index.html">Overview</a>
+      <a href="code.html">Source Code</a>
+      <a href="media.html">Media Gallery</a>
+      <a href="report.html">Project Reports</a>
+    </nav>
   </header>
 
-  <nav>
-    <ul>
-      <li><a href="code.html">Code Overview</a></li>
-      <li><a href="media/mpu9250_gyroscopeInHand(front).jpeg" target="_blank">Sensor Images</a></li>
-      <li><a href="MCHE357_FinalProjectPoster.pdf" target="_blank">Poster</a></li>
-      <li><a href="Final Project SP24 - guidelines.pdf" target="_blank">Project Guidelines</a></li>
-    </ul>
-  </nav>
-
-  <section>
-    <h2>🔧 Summary of Core Functions</h2>
-    <ul>
-      <li><strong>master_payload.ino:</strong> Executes all mission logic — object detection, water sensor alert, temp-triggered payload drop.</li>
-      <li><strong>TiltAngle.ino:</strong> Calculates device tilt using MPU9250 accelerometer data (for balance/orientation).</li>
-      <li><strong>Orientation.ino:</strong> Computes 3D orientation using sensor fusion (acc + gyro + mag).</li>
-      <li><strong>task3-6.ino:</strong> Handles Tasks 3–6: distance alerts, water detection tone, heat-triggered deployment.</li>
-    </ul>
+  <!-- ——— HERO ——— -->
+  <section class="hero">
+    <div class="hero‑text">
+      <h2>Mission Snapshot</h2>
+      <p>
+        Drone‑suspended payload that <strong>detects obstacles, water contact,
+        temperature excursions</strong>, and <strong>releases secondary
+        samplers</strong> on command. Powered by <em>dual</em> rails:
+        6×AA pack for logic & sensors, plus a hot‑swappable 9 V battery
+        for high‑current actuators (spare 9 V carried for redundancy).
+      </p>
+      <ul class="pill‑list">
+        <li>MPU9250 IMU</li>
+        <li>HC‑SR04 Ultrasonic</li>
+        <li>Water Probe</li>
+        <li>NTC Thermistor</li>
+        <li>SG90 Servo</li>
+        <li>16×2 I²C LCD</li>
+      </ul>
+    </div>
+    <figure class="hero‑fig">
+      <img src="media/DroneSideView.jpg" alt="Assembled Payload – side view" />
+      <figcaption>Fully‑wired payload ready for flight test.</figcaption>
+    </figure>
   </section>
 
+  <!-- ——— CORE FILES TABLE ——— -->
   <section>
-    <h2>🧩 Sensors and Components</h2>
+    <h2>🔧 Core Firmware Modules</h2>
     <table>
-      <thead>
-        <tr>
-          <th>Component</th>
-          <th>Function</th>
-          <th>Media</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>MPU9250</td>
-          <td>Gyroscope, Accelerometer, Magnetometer (Orientation/Tilt)</td>
-          <td><a href="media/mpu9250_gyroscopeInHand(front).jpeg" target="_blank">Front</a> / <a href="media/mpu9250_GyroscopeInHand(back).jpeg" target="_blank">Back</a></td>
-        </tr>
-        <tr>
-          <td>Ultrasonic Sensor</td>
-          <td>Detects object distance ±10" forward</td>
-          <td>Coming soon</td>
-        </tr>
-        <tr>
-          <td>Water Sensor</td>
-          <td>Detects presence of water (unique alert)</td>
-          <td>Coming soon</td>
-        </tr>
-        <tr>
-          <td>Thermal Sensor</td>
-          <td>Triggers payload release when above threshold temp</td>
-          <td>Coming soon</td>
-        </tr>
-      </tbody>
+      <tr><th>Sketch</th><th>Purpose</th></tr>
+      <tr><td><code>master_payload.ino</code></td><td>Main loop—coordinates all mission tasks & state transitions.</td></tr>
+      <tr><td><code>TiltAngle.ino</code></td><td>Displays real‑time tilt angle on I²C LCD.</td></tr>
+      <tr><td><code>Orientation.ino</code></td><td>Full 3‑axis orientation via complementary filter.</td></tr>
+      <tr><td><code>task3‑6.ino</code></td><td>Object distance alert, water detection beeper, thermal release logic.</td></tr>
     </table>
+    <p class="note">See <a href="code.html">Source Code</a> for detailed descriptions &amp; library links.</p>
   </section>
 
+  <!-- ——— PROJECT TIMELINE ——— -->
   <section>
-    <h2>📅 Project Timeline</h2>
+    <h2>📅 Development Timeline</h2>
     <ol>
-      <li>📐 Design & component research</li>
-      <li>🔌 Sensor integration & code development</li>
-      <li>📦 Payload release mechanism test</li>
-      <li>🧪 System testing and field validation</li>
-      <li>🖼 Poster & final presentation</li>
+      <li><strong>Concept &amp; Feasibility</strong> – specs + risk matrix</li>
+      <li><strong>Electronics R&D</strong> – sensor bring‑up &amp; LCD driver</li>
+      <li><strong>Integration</strong> – servo mechanics &amp; dual‑rail power</li>
+      <li><strong>Field Validation</strong> – live drone drops, data logging</li>
+      <li><strong>Poster &amp; Final Demo</strong></li>
     </ol>
   </section>
 
   <footer>
-    <p>Maintained by Matthew Dubea | © 2025</p>
+    © 2025 Matthew Dubea • Lafayette LA •
+    <a href="mailto:mattdubea@outlook.com">contact</a>
   </footer>
 </body>
 </html>
