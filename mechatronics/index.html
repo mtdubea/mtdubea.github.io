@@ -1,0 +1,94 @@
+from pathlib import Path
+
+# Define the full HTML content for a polished project page
+html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drone-Based Mechatronics Payload | Matthew Dubea</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f7fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1f2937;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #1f2937;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #777;
+            margin: 3rem 0 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Drone-Based Mechatronics Payload</h1>
+        <p>MCHE 357 · Spring 2024 · University of Louisiana at Lafayette</p>
+    </header>
+
+    <section>
+        <h2>Project Overview</h2>
+        <p>This project involved the design and fabrication of a drone-deployable Arduino payload system equipped with multiple sensors for real-time environmental and positional feedback. The system demonstrated autonomous trigger logic and sensor integration during live capstone evaluations.</p>
+
+        <h2>Key Features</h2>
+        <ul>
+            <li><strong>MPU-9250:</strong> Detects tilt and orientation; displays live data on LCD screen.</li>
+            <li><strong>Ultrasonic Sensor:</strong> Detects obstacles and issues proximity alerts.</li>
+            <li><strong>Water Sensor:</strong> Emits coded beeps upon contact with liquid.</li>
+            <li><strong>Thermistor:</strong> Triggers servo-based payload release at preset temperatures.</li>
+            <li><strong>Servo Motor:</strong> Mechanically controls the payload arm.</li>
+        </ul>
+
+        <h2>Responsibilities</h2>
+        <ul>
+            <li>Designed and soldered custom hardware configuration on a solderless breadboard.</li>
+            <li>Wrote and tested Arduino C++ code modules for each sensor and actuator.</li>
+            <li>Validated system performance under simulated mission scenarios.</li>
+            <li>Demonstrated prototype at departmental showcase and collected peer feedback.</li>
+        </ul>
+
+        <h2>Technologies Used</h2>
+        <ul>
+            <li>Arduino Uno, Breadboard, Servo Motor</li>
+            <li>MPU-9250 IMU, Ultrasonic Sensor, Thermistor, Water Sensor</li>
+            <li>C++ (Arduino IDE), LCD Display, Buzzer</li>
+        </ul>
+    </section>
+
+    <footer>
+        &copy; 2024 Matthew Dubea — Mechanical Engineering, UL Lafayette
+    </footer>
+</body>
+</html>
+"""
+
+# Save HTML content to file
+file_path = Path("/mnt/data/index.html")
+file_path.write_text(html_content)
+
+file_path.name
