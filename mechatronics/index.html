@@ -1,61 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drone Payload | Mechatronics Project | Matthew Dubea</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechatronics Final Project | Matthew Dubea</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <h1>Drone-Based Mechatronics Payload</h1>
-        <p>MCHE 357 · Spring 2024 · University of Louisiana at Lafayette</p>
-    </header>
+  <header>
+    <h1>Mechatronics Final Project</h1>
+    <p>Autonomous Payload System | MCHE 357</p>
+  </header>
 
-    <section id="video">
-        <div class="video-wrapper">
-            <iframe 
-                src="https://www.youtube.com/embed/iJ9-sI1Avf4?autoplay=1&mute=1&controls=0&loop=1&playlist=iJ9-sI1Avf4"
-                title="Drone Payload Demonstration"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-            ></iframe>
-        </div>
-    </section>
+  <nav>
+    <ul>
+      <li><a href="code.html">Code Overview</a></li>
+      <li><a href="media/mpu9250_gyroscopeInHand(front).jpeg" target="_blank">Sensor Images</a></li>
+      <li><a href="MCHE357_FinalProjectPoster.pdf" target="_blank">Poster</a></li>
+      <li><a href="Final Project SP24 - guidelines.pdf" target="_blank">Project Guidelines</a></li>
+    </ul>
+  </nav>
 
-    <section>
-        <h2>Project Overview</h2>
-        <p>This project involved designing and building a drone-deployable Arduino payload system equipped with multiple sensors for real-time environmental and positional feedback. The system demonstrated autonomous sensor-triggered actuation and was field-tested during a live capstone demo.</p>
+  <section>
+    <h2>🔧 Summary of Core Functions</h2>
+    <ul>
+      <li><strong>master_payload.ino:</strong> Executes all mission logic — object detection, water sensor alert, temp-triggered payload drop.</li>
+      <li><strong>TiltAngle.ino:</strong> Calculates device tilt using MPU9250 accelerometer data (for balance/orientation).</li>
+      <li><strong>Orientation.ino:</strong> Computes 3D orientation using sensor fusion (acc + gyro + mag).</li>
+      <li><strong>task3-6.ino:</strong> Handles Tasks 3–6: distance alerts, water detection tone, heat-triggered deployment.</li>
+    </ul>
+  </section>
 
-        <h2>Key Features</h2>
-        <ul>
-            <li><strong>MPU-9250:</strong> Orientation + tilt displayed live to LCD</li>
-            <li><strong>Ultrasonic Sensor:</strong> Object proximity alerts</li>
-            <li><strong>Water Sensor:</strong> Audio beep code upon contact</li>
-            <li><strong>Thermistor:</strong> Temperature-triggered servo release</li>
-            <li><strong>Servo Motor:</strong> Mechanical control of payload system</li>
-        </ul>
+  <section>
+    <h2>🧩 Sensors and Components</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Function</th>
+          <th>Media</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>MPU9250</td>
+          <td>Gyroscope, Accelerometer, Magnetometer (Orientation/Tilt)</td>
+          <td><a href="media/mpu9250_gyroscopeInHand(front).jpeg" target="_blank">Front</a> / <a href="media/mpu9250_GyroscopeInHand(back).jpeg" target="_blank">Back</a></td>
+        </tr>
+        <tr>
+          <td>Ultrasonic Sensor</td>
+          <td>Detects object distance ±10" forward</td>
+          <td>Coming soon</td>
+        </tr>
+        <tr>
+          <td>Water Sensor</td>
+          <td>Detects presence of water (unique alert)</td>
+          <td>Coming soon</td>
+        </tr>
+        <tr>
+          <td>Thermal Sensor</td>
+          <td>Triggers payload release when above threshold temp</td>
+          <td>Coming soon</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-        <h2>Responsibilities</h2>
-        <ul>
-            <li>Designed, soldered, and tested sensor-actuator system on breadboard</li>
-            <li>Programmed Arduino code modules for each subsystem</li>
-            <li>Validated system logic under test scenarios</li>
-            <li>Presented working prototype with full documentation</li>
-        </ul>
+  <section>
+    <h2>📅 Project Timeline</h2>
+    <ol>
+      <li>📐 Design & component research</li>
+      <li>🔌 Sensor integration & code development</li>
+      <li>📦 Payload release mechanism test</li>
+      <li>🧪 System testing and field validation</li>
+      <li>🖼 Poster & final presentation</li>
+    </ol>
+  </section>
 
-        <h2>Downloads & Resources</h2>
-        <ul>
-            <li><a href="code/master_payload.ino" download>Download Arduino Code (.ino)</a></li>
-            <li><a href="media/final-poster.pdf" target="_blank">Final Poster (PDF)</a></li>
-            <li><a href="media/build-guidelines.pdf" target="_blank">Build Guidelines (PDF)</a></li>
-        </ul>
-    </section>
-
-    <footer>
-        &copy; 2024 Matthew Dubea — Mechanical Engineering, UL Lafayette
-    </footer>
+  <footer>
+    <p>Maintained by Matthew Dubea | © 2025</p>
+  </footer>
 </body>
 </html>
