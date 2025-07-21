@@ -1,113 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mechatronics Drone Payload | Project Overview</title>
-
-  <!-- SEO / share -->
-  <meta name="description" content="Autonomous multi‑sensor payload for MCHE 357. Detects obstacles, water contact, temperature excursions and releases secondary samplers.">
-  <meta property="og:title"       content="Mechatronics Drone Payload – Overview">
-  <meta property="og:type"        content="website">
-  <meta property="og:image"       content="media/10.DroneTopView_SpeakerCircled.jpg">
-  <meta property="og:site_name"   content="Matthew Dubea Portfolio">
-
-  <link rel="stylesheet" href="style.css"/>
+  <title>Mechatronics Drone Payload</title>
+  <meta name="description" content="Autonomous multi-sensor payload system for MCHE 357 Mechatronics course — includes flight test video, firmware modules, system components, and design details." />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- ───── HEADER / MAIN NAV ░░ -->
+  <!-- HEADER -->
   <header class="site-header">
     <div class="brand">
-      <h1>Mechatronics Drone Payload</h1>
-      <span class="tagline">MCHE 357 · Autonomous Multi‑Sensor System</span>
+      <h1>Mechatronics Drone Payload</h1>
+      <p class="tagline">MCHE 357 • Autonomous Multi‑Sensor System</p>
     </div>
-
     <nav class="site-nav">
-      <a href="index.html"   class="active">Overview</a>
-      <a href="code.html">Source Code</a>
-      <a href="media.html">Media Gallery</a>
-      <a href="report.html">Project Reports</a>
+      <a href="index.html" class="active">Overview</a>
+      <a href="code.html">Source Code</a>
+      <a href="media.html">Media Gallery</a>
+      <a href="report.html">Project Reports</a>
     </nav>
   </header>
 
   <main>
-    <!-- ───── LIVE‑TEST VIDEO ░░ -->
+    <!-- VIDEO EMBED -->
     <section class="card">
-      <h2>🎬 Flight‑Test Video</h2>
-
+      <h2>🎥 Flight‑Test Video</h2>
       <div class="video-wrap">
-        <iframe
-          src="https://www.youtube.com/embed/iJ9-sI1Avf4?rel=0&amp;modestbranding=1"
-          title="Drone payload demo – obstacle alert, water contact, payload drop"
-          frameborder="0"
-          loading="lazy"
-          allowfullscreen
-        ></iframe>
+        <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" title="Mechatronics Final Demo" allowfullscreen></iframe>
       </div>
-
-      <figcaption class="vid-caption">
-        Live test: obstacle alert ➜ water contact ➜ payload drop ➜ data log.
-      </figcaption>
+      <p class="vid-caption">Live test: obstacle alert ➝ water contact ➝ payload drop ➝ data log.</p>
     </section>
 
-    <!-- ───── SNAPSHOT ░░ -->
+    <!-- MISSION SNAPSHOT -->
     <section class="card">
-      <h2>⚡ Mission Snapshot</h2>
+      <h2>⚡ Mission Snapshot</h2>
       <p>
-        Drone‑suspended payload that <strong>detects obstacles, water contact, temperature excursions</strong>,
-        and automatically <strong>releases secondary samplers</strong>. Powered by <em>dual</em> rails:
-        6×AA pack for logic &amp; sensors, plus a hot‑swappable 9 V battery for high‑current actuators
-        (spare 9 V carried for redundancy).
+        Drone-suspended payload that <strong>detects obstacles</strong>, <strong>water contact</strong>, <strong>temperature excursions</strong>, and automatically <strong>releases secondary samplers</strong>.
+        Powered by <em>dual rails</em>: 6×AA pack for logic & sensors, plus a hot-swappable 9 V battery for high-current actuators (spare 9 V carried for redundancy).
       </p>
-
       <ul>
-        <li>MPU9250 IMU</li>
-        <li>HC‑SR04 Ultrasonic</li>
+        <li>MPU9250 IMU</li>
+        <li>HC-SR04 Ultrasonic</li>
         <li>Water Probe</li>
         <li>NTC Thermistor</li>
-        <li>SG90 Servo</li>
-        <li>16×2 I²C LCD</li>
+        <li>SG90 Servo</li>
+        <li>16×2 I²C LCD</li>
+        <li><img src="media/payload-side.jpg" alt="Assembled payload – side view" /></li>
       </ul>
-
-      <figure class="snapshot-img">
-        <img src="media/11.DroneSideView.jpg" alt="Assembled payload – side view">
-        <figcaption>Fully‑wired payload ready for field test.</figcaption>
-      </figure>
+      <p>Fully-wired payload ready for field test.</p>
     </section>
 
-    <!-- ───── CORE FIRMWARE TABLE ░░ -->
+    <!-- CORE FIRMWARE TABLE -->
     <section class="card">
-      <h2>🛠️ Core Firmware Modules</h2>
+      <h2>🧠 Core Firmware Modules</h2>
       <table>
         <thead>
           <tr><th>Sketch</th><th>Purpose</th></tr>
         </thead>
         <tbody>
-          <tr><td><code>master_payload.ino</code></td><td>Main loop &mdash; coordinates all mission tasks &amp; state transitions.</td></tr>
-          <tr><td><code>TiltAngle.ino</code></td><td>Displays real‑time tilt angle on I²C LCD.</td></tr>
-          <tr><td><code>Orientation.ino</code></td><td>Full 3‑axis orientation via complementary filter.</td></tr>
-          <tr><td><code>task3‑6.ino</code></td><td>Object distance alert, water‑detection beeper, thermal‑release logic.</td></tr>
+          <tr><td><code>master_payload.ino</code></td><td>Main loop — coordinates all mission tasks & state transitions.</td></tr>
+          <tr><td><code>TiltAngle.ino</code></td><td>Displays real-time tilt angle on I²C LCD.</td></tr>
+          <tr><td><code>Orientation.ino</code></td><td>Full 3-axis orientation via complementary filter.</td></tr>
+          <tr><td><code>task3-6.ino</code></td><td>Object distance alert, water-detection beeper, thermal release logic.</td></tr>
         </tbody>
       </table>
-      <p class="small-note">See <a href="code.html">Source Code</a> for detailed descriptions &amp; library links.</p>
-    </section>
-
-    <!-- ───── TIMELINE ░░ -->
-    <section class="card">
-      <h2>📅 Development Timeline</h2>
-      <ol>
-        <li><strong>Concept &amp; Feasibility</strong> &mdash; specs + risk matrix</li>
-        <li><strong>Electronics R&amp;D</strong> &mdash; sensor bring‑up &amp; LCD driver</li>
-        <li><strong>Integration</strong> &mdash; servo mechanics &amp; dual‑rail power</li>
-        <li><strong>Field Validation</strong> &mdash; live drone drops, data logging</li>
-        <li><strong>Poster &amp; Final Demo</strong></li>
-      </ol>
+      <p class="small-note">See <a href="code.html">Source Code</a> for detailed descriptions & library links.</p>
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    © 2025 Matthew Dubea &nbsp;&middot;&nbsp; Last updated 2025‑07‑20
+    <p>© 2025 Matthew Dubea — overview</p>
   </footer>
 </body>
 </html>
