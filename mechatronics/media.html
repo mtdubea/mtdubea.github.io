@@ -2,107 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project Media Gallery | Mechatronics Payload</title>
-
-  <!-- Open Graph / SEO -->
-  <meta name="description" content="High‑resolution build photos, sensor close‑ups and wiring details for the MCHE 357 drone‑payload system." />
-  <meta property="og:title"       content="Media Gallery | Mechatronics Payload" />
-  <meta property="og:type"        content="website" />
-  <meta property="og:image"       content="media/4. drone retrival pic example.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Media Gallery</title>
+  <meta name="description" content="Build highlights, sensor modules, and field tests of the autonomous payload." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- ── Header & Navigation -->
-  <header>
-    <h1>Project Media Gallery</h1>
-    <nav>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Project Media Gallery</h1>
+      <div class="tagline">MCHE 357 • Autonomous Payload</div>
+    </div>
+    <nav class="site-nav">
       <a href="index.html">Overview</a>
-      <a href="code.html">Source Code</a>
+      <a href="code.html">Source Code</a>
       <a href="media.html" class="active">Media</a>
       <a href="report.html">Reports</a>
     </nav>
   </header>
 
-  <!-- ── Build & Sensor Highlights -->
-  <section class="card">
-    <h2>📷 Build & Sensor Highlights</h2>
+  <main>
+    <section class="card">
+      <h2>🎥 Flight-Test Video</h2>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4"
+                title="Mechatronics Final Test"
+                allowfullscreen></iframe>
+      </div>
+      <p class="vid-caption">
+        Live test: obstacle alert → water contact → payload drop → data log.
+      </p>
+    </section>
 
-    <div class="gallery">
-      <!-- Images 1‑12 (file names exactly as stored in /media) -->
-      <figure>
-        <img src="media/1. ThermistorSensor.jpg" alt="Thermistor sensor, heat‑trigger breakout" />
-        <figcaption>Thermistor • heat‑trigger release</figcaption>
-      </figure>
+    <section class="card">
+      <h2>⚡ Mission Snapshot</h2>
+      <p>
+        Drone-suspended payload that <strong>detects obstacles, water contact, temperature excursions</strong>,
+        and automatically <strong>releases secondary samplers</strong>. Powered by <em>dual rails</em>:
+        6×AA pack for logic & sensors, plus a hot-swappable 9 V battery for high-current actuators
+        (spare 9 V carried for redundancy).
+      </p>
+      <ul>
+        <li>MPU9250 IMU</li>
+        <li>HC-SR04 Ultrasonic</li>
+        <li>Water Probe</li>
+        <li>NTC Thermistor</li>
+        <li>SG90 Servo</li>
+        <li>16×2 I²C LCD</li>
+      </ul>
+      <p><img src="assembled-payload.jpg" alt="Assembled payload side view" />
+      Fully-wired payload ready for field test.</p>
+    </section>
 
-      <figure>
-        <img src="media/2. UltraSonicSensor.jpg" alt="HC‑SR04 ultrasonic module on acrylic" />
-        <figcaption>HC‑SR04 • ±10 in obstacle alert</figcaption>
-      </figure>
+    <section class="card">
+      <h2>🧩 Core Firmware Modules</h2>
+      <table>
+        <thead><tr><th>Sketch</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>master_payload.ino</code></td><td>Main loop — coordinates all mission tasks & state transitions.</td></tr>
+          <tr><td><code>TiltAngle.ino</code></td><td>Displays real-time tilt angle on I²C LCD.</td></tr>
+          <tr><td><code>Orientation.ino</code></td><td>Full 3-axis orientation via complementary filter.</td></tr>
+          <tr><td><code>task3-6.ino</code></td><td>Object distance alert, water detection beeper, thermal-release logic.</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-      <figure>
-        <img src="media/3. MPU9250_Gyroscope(back).jpg" alt="MPU‑9250 IMU, back view" />
-        <figcaption>MPU‑9250 IMU (back)</figcaption>
-      </figure>
+    <section class="card media-grid">
+      <h2>🧪 Build & Sensor Highlights</h2>
+      <div class="gallery">
+        <figure><img src="thermistor.jpg" alt=""><figcaption>Thermistor sensor, heat-trigger breakout</figcaption></figure>
+        <figure><img src="ultrasonic.jpg" alt=""><figcaption>HC-SR04 ultrasonic module on acrylic</figcaption></figure>
+        <figure><img src="imu-back.jpg" alt=""><figcaption>MPU-9250 IMU, back view</figcaption></figure>
+        <figure><img src="imu-front.jpg" alt=""><figcaption>MPU-9250 IMU, front view</figcaption></figure>
+        <figure><img src="lcd.jpg" alt=""><figcaption>Arduino 1602 LCD • live tilt display</figcaption></figure>
+        <figure><img src="retrieval-line.jpg" alt=""><figcaption>Retrieval-line concept diagram</figcaption></figure>
+        <figure><img src="lcd-tilt.jpg" alt=""><figcaption>LCD digitally displaying tilt</figcaption></figure>
+        <figure><img src="water-front.jpg" alt=""><figcaption>Water sensor, front side</figcaption></figure>
+        <figure><img src="water-back.jpg" alt=""><figcaption>Water sensor, back side</figcaption></figure>
+        <figure><img src="wiring.jpg" alt=""><figcaption>Top view • wiring & buzzer</figcaption></figure>
+        <figure><img src="dual-9v.jpg" alt=""><figcaption>Side view • dual 9 V packs</figcaption></figure>
+        <figure><img src="acrylic.jpg" alt=""><figcaption>Interior electronics (acrylic window)</figcaption></figure>
+      </div>
+    </section>
 
-      <figure>
-        <img src="media/4. 0250_Gyroscope(Front).jpg" alt="MPU‑9250 IMU, front view" />
-        <figcaption>MPU‑9250 IMU (front)</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/5. LiquidCrystal.webp" alt="I²C LCD 1602 module" />
-        <figcaption>Arduino 1602 LCD • live tilt display</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/4. drone retrival pic example.jpg" alt="Retrieval‑line concept diagram" />
-        <figcaption>Retrieval‑line concept diagram</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/7. LCDLiquidCrystalDigitalDisplayofTilt.jpg" alt="LCD digitally displaying tilt" />
-        <figcaption>Tilt angle on LCD</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/8. WaterSensor(Front).jpg" alt="Water sensor, front side" />
-        <figcaption>Water sensor (front)</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/9. WaterSensor(Back).jpg" alt="Water sensor, back side" />
-        <figcaption>Water sensor (back)</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/10. DroneTopView_SpeakerCircled.jpg" alt="Top view, wiring & buzzer" />
-        <figcaption>Top view • wiring & buzzer</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/11. DroneSideView.jpg" alt="Side view, dual 9 V packs" />
-        <figcaption>Side view • dual 9 V packs</figcaption>
-      </figure>
-
-      <figure>
-        <img src="media/12. InsideDrone.jpg" alt="Interior electronics through acrylic panel" />
-        <figcaption>Interior electronics (acrylic window)</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- ── Power Architecture Summary -->
-  <section class="card">
-    <h2>🔋 Power Architecture</h2>
-    <p>
-      The payload uses <strong>two isolated supplies</strong>: a 6×AA battery pack drives logic + sensors, while a dedicated 9 V line (with hot‑swap spare) powers the servo‑release system. This separation prevents brown‑outs if one rail sags during flight.
-    </p>
-  </section>
+    <section class="card">
+      <h2>🔋 Power Architecture</h2>
+      <p>
+        The payload uses <strong>two isolated supplies</strong>: a 6×AA battery pack drives logic + sensors, while a dedicated 9 V line
+        (with hot‑swap spare) powers the servo‑release system. This separation prevents brown‑outs if one rail sags during flight.
+      </p>
+    </section>
+  </main>
 
   <footer>
-    © 2025 Matthew Dubea — media gallery
+    <p>© 2025 Matthew Dubea — media gallery</p>
   </footer>
 </body>
 </html>
