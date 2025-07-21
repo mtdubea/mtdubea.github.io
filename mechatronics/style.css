@@ -102,3 +102,20 @@ footer{
   .site-nav{gap:.6rem}
   .brand h1{font-size:1.4rem}
 }
+
+
+/*──── TEMP PATCH : blue‑bar legibility + full‑width YT embed ────*/
+
+/* header brand = bright text */
+.site-header .brand,
+.site-header .brand *{color:#fff!important}
+
+/* always stretch the iframe even when a fixed width/height
+   is injected by the YouTube snippet */
+.video-wrap iframe{
+  width:100%!important;
+  height:100%!important;
+}
+
+/* tighten section max‑width on Media so 4‑up grid wraps nicely */
+.media-grid{max-width:1100px;margin:0 auto}
