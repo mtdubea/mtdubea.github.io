@@ -2,96 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Media Gallery</title>
-  <meta name="description" content="Build highlights, sensor modules, and field tests of the autonomous payload." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Gallery | Mechatronics Payload</title>
+  <meta name="description" content="Videos and images from the MCHE 357 Mechatronics payload project including demo footage and field tests." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- FIXED HEADER + NAV -->
   <header class="site-header">
     <div class="brand">
-      <h1>Project Media Gallery</h1>
-      <div class="tagline">MCHE 357 • Autonomous Payload</div>
+      <h1>Mechatronics Drone Payload</h1>
+      <p class="tagline">MCHE 357 – Autonomous Multi-Sensor System</p>
     </div>
     <nav class="site-nav">
       <a href="index.html">Overview</a>
       <a href="code.html">Source Code</a>
-      <a href="media.html" class="active">Media</a>
-      <a href="report.html">Reports</a>
+      <a href="media.html" class="active">Media Gallery</a>
+      <a href="report.html">Project Reports</a>
     </nav>
   </header>
 
   <main>
+    <!-- EMBEDDED VIDEO -->
     <section class="card">
-      <h2>🎥 Flight-Test Video</h2>
+      <h2>📹 Flight-Test Demo</h2>
       <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4"
-                title="Mechatronics Final Test"
-                allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen></iframe>
       </div>
       <p class="vid-caption">
-        Live test: obstacle alert → water contact → payload drop → data log.
+        Full system demo: drone-mounted payload detects obstacle, confirms water contact, releases sample, and logs mission data.
       </p>
     </section>
 
+    <!-- MEDIA IMAGE GALLERY -->
     <section class="card">
-      <h2>⚡ Mission Snapshot</h2>
-      <p>
-        Drone-suspended payload that <strong>detects obstacles, water contact, temperature excursions</strong>,
-        and automatically <strong>releases secondary samplers</strong>. Powered by <em>dual rails</em>:
-        6×AA pack for logic & sensors, plus a hot-swappable 9 V battery for high-current actuators
-        (spare 9 V carried for redundancy).
-      </p>
-      <ul>
-        <li>MPU9250 IMU</li>
-        <li>HC-SR04 Ultrasonic</li>
-        <li>Water Probe</li>
-        <li>NTC Thermistor</li>
-        <li>SG90 Servo</li>
-        <li>16×2 I²C LCD</li>
-      </ul>
-      <p><img src="assembled-payload.jpg" alt="Assembled payload side view" />
-      Fully-wired payload ready for field test.</p>
-    </section>
-
-    <section class="card">
-      <h2>🧩 Core Firmware Modules</h2>
-      <table>
-        <thead><tr><th>Sketch</th><th>Purpose</th></tr></thead>
-        <tbody>
-          <tr><td><code>master_payload.ino</code></td><td>Main loop — coordinates all mission tasks & state transitions.</td></tr>
-          <tr><td><code>TiltAngle.ino</code></td><td>Displays real-time tilt angle on I²C LCD.</td></tr>
-          <tr><td><code>Orientation.ino</code></td><td>Full 3-axis orientation via complementary filter.</td></tr>
-          <tr><td><code>task3-6.ino</code></td><td>Object distance alert, water detection beeper, thermal-release logic.</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="card media-grid">
-      <h2>🧪 Build & Sensor Highlights</h2>
-      <div class="gallery">
-        <figure><img src="thermistor.jpg" alt=""><figcaption>Thermistor sensor, heat-trigger breakout</figcaption></figure>
-        <figure><img src="ultrasonic.jpg" alt=""><figcaption>HC-SR04 ultrasonic module on acrylic</figcaption></figure>
-        <figure><img src="imu-back.jpg" alt=""><figcaption>MPU-9250 IMU, back view</figcaption></figure>
-        <figure><img src="imu-front.jpg" alt=""><figcaption>MPU-9250 IMU, front view</figcaption></figure>
-        <figure><img src="lcd.jpg" alt=""><figcaption>Arduino 1602 LCD • live tilt display</figcaption></figure>
-        <figure><img src="retrieval-line.jpg" alt=""><figcaption>Retrieval-line concept diagram</figcaption></figure>
-        <figure><img src="lcd-tilt.jpg" alt=""><figcaption>LCD digitally displaying tilt</figcaption></figure>
-        <figure><img src="water-front.jpg" alt=""><figcaption>Water sensor, front side</figcaption></figure>
-        <figure><img src="water-back.jpg" alt=""><figcaption>Water sensor, back side</figcaption></figure>
-        <figure><img src="wiring.jpg" alt=""><figcaption>Top view • wiring & buzzer</figcaption></figure>
-        <figure><img src="dual-9v.jpg" alt=""><figcaption>Side view • dual 9 V packs</figcaption></figure>
-        <figure><img src="acrylic.jpg" alt=""><figcaption>Interior electronics (acrylic window)</figcaption></figure>
+      <h2>🖼️ Payload Development</h2>
+      <div class="gallery media-grid">
+        <figure>
+          <img src="media/payload_side.jpg" alt="Payload Side View">
+          <figcaption>Assembled payload — side view</figcaption>
+        </figure>
+        <figure>
+          <img src="media/testbench.jpg" alt="Sensor Test Bench">
+          <figcaption>Sensor calibration test bench</figcaption>
+        </figure>
+        <figure>
+          <img src="media/release_arm.jpg" alt="Release Mechanism Close-Up">
+          <figcaption>Servo-controlled release mechanism</figcaption>
+        </figure>
       </div>
-    </section>
-
-    <section class="card">
-      <h2>🔋 Power Architecture</h2>
-      <p>
-        The payload uses <strong>two isolated supplies</strong>: a 6×AA battery pack drives logic + sensors, while a dedicated 9 V line
-        (with hot‑swap spare) powers the servo‑release system. This separation prevents brown‑outs if one rail sags during flight.
-      </p>
+      <p class="small-note">Additional images and build logs available upon request.</p>
     </section>
   </main>
 
