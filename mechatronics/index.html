@@ -3,76 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mechatronics Drone Payload | Matthew Dubea</title>
+  <title>Mechatronics Drone Payload | Project Overview</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Autonomous multi‑sensor payload for MCHE 357. Detects obstacles, water contact & temperature excursions; releases samplers on‑command." />
+  <meta property="og:title"       content="Mechatronics Drone Payload" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:image"       content="media/11. DroneSideView.jpg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- ── Site Banner -->
   <header>
-    <h1>Mechatronics Drone Payload</h1>
-    <p class="subtitle">MCHE 357 · Autonomous Multi‑Sensor System</p>
+    <h1>Mechatronics Drone Payload</h1>
+    <p class="sub">MCHE 357 • Autonomous Multi‑Sensor System</p>
+
     <nav>
-      <a href="index.html">Overview</a>
+      <a href="index.html" class="active">Overview</a>
       <a href="code.html">Source Code</a>
       <a href="media.html">Media Gallery</a>
-      <a href="report.html">Project Reports</a>
+      <a href="report.html">Project Reports</a>
     </nav>
   </header>
 
-  <!-- ——— HERO ——— -->
-  <section class="hero">
-    <div class="hero‑text">
-      <h2>Mission Snapshot</h2>
-      <p>
-        Drone‑suspended payload that <strong>detects obstacles, water contact,
-        temperature excursions</strong>, and <strong>releases secondary
-        samplers</strong> on command. Powered by <em>dual</em> rails:
-        6×AA pack for logic & sensors, plus a hot‑swappable 9 V battery
-        for high‑current actuators (spare 9 V carried for redundancy).
-      </p>
-      <ul class="pill‑list">
-        <li>MPU9250 IMU</li>
-        <li>HC‑SR04 Ultrasonic</li>
-        <li>Water Probe</li>
-        <li>NTC Thermistor</li>
-        <li>SG90 Servo</li>
-        <li>16×2 I²C LCD</li>
-      </ul>
-    </div>
-    <figure class="hero‑fig">
-      <img src="media/DroneSideView.jpg" alt="Assembled Payload – side view" />
+  <!-- ── Mission Snapshot -->
+  <section class="card">
+    <h2>🚁 Mission Snapshot</h2>
+    <p>
+      Drone‑suspended payload that <strong>detects obstacles, water contact, temperature excursions</strong>,
+      and <strong>releases secondary samplers</strong> on command. Powered by <em>dual rails</em>:
+      6×AA pack for logic + sensors, plus a hot‑swappable 9 V battery for high‑current actuators.
+    </p>
+    <ul>
+      <li>MPU‑9250 IMU</li>
+      <li>HC‑SR04 Ultrasonic</li>
+      <li>Water Probe</li>
+      <li>NTC Thermistor</li>
+      <li>SG90 Servo</li>
+      <li>16×2 I²C LCD</li>
+    </ul>
+
+    <figure class="full-img">
+      <img src="media/11. DroneSideView.jpg" alt="Assembled payload – side view" />
       <figcaption>Fully‑wired payload ready for flight test.</figcaption>
     </figure>
   </section>
 
-  <!-- ——— CORE FILES TABLE ——— -->
-  <section>
-    <h2>🔧 Core Firmware Modules</h2>
+  <!-- ── Core Firmware Modules -->
+  <section class="card">
+    <h2>🛠 Core Firmware Modules</h2>
     <table>
-      <tr><th>Sketch</th><th>Purpose</th></tr>
-      <tr><td><code>master_payload.ino</code></td><td>Main loop—coordinates all mission tasks & state transitions.</td></tr>
-      <tr><td><code>TiltAngle.ino</code></td><td>Displays real‑time tilt angle on I²C LCD.</td></tr>
-      <tr><td><code>Orientation.ino</code></td><td>Full 3‑axis orientation via complementary filter.</td></tr>
-      <tr><td><code>task3‑6.ino</code></td><td>Object distance alert, water detection beeper, thermal release logic.</td></tr>
+      <thead>
+        <tr><th width="36%">Sketch</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>master_payload.ino</td>
+          <td>Main loop—coordinates all mission tasks & state transitions.</td>
+        </tr>
+        <tr>
+          <td>TiltAngle.ino</td>
+          <td>Displays real‑time tilt angle on I²C LCD.</td>
+        </tr>
+        <tr>
+          <td>Orientation.ino</td>
+          <td>6‑DOF fusion (Madgwick) producing Euler angles; groundwork for heading control.</td>
+        </tr>
+        <tr>
+          <td>task3‑6.ino</td>
+          <td>Object distance alert, water detection beeper, thermal release logic.</td>
+        </tr>
+      </tbody>
     </table>
-    <p class="note">See <a href="code.html">Source Code</a> for detailed descriptions &amp; library links.</p>
+    <p class="small"><em>See <a href="code.html">Source Code</a> for detailed descriptions & library links.</em></p>
   </section>
 
-  <!-- ——— PROJECT TIMELINE ——— -->
-  <section>
-    <h2>📅 Development Timeline</h2>
+  <!-- ── Development Timeline -->
+  <section class="card">
+    <h2>📅 Development Timeline</h2>
     <ol>
-      <li><strong>Concept &amp; Feasibility</strong> – specs + risk matrix</li>
-      <li><strong>Electronics R&D</strong> – sensor bring‑up &amp; LCD driver</li>
-      <li><strong>Integration</strong> – servo mechanics &amp; dual‑rail power</li>
-      <li><strong>Field Validation</strong> – live drone drops, data logging</li>
-      <li><strong>Poster &amp; Final Demo</strong></li>
+      <li><strong>Concept & Feasibility</strong> – specs + risk matrix</li>
+      <li><strong>Electronics R &amp; D</strong> – sensor bring‑up & LCD driver</li>
+      <li><strong>Integration</strong> – servo mechanics & dual‑rail power</li>
+      <li><strong>Field Validation</strong> – live drops, data logging</li>
+      <li><strong>Poster &amp; Final Demo</strong></li>
     </ol>
   </section>
 
+  <!-- ── Demo Video (optional) -->
+  <!--
+  <section class="card">
+    <h2>🎬 System Demo</h2>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/XXXXXXXXXXX"
+        title="Flight test demo" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+  -->
+
   <footer>
-    © 2025 Matthew Dubea • Lafayette LA •
-    <a href="mailto:mattdubea@outlook.com">contact</a>
+    © 2025 Matthew Dubea • questions? mtdubea [at] outlook.com
   </footer>
 </body>
 </html>
