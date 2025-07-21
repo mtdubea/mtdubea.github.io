@@ -1,112 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF‑8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Firmware & Libraries | Mechatronics Payload</title>
-
-  <!-- SEO / social -->
-  <meta name="description"
-        content="Complete Arduino source tree, driver libraries and compile instructions for Matthew Dubea’s MCHE 357 drone‑payload project." />
-  <meta property="og:title" content="Source Code | Mechatronics Payload" />
-  <meta property="og:type"  content="article" />
-  <meta property="og:image" content="media/7.LCDLiquidCrystalDigitalDisplayofTilt.jpg" />
-  <meta property="og:site_name" content="Matthew Dubea Portfolio" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Source Code | Mechatronics Payload</title>
+  <meta name="description" content="Firmware modules and libraries for MCHE 357 Mechatronics payload system. Includes core sketches, LCD drivers, and power architecture notes." />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<header>
-  <h1>Firmware & Libraries</h1>
-  <nav>
-    <a href="index.html">Overview</a>
-    <a href="code.html" class="active">Source Code</a>
-    <a href="media.html">Media</a>
-    <a href="report.html">Reports</a>
-  </nav>
-</header>
+  <!-- HEADER / NAVIGATION -->
+  <header class="site-header">
+    <h1>Firmware &amp; Libraries</h1>
+    <nav class="site-nav">
+      <a href="index.html">Overview</a>
+      <a href="code.html" class="active">Source Code</a>
+      <a href="media.html">Media</a>
+      <a href="report.html">Reports</a>
+    </nav>
+  </header>
 
-<!-- ── 1. Sketch directory quick‑view ─────────────────────────────── -->
-<section class="card">
-  <h2>Sketch Directory (<code>/code</code>)</h2>
-  <table>
-    <thead>
-      <tr><th width="42%">File</th><th>Description</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>master_payload.ino</code></td>
-        <td>Central state‑machine: polls sensors, debounces triggers, drives servo release.</td>
-      </tr>
-      <tr>
-        <td><code>TiltAngle.ino</code></td>
-        <td>Standalone IMU demo – pitch/roll calculation + live LCD output.</td>
-      </tr>
-      <tr>
-        <td><code>Orientation.ino</code></td>
-        <td>6‑DOF fusion (Madgwick) producing Euler angles; groundwork for future heading control.</td>
-      </tr>
-      <tr>
-        <td><code>task3‑6.ino</code></td>
-        <td>Mission tasks block: <em>HC‑SR04</em> distance beep, water‑tone, thermistor‑triggered drop.</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <!-- MAIN SKETCH DIRECTORY -->
+  <section class="card">
+    <h2>📁 Sketch Directory <code>/code</code></h2>
+    <table>
+      <thead>
+        <tr><th>File</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>master_payload.ino</code></td><td>Unified state machine controlling sensors and servo.</td></tr>
+        <tr><td><code>TiltAngle.ino</code></td><td>Standalone pitch axis LCD display demo.</td></tr>
+        <tr><td><code>Orientation.ino</code></td><td>6-DOF fusion — roll, pitch, heading estimation.</td></tr>
+        <tr><td><code>task3-6.ino</code></td><td>Field task logic — alerts, tones, thermal release.</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<!-- ── 2. Bundled LCD library ─────────────────────────────────────── -->
-<section class="card">
-  <h2>I²C LCD Support</h2>
-  <p>
-    Reviewers can compile immediately – the required
-    <code>LiquidCrystal_I2C</code> driver is vendored in <code>/code</code>.
-  </p>
-  <ul>
-    <li><code>LiquidCrystal_I2C.h / .cpp</code> – driver source</li>
-    <li><code>keywords.txt</code> – Arduino IDE syntax map</li>
-  </ul>
-
-  <details>
-    <summary>Optional demo sketches</summary>
+  <!-- LCD DRIVER DETAILS -->
+  <section class="card">
+    <h2>🖥️ I²C LCD Support</h2>
+    <p>
+      Local copy of <code>LiquidCrystal_I2C</code> bundled for portability. Enables reviewers to build without external libraries.
+    </p>
     <ul>
-      <li><code>HelloWorld.ino</code> – verify address / contrast</li>
-      <li><code>BlinkingCursor.ino</code>, <code>CustomChars.ino</code>,
-          <code>SerialDisplay.ino</code></li>
+      <li><code>LiquidCrystal_I2C.h/.cpp</code> — Driver source files</li>
+      <li><code>keywords.txt</code> — IDE keyword syntax mapping</li>
     </ul>
-  </details>
-</section>
+    <details>
+      <summary>Example test demos</summary>
+      <ul>
+        <li><code>HelloWorld.ino</code> — Verify contrast/address</li>
+        <li><code>BlinkingCursor.ino</code>, <code>CustomChars.ino</code>, <code>SerialDisplay.ino</code></li>
+      </ul>
+    </details>
+  </section>
 
-<!-- ── 3. Build / flash instructions ─────────────────────────────── -->
-<section class="card">
-  <h2>Compilation & Flash Guide</h2>
-  <ol>
-    <li>Install <strong>Arduino IDE 2.x</strong>; board = “Arduino Uno”.</li>
-    <li>Clone repo or download ZIP → extract, leaving folder names unchanged.</li>
-    <li>Open <code>master_payload.ino</code>. IDE auto‑loads library from <code>/code</code>.</li>
-    <li>Tools › Port → select your COM/tty device, then <em>Upload</em>.</li>
-  </ol>
-  <p class="note">
-    The code uses <kbd>Serial.begin(115200)</kbd> for debug prints – open Serial Monitor
-    after flash to view live diagnostics.
-  </p>
-</section>
+  <!-- POWER SYSTEM OVERVIEW -->
+  <section class="card">
+    <h2>🔋 Power Architecture</h2>
+    <p>
+      Logic + sensors: <strong>6×AA pack ≈9 V regulated to 5 V</strong><br>
+      High‑current: <strong>Dedicated 9 V battery for servo/buzzer</strong><br>
+      Backup: Spare 9 V mounted for rapid hot‑swap in field tests.
+    </p>
+  </section>
 
-<!-- ── 4. Power architecture diagram ─────────────────────────────── -->
-<section class="card">
-  <h2>Power Architecture</h2>
-  <p>
-    <strong>Logic rail</strong> – 6 × AA (≈9 V) regulated to 5 V for MCU / sensors.  
-    <strong>Actuator rail</strong> – dedicated 9 V pack isolates inductive kick from servo + buzzer.  
-    Spare 9 V secured on bracket for hot‑swap during field trials.
-  </p>
-  <figure class="gallery">
-    <img src="media/10.DroneTopView_SpeakerCircled.jpg" alt="Top‑view — wiring & dual‑battery packs" />
-    <figcaption>Dual‑supply layout (logic vs high‑current)</figcaption>
-  </figure>
-</section>
-
-<footer>
-  Last updated 2025‑07‑20 · questions? mtdubea&nbsp;[at]&nbsp;outlook.com
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <p>Last updated 2025‑07‑20 · © Matthew Dubea</p>
+  </footer>
 </body>
 </html>
