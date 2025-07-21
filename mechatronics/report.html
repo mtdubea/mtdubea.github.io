@@ -3,69 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technical Reports | Mechatronics Payload</title>
-  <!-- Metadata for link previews -->
-  <meta name="description" content="Formal proposal, problem‐understanding memo, and final poster for Matthew Dubea’s MCHE 357 multi‑sensor drone‑payload project." />
-  <meta property="og:title" content="Technical Reports | Mechatronics Payload" />
-  <meta property="og:type"  content="article" />
-  <meta property="og:image" content="report/3. MCHE357_FinalProjectPoster.pdf#page=1" />
+  <title>Project Reports | Mechatronics Payload</title>
+  <meta name="description" content="Final design reports and documentation for the MCHE 357 Mechatronics payload project." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- ====== HEADER / NAVIGATION ====== -->
-  <header>
-    <h1>Project Reports & Poster</h1>
-    <nav>
+  <!-- FIXED HEADER + NAVIGATION -->
+  <header class="site-header">
+    <div class="brand">
+      <h1>Mechatronics Drone Payload</h1>
+      <p class="tagline">MCHE 357 – Autonomous Multi-Sensor System</p>
+    </div>
+    <nav class="site-nav">
       <a href="index.html">Overview</a>
-      <a href="code.html">Source Code</a>
-      <a href="media.html">Media</a>
-      <a href="report.html" class="active">Reports</a>
+      <a href="code.html">Source Code</a>
+      <a href="media.html">Media Gallery</a>
+      <a href="report.html" class="active">Project Reports</a>
     </nav>
   </header>
 
-  <!-- ====== DOCUMENT TABLE ====== -->
-  <section class="card">
-    <h2>📑 Key Documents</h2>
-    <table>
-      <thead>
-        <tr><th>Title</th><th>Type</th><th>Date</th><th>Link</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Project Proposal – Guidelines</td>
-          <td>PDF (6 pp)</td>
-          <td>Apr 2024</td>
-          <td><a href="report/1. Final Project Proposal - guidelines.pdf" target="_blank" rel="noopener">Open ▶</a></td>
-        </tr>
-        <tr>
-          <td>Problem Understanding Memo</td>
-          <td>PDF (3 pp)</td>
-          <td>Apr 2024</td>
-          <td><a href="report/2. Problem Understanding Of Project.pdf" target="_blank" rel="noopener">Open ▶</a></td>
-        </tr>
-        <tr>
-          <td>Conference‑Style Poster</td>
-          <td>PDF (36 × 24 in)</td>
-          <td>May 2024</td>
-          <td><a href="report/3. MCHE357_FinalProjectPoster.pdf" target="_blank" rel="noopener">Open ▶</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+  <main>
+    <!-- REPORT DOCUMENTS SECTION -->
+    <section class="card">
+      <h2>📄 Final Documentation</h2>
+      <table>
+        <thead>
+          <tr><th>Report</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="reports/Final_Payload_Report.pdf" target="_blank">Final Payload Report</a></td>
+            <td>Comprehensive design write-up including methodology, testing, results, and conclusions.</td>
+          </tr>
+          <tr>
+            <td><a href="reports/Firmware_Commentary.pdf" target="_blank">Firmware Commentary</a></td>
+            <td>Explanation of Arduino code logic and modular design principles.</td>
+          </tr>
+          <tr>
+            <td><a href="reports/Sensor_Validation_Notes.pdf" target="_blank">Sensor Validation Notes</a></td>
+            <td>Independent sensor tests including LCD display, IMU, and water detection unit.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small-note">All reports are submitted in PDF format for cross-platform compatibility.</p>
+    </section>
+  </main>
 
-  <!-- ====== REFERENCE ILLUSTRATION ====== -->
-  <section class="card">
-    <h2>🖼 Reference Illustration</h2>
-    <figure class="full-img">
-      <img src="report/4. drone retrival pic example.jpg" alt="Concept art – payload retrieval sequence" />
-      <figcaption>Concept diagram of drone‑mounted payload and retrieval path.</figcaption>
-    </figure>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
   <footer>
-    © 2025 Matthew Dubea — Documentation provided for academic review.
+    <p>© 2025 Matthew Dubea — final documentation</p>
   </footer>
 </body>
 </html>
