@@ -1,24 +1,27 @@
-/* ───────────────────────────────────────────────
-   𝙈𝙚𝙘𝙝𝙖𝙩𝙧𝙤𝙣𝙞𝙘𝙨 𝙋𝙖𝙮𝙡𝙤𝙖𝙙 – Global Style Sheet
-   Author : Matthew Dubea   |  Updated : 2025‑07‑20
-   ─────────────────────────────────────────────── */
+/*──────────────────────────────────────────────
+  𝙈𝙚𝙘𝙝𝙖𝙩𝙧𝙤𝙣𝙞𝙘𝙨 𝙋𝙖𝙮𝙡𝙤𝙖𝙙 — GLOBAL STYLE SHEET
+  Author : Matthew Dubea • Rev 2025‑07‑20
+──────────────────────────────────────────────*/
 
-/* 1 — Brand tokens */
+/* 1. Design Tokens */
 :root{
-  --clr-ink:#1f2937;           /* primary text                 */
-  --clr-ink-soft:#4b5563;      /* secondary text               */
-  --clr-brand:#003366;         /* header/nav background        */
-  --clr-accent:#0074ff;        /* links / buttons              */
-  --clr-bg:#f4f7fb;            /* page background              */
-  --clr-card:#ffffff;          /* card background              */
-  --clr-card-in:#f7f9fc;       /* inner card / caption         */
+  /* brand & UI colours */
+  --clr-ink:#12263A;           /* primary text */
+  --clr-ink-soft:#56606A;      /* secondary text */
+  --clr-primary:#003D7A;       /* header/nav */
+  --clr-primary-dark:#002956;  /* darker hover */
+  --clr-accent:#0080FF;        /* links/buttons */
+  --clr-bg:#f7f9fc;            /* page background */
+  --clr-card:#ffffff;          /* card/section bg */
+  --clr-card-inset:#f0f3f9;    /* inset/alt bg */
 
+  /* layout */
   --radius:8px;
   --shadow:0 2px 8px rgba(0,0,0,.08);
   --max-w:1200px;
 }
 
-/* 2 — Reset / base */
+/* 2. Reset & Base */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
@@ -27,66 +30,75 @@ body{
   background:var(--clr-bg);color:var(--clr-ink);
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3{line-height:1.25;color:var(--clr-ink)}
-h1{font-size:1.9rem;font-weight:700;margin-bottom:.2rem}
-h2{font-size:1.36rem;font-weight:600;margin:.8rem 0 .45rem}
+h1,h2,h3,h4{line-height:1.25;color:var(--clr-ink)}
+h1{font-size:1.85rem;font-weight:600;margin-bottom:.25rem}
+h2{font-size:1.4rem;font-weight:600;margin:.85rem 0 .5rem}
 p,li{color:var(--clr-ink-soft)}
 a{color:var(--clr-accent);text-decoration:none}
 a:hover{text-decoration:underline}
-img{max-width:100%;display:block;border-radius:var(--radius)}
+img{max-width:100%;display:block}
 
-/* 3 — Header & nav */
-header{
-  background:var(--clr-brand);color:#fff;
-  padding:1.3rem 1rem;text-align:center;
-  box-shadow:var(--shadow);
+/* 3. Header / Navigation */
+.site-header{
+  background:var(--clr-primary);color:#fff;
+  padding:1rem 1.2rem;box-shadow:var(--shadow);
+  display:flex;flex-wrap:wrap;align-items:center;gap:1.2rem;
 }
-header h1{margin-bottom:.25rem;font-size:1.9rem}
-.sub{font-size:.95rem;opacity:.85;margin-top:.15rem}
-nav{margin-top:.6rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-nav a{color:#fff;font-weight:500;opacity:.85}
-nav a.active,nav a:hover{opacity:1;text-decoration:underline}
+.brand h1{font-size:1.6rem;margin:0}
+.brand .tagline{font-size:.8rem;opacity:.8}
+.site-nav{margin-left:auto;display:flex;gap:1rem;flex-wrap:wrap}
+.site-nav a{color:#fff;opacity:.85;font-weight:500}
+.site-nav a.active,.site-nav a:hover{opacity:1;text-decoration:underline}
 
-/* 4 — Generic cards & sections */
-section{max-width:var(--max-w);margin:0 auto 2rem;padding:0 1rem}
+/* 4. Generic Sections / Cards */
+main{padding:1.2rem 1rem}
+section{max-width:var(--max-w);margin:0 auto 2rem}
 .card{
   background:var(--clr-card);border-radius:var(--radius);
-  padding:1.2rem 1.4rem;margin-bottom:2rem;
+  padding:1.1rem 1.3rem;margin-bottom:1.4rem;
   box-shadow:var(--shadow);
 }
-.small{font-size:.85rem}
 
-/* 5 — Tables */
+/* 5. Tables */
 table{width:100%;border-collapse:collapse;margin:.6rem 0 1.3rem}
-th,td{padding:.6rem .8rem;text-align:left}
-th{background:var(--clr-brand);color:#fff;font-weight:600}
-tbody tr:nth-child(odd){background:#eef2f7}
+th,td{padding:.55rem .7rem;text-align:left}
+th{background:var(--clr-primary);color:#fff;font-weight:600}
+tbody tr:nth-child(odd){background:var(--clr-card-inset)}
 
-/* 6 — Media gallery grid */
+/* 6. Gallery Grid */
 .gallery{
   display:grid;gap:1rem;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
 }
-.gallery figure{background:var(--clr-card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.gallery figcaption{background:var(--clr-card-in);padding:.6rem .8rem;font-size:.88rem}
+.gallery figure{
+  background:var(--clr-card);border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow)
+}
+.gallery img{width:100%;height:auto}
+figcaption{background:var(--clr-card-inset);padding:.55rem .7rem;
+  font-size:.9rem}
 
-/* 7 — Full-width image */
-.full-img img{border-radius:var(--radius);box-shadow:var(--shadow)}
-.full-img figcaption{margin-top:.5rem;font-size:.9rem;text-align:center;color:var(--clr-ink-soft)}
+/* 7. Video Wrapper (16:9) */
+.video-wrap{position:relative;padding-top:56.25%}
+.video-wrap iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  border:0;border-radius:var(--radius);box-shadow:var(--shadow);
+}
+.vid-caption{font-size:.9rem;margin-top:.4rem;color:var(--clr-ink-soft)}
 
-/* 8 — Video wrapper (16:9 responsive) */
-.video-wrapper{position:relative;padding-top:56.25%;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+/* 8. Small utilities */
+.small-note{font-size:.9rem;margin-top:.4rem}
 
-/* 9 — Footer */
+/* 9. Footer */
 footer{
-  text-align:center;font-size:.84rem;color:var(--clr-ink-soft);
-  padding:2.4rem 1rem 3rem;
+  text-align:center;font-size:.85rem;color:var(--clr-ink-soft);
+  padding:2.2rem 1rem 3rem;margin-top:2rem
 }
 
-/* 10 — Responsive tweaks */
-@media(max-width:600px){
-  h1{font-size:1.6rem}
-  h2{font-size:1.18rem}
-  nav{gap:.6rem}
+/* 10. Responsive tweaks */
+@media(max-width:640px){
+  h1{font-size:1.45rem}
+  h2{font-size:1.2rem}
+  .site-nav{gap:.6rem}
+  .brand h1{font-size:1.4rem}
 }
