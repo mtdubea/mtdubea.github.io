@@ -9,65 +9,83 @@
 </head>
 
 <body>
-  <!-- HEADER / NAVIGATION -->
+  <!-- FIXED HEADER + NAV -->
   <header class="site-header">
-    <h1>Firmware &amp; Libraries</h1>
+    <div class="brand">
+      <h1>Mechatronics Drone Payload</h1>
+      <p class="tagline">MCHE 357 – Autonomous Multi-Sensor System</p>
+    </div>
     <nav class="site-nav">
       <a href="index.html">Overview</a>
       <a href="code.html" class="active">Source Code</a>
-      <a href="media.html">Media</a>
-      <a href="report.html">Reports</a>
+      <a href="media.html">Media Gallery</a>
+      <a href="report.html">Project Reports</a>
     </nav>
   </header>
 
-  <!-- MAIN SKETCH DIRECTORY -->
-  <section class="card">
-    <h2>📁 Sketch Directory <code>/code</code></h2>
-    <table>
-      <thead>
-        <tr><th>File</th><th>Description</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><code>master_payload.ino</code></td><td>Unified state machine controlling sensors and servo.</td></tr>
-        <tr><td><code>TiltAngle.ino</code></td><td>Standalone pitch axis LCD display demo.</td></tr>
-        <tr><td><code>Orientation.ino</code></td><td>6-DOF fusion — roll, pitch, heading estimation.</td></tr>
-        <tr><td><code>task3-6.ino</code></td><td>Field task logic — alerts, tones, thermal release.</td></tr>
-      </tbody>
-    </table>
-  </section>
+  <main>
 
-  <!-- LCD DRIVER DETAILS -->
-  <section class="card">
-    <h2>🖥️ I²C LCD Support</h2>
-    <p>
-      Local copy of <code>LiquidCrystal_I2C</code> bundled for portability. Enables reviewers to build without external libraries.
-    </p>
-    <ul>
-      <li><code>LiquidCrystal_I2C.h/.cpp</code> — Driver source files</li>
-      <li><code>keywords.txt</code> — IDE keyword syntax mapping</li>
-    </ul>
-    <details>
-      <summary>Example test demos</summary>
+    <!-- MAIN SKETCH DIRECTORY -->
+    <section class="card">
+      <h2>📁 Sketch Directory</h2>
+      <table>
+        <thead>
+          <tr><th>Sketch</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="code/master_payload.ino" target="_blank">master_payload.ino</a></td>
+            <td>Main loop — coordinates all mission tasks & state transitions.</td>
+          </tr>
+          <tr>
+            <td><a href="code/TiltAngle.ino" target="_blank">TiltAngle.ino</a></td>
+            <td>Displays real-time tilt angle on I²C LCD.</td>
+          </tr>
+          <tr>
+            <td><a href="code/Orientation.ino" target="_blank">Orientation.ino</a></td>
+            <td>6-DOF sensor fusion — roll, pitch, heading estimation.</td>
+          </tr>
+          <tr>
+            <td><a href="code/task3-6.ino" target="_blank">task3-6.ino</a></td>
+            <td>Field task logic — alerts, tones, thermal release.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- LCD DRIVER SECTION -->
+    <section class="card">
+      <h2>🖥️ I²C LCD Support</h2>
+      <p>
+        Local copy of <code>LiquidCrystal_I2C</code> is included to allow full offline builds. No external library installation is required.
+      </p>
       <ul>
-        <li><code>HelloWorld.ino</code> — Verify contrast/address</li>
-        <li><code>BlinkingCursor.ino</code>, <code>CustomChars.ino</code>, <code>SerialDisplay.ino</code></li>
+        <li><code>LiquidCrystal_I2C.h / .cpp</code> — I²C LCD driver</li>
+        <li><code>keywords.txt</code> — IDE keyword mappings</li>
       </ul>
-    </details>
-  </section>
+      <details>
+        <summary>📂 Demo Tests</summary>
+        <ul>
+          <li><code>HelloWorld.ino</code> — Test contrast/address</li>
+          <li><code>BlinkingCursor.ino</code>, <code>CustomChars.ino</code>, <code>SerialDisplay.ino</code></li>
+        </ul>
+      </details>
+    </section>
 
-  <!-- POWER SYSTEM OVERVIEW -->
-  <section class="card">
-    <h2>🔋 Power Architecture</h2>
-    <p>
-      Logic + sensors: <strong>6×AA pack ≈9 V regulated to 5 V</strong><br>
-      High‑current: <strong>Dedicated 9 V battery for servo/buzzer</strong><br>
-      Backup: Spare 9 V mounted for rapid hot‑swap in field tests.
-    </p>
-  </section>
+    <!-- POWER SYSTEM SECTION -->
+    <section class="card">
+      <h2>🔋 Power Architecture</h2>
+      <p>
+        Logic & sensors: <strong>6×AA → 5 V via regulator</strong><br>
+        High-current actuators: <strong>Dedicated 9 V</strong><br>
+        Backup: <strong>Redundant 9 V</strong> mounted for fast swap during testing
+      </p>
+    </section>
 
-  <!-- FOOTER -->
+  </main>
+
   <footer>
-    <p>Last updated 2025‑07‑20 · © Matthew Dubea</p>
+    <p>© 2025 Matthew Dubea — source code</p>
   </footer>
 </body>
 </html>
