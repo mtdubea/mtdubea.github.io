@@ -4,89 +4,87 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Overview | Mechatronics Payload</title>
-  <meta name="description" content="Autonomous multi-sensor payload project for MCHE 357. Includes mission summary, firmware sketches, and system demonstration." />
+  <meta name="description"
+        content="Autonomous multi‑sensor payload for MCHE 357. Mission summary, live demo, and key firmware links." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- FIXED HEADER + NAV -->
-  <header class="site-header">
-    <div class="brand">
-      <h1>Mechatronics Drone Payload</h1>
-      <p class="tagline">MCHE 357 – Autonomous Multi-Sensor System</p>
+<header class="site-header">
+  <div class="brand">
+    <h1>Mechatronics Drone Payload</h1>
+    <p class="tagline">MCHE 357 — Autonomous Multi‑Sensor System</p>
+  </div>
+  <nav class="site-nav">
+    <a href="index.html" class="active">Overview</a>
+    <a href="code.html">Source Code</a>
+    <a href="media.html">Media Gallery</a>
+    <a href="report.html">Project Reports</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO / QUICK‑START -->
+  <section class="card hero">
+    <h2 class="sr-only">Project at a glance</h2>
+    <p><strong>Goal:</strong> Design a drone‑suspended payload that autonomously detects obstacles,
+       senses water, measures temperature spikes, and deploys a sample on‑command.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://www.youtube.com/embed/iJ9-sI1Avf4" target="_blank">🎬 Watch Demo</a>
+      <a class="btn outline" href="code.html">👩‍💻 Browse Firmware</a>
+      <a class="btn outline" href="report.html">📄 View Reports</a>
     </div>
-    <nav class="site-nav">
-      <a href="index.html" class="active">Overview</a>
-      <a href="code.html">Source Code</a>
-      <a href="media.html">Media Gallery</a>
-      <a href="report.html">Project Reports</a>
-    </nav>
-  </header>
+  </section>
 
-  <main>
+  <!-- FLIGHT VIDEO -->
+  <section class="card">
+    <h2>📽️ Flight‑Test Video</h2>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen></iframe>
+    </div>
+    <p class="vid-caption">
+      The payload executes a full autonomous sequence: obstacle avoid → water contact detection →
+      servo release → audible confirmation → safety ascent.
+    </p>
+  </section>
 
-    <!-- SECTION 1: FLIGHT VIDEO -->
-    <section class="card">
-      <h2>📽️ Flight-Test Video</h2>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen></iframe>
-      </div>
-      <p class="vid-caption">
-        Watch our autonomous drone payload in action: detects obstacles, senses water, and deploys samples — all hands-free.
-      </p>
-    </section>
+  <!-- MISSION SNAPSHOT -->
+  <section class="card">
+    <h2>⚡ Mission Snapshot</h2>
+    <ul>
+      <li><strong>MPU‑9250 IMU</strong> — 9‑DOF orientation &amp; tilt.</li>
+      <li><strong>HC‑SR04 Ultrasonic</strong> — 2 cm‑400 cm obstacle range‑finding.</li>
+      <li><strong>Water Probe</strong> — triggers sub‑surface sampling.</li>
+      <li><strong>NTC Thermistor</strong> — detects sudden heat rise.</li>
+      <li><strong>SG90 Servo</strong> — actuates sample release arm.</li>
+      <li><strong>16×2 I²C LCD</strong> — live telemetry &amp; debug output.</li>
+    </ul>
+    <p class="small-note">All hardware powered by isolated 5 V logic rail + dual 9 V packs for actuators.</p>
+  </section>
 
-    <!-- SECTION 2: MISSION SNAPSHOT -->
-    <section class="card">
-      <h2>⚡ Mission Snapshot</h2>
-      <p>This drone-suspended payload uses the following components:</p>
-      <ul>
-        <li><strong>MPU9250 IMU</strong>: Tracks motion, tilt, and heading (like a phone's internal gyroscope).</li>
-        <li><strong>HC-SR04 Ultrasonic Sensor</strong>: Measures distance to nearby objects using sound pulses.</li>
-        <li><strong>Water Probe</strong>: Detects contact with water to trigger sample release.</li>
-        <li><strong>NTC Thermistor</strong>: Detects temperature changes, including sudden heat exposure.</li>
-        <li><strong>SG90 Servo</strong>: Physically releases mounted payloads during field operation.</li>
-        <li><strong>16×2 I²C LCD</strong>: Displays real-time readings for field debugging and monitoring.</li>
-      </ul>
-      <p class="small-note">Fully-wired payload ready for field test deployment.</p>
-    </section>
+  <!-- CORE FIRMWARE TABLE -->
+  <section class="card">
+    <h2>🧠 Core Firmware Modules</h2>
+    <table>
+      <thead><tr><th>Sketch</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><a href="code/master_payload.ino" target="_blank">master_payload.ino</a></td>
+            <td>Central scheduler &amp; state machine.</td></tr>
+        <tr><td><a href="code/TiltAngle.ino" target="_blank">TiltAngle.ino</a></td>
+            <td>LCD tilt‑angle read‑out.</td></tr>
+        <tr><td><a href="code/Orientation.ino" target="_blank">Orientation.ino</a></td>
+            <td>Complementary‑filter orientation.</td></tr>
+        <tr><td><a href="code/task3-6.ino" target="_blank">task3-6.ino</a></td>
+            <td>Obstacle, water &amp; thermal logic.</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-    <!-- SECTION 3: CORE FIRMWARE MODULES -->
-    <section class="card">
-      <h2>🧠 Core Firmware Modules</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Sketch</th>
-            <th>Purpose</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="code/master_payload.ino" target="_blank">master_payload.ino</a></td>
-            <td>Main loop — coordinates all mission tasks & state transitions.</td>
-          </tr>
-          <tr>
-            <td><a href="code/TiltAngle.ino" target="_blank">TiltAngle.ino</a></td>
-            <td>Displays real-time tilt angle on I²C LCD.</td>
-          </tr>
-          <tr>
-            <td><a href="code/Orientation.ino" target="_blank">Orientation.ino</a></td>
-            <td>Full 3-axis orientation via complementary filter.</td>
-          </tr>
-          <tr>
-            <td><a href="code/task3-6.ino" target="_blank">task3-6.ino</a></td>
-            <td>Object detection alert, water sensor, thermal-release logic.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+</main>
 
-  </main>
-
-  <!-- SECTION 4: FOOTER -->
-  <footer>
-    <p>© 2025 Matthew Dubea — overview</p>
-  </footer>
+<footer>
+  © 2025 Matthew Dubea&nbsp;— payload overview
+</footer>
 </body>
 </html>
