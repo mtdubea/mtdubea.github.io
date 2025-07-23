@@ -1,0 +1,88 @@
+/*───────────────────────────────────────────
+  Trike Portfolio – lightweight theme
+  (kept 100 % separate from /mechatronics/)
+───────────────────────────────────────────*/
+:root{
+  --bg        : #e8f1fb;
+  --text      : #0a0a0a;
+  --card-bg   : #ffffff;
+  --primary   : #064f88;
+}
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:background .3s,color .3s;
+}
+body.dark{
+  --bg:#121212;
+  --text:#f4f4f4;
+  --card-bg:#1e1e1e;
+}
+/*───── header + nav ─────*/
+header{
+  background:var(--primary);
+  color:#fff;
+  padding:1rem;
+}
+header h1{margin:0;font-size:1.6rem}
+nav{
+  display:flex;flex-wrap:wrap;gap:.9rem;
+  margin-top:.4rem;
+}
+nav a,#themeToggle{
+  color:#fff;background:none;border:none;
+  font-size:1.05rem;font-weight:500;
+  padding:.35rem .7rem;border-radius:4px;
+  cursor:pointer;text-decoration:none;
+  transition:background .2s;
+}
+nav a:hover,#themeToggle:hover{
+  background:rgba(255,255,255,.15);
+  text-decoration:underline;
+}
+nav a.active{
+  font-weight:600;
+  background:rgba(255,255,255,.25);
+}
+/*───── layout ─────*/
+main{padding:2rem}
+.card{
+  background:var(--card-bg);
+  margin:0 0 2rem;
+  padding:1.5rem;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+/* gallery thumbnails */
+.gallery img{
+  width:65%;max-width:100%;
+  display:block;margin:1rem auto;
+  border-radius:8px;
+  box-shadow:0 0 8px rgba(0,0,0,.1);
+}
+.gallery embed{
+  width:100%;height:500px;
+  display:block;margin:2rem 0;
+  border-radius:8px;
+  box-shadow:0 0 8px rgba(0,0,0,.1);
+}
+/* video grid */
+.video-wrapper{
+  display:flex;flex-wrap:wrap;gap:1rem;
+  justify-content:center;
+}
+.video-wrapper iframe{
+  width:320px;height:180px;
+  border:none;border-radius:8px;
+}
+/* footer */
+footer{
+  background:var(--primary);
+  color:#fff;text-align:center;
+  padding:1rem;
+}
+/* lists */
+ul{list-style:none;padding:0}
+ul li{margin:.75rem 0}
