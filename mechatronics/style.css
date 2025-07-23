@@ -1,6 +1,6 @@
 /*──────────────────────────────────────────────
   𝙈𝙚𝙘𝙝𝙖𝙩𝙧𝙤𝙣𝙞𝙘𝙨 𝙋𝙖𝙮𝙡𝙤𝙖𝙙 — GLOBAL STYLE SHEET
-  Author: Matthew Dubea • Rev 2025‑07‑21
+  Author: Matthew Dubea • Rev 2025‑07‑23
 ──────────────────────────────────────────────*/
 
 /* 1. Design Tokens */
@@ -19,14 +19,8 @@
 }
 
 /* 2. Reset & Base */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  scroll-behavior: smooth;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
   font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -41,20 +35,11 @@ h1, h2, h3 {
   color: var(--clr-ink);
 }
 h1 { font-size: 1.85rem; font-weight: 600; }
-h2 { font-size: 1.4rem; font-weight: 600; margin-top: 1.4rem; }
+h2 { font-size: 1.4rem;  font-weight: 600; margin-top: 1.4rem; }
 p, li { color: var(--clr-ink-soft); }
-a {
-  color: var(--clr-accent);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-img {
-  max-width: 100%;
-  display: block;
-  border-radius: var(--radius);
-}
+a { color: var(--clr-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; border-radius: var(--radius); }
 
 /* 3. Header / Navigation */
 .site-header {
@@ -62,45 +47,18 @@ img {
   color: #fff;
   padding: 1rem 1.5rem;
   box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;
 }
-.brand h1 {
-  margin: 0;
-  font-size: 1.6rem;
-  color: #fff;
-}
-.brand .tagline {
-  font-size: 0.85rem;
-  color: #e4ecf8;
-}
-.site-nav {
-  margin-left: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
-}
-.site-nav a {
-  color: #ffffff;
-  font-weight: 500;
-  opacity: 0.85;
-}
+.brand h1       { margin: 0; font-size: 1.6rem; color: #fff; }
+.brand .tagline { font-size: 0.85rem; color: #e4ecf8; }
+.site-nav        { margin-left: auto; display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.site-nav a      { color: #ffffff; font-weight: 500; opacity: 0.85; }
 .site-nav a:hover,
-.site-nav a.active {
-  opacity: 1;
-  text-decoration: underline;
-}
+.site-nav a.active { opacity: 1; text-decoration: underline; }
 
 /* 4. Section / Card Layout */
-main {
-  padding: 2rem 1.25rem;
-}
-section {
-  max-width: var(--max-w);
-  margin: 0 auto 2rem;
-}
+main { padding: 2rem 1.25rem; }
+section { max-width: var(--max-w); margin: 0 auto 2rem; }
 .card {
   background: var(--clr-card);
   padding: 1.3rem 1.5rem;
@@ -109,40 +67,44 @@ section {
   box-shadow: var(--shadow);
 }
 
-/* 5. Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-th, td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  vertical-align: top;
-}
-th {
-  background: var(--clr-primary);
+/* 5. Hero Banner (NEW) */
+.hero {
+  background: linear-gradient(135deg, #003d7a 0%, #065dbe 100%);
   color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4);
+}
+.hero p           { color: #eaf3ff; }
+.hero .btn.outline{ border-color:#fff; color:#fff; }
+.hero .btn.outline:hover { background:#fff; color:#003d7a; }
+
+/* 6. Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: .45rem;
   font-weight: 600;
+  padding: .58rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 1;
+  transition: background .2s, border-color .2s, color .2s;
 }
-tbody tr:nth-child(odd) {
-  background: var(--clr-card-inset);
-}
-tbody tr:hover {
-  background-color: #ddeaf8;
-}
+.btn.primary  { background: var(--clr-primary); color: #fff; }
+.btn.primary:hover { background: var(--clr-primary-dark); }
+.btn.outline  { background: none; border: 2px solid var(--clr-primary); color: var(--clr-primary); }
+.btn.outline:hover { background: var(--clr-primary); color: #fff; }
+.cta-row { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.2rem; }
 
-/* 6. Bullet Lists */
-ul {
-  padding-left: 1.2rem;
-  margin-top: 0.6rem;
-  margin-bottom: 1rem;
-}
-ul li {
-  padding: 0.3rem 0;
-}
+/* 7. Tables */
+table { width:100%; border-collapse:collapse; margin-top:1rem; }
+th, td { padding:.75rem 1rem; text-align:left; vertical-align:top; }
+th { background: var(--clr-primary); color:#fff; font-weight:600; }
+tbody tr:nth-child(odd) { background: var(--clr-card-inset); }
+tbody tr:hover          { background:#ddeaf8; }
 
-/* 7. Gallery Grid */
+/* 8. Bullet Lists */
+ul { padding-left:1.2rem; margin-top:.6rem; margin-bottom:1rem; }
+ul li { padding:.3rem 0; }
+
+/* 9. Gallery Grid */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -154,58 +116,63 @@ ul li {
   border-radius: var(--radius);
   overflow: hidden;
 }
-.gallery img {
-  display: block;
-  width: 100%;
-}
 figcaption {
   font-size: 0.9rem;
   padding: 0.65rem 0.9rem;
   background: var(--clr-card-inset);
 }
 
-/* 8. YouTube Embed */
-.video-wrap {
-  position: relative;
-  padding-top: 56.25%;
-  margin-bottom: 1rem;
-}
+/* 10. YouTube Embed */
+.video-wrap { position:relative; padding-top:56.25%; margin-bottom:1rem; }
 .video-wrap iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  border: 0;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  position:absolute; top:0; left:0; width:100%!important; height:100%!important;
+  border:0; border-radius:var(--radius); box-shadow:var(--shadow);
 }
-.vid-caption {
-  font-size: 0.92rem;
-  color: var(--clr-ink-soft);
-  margin-bottom: 1.5rem;
-}
+.vid-caption { font-size:.92rem; color:var(--clr-ink-soft); margin-bottom:1.5rem; }
 
-/* 9. Details/Toggle Box */
-details {
-  margin-top: 0.75rem;
-}
-summary {
-  cursor: pointer;
-  font-weight: 500;
-  color: var(--clr-primary);
-  margin-bottom: 0.5rem;
-}
+/* 11. Details/Toggle */
+details { margin-top:.75rem; }
+summary { cursor:pointer; font-weight:500; color:var(--clr-primary); margin-bottom:.5rem; }
 
-/* 10. Footer */
+/* 12. Footer */
 footer {
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--clr-ink-soft);
-  padding: 2rem 1rem 3rem;
-  background: transparent;
+  text-align:center; font-size:.88rem; color:var(--clr-ink-soft);
+  padding:2rem 1rem 3rem;
 }
 
-/* 11. Responsive */
+/* 13. Code / Syntax Highlighting */
+pre {
+  overflow-x:auto;
+  background:#0d1117;
+  margin:1rem 0;
+  border-radius:8px;
+  padding:1rem;
+}
+pre code {
+  background:none;
+  color:#c9d1d9;
+  font-size:.9rem;
+  line-height:1.45;
+}
+
+/* 14. PDF Embed */
+.pdf-embed {
+  width:100%;
+  height:650px;
+  border:none;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-top:.9rem;
+}
+
+/* 15. Utility */
+.small-note { font-size:.88rem; color:var(--clr-ink-soft); }
+.sr-only {
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); border:0;
+}
+
+/* 16. Responsive */
 @media (max-width: 640px) {
   h1 { font-size: 1.45rem; }
   h2 { font-size: 1.2rem; }
@@ -214,6 +181,4 @@ footer {
 }
 
 /*───────── LEGIBILITY FIXES ─────────*/
-.site-header .brand, .site-header .brand * {
-  color: #ffffff !important;
-}
+.site-header .brand, .site-header .brand * { color:#ffffff !important; }
