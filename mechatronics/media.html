@@ -4,60 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Media Gallery | Mechatronics Payload</title>
-  <meta name="description" content="Videos and images from the MCHE 357 Mechatronics payload project including demo footage and field tests." />
+  <meta name="description"
+        content="Build photos and sensor close‑ups for the MCHE 357 autonomous payload." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- FIXED HEADER + NAV -->
-  <header class="site-header">
-    <div class="brand">
-      <h1>Mechatronics Drone Payload</h1>
-      <p class="tagline">MCHE 357 – Autonomous Multi-Sensor System</p>
+<header class="site-header">
+  <div class="brand">
+    <h1>Mechatronics Drone Payload</h1>
+    <p class="tagline">MCHE 357 — Multi‑Sensor System</p>
+  </div>
+  <nav class="site-nav">
+    <a href="index.html">Overview</a>
+    <a href="code.html">Source Code</a>
+    <a href="media.html" class="active">Media Gallery</a>
+    <a href="report.html">Project Reports</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- FLIGHT VIDEO RE‑EMBED  (quick ref) -->
+  <section class="card">
+    <h2>📹 Flight Demonstration</h2>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen></iframe>
     </div>
-    <nav class="site-nav">
-      <a href="index.html">Overview</a>
-      <a href="code.html">Source Code</a>
-      <a href="media.html" class="active">Media Gallery</a>
-      <a href="report.html">Project Reports</a>
-    </nav>
-  </header>
+  </section>
 
-  <main>
-    <!-- EMBEDDED VIDEO -->
-    <section class="card">
-      <h2>📹 Flight-Test Demo</h2>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen></iframe>
-      </div>
-      <p class="vid-caption">
-        Full system demo: drone-mounted payload detects obstacle, confirms water contact, releases sample, and logs mission data.
-      </p>
-    </section>
+  <!-- IMAGE GRID -->
+  <section class="card">
+    <h2>🖼️ Build Photos &amp; Sensors</h2>
 
-    <!-- MEDIA IMAGE GALLERY -->
-    <section class="card">
-      <h2>🖼️ Payload Development</h2>
-      <div class="gallery media-grid">
-        <figure>
-          <img src="media/payload_side.jpg" alt="Payload Side View">
-          <figcaption>Assembled payload — side view</figcaption>
-        </figure>
-        <figure>
-          <img src="media/testbench.jpg" alt="Sensor Test Bench">
-          <figcaption>Sensor calibration test bench</figcaption>
-        </figure>
-        <figure>
-          <img src="media/release_arm.jpg" alt="Release Mechanism Close-Up">
-          <figcaption>Servo-controlled release mechanism</figcaption>
-        </figure>
-      </div>
-      <p class="small-note">Additional images and build logs available upon request.</p>
-    </section>
-  </main>
+    <div class="gallery">
+      <figure><img src="media/1. ThermistorSensor.jpg" alt="NTC Thermistor in epoxy">
+        <figcaption>Thermistor (fire‑trigger)</figcaption></figure>
 
-  <footer>
-    <p>© 2025 Matthew Dubea — media gallery</p>
-  </footer>
+      <figure><img src="media/2. UltraSonicSensor.jpg" alt="HC-SR04 ultrasonic module">
+        <figcaption>Ultrasonic range‑finder</figcaption></figure>
+
+      <figure><img src="media/3. MPU9250_Gyroscope(back).jpeg" alt="MPU9250 back view">
+        <figcaption>MPU‑9250 — rear header</figcaption></figure>
+
+      <figure><img src="media/4. 0250_Gyroscope(Front).jpeg" alt="MPU9250 front view">
+        <figcaption>MPU‑9250 — sensor die</figcaption></figure>
+
+      <figure><img src="media/5. LiquidCrystal.jpg" alt="LCD wiring diagram">
+        <figcaption>I²C LCD wiring</figcaption></figure>
+
+      <figure><img src="media/6.Make-an-Arduino-Temperature-Sensor-Thermistor-Readings.jpg"
+                   alt="Temp read‑out breadboard">
+        <figcaption>Temp sensor proto</figcaption></figure>
+
+      <figure><img src="media/7. LCDLiquidCrystalDigitalDisplayofTilt.jpg" alt="On‑board LCD">
+        <figcaption>On‑board 16×2 display</figcaption></figure>
+
+      <figure><img src="media/8. WaterSensor(Front).jpg" alt="Water sensor front">
+        <figcaption>Water probe — front</figcaption></figure>
+
+      <figure><img src="media/9. WaterSensor(Back).jpg" alt="Water sensor back">
+        <figcaption>Water probe — back</figcaption></figure>
+
+      <figure><img src="media/10. DroneTopView_SpeakerCircled.jpg" alt="Top view of payload">
+        <figcaption>Top view — buzzer circled</figcaption></figure>
+
+      <figure><img src="media/11. DroneSideView.jpg" alt="Side view of payload">
+        <figcaption>Side profile</figcaption></figure>
+
+      <figure><img src="media/12. InsideDrone.jpg" alt="Inside electronics bay">
+        <figcaption>Electronics bay</figcaption></figure>
+    </div>
+  </section>
+
+</main>
+<footer>© 2025 Matthew Dubea&nbsp;— media gallery</footer>
 </body>
 </html>
