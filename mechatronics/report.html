@@ -4,54 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project Reports | Mechatronics Payload</title>
-  <meta name="description" content="Final design reports and documentation for the MCHE 357 Mechatronics payload project." />
+  <meta name="description"
+        content="Design reports and poster for the MCHE 357 autonomous payload." />
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- FIXED HEADER + NAVIGATION -->
-  <header class="site-header">
-    <div class="brand">
-      <h1>Mechatronics Drone Payload</h1>
-      <p class="tagline">MCHE 357 – Autonomous Multi-Sensor System</p>
-    </div>
-    <nav class="site-nav">
-      <a href="index.html">Overview</a>
-      <a href="code.html">Source Code</a>
-      <a href="media.html">Media Gallery</a>
-      <a href="report.html" class="active">Project Reports</a>
-    </nav>
-  </header>
+<header class="site-header">
+  <div class="brand">
+    <h1>Mechatronics Drone Payload</h1>
+    <p class="tagline">MCHE 357 — Documentation Hub</p>
+  </div>
+  <nav class="site-nav">
+    <a href="index.html">Overview</a>
+    <a href="code.html">Source Code</a>
+    <a href="media.html">Media Gallery</a>
+    <a href="report.html" class="active">Project Reports</a>
+  </nav>
+</header>
 
-  <main>
-    <!-- REPORT DOCUMENTS SECTION -->
-    <section class="card">
-      <h2>📄 Final Documentation</h2>
-      <table>
-        <thead>
-          <tr><th>Report</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="reports/Final_Payload_Report.pdf" target="_blank">Final Payload Report</a></td>
-            <td>Comprehensive design write-up including methodology, testing, results, and conclusions.</td>
-          </tr>
-          <tr>
-            <td><a href="reports/Firmware_Commentary.pdf" target="_blank">Firmware Commentary</a></td>
-            <td>Explanation of Arduino code logic and modular design principles.</td>
-          </tr>
-          <tr>
-            <td><a href="reports/Sensor_Validation_Notes.pdf" target="_blank">Sensor Validation Notes</a></td>
-            <td>Independent sensor tests including LCD display, IMU, and water detection unit.</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="small-note">All reports are submitted in PDF format for cross-platform compatibility.</p>
-    </section>
-  </main>
+<main>
+  <section class="card">
+    <h2>📄 Final Documentation</h2>
+    <table>
+      <thead><tr><th>File</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><a href="report/1. Final Project Proposal - guidelines.pdf" target="_blank">
+              Project Proposal</a></td>
+          <td>Initial scope, constraints, and evaluation criteria.</td>
+        </tr>
+        <tr>
+          <td><a href="report/2. Problem Understanding  Of Project.pdf" target="_blank">
+              Problem Statement &amp; Analysis</a></td>
+          <td>Stakeholder needs and functional decomposition.</td>
+        </tr>
+        <tr>
+          <td><a href="report/-MCHE357_FinalProjectPoster.pdf" target="_blank">
+              Academic Poster (24×36)</a></td>
+          <td>Condensed results and field demo highlights.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-  <footer>
-    <p>© 2025 Matthew Dubea — final documentation</p>
-  </footer>
+  <!-- Poster preview (optional embed) -->
+  <section class="card">
+    <h3>🎯 Poster Preview</h3>
+    <embed src="report/-MCHE357_FinalProjectPoster.pdf" class="pdf-embed"
+           type="application/pdf" />
+  </section>
+
+  <!-- Retrieval concept figure -->
+  <section class="card">
+    <h3>🔎 Retrieval System Concept</h3>
+    <img src="report/4. drone retrival pic example.jpg" alt="Retrieval concept schematic">
+    <p class="small-note">
+      Concept showing buoy‑marker tether and counterweight allowing drone pick‑and‑place
+      without submerging propellers.
+    </p>
+  </section>
+</main>
+
+<footer>© 2025 Matthew Dubea&nbsp;— documentation</footer>
 </body>
 </html>
