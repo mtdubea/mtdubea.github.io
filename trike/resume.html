@@ -1,0 +1,56 @@
+<!-- resume.html – full replacement -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Résumé – Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="resume.html" aria-current="page">Résumé</a></li>
+        <li><a href="calculations.html">Calculations</a></li>
+        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- résumé viewer -->
+  <section class="card">
+    <h2>📄 Résumé (2025)</h2>
+    <embed class="pdf-embed"
+           style="height:700px;"
+           src="assets/images/9_docs/MTD%20Resume.pdf"
+           type="application/pdf">
+    <p class="center" style="margin-top:1rem;">
+      <a class="btn primary"
+         href="assets/images/9_docs/MTD%20Resume.pdf"
+         download>
+         ⬇️ Download PDF&nbsp;(1&nbsp;MB)
+      </a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">© 2025 Matthew Dubea</div>
+</footer>
+
+<script src="theme.js"></script>
+</body>
+</html>
