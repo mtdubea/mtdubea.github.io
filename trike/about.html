@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>About – Matthew Dubea</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="About Matthew Dubea and the award‑winning front-pedal racing trike built for the 2025 Acadiana 500. Materials, FEA, budget, and team results." />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
@@ -12,7 +13,7 @@
 <header class="site-header">
   <div class="container">
     <h1 class="site-title">Matthew Dubea</h1>
-    <nav class="main-nav">
+    <nav class="main-nav" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" aria-current="page">About</a></li>
@@ -20,7 +21,7 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="resume.html">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
-        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
+        <li class="theme-toggle"><button id="themeToggle" title="Toggle light/dark">🌓</button></li>
       </ul>
     </nav>
   </div>
@@ -28,55 +29,109 @@
 
 <main class="container">
 
-  <!-- personal bio ---------------------------------------------------- -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- PERSONAL INTRO -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
   <section class="card">
     <h2>👋 About Me</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
+    <div style="display:flex;flex-wrap:wrap;gap:1.6rem;align-items:center;">
       <img src="assets/images/profile-headshot.jpg"
-           alt="Matthew Dubea head-shot"
-           style="width:170px;height:170px;border-radius:50%;object-fit:cover;box-shadow:0 1px 6px rgba(0,0,0,.15);">
+           alt="Matthew Dubea headshot"
+           style="width:170px;height:170px;border-radius:50%;object-fit:cover;box-shadow:0 1px 8px rgba(0,0,0,.15);">
 
-      <p style="flex:1;min-width:240px;">
-        I’m a graduating <strong>Mechanical Engineer</strong> who loves turning rough
-        sketches into race-winning machines. My focus areas are lightweight
-        welded structures, FEA/CFD validation, and cost-optimised build
-        strategies. Outside the lab you can find me recording bass riffs and
-        volunteering at STEM outreach events.
+      <p style="flex:1;min-width:260px;">
+        I’m a graduating <strong>Mechanical Engineer</strong> who thrives at the intersection of
+        <em>analysis</em>, <em>fabrication</em>, and <em>rapid prototyping</em>. My process typically starts with
+        rough hand sketches, moves into CAD/FEA validation, and ends with a welded, tested machine on the track.
+        I enjoy cost‑optimised builds, making clever use of recycled parts, and documenting everything so the next
+        iteration is faster and cheaper. When the lab lights are off, I’m probably playing bass guitar or helping with STEM outreach.
       </p>
     </div>
   </section>
 
-  <!-- project at-a-glance --------------------------------------------- -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- PROJECT SNAPSHOT / SPECS -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
   <section class="card">
-    <h3>📌 Project At-a-Glance</h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr><th>Item</th><th>Value / Note</th></tr>
-      <tr><td>Final weight</td><td>35&nbsp;lb (15.9&nbsp;kg)</td></tr>
-      <tr><td>Top speed (test)</td><td>15&nbsp;mph (24&nbsp;km/h)</td></tr>
-      <tr><td>Frame material</td><td>1020 main triangle + 4130 chromoly rear</td></tr>
-      <tr><td>Rear axle</td><td>4140 steel, 0.625&nbsp;in Ø</td></tr>
-      <tr><td>FEA peak σ<sub>vm</sub></td><td>2.8&nbsp;×10<sup>8</sup> N/m² &nbsp;→&nbsp; FoS&nbsp;2.2</td></tr>
-      <tr><td>Budget</td><td>$120 (incl. recycled parts)</td></tr>
-      <tr><td>Awards</td><td>🥇 1st overall, Acadiana&nbsp;500 (2025)</td></tr>
+    <h3>📌 2025 Acadiana 500 Trike – At a Glance</h3>
+
+    <table class="about-stats">
+      <thead>
+        <tr><th>Item</th><th>Value / Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Event</td><td>Acadiana 500 Tricycle Relay (New Iberia, LA)</td></tr>
+        <tr><td>Result</td><td>🥇 1st place overall — swept all five heats with zero penalties</td></tr>
+        <tr><td>Total weight</td><td>35 lb (15.9 kg)</td></tr>
+        <tr><td>Peak speed (test)</td><td>14–15 mph (≈24 km/h)</td></tr>
+        <tr><td>Drive rule</td><td>Front-wheel, <em>direct pedal</em> — no chain/gears allowed</td></tr>
+        <tr><td>Frame materials</td><td>Salvaged 1020 steel bicycle frame, TIG‑welded 4130 tube rear section</td></tr>
+        <tr><td>Rear axle</td><td>4140 steel shaft, heat-treated, running in brass bushings & sealed bearings</td></tr>
+        <tr><td>FEA peak σ<sub>vm</sub></td><td>2.80×10<sup>8</sup> N/m² (under 850 N combined load) → FoS ≈ 2.2</td></tr>
+        <tr><td>Static tip angle</td><td>23° (critical lateral stability of ~0.42 g)</td></tr>
+        <tr><td>Budget</td><td>$120 total — recycled parts + sponsor support</td></tr>
+        <tr><td>Sponsors</td><td>Raising Cane’s, Metal Shark Boats, UL Lafayette College of Engineering</td></tr>
+      </tbody>
     </table>
   </section>
 
-  <!-- team photo + race clip ------------------------------------------ -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- STORY / PROCESS -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
   <section class="card">
-    <h3>🏆 Race-day Moments</h3>
-    <div class="spec-grid" style="--gap:1.5rem;">
-      <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
-           alt="Fast Pedal Engineers – team photo" loading="lazy">
-      <img src="assets/images/12_race/Holding Trophy.jpg"
-           alt="Team holding trophy" loading="lazy">
+    <h3>🛠️ Design & Build Process</h3>
+    <ol class="tight">
+      <li><strong>Concept & Constraints:</strong> Evaluate race rules (width 20 in, seat height 25 in, front‑drive only).</li>
+      <li><strong>Reuse Strategy:</strong> Strip a donor bike (frame, fork, bars). Model geometry for compliance and ergonomics.</li>
+      <li><strong>Rear Assembly:</strong> Design a TIG‑welded 4130 tube structure around a 4140 axle with custom bushings.</li>
+      <li><strong>Analysis:</strong> Run FEA on welded joints and axle; verify lateral stability with tip‑angle calculations.</li>
+      <li><strong>Manufacturing:</strong> CNC lathe the bushings and spacers, weld the frame, fabricate the seat post & T‑support.</li>
+      <li><strong>Testing:</strong> Measure lap times, tweak ergonomics for faster transitions, and reinforce high‑stress nodes.</li>
+      <li><strong>Race Day:</strong> No mechanical failures, smooth rider swaps, consistent speed → 1st place victory.</li>
+    </ol>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- MEDIA: PHOTOS + VIDEO -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <section class="card">
+    <h3>🏁 Race‑Day Moments</h3>
+    <div class="spec-grid" style="--gap:1.4rem;">
+      <figure>
+        <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
+             alt="Fast Pedal Engineers – team photo" loading="lazy">
+        <figcaption>Fast Pedal Engineers — post‑race, trophy in hand.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/images/12_race/Holding Trophy.jpg"
+             alt="Team holding trophy" loading="lazy">
+        <figcaption>1st place overall — clean run, zero penalties.</figcaption>
+      </figure>
     </div>
 
-    <p class="center" style="margin-top:1rem;">
-      <iframe src="https://www.youtube.com/embed/JxC-39Dx2WM"
-              title="Final transition & finish"
-              loading="lazy"
-              style="width:420px;aspect-ratio:16/9;border:none;"></iframe>
+    <div class="video-grid" style="margin-top:1rem;">
+      <iframe src="https://www.youtube.com/embed/T5bXXW90K8g"
+              title="Final sprint highlight"
+              allowfullscreen loading="lazy"></iframe>
+      <iframe src="https://www.youtube.com/embed/xSlv-XQnYwc"
+              title="Race clip 1" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <!-- CALL TO ACTION -->
+  <!-- ─────────────────────────────────────────────────────────────── -->
+  <section class="card">
+    <h3>📬 Let’s Talk Engineering</h3>
+    <p>
+      Interested in lightweight structures, rapid prototyping, or student competition vehicles? I’m always open to
+      new challenges and collaborations.
     </p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:mattdubea@outlook.com">Email Me</a>
+      <a class="btn outline" href="https://github.com/mtdubea" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn outline" href="https://www.linkedin.com/in/matthew-dubea-4188a6311/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </section>
 
 </main>
