@@ -1,0 +1,59 @@
+PROJECT 3 OVERVIEW: MCHE 201 Mechatronics Avatar Robot Project
+Course: Introduction to Mechanical Design and Mechatronics  
+School: University of Louisiana at Lafayette  
+Semester: Sophomore Year  
+Team: Team 4  
+
+🏗️ PROJECT SUMMARY:
+- Designed and fabricated an autonomous robot themed after James Cameron's *Avatar*.
+- Mission: Complete 5 complex tasks autonomously on a custom competition track using Python-controlled microcontroller.
+- Design constraints: ≤18" tall, 12"x24" base, must fit in regulation “box” before each run, 30 sec runtime, no damage to track or other bots.
+- Task scoring included: Knock 4 Toy Soldiers, Collect 4 Na’vi Lego Men, Collect 6 Fauna, Collect 3 Banshees, Rescue Jake Sully & Neytiri.
+
+🏆 PERFORMANCE & OUTCOME:
+- Placed 10th out of 13 teams in live multi-team trial due to in-game interference and false starts.
+- Scored **1st place for design and functionality** during judged evaluation prior to head-to-head competition.
+
+🧠 ROLE & RESPONSIBILITIES (Matthew):
+- Led mechanical design, fabrication, and system integration of components.
+- Developed and refined Python code for all motion and sensor operations.
+- Responsible for wiring, sensor mounting, and component testing.
+- Hosted all team build sessions and optimized system continuously.
+
+⚙️ CUSTOM HARDWARE INTEGRATION:
+- MCHE201 Microcontroller board (12V DC, Python programmable).
+- Large DC gearmotor for drive.
+- Stepper motor for high-torque, low-speed actions.
+- Linear actuator and solenoid for rescue task mechanisms.
+- IR distance sensor and magnetic proximity switch for task triggers.
+
+🧩 UNIQUE FEATURES:
+- Custom overhead boom with telescoping linear actuator to reach spinning platform and rescue Banshees.
+- Magnetically-triggered rescue mechanism for Jake Sully and Neytiri figurines.
+- PID-tuned stepper logic to precisely position arm without overshoot.
+- Strategic weight and footprint reduction to comply with regulation dimensions.
+
+🔧 ENGINEERING CHALLENGES:
+- False triggering before timer start disqualified some teams; our reset strategy recovered eligibility in time.
+- Tight tolerance compliance with box constraints required iterative redesign.
+- Sensors required shielding to avoid ambient interference.
+
+🧪 ENGINEERING TOOLS & DOCUMENTATION:
+- Created detailed **House of Quality**, **Function Tree**, **Evaluation Matrix**, **Specification Sheet**, and component layout diagrams.
+- Wrote modular Python scripts: `main.py`, `motor.py`, `actuator.py`, `LinAct.py`, `stepper.py`, etc.
+- Used blue-themed aesthetic and physical design for visibility and thematic cohesion.
+
+📂 AVAILABLE FILES (as of last working state):
+- Final report PDF and presentation.
+- House of Quality, Function Tree, Spec Sheet (image-based).
+- `main.py`, `motor.py`, `stepper.py`, `LinAct.py`, `actuator.py`, `pca9685.py`.
+
+📌 KEY TERMS:
+- IR Sensor = Infrared Distance Sensor
+- FSR = Force Sensitive Resistor
+- PID = Proportional-Integral-Derivative control
+- Na’vi, Banshees = Figurines as scoring targets in the Avatar theme
+
+📄 RESUME BULLET EXAMPLE:
+Led design and integration of Python-controlled autonomous robot using DC, stepper, and actuator motors; earned 1st place in judged design scoring for full autonomous functionality and engineering quality across 5-task competition.
+
