@@ -1,0 +1,4825 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code — Autonomous Rescue Robot</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<header>
+  <h1>Source Code (All Revisions)</h1>
+  <nav>
+    <a href="index.html">Overview</a>
+    <a href="media.html">Media</a>
+    <a class="active" href="code.html">Code</a>
+    <a href="reports.html">Reports</a>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h2>Archive policy</h2>
+    <p>
+      Every relevant script used during development is preserved below. Some were exploratory or later
+      superseded. Where obvious, blocks are tagged as “archive/superseded” or “likely competition version.”
+      Nothing has been edited beyond formatting for readability.
+    </p>
+  </section>
+  <section class="card">
+    <h2>Python / MicroPython files</h2>
+    
+<details>
+  <summary>main.py </summary>
+  <pre><code class="language-python">###############################################################################
+# main.py
+#
+# This is a template script showing how to start a device based on the 
+# start signal closing. It assumes that the external digital input connected to
+# pin X6. The internal pull-down resistor is used. In this version, we use an
+# interrupt to change the value of a flag variable. This is the more advanced
+# way to sense a condition like this and how it would/should be done once you
+# have some experience.
+#
+# See the link below for information on external interrupts in MicroPython
+#   http://docs.micropython.org/en/latest/pyboard/library/pyb.ExtInt.html?highlight=interrupt
+#
+# Created: 10/26/17
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 09/29/18 - JEV - Changed pin to match upcoming MCHE201 breakout
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------- The main part of the script starts here -----------------
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep_ms(10) # Sleep 10 milliseconds
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, -99)    # Go ~1/2 speed in one direction
+    time.sleep(12)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, 99)     # Go ~1/2 speed in the other direction
+    time.sleep(10)                       # Continue at this speed for 1s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep_ms(10) # pause briefly to let the motor stop
+
+
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+print("The trial is finished.\n")
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+<details>
+  <summary>main (1).py </summary>
+  <pre><code class="language-python"># -----------------------------------------------------------------------------
+# main.py
+#
+# script to demonstrate the basic functionality of a DC motor using the
+# pyboard connected to the MCHE201 Controller board
+#
+# This code requires the .py files from the MCHE201 Controller Board repository
+# found at:
+#  https://github.com/DocVaughan/MCHE201_Controller
+#
+#
+# Created: 03/26/19 - Joshua Vaughan - joshua.vaughan@louisiana.edu
+#
+# Modified:
+#   * 
+#
+# TODO:
+#   * mm/dd/yy - Major bug to fix
+#   # mm/dd/yy - Desired new feature
+# -----------------------------------------------------------------------------
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 50)    # Go ~1/2 speed in one direction
+    time.sleep(1)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -50)     # Go ~1/2 speed in the other direction
+    time.sleep(1)                       # Continue at this speed for 1s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep_ms(10) # pause briefly to let the motor stop
+
+    print("Varying speed from 0 to half-speed, then back to zero.")
+    for speed in range(50):
+        motors.set_speed(MOTOR_NUMBER, speed)
+        time.sleep_ms(250)
+
+    for speed in range(50):
+        motors.set_speed(MOTOR_NUMBER, 50 - speed)
+        time.sleep_ms(250)
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise </code></pre>
+</details>
+
+<details>
+  <summary>main (2).py </summary>
+  <pre><code class="language-python"># -----------------------------------------------------------------------------
+# main.py
+#
+# script to demonstrate the basic functionality of a DC motor using the
+# pyboard connected to the MCHE201 Controller board
+#
+# This code requires the .py files from the MCHE201 Controller Board repository
+# found at:
+#  https://github.com/DocVaughan/MCHE201_Controller
+#
+#
+# Created: 03/26/19 - Joshua Vaughan - joshua.vaughan@louisiana.edu
+#
+# Modified:
+#   * 
+#
+# TODO:
+#   * mm/dd/yy - Major bug to fix
+#   # mm/dd/yy - Desired new feature
+# -----------------------------------------------------------------------------
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 50)    # Go ~1/2 speed in one direction
+    time.sleep(1)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -50)     # Go ~1/2 speed in the other direction
+    time.sleep(1)                       # Continue at this speed for 1s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep_ms(10) # pause briefly to let the motor stop
+
+    print("Varying speed from 0 to half-speed, then back to zero.")
+    for speed in range(50):
+        motors.set_speed(MOTOR_NUMBER, speed)
+        time.sleep_ms(250)
+
+    for speed in range(50):
+        motors.set_speed(MOTOR_NUMBER, 50 - speed)
+        time.sleep_ms(250)
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise </code></pre>
+</details>
+
+<details>
+  <summary>main (3).py </summary>
+  <pre><code class="language-python"># -----------------------------------------------------------------------------
+# main.py
+#
+# script to demonstrate the basic functionality of a DC motor using the
+# pyboard connected to the MCHE201 Controller board
+#
+# This code requires the .py files from the MCHE201 Controller Board repository
+# found at:
+#  https://github.com/DocVaughan/MCHE201_Controller
+#
+#
+# Created: 03/26/19 - Joshua Vaughan - joshua.vaughan@louisiana.edu
+#
+# Modified:
+#   * 
+#
+# TODO:
+#   * mm/dd/yy - Major bug to fix
+#   # mm/dd/yy - Desired new feature
+# -----------------------------------------------------------------------------
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 50)    # Go ~1/2 speed in one direction
+    time.sleep(1)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -50)     # Go ~1/2 speed in the other direction
+    time.sleep(1)                       # Continue at this speed for 1s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep_ms(10) # pause briefly to let the motor stop
+
+    print("Varying speed from 0 to half-speed, then back to zero.")
+    for speed in range(50):
+        motors.set_speed(MOTOR_NUMBER, speed)
+        time.sleep_ms(250)
+
+    for speed in range(50):
+        motors.set_speed(MOTOR_NUMBER, 50 - speed)
+        time.sleep_ms(250)
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise </code></pre>
+</details>
+
+<details>
+  <summary>main (4).py </summary>
+  <pre><code class="language-python">###############################################################################
+# main.py
+#
+# This is a template script showing how to start a device based on the 
+# start signal closing. It assumes that the external digital input connected to
+# pin X6. The internal pull-down resistor is used. 
+#
+# Created: 10/26/17
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 09/29/18 - JEV - Changed pin to match upcoming MCHE201 breakout
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+# Assign the input pin to variable input_pin
+# We set it up as an input with a pulldown resistor
+input_pin = pyb.Pin("X6", pyb.Pin.IN, pull=pyb.Pin.PULL_DOWN)
+
+# This will loop forever, checking the button every 10ms
+while (True):
+    input_state = input_pin.value()   # read the state of the input
+    
+    if (input_state):
+        print("The start button is pressed. I'll run the main code now.\n")
+        # Main code could be here
+        #   or
+        # A call to a function containing the main control logic could be here
+
+        # If what runs here is less than 30 sec. long, you'll need to account
+        # for that condition. If not, then the start signal will still be "on"
+        # when this part of your code finishes. So, it will still be True and 
+        # therefore start running again.
+
+    else:
+        print("Start button is not pressed. I'll wait, then check again.\n")
+
+    time.sleep_ms(10)          # Sleep 10 milliseconds (0.01s)</code></pre>
+</details>
+
+<details>
+  <summary>main.py.py </summary>
+  <pre><code class="language-python">###############################################################################
+
+# main.py
+
+#
+
+# This is a template script showing how to start a device based on the
+
+# start signal closing. It assumes that the external digital input connected to
+
+# pin X6. The internal pull-down resistor is used. In this version, we use an
+
+# interrupt to change the value of a flag variable. This is the more advanced
+
+# way to sense a condition like this and how it would/should be done once you
+
+# have some experience.
+
+#
+
+# See the link below for information on external interrupts in MicroPython
+
+# http://docs.micropython.org/en/latest/pyboard/library/pyb.ExtInt.html?highlight=interrupt
+
+#
+
+# Created: 10/26/17
+
+# - Joshua Vaughan
+
+# - joshua.vaughan@louisiana.edu
+
+# - http://www.ucs.louisiana.edu/~jev9637
+
+#
+
+# Modified:
+
+# * 09/29/18 - JEV - Changed pin to match upcoming MCHE201 breakout
+
+#
+
+# TODO:
+
+# *
+
+###############################################################################
+
+import pyb # import the pyboard module
+
+import time # import the time module
+
+def handle_start_signal(line):
+
+"""
+
+This function will run every time the start signal state changes from
+
+low to high. We use it to change the value of the start_trial variable
+
+from False to True. This will cause the while loop below to end, and the
+
+main part of the code to run.
+
+"""
+
+# We need the global modifier here to enable changing
+
+# the value of a global variable (start_trial in this case)
+
+global start_trial
+
+# Turn on the green LED to indicate the trial is starting, but only
+
+# if this is our first time starting the trial
+
+if start_trial == False:
+
+GREEN_LED.on()
+
+start_trial = True
+
+# This flag variable will be checked in the main part of the script, and
+
+# changed by an interrupt handler function attached to the track banana plugs
+
+start_trial = False
+
+# Assign the start pin to variable start_pin
+
+# We set it up as an input with a pulldown resistor and add an interrupt to
+
+# handle when it is pressed. This interrupt looks for rising edges, meaning
+
+# when the state changes from low to high
+
+start_pin = pyb.ExtInt(pyb.Pin('X6'),
+
+pyb.ExtInt.IRQ_RISING,
+
+pyb.Pin.PULL_DOWN,
+
+handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+
+GREEN_LED = pyb.LED(2)
+
+# ----------------- The main part of the script starts here -----------------
+
+# This will loop until the value of start_trial becomes true
+
+while (not start_trial):
+
+print("Waiting for the start signal...\n")
+
+time.sleep_ms(10) # Sleep 10 milliseconds
+
+# We'll use the machine i2c implementation.
+
+import machine
+
+# We also need to import the DC motor code from the library
+
+import motor
+
+# Initialize communication with the motor driver
+
+i2c = machine.I2C(scl=machine.Pin("X9"),
+
+sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+
+# motor number on the motor driver board
+
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+
+# To control the motor, give it a speed between -100 and 100
+
+print("Moving 1/2 speed in one direction.")
+
+motors.set_speed(MOTOR_NUMBER, 50) # Go ~1/2 speed in one direction
+
+time.sleep(1) # Continue at this speed for 1s
+
+# ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+
+# To stop, issue a speed of 0
+
+print("Stopping.")
+
+motors.set_speed(MOTOR_NUMBER, 0)
+
+time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+# To turn the motor in the opposite direction, give a negative speed
+
+print("Moving 1/2 speed in the other direction.")
+
+motors.set_speed(MOTOR_NUMBER, -50) # Go ~1/2 speed in the other direction
+
+time.sleep(1) # Continue at this speed for 1s
+
+# To stop, issue a speed of 0
+
+print("Stopping.")
+
+motors.set_speed(MOTOR_NUMBER, 0)
+
+time.sleep_ms(10) # pause briefly to let the motor stop
+
+print("Varying speed from 0 to half-speed, then back to zero.")
+
+for speed in range(50):
+
+motors.set_speed(MOTOR_NUMBER, speed)
+
+time.sleep_ms(250)
+
+for speed in range(50):
+
+motors.set_speed(MOTOR_NUMBER, 50 - speed)
+
+time.sleep_ms(250)
+
+except:
+
+print("Error. Stopping motors.")
+
+motors.set_speed(MOTOR_NUMBER, 0)
+
+# If we call raise here, we'll still get the information on why the
+
+# exception was raised in the first place. Without this, we do not.
+
+raise
+
+print("The trial is finished.\n")
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished</code></pre>
+</details>
+
+<details>
+  <summary>motor.py </summary>
+  <pre><code class="language-python">###############################################################################
+# motor.py
+#
+# Script for using a PCA9685 to control DC motors. This is configured for use
+# on the MCHE201 breakout board to control several motors. On the MCHE201 
+# controller board, the motors are driven with DRV8871 motor drivers. These
+# drivers have two inputs. One input should be controlled via PWM to set the 
+# speed and the other pulled low. To switch directions, we do the opposite.
+#
+# This code is modified from that created by Adafruit, which was MIT licensed. 
+# Per the MIT license, the original License is provided in this repository.
+#
+# Created: 11/02/18
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 02/25/19 - JEV
+#       - updated i2c address to match v2 of MCHE201 board
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pca9685
+
+
+_DC_MOTORS = ((2, 3), (4, 5))
+
+
+class DCMotors:
+    def __init__(self, i2c, address=0x60, freq=1600):
+        self.pca9685 = pca9685.PCA9685(i2c, address)
+        self.pca9685.freq(freq)
+
+    def _pin(self, pin, value=None):
+        if value is None:
+            return bool(self.pca9685.pwm(pin)[0])
+        if value:
+            self.pca9685.pwm(pin, 4096, 0)
+        else:
+            self.pca9685.pwm(pin, 0, 0)
+
+    def set_speed(self, motor_number, speed=None):
+        """
+        Function to set the speed of the motor
+        
+        Arguments:
+            motor_number : the number of the motor to control, either 1 or 2
+            speed : the speed +/-100% to run the motor
+        
+        Returns:
+            N/A
+        """
+        
+        # Get the pin numbers for the selected motor
+        # index-1 because list of pins is 0 indexed
+        in1, in2 = _DC_MOTORS[motor_number-1] 
+        
+        # Concert the % speed to 0-4095
+        duty_cycle_value = int(speed/100 * 4095)
+        
+        if duty_cycle_value &gt; 0:
+            # Forward
+            self.pca9685.duty(in1, abs(duty_cycle_value))
+            self._pin(in2, False)
+        
+        elif duty_cycle_value &lt; 0:
+            # Backward
+            self._pin(in1, False)
+            self.pca9685.duty(in2, abs(duty_cycle_value))
+        
+        else:
+            # Release
+            self._pin(in1, False)
+            self._pin(in2, False)
+
+    def brake(self, index):
+        in1, in2 = _DC_MOTORS[motor_number-1]
+        
+        self._pin(in1, True)
+        self._pin(in2, True)
+</code></pre>
+</details>
+
+<details>
+  <summary>motor (1).py </summary>
+  <pre><code class="language-python">###############################################################################
+# motor.py
+#
+# Script for using a PCA9685 to control DC motors. This is configured for use
+# on the MCHE201 breakout board to control several motors. On the MCHE201 
+# controller board, the motors are driven with DRV8871 motor drivers. These
+# drivers have two inputs. One input should be controlled via PWM to set the 
+# speed and the other pulled low. To switch directions, we do the opposite.
+#
+# This code is modified from that created by Adafruit, which was MIT licensed. 
+# Per the MIT license, the original License is provided in this repository.
+#
+# Created: 11/02/18
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 02/25/19 - JEV
+#       - updated i2c address to match v2 of MCHE201 board
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pca9685
+
+
+_DC_MOTORS = ((2, 3), (4, 5))
+
+
+class DCMotors:
+    def __init__(self, i2c, address=0x60, freq=1600):
+        self.pca9685 = pca9685.PCA9685(i2c, address)
+        self.pca9685.freq(freq)
+
+    def _pin(self, pin, value=None):
+        if value is None:
+            return bool(self.pca9685.pwm(pin)[0])
+        if value:
+            self.pca9685.pwm(pin, 4096, 0)
+        else:
+            self.pca9685.pwm(pin, 0, 0)
+
+    def set_speed(self, motor_number, speed=None):
+        """
+        Function to set the speed of the motor
+        
+        Arguments:
+            motor_number : the number of the motor to control, either 1 or 2
+            speed : the speed +/-100% to run the motor
+        
+        Returns:
+            N/A
+        """
+        
+        # Get the pin numbers for the selected motor
+        # index-1 because list of pins is 0 indexed
+        in1, in2 = _DC_MOTORS[motor_number-1] 
+        
+        # Concert the % speed to 0-4095
+        duty_cycle_value = int(speed/100 * 4095)
+        
+        if duty_cycle_value &gt; 0:
+            # Forward
+            self.pca9685.duty(in1, abs(duty_cycle_value))
+            self._pin(in2, False)
+        
+        elif duty_cycle_value &lt; 0:
+            # Backward
+            self._pin(in1, False)
+            self.pca9685.duty(in2, abs(duty_cycle_value))
+        
+        else:
+            # Release
+            self._pin(in1, False)
+            self._pin(in2, False)
+
+    def brake(self, index):
+        in1, in2 = _DC_MOTORS[motor_number-1]
+        
+        self._pin(in1, True)
+        self._pin(in2, True)
+</code></pre>
+</details>
+
+<details>
+  <summary>MOTOR 1 MOTOR 2 LINEAR ACTUATOR.py </summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+
+
+###------------------------------------------------CODE STARTS HERE----------------------------------------------###
+
+
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2.5)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+#______________________________________________MOTOR 2 STARTS_________________________________________________
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 5)    # Go ~1/2 speed in one direction
+    time.sleep(0.5)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -5)     # Go ~1/2 speed in the other direction
+    time.sleep(0.5)                       # Continue at this speed for 1s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep_ms(10) # pause briefly to let the motor stop
+
+
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+print("The trial is finished.\n")
+
+# _______________________________MOTOR 2 CODE FINISHED______________________________________
+
+### new new ###
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Moving at 1/2 speed in one direction")
+    linear_actuator.set_speed(60)    # Go ~1/2 speed in one direction
+    time.sleep(4)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+#servo1 = pyb.Servo(1)
+#servo2 = pyb.Servo(2)
+#servo1.angle(0)
+#servo2.angle(0)
+#time.sleep(1)
+#servo1.angle(45)
+#servo2.angle(-45)
+#time.sleep(3)
+
+
+try:
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving -99 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(1.88)                       # Continue at this speed for 1.88Es
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+#servo1.angle(-45)
+#servo2.angle(45)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Moving at 1/2 speed in the other direction")
+    linear_actuator.set_speed(-60)      # Go ~1/2 speed in the other direction
+    time.sleep(2)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#___________________________________________MOTOR DRIVING FORWARD 2ND TIME________________________________________________
+
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 80)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(4) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(1.85)                       # Continue at this speed for s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+print("The trial is finished.\n")
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+</code></pre>
+</details>
+
+<details>
+  <summary>pca9685.py </summary>
+  <pre><code class="language-python">###############################################################################
+# pca9685.py
+#
+# Script for communication with and  control of the PCA9685 used on the MCHE201 
+# breakout board to control several motors. 
+#
+# This code is modified from that created by Adafruit, which was MIT licensed. 
+# Per the MIT license, the original License is provided in this repository.
+#
+# Created: 11/02/18
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 02/25/19 - JEV
+#       - updated i2c address to match v2 of MCHE201 board
+#
+# TODO:
+#   * 
+###############################################################################
+
+import ustruct
+import time
+
+
+class PCA9685:
+    def __init__(self, i2c, address=0x60):
+        self.i2c = i2c
+        self.address = address
+        self.reset()
+
+    def _write(self, address, value):
+        self.i2c.writeto_mem(self.address, address, bytearray([value]))
+
+    def _read(self, address):
+        return self.i2c.readfrom_mem(self.address, address, 1)[0]
+
+    def reset(self):
+        self._write(0x00, 0x00) # Mode1
+
+    def freq(self, freq=None):
+        if freq is None:
+            return int(25000000.0 / 4096 / (self._read(0xfe) - 0.5))
+        prescale = int(25000000.0 / 4096.0 / freq + 0.5)
+        old_mode = self._read(0x00) # Mode 1
+        self._write(0x00, (old_mode &amp; 0x7F) | 0x10) # Mode 1, sleep
+        self._write(0xfe, prescale) # Prescale
+        self._write(0x00, old_mode) # Mode 1
+        time.sleep_us(5)
+        self._write(0x00, old_mode | 0xa1) # Mode 1, autoincrement on
+
+    def pwm(self, index, on=None, off=None):
+        if on is None or off is None:
+            data = self.i2c.readfrom_mem(self.address, 0x06 + 4 * index, 4)
+            return ustruct.unpack('&lt;HH', data)
+        data = ustruct.pack('&lt;HH', on, off)
+        self.i2c.writeto_mem(self.address, 0x06 + 4 * index,  data)
+
+    def duty(self, index, value=None, invert=False):
+        if value is None:
+            pwm = self.pwm(index)
+            if pwm == (0, 4096):
+                value = 0
+            elif pwm == (4096, 0):
+                value = 4095
+            value = pwm[1]
+            if invert:
+                value = 4095 - value
+            return value
+        if not 0 &lt;= value &lt;= 4095:
+            raise ValueError("Out of range")
+        if invert:
+            value = 4095 - value
+        if value == 0:
+            self.pwm(index, 0, 4096)
+        elif value == 4095:
+            self.pwm(index, 4096, 0)
+        else:
+            self.pwm(index, 0, value)
+
+</code></pre>
+</details>
+
+<details>
+  <summary>stepper.py </summary>
+  <pre><code class="language-python">###############################################################################
+# stepper.py
+#
+# Script for using a PCA9685 to control a steppter motor. This is configured 
+# for use on the MCHE201 breakout board. On the MCHE201 controller board, the
+# stepper motors is driven with a TB6612 motor driver.
+#
+# This code is modified from that created by Adafruit, which was MIT licensed. 
+# Per the MIT license, the original License is provided in this repository.
+#
+# Created: 11/02/18
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 02/25/19 - JEV
+#       - updated i2c address to match v2 of MCHE201 board
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pca9685
+
+
+# Constants that specify the direction and style of steps.
+FORWARD = const(1)
+BACKWARD = const(2)
+SINGLE = const(1)
+DOUBLE = const(2)
+INTERLEAVE = const(3)
+MICROSTEP = const(4)
+
+# Not a const so users can change this global to 8 or 16 to change step size
+MICROSTEPS = 16
+
+# Microstepping curves (these are constants but need to be tuples/indexable):
+_MICROSTEPCURVE8 = (0, 50, 98, 142, 180, 212, 236, 250, 255)
+_MICROSTEPCURVE16 = (0, 25, 50, 74, 98, 120, 141, 162, 180, 197, 212, 225, 236, 244, 250, 253, 255)
+
+
+class StepperMotor:
+    def __init__(self, i2c, address=0x60, freq=1600):
+        self.pca9685 = pca9685.PCA9685(i2c, address)
+        self.pca9685.freq(freq)
+        
+        # Pins are hard coded to match the MCHE201 board
+        self.pwma = 13
+        self.ain2 = 12
+        self.ain1 = 11
+        self.pwmb = 8
+        self.bin2 = 9
+        self.bin1 = 10
+        
+        # Current Step position is 0 at initialization
+        self.currentstep = 0
+
+    def _pwm(self, pin, value):
+        if value &gt; 4095:
+            self.pca9685.pwm(pin, 4096, 0)
+        else:
+            self.pca9685.pwm(pin, 0, value)
+
+    def _pin(self, pin, value):
+        if value:
+            self.pca9685.pwm(pin, 4096, 0)
+        else:
+            self.pca9685.pwm(pin, 0, 0)
+
+    def onestep(self, direction, style):
+        ocra = 255
+        ocrb = 255
+        
+        # Adjust current steps based on the direction and type of step.
+        if style == SINGLE:
+            if (self.currentstep//(MICROSTEPS//2)) % 2:
+                if direction == FORWARD:
+                    self.currentstep += MICROSTEPS//2
+                else:
+                    self.currentstep -= MICROSTEPS//2
+            else:
+                if direction == FORWARD:
+                    self.currentstep += MICROSTEPS
+                else:
+                    self.currentstep -= MICROSTEPS
+        
+        elif style == DOUBLE:
+            if not (self.currentstep//(MICROSTEPS//2)) % 2:
+                if direction == FORWARD:
+                    self.currentstep += MICROSTEPS//2
+                else:
+                    self.currentstep -= MICROSTEPS//2
+            else:
+                if direction == FORWARD:
+                    self.currentstep += MICROSTEPS
+                else:
+                    self.currentstep -= MICROSTEPS
+        
+        elif style == INTERLEAVE:
+            if direction == FORWARD:
+                self.currentstep += MICROSTEPS//2
+            else:
+                self.currentstep -= MICROSTEPS//2
+        
+        elif style == MICROSTEP:
+            if direction == FORWARD:
+                self.currentstep += 1
+            else:
+                self.currentstep -= 1
+            self.currentstep += MICROSTEPS*4
+            self.currentstep %= MICROSTEPS*4
+            ocra = 0
+            ocrb = 0
+            if MICROSTEPS == 8:
+                curve = _MICROSTEPCURVE8
+            elif MICROSTEPS == 16:
+                curve = _MICROSTEPCURVE16
+            else:
+                raise RuntimeError('MICROSTEPS must be 8 or 16!')
+            if 0 &lt;= self.currentstep &lt; MICROSTEPS:
+                ocra = curve[MICROSTEPS - self.currentstep]
+                ocrb = curve[self.currentstep]
+            elif MICROSTEPS &lt;= self.currentstep &lt; MICROSTEPS*2:
+                ocra = curve[self.currentstep - MICROSTEPS]
+                ocrb = curve[MICROSTEPS*2 - self.currentstep]
+            elif MICROSTEPS*2 &lt;= self.currentstep &lt; MICROSTEPS*3:
+                ocra = curve[MICROSTEPS*3 - self.currentstep]
+                ocrb = curve[self.currentstep - MICROSTEPS*2]
+            elif MICROSTEPS*3 &lt;= self.currentstep &lt; MICROSTEPS*4:
+                ocra = curve[self.currentstep - MICROSTEPS*3]
+                ocrb = curve[MICROSTEPS*4 - self.currentstep]
+        
+        self.currentstep += MICROSTEPS*4
+        self.currentstep %= MICROSTEPS*4
+        
+        # Set PWM outputs.
+        self._pwm(self.pwma, ocra*16)
+        self._pwm(self.pwmb, ocrb*16)
+        latch_state = 0
+        
+        # Determine which coils to energize:
+        if style == MICROSTEP:
+            if 0 &lt;= self.currentstep &lt; MICROSTEPS:
+                latch_state |= 0x3
+            elif MICROSTEPS &lt;= self.currentstep &lt; MICROSTEPS*2:
+                latch_state |= 0x6
+            elif MICROSTEPS*2 &lt;= self.currentstep &lt; MICROSTEPS*3:
+                latch_state |= 0xC
+            elif MICROSTEPS*3 &lt;= self.currentstep &lt; MICROSTEPS*4:
+                latch_state |= 0x9
+        else:
+            latch_step = self.currentstep//(MICROSTEPS//2)
+            if latch_step == 0:
+                latch_state |= 0x1  # energize coil 1 only
+            elif latch_step == 1:
+                latch_state |= 0x3  # energize coil 1+2
+            elif latch_step == 2:
+                latch_state |= 0x2  # energize coil 2 only
+            elif latch_step == 3:
+                latch_state |= 0x6  # energize coil 2+3
+            elif latch_step == 4:
+                latch_state |= 0x4  # energize coil 3 only
+            elif latch_step == 5:
+                latch_state |= 0xC  # energize coil 3+4
+            elif latch_step == 6:
+                latch_state |= 0x8  # energize coil 4 only
+            elif latch_step == 7:
+                latch_state |= 0x9  # energize coil 1+4
+        
+        # Energize coils as appropriate:
+        if latch_state &amp; 0x1:
+            self._pin(self.ain2, True)
+        else:
+            self._pin(self.ain2, False)
+        
+        if latch_state &amp; 0x2:
+            self._pin(self.bin1, True)
+        else:
+            self._pin(self.bin1, False)
+        
+        if latch_state &amp; 0x4:
+            self._pin(self.ain1, True)
+        else:
+            self._pin(self.ain1, False)
+        
+        if latch_state &amp; 0x8:
+            self._pin(self.bin2, True)
+        else:
+            self._pin(self.bin2, False)
+        return self.currentstep</code></pre>
+</details>
+
+<details>
+  <summary>actuator.py </summary>
+  <pre><code class="language-python">###############################################################################
+# pca9685.py
+#
+# Script for using a PCA9685 to control the DC motor of a linear actuator.
+# This is configured for use on the MCHE201 breakout board. On the MCHE201 
+# controller board, the linear actuator is driven with a DRV8871 motor driver,
+# which has two inputs. One input should be controlled via PWM to set the 
+# speed and the other pulled low. To switch directions, we do the opposite.
+#
+# This code is modified from that created by Adafruit, which was MIT licensed. 
+# Per the MIT license, the original License is provided in this repository.
+#
+# Created: 11/02/18
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 02/25/19 - JEV
+#       - updated i2c address to match v2 of MCHE201 board
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pca9685
+
+class LinearActuator:
+    def __init__(self, i2c, address=0x60, freq=1600):
+        self.pca9685 = pca9685.PCA9685(i2c, address)
+        self.pca9685.freq(freq)
+        
+        self.speed = 0
+        
+        # Set the pin numbers for the selected motor
+        # These are hard coded here, since here is only 1 linear actuator
+        self.in1 = 6
+        self.in2 = 7
+
+    def _pin(self, pin, value=None):
+        if value is None:
+            return bool(self.pca9685.pwm(pin)[0])
+        if value:
+            self.pca9685.pwm(pin, 4096, 0)
+        else:
+            self.pca9685.pwm(pin, 0, 0)
+
+    def set_speed(self, speed=0):
+        """
+        Function to set the speed of the linear actuator's motor
+        
+        Arguments:
+            speed : the speed +/-100% to run the actuator
+        
+        Returns:
+            N/A
+        """
+        
+        self.speed = speed
+        
+        if speed &gt; 0:             # Forward
+            # Correct for the dead-zone from +/-50% duty cycle
+            speed = 0.5 * speed + 50
+        
+            # Concert the % speed to 0-4095
+            duty_cycle_value = int(speed/100 * 4095)    
+            
+            self.pca9685.duty(self.in1, abs(duty_cycle_value))
+            self._pin(self.in2, False)
+        
+        elif speed &lt; 0:            # Backward
+            # Correct for the dead-zone from +/-50% duty cycle
+            speed = 0.5 * speed - 50
+        
+            # Concert the % speed to 0-4095
+            duty_cycle_value = int(speed/100 * 4095)
+            
+            self._pin(self.in1, False)
+            self.pca9685.duty(self.in2, abs(duty_cycle_value))
+        
+        else:
+            # Release
+            self._pin(self.in1, False)
+            self._pin(self.in2, False)
+        
+
+    def brake(self, index):
+        self._pin(self.in1, True)
+        self._pin(self.in2, True)
+</code></pre>
+</details>
+
+<details>
+  <summary>LinAct.py </summary>
+  <pre><code class="language-python">#linear actuator code working, extended &amp; retract
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Moving at 1/2 speed in one direction")
+    linear_actuator.set_speed(50)    # Go ~1/2 speed in one direction
+    time.sleep(10)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Moving at 1/2 speed in the other direction")
+    linear_actuator.set_speed(-50)      # Go ~1/2 speed in the other direction
+    time.sleep(10)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise </code></pre>
+</details>
+
+<details>
+  <summary>prior to buzzer 04132023.txt </summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#__________________________Motor 1_____________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(0.01) # Sleep 1/100th of a second
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2.5)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Swinging fowards")
+    motors.set_speed(MOTOR_NUMBER, 90)    # Go ~1/2 speed in one direction
+    time.sleep(3.7)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Pausing - toys drop in hopefully?")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Arm Returning")
+    motors.set_speed(MOTOR_NUMBER, -90)     # Go ~1/2 speed in the other direction
+    time.sleep(3.7)                       # Continue at this speed for 2.8s
+
+    # To stop, issue a speed of 0
+    print("Arm swing complete")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+###___________________________________________FINISH DUMPING MAIN CHARACTERS.......ABOUT TO FOLD OUT ARMS_________________________
+
+#_______________________________________________LINEAR ACTUATOR INJECTED____________________________________
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(30)    # Go ~1/2 speed in one direction
+    time.sleep(10)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -75)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-30)      # Go ~1/2 speed in the other direction
+    time.sleep(10)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(5) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+print("The trial is finished.\n")
+
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+<details>
+  <summary>buzzer-mario.txt </summary>
+  <pre><code class="language-python">import pyb      # import the pyboard module
+
+# define the frequency for each note
+B0  = 31
+C1  = 33
+CS1 = 35
+D1  = 37
+DS1 = 39
+E1  = 41
+F1  = 44
+FS1 = 46
+G1  = 49
+GS1 = 52
+A1  = 55
+AS1 = 58
+B1  = 62
+C2  = 65
+CS2 = 69
+D2  = 73
+DS2 = 78
+E2  = 82
+F2  = 87
+FS2 = 93
+G2  = 98
+GS2 = 104
+A2  = 110
+AS2 = 117
+B2  = 123
+C3  = 131
+CS3 = 139
+D3  = 147
+DS3 = 156
+E3  = 165
+F3  = 175
+FS3 = 185
+G3  = 196
+GS3 = 208
+A3  = 220
+AS3 = 233
+B3  = 247
+C4  = 262
+CS4 = 277
+D4  = 294
+DS4 = 311
+E4  = 330
+F4  = 349
+FS4 = 370
+G4  = 392
+GS4 = 415
+A4  = 440
+AS4 = 466
+B4  = 494
+C5  = 523
+CS5 = 554
+D5  = 587
+DS5 = 622
+E5  = 659
+F5  = 698
+FS5 = 740
+G5  = 784
+GS5 = 831
+A5  = 880
+AS5 = 932
+B5  = 988
+C6  = 1047
+CS6 = 1109
+D6  = 1175
+DS6 = 1245
+E6  = 1319
+F6  = 1397
+FS6 = 1480
+G6  = 1568
+GS6 = 1661
+A6  = 1760
+AS6 = 1865
+B6  = 1976
+C7  = 2093
+CS7 = 2217
+D7  = 2349
+DS7 = 2489
+E7  = 2637
+F7  = 2794
+FS7 = 2960
+G7  = 3136
+GS7 = 3322
+A7  = 3520
+AS7 = 3729
+B7  = 3951
+C8  = 4186
+CS8 = 4435
+D8  = 4699
+DS8 = 4978
+
+
+# ----- Set up pin PWM timer for output to the buzzer ------------------------
+#
+buzzerPin = pyb.Pin("Y6") # Pin Y1 with timer 1 Channel 1
+tim = pyb.Timer(1, freq=3000)
+ch = tim.channel(1, pyb.Timer.PWM, pin=buzzerPin)
+#
+# ----- End of set up pin PWM timer for output to the buzzer ------------------
+
+## define a list of the tones defined above
+# note = [B0, C1, CS1, D1, DS1, E1, F1, FS1, G1, GS1, A1, AS1, B1, C2, CS2, D2, DS2, E2, F2, FS2, G2, GS2, A2, AS2, B2, C3, CS3, D3, DS3, E3, F3, FS3, G3, GS3, A3, AS3, B3, C4, CS4, D4, DS4, E4, F4, FS4, G4, GS4, A4, AS4, B4, C5, CS5, D5, DS5, E5, F5, FS5, G5, GS5, A5, AS5, B5, C6, CS6, D6, DS6, E6, F6, FS6, G6, GS6, A6, AS6, B6, C7, CS7, D7, DS7, E7, F7, FS7, G7, GS7, A7, AS7, B7, C8, CS8, D8, DS8]
+
+# # Now, loop through them, playing each for 300ms
+# for i in note:
+#     # Set the timer frequency
+#     tim.freq(i)
+#     
+#     # Print the current frequency
+#     print("Current Frequency: {}".format(i))
+#     
+#     # Output at 30%... Don't change this!
+#     ch.pulse_width_percent(30)
+#     
+#     # Delay in order to play the note for a nonzero amount of time
+#     pyb.delay(300)
+
+# Define a sequence of notes to play the Super Mario Bros. theme
+mario = [E7, E7, 0, E7, 0, C7, E7, 0, G7, 0, 0, 0, G6, 0, 0, 0, C7, 0, 0, G6, 0, 0, E6, 0, 0, A6, 0, B6, 0, AS6, A6, 0, G6, E7, 0, G7, A7, 0, F7, G7, 0, E7, 0,C7, D7, B6, 0, 0, C7, 0, 0, G6, 0, 0, E6, 0, 0, A6, 0, B6, 0, AS6, A6, 0, G6, E7, 0, G7, A7, 0, F7, G7, 0, E7, 0,C7, D7, B6, 0, 0]
+
+# play Mario Bros tone example
+# source from here http://www.linuxcircle.com/2013/03/31/playing-mario-bros-tune-with-arduino-and-piezo-buzzer/
+for note in mario:
+    if note == 0:
+        ch.pulse_width_percent(0) # a pause in the sound
+
+    else:
+        tim.freq(note)
+        # change frequency to match the desired note
+        ch.pulse_width_percent(30)  # Output at 30%... Don't change this!
+
+    pyb.delay(150)</code></pre>
+</details>
+
+<details>
+  <summary>Competition.txt <span class="badge">Likely later / competition version</span></summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#__________________________Motor 1_____________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(0.01) # Sleep 1/100th of a second
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2.5)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Swinging fowards")
+    motors.set_speed(MOTOR_NUMBER, 90)    # Go ~1/2 speed in one direction
+    time.sleep(3.7)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Pausing - toys drop in hopefully?")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Arm Returning")
+    motors.set_speed(MOTOR_NUMBER, -90)     # Go ~1/2 speed in the other direction
+    time.sleep(3.7)                       # Continue at this speed for 2.8s
+
+    # To stop, issue a speed of 0
+    print("Arm swing complete")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+###___________________________________________FINISH DUMPING MAIN CHARACTERS.......ABOUT TO FOLD OUT ARMS_________________________
+
+#_______________________________________________LINEAR ACTUATOR INJECTED____________________________________
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(60)    # Go ~1/2 speed in one direction
+    time.sleep(4)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -75)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-60)      # Go ~1/2 speed in the other direction
+    time.sleep(2)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(25) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+print("The trial is finished.\n")
+
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+<details>
+  <summary>pyboard servomotor - multiple.py </summary>
+  <pre><code class="language-python">
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+# Define the servo object. The numbering scheme differs between the pyboard and
+# the pyboard LITE.
+# 
+# For the pyboard:
+#  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+#
+# For the pyboard LITE:
+#  Servo 1 is connected to X3, Servo 2 to X4, Servo 3 to X1, and Servo 2 to X2
+
+# Here, we'll use the first and fourth positions on the pyboard
+servo1 = pyb.Servo(1)
+servo2 = pyb.Servo(2)
+
+# Now, we can control the angle of the two servos, just moving them in opposite 
+# directions
+#
+# The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+# over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+# -45 &lt; angle &lt; 45
+servo1.angle(45)
+servo2.angle(-45)
+
+# Sleep 1s to let it move to that angle
+time.sleep(1)
+
+# Move to -60degrees
+servo1.angle(-45)
+servo2.angle(45)
+
+# Sleep 1s to let it move to that angle
+time.sleep(1)
+
+# We can also get the current angle of the servo. Note that this is based
+# on the current servo command, not the actual physical angle of the servo
+# In many cases, the servo should nearly-exactly track the angle command.
+# However, it is possible that the servo does not track the command.
+#
+# To get the angle, call the .angle() method without an argument
+current_servo1_angle = servo1.angle()
+print("The current servo1 angle is {:+5.2f} degrees.".format(current_servo1_angle))
+
+current_servo4_angle = servo4.angle()
+print("The current servo4 angle is {:+5.2f} degrees.".format(current_servo4_angle))
+
+# Finally, we can also specify how long it should take the servo to move to the 
+# commanded angle by adding a second argument to the .angle() call. The 
+# argument should be the time to move in milliseconds (1000 = 1s)
+
+# Move to 45 degrees, taking 2seconds to get there
+servo1.angle(45, 2000)
+servo4.angle(-45, 2000)
+
+# Let's monitor the angle as it moves
+current_angle = servo1.angle()
+
+# While we're more than 1 degree away from the target, print the current angle
+while (((current_servo1_angle-45)**2 &gt; 1.0) or ((current_servo4_angle+45)**2 &gt; 1.0)): 
+    # To get the angle, call the .angle() method without an argument
+    current_servo1_angle = servo1.angle()
+    print("The current servo1 angle is {:+5.2f} degrees.".format(current_servo1_angle))
+
+    current_servo4_angle = servo4.angle()
+    print("The current servo4 angle is {:+5.2f} degrees.".format(current_servo4_angle))
+    time.sleep_ms(100)
+
+current_angle = servo1.angle()
+print("Arrived at a final angles of {:+5.2f} and {:+5.2f} degrees.".format(current_servo1_angle,
+                                                                           current_servo4_angle))
+</code></pre>
+</details>
+
+<details>
+  <summary>before consolidating servos.txt  <span class="badge" style="background:#3f1d1d;border-color:#4b1f1f">Archive / superseded</span></summary>
+  <pre><code class="language-python">###BACKUPP
+import pyb  # import the pyboard module
+import time # import the time module
+# We'll use the machine i2c implementation.
+import machine 
+# We also need to import the DC motor code from the library
+import motor
+import actuator
+
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+linear_actuator = actuator.LinearActuator(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER_1 = 1 # DC motor 1
+MOTOR_NUMBER_2 = 2 # DC motor 2
+
+
+# This will loop until the value of start_trial becomes true
+input_pin = pyb.Pin("X6", pyb.Pin.IN, pull=pyb.Pin.PULL_DOWN)
+
+servo1 = pyb.Servo(1)
+servo2 = pyb.Servo(2)
+
+servo1.angle(-75)
+servo2.angle(75)
+
+time.sleep(0.1)
+
+
+# This will loop forever, checking the button every 10ms
+while (True):
+    input_state = input_pin.value()   # read the state of the input
+    
+    if (input_state):
+        print("The start button is pressed. I'll run the main code now.\n")
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, 99)    # Go ~1/2 speed in one direction
+        time.sleep(1.4)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+        # To control the motor, give it a speed between -100 and 100
+        print("Swinging fowards")
+        motors.set_speed(MOTOR_NUMBER_2, 99)    # Go ~1/2 speed in one direction... (speed) 83.25=90 as (t) 4=3.7
+        time.sleep(3.5)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Pausing - toys drop in hopefully?")
+        motors.set_speed(MOTOR_NUMBER_2, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+        # To turn the motor in the opposite direction, give a negative speed
+        print("Arm Returning")
+        motors.set_speed(MOTOR_NUMBER_2, -99)     # Go ~1/2 speed in the other direction
+        time.sleep(3.39)                       # Continue at this speed for 2.8s
+
+        # To stop, issue a speed of 0
+        print("Arm swing complete")
+        motors.set_speed(MOTOR_NUMBER_2, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop
+
+        print("The start button is pressed. I'll run the main code now.\n")
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, -90)    # Go ~1/2 speed in one direction
+        time.sleep(0.5)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+
+        # To control the actuator, give it a speed between -100 and 100
+        print("Both arms folding out")
+        linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+        time.sleep(1.3)                  # Continue at this speed for 0.5s
+
+        # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        linear_actuator.set_speed(0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+
+        
+        # For the pyboard:
+        #  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+        # Here, we'll use the first position on the pyboard
+
+
+        # Now, we can control the angle of the servo
+        # The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+        # over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+        # -45 &lt; angle &lt; 45
+        servo1.angle(0,1000)
+        servo2.angle(0,1000)
+
+        time.sleep(1)
+
+        servo1.angle(-75,1000)             # Move the servo to -80 deg
+        servo2.angle(75,1000)
+                
+        time.sleep(1)                     # Sleep for 3s
+
+        print("Both arms folding out")
+        linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+        time.sleep(2)                  # Continue at this speed for 0.5s
+
+        linear_actuator.set_speed(0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here 
+
+        print("The start button is pressed. I'll run the main code now.\n")
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, -50)    # Go ~1/2 speed in one direction
+        time.sleep(1)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+                
+        servo1.angle(0,1000)                     # Now, move angle to 160 by adding another 80 degrees
+        servo2.angle(0,1000)        
+
+        time.sleep(1)                   # sleep for 2 seconds to disallow any other action during this time.
+
+
+        print("The start button is pressed. I'll run the main code now.\n")
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, -50)    # Go ~1/2 speed in one direction
+        time.sleep(0.5)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+        print("Both arms folding out")
+        linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+        time.sleep(2)                  # Continue at this speed for 0.5s
+
+        linear_actuator.set_speed(0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here 
+
+        # For the pyboard:
+        #  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+        # Here, we'll use the first position on the pyboard
+        servo1 = pyb.Servo(1)
+        servo2 = pyb.Servo(2)
+
+        # Now, we can control the angle of the servo
+        # The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+        # over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+        # -45 &lt; angle &lt; 45
+        servo1.angle(0)
+        servo2.angle(0)
+
+        time.sleep(0.5)
+
+        servo1.angle(75,1000)             # Move the servo to -80 deg
+        servo2.angle(-75,1000)
+                
+        time.sleep(0.5)                     # Sleep for 3s
+                
+
+
+
+
+
+
+
+        servo1.angle(-75,1000)                     # Now, move angle to 160 by adding another 80 degrees
+        servo2.angle(75,1000)        
+
+        time.sleep(0.1)                   # sleep for 2 seconds to disallow any other action during this time.
+
+
+
+
+
+
+
+        print("The start button is pressed. I'll run the main code now.\n")
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, -70)    # Go ~1/2 speed in one direction
+        time.sleep(1.5)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+        
+
+        linear_actuator.set_speed(-70)    # Go ~1/2 speed in one direction
+        time.sleep(3.3)                  # Continue at this speed for 0.5s
+
+        linear_actuator.set_speed(0)
+        time.sleep(0.1) # pause briefly to let the motor stop - 1s here
+
+
+
+
+        time.sleep(30)
+    else:
+        print("The start button is not pressed.")
+    time.sleep_ms(10) 
+
+</code></pre>
+</details>
+
+<details>
+  <summary>Dr kings edits.txt </summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+# We'll use the machine i2c implementation.
+import machine 
+# We also need to import the DC motor code from the library
+import motor
+import actuator
+
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+linear_actuator = actuator.LinearActuator(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER_1 = 1 # DC motor 1
+MOTOR_NUMBER_2 = 2 # DC motor 2
+
+
+# This will loop until the value of start_trial becomes true
+input_pin = pyb.Pin("X6", pyb.Pin.IN, pull=pyb.Pin.PULL_DOWN)
+
+# This will loop forever, checking the button every 10ms
+while (True):
+    input_state = input_pin.value()   # read the state of the input
+    
+    if (input_state):
+        print("The start button is pressed. I'll run the main code now.\n")
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, 75)    # Go ~1/2 speed in one direction
+        time.sleep(2)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+        # To control the actuator, give it a speed between -100 and 100
+        print("Both arms folding out")
+        linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+        time.sleep(1.65)                  # Continue at this speed for 0.5s
+
+        # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        linear_actuator.set_speed(0)
+        time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+        # To control the motor, give it a speed between -100 and 100
+        print("Moving Foward.")
+        motors.set_speed(MOTOR_NUMBER_1, 30)    # Go ~1/2 speed in one direction
+        time.sleep(1)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Stopping.")
+        motors.set_speed(MOTOR_NUMBER_1, 0)
+        time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+        
+        
+        # For the pyboard:
+        #  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+        # Here, we'll use the first position on the pyboard
+        servo1 = pyb.Servo(1)
+
+        # Now, we can control the angle of the servo
+        # The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+        # over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+        # -45 &lt; angle &lt; 45
+        servo1.angle(0)
+
+        time.sleep(2)
+
+        servo1.angle(75)             # Move the servo to -80 deg
+                
+        time.sleep(2)                     # Sleep for 3s
+                
+        servo1.angle(-75)                     # Now, move angle to 160 by adding another 80 degrees
+                
+        time.sleep(2)                   # sleep for 2 seconds to disallow any other action during this time.
+
+       
+       
+        servo2 = pyb.Servo(2)
+
+        servo2.angle(0)
+
+        time.sleep(2)
+
+        servo2.angle(75)             # Move the servo to -80 deg
+                
+        time.sleep(2)                     # Sleep for 3s
+                
+        servo2.angle(-75)                     # Now, move angle to 160 by adding another 80 degrees
+                
+        time.sleep(2)                   # sleep for 2 seconds to disallow any other action during this time.
+
+
+        
+        # To control the motor, give it a speed between -100 and 100
+        print("Swinging fowards")
+        motors.set_speed(MOTOR_NUMBER_2, 99)    # Go ~1/2 speed in one direction... (speed) 83.25=90 as (t) 4=3.7
+        time.sleep(3.85)                       # Continue at this speed for 
+
+        # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+        # To stop, issue a speed of 0
+        print("Pausing - toys drop in hopefully?")
+        motors.set_speed(MOTOR_NUMBER_2, 0)
+        time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+        # To turn the motor in the opposite direction, give a negative speed
+        print("Arm Returning")
+        motors.set_speed(MOTOR_NUMBER_2, -99)     # Go ~1/2 speed in the other direction
+        time.sleep(3.85)                       # Continue at this speed for 2.8s
+
+        # To stop, issue a speed of 0
+        print("Arm swing complete")
+        motors.set_speed(MOTOR_NUMBER_2, 0)
+        time.sleep(0.5) # pause briefly to let the motor stop
+
+        time.sleep(30)
+    else:
+        print("The start button is not pressed.")
+    time.sleep_ms(10) 
+
+</code></pre>
+</details>
+
+<details>
+  <summary>SIMPLE SERVO 1.txt </summary>
+  <pre><code class="language-python"># For the pyboard:
+#  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+# Here, we'll use the first position on the pyboard
+servo1 = pyb.Servo(1)
+
+# Now, we can control the angle of the servo
+# The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+# over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+# -45 &lt; angle &lt; 45
+servo1.angle(0)
+
+time.sleep(2)
+
+servo1.angle(75)             # Move the servo to -80 deg
+        
+time.sleep(2)                     # Sleep for 3s
+        
+servo1.angle(-75)                     # Now, move angle to 160 by adding another 80 degrees
+        
+time.sleep(2)                   # sleep for 2 seconds to disallow any other action during this time.
+
+time.sleep_ms(10)               # Sleep 10 milliseconds (0.01s)
+
+</code></pre>
+</details>
+
+<details>
+  <summary>servo info 2.py </summary>
+  <pre><code class="language-python">###############################################################################
+# main.py
+#
+# This script is one way to solve the 10th in-class exercise from MCHE201 in the 
+# spring semester of 2018. 
+#
+# That exercise was given as:
+#* Connect
+#   - a pushbutton
+#   - the servomotor
+# * Start the servo at 0deg
+# * When the button is pressed, move servo to 30deg for 1sec, then back to 0
+# * Only allow this to happen once per 30seconds
+#
+# In this version of the solution, check for the status of the button 
+# repeatedly. Once it is pressed, we move the servo then sleep for 30s. This is
+# not the most generalizable way to do this, but it does solve the problem at 
+# hand. 
+# 
+# To generalize, you need to allow for other operations during the 30 seconds.
+# These could happen inside the "button pressed" part of the code, in place of
+# the pure sleep. For the final contest, you might still want long-ish delay
+# here to prevent your machine from re-running if a trial 
+#
+# Created: 03/15/18
+#   - Joshua Vaughan
+#   - joshua.vaughan@louisiana.edu
+#   - http://www.ucs.louisiana.edu/~jev9637
+#
+# Modified:
+#   * 10/25/18- JEV - joshua.vaughan@louisiana.edu
+#       - updated pin number to reflect upcoming MCHE201 breakout
+#
+# TODO:
+#   * 
+###############################################################################
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+# Assign the input pin to variable input_pin
+# We set it up as an input with a pulldown resistor
+input_pin = pyb.Pin("X6", pyb.Pin.IN, pull=pyb.Pin.PULL_DOWN)
+
+# For the pyboard:
+#  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+# Here, we'll use the first position on the pyboard
+servo1 = pyb.Servo(1)
+
+# Now, we can control the angle of the servo
+# The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+# over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+# -45 &lt; angle &lt; 45
+servo1.angle(0)
+
+# This will loop forever, checking the button every 10ms
+while (True):
+    input_state = input_pin.value()   # read the state of the input
+    
+    if (input_state):
+        print("The button was pressed. I'll move the servo now.\n")
+        
+        # Move the servo to 30 deg
+        servo.angle(30)
+        
+        # Sleep for 1s
+        time.sleep(1)
+        
+        # Now, move back to 0deg
+        servo.angle(0)
+        
+        # sleep for 29seconds to disallow any other action during this time.
+        time.sleep(29)
+        
+    else:
+        print("Button is not pressed. I'll wait, then check again.\n")
+
+    time.sleep_ms(10)          # Sleep 10 milliseconds (0.01s)</code></pre>
+</details>
+
+<details>
+  <summary>servo info.py </summary>
+  <pre><code class="language-python">
+
+
+#___________________________________moving servo motors_______________________________________________
+
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+servo1 = pyb.Servo(1)
+servo2 = pyb.Servo(2)
+
+servo1.angle(85)
+servo2.angle(-85)
+
+time.sleep(3)
+
+
+
+
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+servo1 = pyb.Servo(1)
+servo2 = pyb.Servo(2)
+
+servo1.angle(0)
+servo2.angle(-0)
+
+time.sleep(1)
+
+
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+<details>
+  <summary>old code.txt  <span class="badge" style="background:#3f1d1d;border-color:#4b1f1f">Archive / superseded</span></summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(1) # Sleep 1 seconds
+
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, -75)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+servo1 = pyb.Servo(1)
+#servo2 = pyb.Servo(2)
+servo1.angle(0)
+#servo2.angle(0)
+time.sleep(1)
+servo1.angle(45)
+#servo2.angle(-45)
+time.sleep(3)
+
+
+try:
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, 75)     # Go ~1/2 speed in the other direction
+    time.sleep(1.9)                       # Continue at this speed for s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+servo1.angle(-45)
+#servo2.angle(45)
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, -75)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(4) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, 75)     # Go ~1/2 speed in the other direction
+    time.sleep(1.9)                       # Continue at this speed for s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+</code></pre>
+</details>
+
+<details>
+  <summary>fullcode with servo motors useless.txt  <span class="badge" style="background:#3f1d1d;border-color:#4b1f1f">Archive / superseded</span></summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#__________________________Motor 1_____________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(0.01) # Sleep 1/100th of a second
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2.5)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Swinging fowards")
+    motors.set_speed(MOTOR_NUMBER, 99)    # Go ~1/2 speed in one direction
+    time.sleep(3.0)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Pausing - toys drop in hopefully?")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Arm Returning")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(3.0)                       # Continue at this speed for 2.8s
+
+    # To stop, issue a speed of 0
+    print("Arm swing complete")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+###___________________________________________FINISH DUMPING MAIN CHARACTERS.......ABOUT TO FOLD OUT ARMS_________________________
+
+#_______________________________________________LINEAR ACTUATOR INJECTED____________________________________
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(60)    # Go ~1/2 speed in one direction
+    time.sleep(4)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -75)    # Go ~1/2 speed in one direction
+    time.sleep(2.5)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-60)      # Go ~1/2 speed in the other direction
+    time.sleep(2)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#___________________________________________MOTOR 1 DRIVING FORWARD SECOND TIME________________________________________________
+#______________________________________________________________________________________________________________
+
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Positioning for 1st row of FAUNA")
+    motors.set_speed(MOTOR_NUMBER, 50)    # Go ~1/2 speed in one direction
+    time.sleep(3)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+    time.sleep(4)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+#___________________________________moving servo motors_______________________________________________
+
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+servo1 = pyb.Servo(1)
+servo2 = pyb.Servo(2)
+
+servo1.angle(85)
+servo2.angle(-85)
+
+time.sleep(3)
+
+
+
+import machine 
+
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Positioning for 1st row of FAUNA")
+    motors.set_speed(MOTOR_NUMBER, 50)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+servo1 = pyb.Servo(1)
+servo2 = pyb.Servo(2)
+
+servo1.angle(0)
+servo2.angle(-0)
+
+time.sleep(1)
+
+
+
+import machine 
+
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Positioning for 1st row of FAUNA")
+    motors.set_speed(MOTOR_NUMBER, 45)    # Go ~1/2 speed in one direction
+    time.sleep(1.2)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(3) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-70)      # Go ~1/2 speed in the other direction
+    time.sleep(2)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Positioning for 1st row of FAUNA")
+    motors.set_speed(MOTOR_NUMBER, -50)    # Go ~1/2 speed in one direction
+    time.sleep(3)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(3) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+print("The trial is finished.\n")
+
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+<details>
+  <summary>worx.txt <span class="badge">Likely later / competition version</span></summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+# We'll use the machine i2c implementation.
+import machine 
+# We also need to import the DC motor code from the library
+import motor
+import actuator
+
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#__________________________Motor 1_____________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(0.01) # Sleep 1/100th of a second
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#servo motors should swing out on each side to get farthest diagonal toys
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+    time.sleep(1.65)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 30)    # Go ~1/2 speed in one direction
+    time.sleep(1)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+#servo motors should swing out on each side to get farthest diagonal toys
+
+# For the pyboard:
+#  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+# Here, we'll use the first position on the pyboard
+servo1 = pyb.Servo(1)
+
+# Now, we can control the angle of the servo
+# The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+# over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+# -45 &lt; angle &lt; 45
+servo1.angle(0)
+
+time.sleep(2)
+
+servo1.angle(75)             # Move the servo to -80 deg
+        
+time.sleep(2)                     # Sleep for 3s
+        
+servo1.angle(-75)                     # Now, move angle to 160 by adding another 80 degrees
+        
+time.sleep(2)                   # sleep for 2 seconds to disallow any other action during this time.
+
+time.sleep_ms(10)               # Sleep 10 milliseconds (0.01s)
+
+
+
+
+
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Swinging fowards")
+    motors.set_speed(MOTOR_NUMBER, 99)    # Go ~1/2 speed in one direction... (speed) 83.25=90 as (t) 4=3.7
+    time.sleep(3.85)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Pausing - toys drop in hopefully?")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Arm Returning")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(3.85)                       # Continue at this speed for 2.8s
+
+    # To stop, issue a speed of 0
+    print("Arm swing complete")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+###___________________________________________FINISH DUMPING MAIN CHARACTERS.......ABOUT TO FOLD OUT ARMS FARTHER_________________________
+
+###_______________________________________________LINEAR ACTUATOR swings our farther____________________________________
+
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+    time.sleep(2.35)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -50)    # Go ~1/2 speed in one direction
+    time.sleep(1.3)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise
+
+
+
+
+###_____________________servo motors here out how many degrees
+
+# For the pyboard:
+#  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+# Here, we'll use the first position on the pyboard
+servo1 = pyb.Servo(1)
+
+# Now, we can control the angle of the servo
+# The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+# over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+# -45 &lt; angle &lt; 45
+servo1.angle(0)
+
+time.sleep(2)
+
+servo1.angle(75)             # Move the servo to -80 deg
+        
+time.sleep(2)                     # Sleep for 3s
+        
+servo1.angle(-75)                     # Now, move angle to 160 by adding another 80 degrees
+        
+time.sleep(2)                   # sleep for 2 seconds to disallow any other action during this time.
+
+time.sleep_ms(10)               # Sleep 10 milliseconds (0.01s)
+
+
+
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -59)    # Go ~1/2 speed in one direction
+    time.sleep(1.55)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-70)      # Go ~1/2 speed in the other direction
+    time.sleep(4)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(0.5) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+###____________________________________________________Buzzer for S#!T$ &amp; GIGGLES____________________________###
+
+
+
+
+print("The trial is finished.\n")
+
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+
+</code></pre>
+</details>
+
+<details>
+  <summary>deleted WHOLE.txt  <span class="badge" style="background:#3f1d1d;border-color:#4b1f1f">Archive / superseded</span></summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+# We'll use the machine i2c implementation.
+import machine 
+# We also need to import the DC motor code from the library
+import motor
+import actuator
+
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#__________________________Motor 1_____________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(0.01) # Sleep 1/100th of a second
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#servo motors should swing out on each side to get farthest diagonal toys
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+    time.sleep(1.65)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 30)    # Go ~1/2 speed in one direction
+    time.sleep(1)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+#servo motors should swing out on each side to get farthest diagonal toys
+
+import pyb  # import the pyboard module
+import time # import the time module
+
+
+# For the pyboard:
+#  Servo 1 is connected to X1, Servo 2 to X2, Servo 3 to X3, and Servo 2 to X4
+# Here, we'll use the first position on the pyboard
+servo1 = pyb.Servo(1)
+
+# Now, we can control the angle of the servo
+# The range of possible angles is -90 &lt; angle &lt; 90, but many servos can't move
+# over that entire range. A safer range is -60 &lt; angle &lt; 60 or even 
+# -45 &lt; angle &lt; 45
+servo1.angle(0)
+
+time.sleep(2)
+
+servo1.angle(75)             # Move the servo to -80 deg
+        
+time.sleep(2)                     # Sleep for 3s
+        
+servo1.angle(-75)                     # Now, move angle to 160 by adding another 80 degrees
+        
+time.sleep(2)                   # sleep for 2 seconds to disallow any other action during this time.
+
+time.sleep_ms(10)               # Sleep 10 milliseconds (0.01s)
+
+
+
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Swinging fowards")
+    motors.set_speed(MOTOR_NUMBER, 99)    # Go ~1/2 speed in one direction... (speed) 83.25=90 as (t) 4=3.7
+    time.sleep(4)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Pausing - toys drop in hopefully?")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Arm Returning")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(3.85)                       # Continue at this speed for 2.8s
+
+    # To stop, issue a speed of 0
+    print("Arm swing complete")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+
+###___________________________________________FINISH DUMPING MAIN CHARACTERS.......ABOUT TO FOLD OUT ARMS FARTHER_________________________
+
+###_______________________________________________LINEAR ACTUATOR swings our farther____________________________________
+
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(70)    # Go ~1/2 speed in one direction
+    time.sleep(2.35)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -50)    # Go ~1/2 speed in one direction
+    time.sleep(1)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+    ###_____________________servo motors here outt how many degrees
+
+        # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, -59)    # Go ~1/2 speed in one direction
+    time.sleep(1.55)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(0.5) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-70)      # Go ~1/2 speed in the other direction
+    time.sleep(4)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(0.5) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+###____________________________________________________Buzzer for S#!T$ &amp; GIGGLES____________________________###
+
+
+
+
+print("The trial is finished.\n")
+
+
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+
+</code></pre>
+</details>
+
+<details>
+  <summary>Completed code after 3 hours with arm.txt </summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#__________________________Motor 1_____________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(0.01) # Sleep 1/100th of a second
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving Foward.")
+    motors.set_speed(MOTOR_NUMBER, 50)    # Go ~1/2 speed in one direction
+    time.sleep(3.45)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Swinging fowards")
+    motors.set_speed(MOTOR_NUMBER, 39)    # Go ~1/2 speed in one direction
+    time.sleep(3)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Pausing - toys drop in hopefully?")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Arm Returning")
+    motors.set_speed(MOTOR_NUMBER, -39)     # Go ~1/2 speed in the other direction
+    time.sleep(2.8)                       # Continue at this speed for 2.8s
+
+    # To stop, issue a speed of 0
+    print("Arm swing complete")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#_______________________________________________LINEAR ACTUATOR INJECTED____________________________________
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Both arms folding out")
+    linear_actuator.set_speed(60)    # Go ~1/2 speed in one direction
+    time.sleep(4)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(3) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+try:
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Dragging soilders out of bounds")
+    motors.set_speed(MOTOR_NUMBER, -50)     # Go ~1/2 speed in the other direction
+    time.sleep(3.4)                       # Continue at this speed for 1.88Es
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+#servo1.angle(-45)
+#servo2.angle(45)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Folding in arms")
+    linear_actuator.set_speed(-60)      # Go ~1/2 speed in the other direction
+    time.sleep(2)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#___________________________________________MOTOR 1 DRIVING FORWARD SECOND TIME________________________________________________
+#_____________________________________________________________3 POSITIONING STAGES___________________________________________________
+
+
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Positioning for 1st row of FAUNA")
+    motors.set_speed(MOTOR_NUMBER, 30)    # Go ~1/2 speed in one direction
+    time.sleep(0.9)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(3) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("")
+    motors.set_speed(MOTOR_NUMBER, 20)     # Go ~1/2 speed in the other direction
+    time.sleep(0.7)                       # Continue at this speed for s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(3) # pause briefly to let the motor stop
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 15)
+    time.sleep(0.7) # pause briefly to let the motor stop
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(3) # pause briefly to let the motor stop
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Dragging soilders out of bounds")
+    motors.set_speed(MOTOR_NUMBER, -50)     # Go ~1/2 speed in the other direction
+    time.sleep(3.4)                       # Continue at this speed for 1.88Es
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+print("The trial is finished.\n")
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+<details>
+  <summary>motor1, LinAct, motor2, does it work.txt </summary>
+  <pre><code class="language-python">import pyb  # import the pyboard module
+import time # import the time module
+
+def handle_start_signal(line):
+    """ 
+    This function will run every time the start signal state changes from
+    low to high. We use it to change the value of the start_trial variable
+    from False to True. This will cause the while loop below to end, and the
+    main part of the code to run.
+    """
+    # We need the global modifier here to enable changing 
+    # the value of a global variable (start_trial in this case)
+    global start_trial 
+
+    # Turn on the green LED to indicate the trial is starting, but only
+    # if this is our first time starting the trial
+    if start_trial == False:
+        GREEN_LED.on()  
+
+    start_trial = True
+
+# This flag variable will be checked in the main part of the script, and 
+# changed by an interrupt handler function attached to the track banana plugs
+start_trial = False 
+
+# Assign the start pin to variable start_pin
+# We set it up as an input with a pulldown resistor and add an interrupt to 
+# handle when it is pressed. This interrupt looks for rising edges, meaning 
+# when the state changes from low to high
+start_pin = pyb.ExtInt(pyb.Pin('X6'), 
+                       pyb.ExtInt.IRQ_RISING, 
+                       pyb.Pin.PULL_DOWN, 
+                       handle_start_signal)
+
+# Let's also set up the green LED to turn on when we sense the start button
+GREEN_LED = pyb.LED(2)
+
+# ----------------------------------- The main part of the script starts here ----------------------------------------
+
+#_______________________________________________DRIVES FOWARD________________________________________________
+
+# This will loop until the value of start_trial becomes true
+while (not start_trial):
+    print("Waiting for the start signal...\n")
+    time.sleep(1) # Sleep 1 seconds
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 1 # DC motor 1
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 75)    # Go ~1/2 speed in one direction
+    time.sleep(2.3)                       # Continue at this speed for 
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(2) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#__________________________________________________MOTOR 2 STARTS________________________________________________________
+#----------------------------------Arm swings w/ main characters after driving foward---------------------------------
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the DC motor code from the library
+import motor
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"),
+                  sda=machine.Pin("X10"))
+
+# And, then initialize the DC motor control object
+motors = motor.DCMotors(i2c)
+
+# Now, we can initialize the DC motor object. The number should match the
+# motor number on the motor driver board
+MOTOR_NUMBER = 2 # DC motor 2
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 5)    # Go ~1/2 speed in one direction
+    time.sleep(0.5)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -5)     # Go ~1/2 speed in the other direction
+    time.sleep(0.5)                       # Continue at this speed for 1s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(2) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#_______________________________________________LINEAR ACTUATOR INJECTED____________________________________
+
+import pyb  # import the pyboard module
+import time # import the time module (remove if not using)
+
+# We'll use the machine i2c implementation.
+import machine 
+
+# We also need to import the linear actuator code from the library
+import actuator
+
+# Initialize communication with the motor driver
+i2c = machine.I2C(scl=machine.Pin("X9"), sda=machine.Pin("X10"))
+
+# And, then initialize the linear actuator control object
+linear_actuator = actuator.LinearActuator(i2c)
+
+
+try:
+    # To control the actuator, give it a speed between -100 and 100
+    print("Moving at 1/2 speed in one direction")
+    linear_actuator.set_speed(60)    # Go ~1/2 speed in one direction
+    time.sleep(4)                  # Continue at this speed for 0.5s
+
+    # ALWAYS STOP THE actuator BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(3) # pause briefly to let the motor stop - 1s here
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+try:
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving -99 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(1.88)                       # Continue at this speed for 1.88Es
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+#servo1.angle(-45)
+#servo2.angle(45)
+
+try:
+    # To move the actuator in the opposite direction, give a negative speed
+    print("Moving at 1/2 speed in the other direction")
+    linear_actuator.set_speed(-60)      # Go ~1/2 speed in the other direction
+    time.sleep(2)                       # Continue at this speed for 0.5s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    linear_actuator.set_speed(0)
+    time.sleep(1) # pause briefly to let the motor stop
+        
+
+    # Finally, set the speed to zero
+    linear_actuator.set_speed(0)
+
+except:
+    print("Some problem occured. Stopping the actuator.")
+    linear_actuator.set_speed(0)
+
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+
+#___________________________________________MOTOR DRIVING FORWARD 2ND TIME________________________________________________
+
+
+try:
+    # To control the motor, give it a speed between -100 and 100
+    print("Moving 1/2 speed in one direction.")
+    motors.set_speed(MOTOR_NUMBER, 80)    # Go ~1/2 speed in one direction
+    time.sleep(2)                       # Continue at this speed for 1s
+
+    # ALWAYS STOP THE MOTOR BEFORE SWITCHING DIRECTIONS!!!!
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop - 1s here
+
+    # To turn the motor in the opposite direction, give a negative speed
+    print("Moving 1/2 speed in the other direction.")
+    motors.set_speed(MOTOR_NUMBER, -99)     # Go ~1/2 speed in the other direction
+    time.sleep(1.85)                       # Continue at this speed for s
+
+    # To stop, issue a speed of 0
+    print("Stopping.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    time.sleep(1) # pause briefly to let the motor stop
+
+except:
+    print("Error. Stopping motors.")
+    motors.set_speed(MOTOR_NUMBER, 0)
+    
+    # If we call raise here, we'll still get the information on why the 
+    # exception was raised in the first place. Without this, we do not.
+    raise 
+
+print("The trial is finished.\n")
+GREEN_LED.off() # Turn off the green LED to indicate that the trial is finished
+
+</code></pre>
+</details>
+
+  </section>
+  <section class="card">
+    <h3>Missing files referenced</h3>
+    <ul>
+      
+    </ul>
+  </section>
+</main>
+<footer>© 2023–2025 Matthew Dubea</footer>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>

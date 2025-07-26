@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autonomous Rescue Robot – Matthew Dubea</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+<header>
+  <h1>Autonomous Rescue Robot</h1>
+  <nav>
+    <a class="active" href="index.html">Overview</a>
+    <a href="media.html">Media</a>
+    <a href="code.html">Code</a>
+    <a href="reports.html">Reports</a>
+    <a href="../index.html">↩ Home</a>
+  </nav>
+</header>
+
+<main>
+  <section class="card hero">
+    <div>
+      <h2>UL Lafayette · MCHE 201 · 2023</h2>
+      <p>
+        Autonomous platform that completed a five‑task course using onboard sensors and a
+        modular Python control stack. I led mechanical design, integration, and tuning. The system
+        used two DC steppers for drive, a telescoping linear actuator and a solenoid hook to retrieve
+        targets, and IR + magnetic sensing for task detection.
+      </p>
+      <div>
+        <span class="tag">Python</span>
+        <span class="tag">PID</span>
+        <span class="tag">Stepper Motors</span>
+        <span class="tag">Linear Actuator</span>
+        <span class="tag">Solenoid</span>
+        <span class="tag">IR / Magnetic Sensors</span>
+        <span class="tag">Shielding</span>
+      </div>
+      <p class="small">🏆 <strong>1st place</strong> in judged design for mechanical & controls execution.
+        Live trials placed 10th due to an early sensor trigger that caused a collision; subsequent shielding and
+        software delay logic eliminated false triggers.</p>
+    </div>
+    <img src="media/course.jpg" alt="MCHE 201 Course">
+  </section>
+
+  <section class="card">
+    <h3>Core Engineering Metrics</h3>
+    <div class="grid cols-2">
+      <div>
+        <table>
+          <tr><th>Control Language</th><td>Python – 6 modular scripts</td></tr>
+          <tr><th>Platform</th><td>Arduino‑compatible MCHE201 board</td></tr>
+          <tr><th>Actuation</th><td>2 × drive motors, 1 × telescoping linear actuator, 1 × solenoid hook</td></tr>
+          <tr><th>PID Overshoot</th><td>≥ 70% reduction after tuning</td></tr>
+          <tr><th>Constraints</th><td>18&quot; H × 12&quot; W × 24&quot; L (deployed)</td></tr>
+          <tr><th>Sensor Suite</th><td>IR proximity + magnetic detection, debounced & shielded</td></tr>
+          <tr><th>Reach</th><td>12 in spinner center zone</td></tr>
+          <tr><th>Power</th><td>Logic isolated from high‑current actuation</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th>Competition window</th><td>30 s per attempt</td></tr>
+          <tr><th>Setup</th><td>4 minutes</td></tr>
+          <tr><th>Cleanup</th><td>2.5 minutes</td></tr>
+          <tr><th>Target pickup</th><td>3/4 attempts successful in testing</td></tr>
+          <tr><th>False triggers</th><td>0% after shielding + delays</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Software Stack (modular)</h3>
+    <ul>
+      <li><strong>main.py</strong> — system integration and run sequence.</li>
+      <li><strong>navigation.py</strong> — path and turning logic. <em>(represented in the variants below)</em></li>
+      <li><strong>pid_control.py</strong> — tuned stepper motor loop.</li>
+      <li><strong>sensor_readings.py</strong> — IR/magnetic filtering and timing guards.</li>
+      <li><strong>actuation.py</strong> — actuator / solenoid control.</li>
+      <li><strong>state_manager.py</strong> — event sequencing and fail‑safes.</li>
+    </ul>
+    <p class="small">
+      Multiple iterations of the above modules are archived in <a href="code.html">Code</a>. Later files with similar
+      names supersede earlier drafts; where applicable, the page calls out “updated” or “final” versions.
+    </p>
+  </section>
+
+  <section class="card">
+    <h3>Competition Performance</h3>
+    <table>
+      <tr><th>Design Score (judges)</th><td><strong>1st place</strong> – best mechanical & controls execution</td></tr>
+      <tr><th>Live Trial Score</th><td>10th – early trigger caused collision in Round 1; improved thereafter</td></tr>
+      <tr><th>Control Execution</th><td>Fully autonomous, start‑to‑finish</td></tr>
+    </table>
+  </section>
+
+  <section class="card">
+    <h3>Demo Videos</h3>
+    <div class="video-grid">
+      <iframe class="embed" src="https://www.youtube.com/embed/C8qst3b0bK0" title="Robot testing and home course" allowfullscreen></iframe>
+      <iframe class="embed" src="https://www.youtube.com/embed/fh_ySG63_24" title="On‑campus practice run" allowfullscreen></iframe>
+      <iframe class="embed" src="https://www.youtube.com/embed/IKf5D2DOjHw" title="Final competition rounds" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Wiring Diagrams</h3>
+    <div class="gallery">
+      <img src="media/MCHE201board_servomotor.png" alt="Servo wiring">
+      <img src="media/MCHE201board_DCmotor.png" alt="DC motor wiring">
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Lessons Learned</h3>
+    <ul>
+      <li>Sensor placement & shielding matter as much as code; physical mitigation crushed false positives.</li>
+      <li>Isolating logic power avoided brownouts during solenoid inrush.</li>
+      <li>PID tuning reduced overshoot by ~70%, improving alignment and hook reliability.</li>
+      <li>Module boundaries (sensing, actuation, state) made on‑site debugging fast.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>© 2023–2025 Matthew Dubea • <a href="reports.html">Documentation</a></footer>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+</body>
+</html>
