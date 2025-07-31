@@ -1,4 +1,3 @@
-<!-- index.html – full replacement -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +8,23 @@
   <!-- styles & fonts -->
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P82L0MNG3D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-P82L0MNG3D');
+  </script>
 </head>
 
 <body>
 <header class="site-header">
   <div class="container">
     <h1 class="site-title">Matthew Dubea</h1>
-
     <nav class="main-nav" aria-label="Main navigation">
       <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
@@ -28,7 +34,7 @@
         <li><a href="resume.html">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
         <li class="theme-toggle">
-          <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+          <button id="themeToggle" title="Toggle light / dark mode">🌃</button>
         </li>
       </ul>
     </nav>
@@ -36,8 +42,6 @@
 </header>
 
 <main class="container">
-
-  <!-- ─────────────── WELCOME ─────────────── -->
   <section class="card" id="welcome">
     <h2>Welcome</h2>
     <p>
@@ -56,54 +60,41 @@
       (Metal Shark Boats) and sponsors such as
       <strong>Raising Cane’s</strong> for supporting materials and entry fees.
     </p>
-
     <div class="cta-row">
       <a class="btn primary" href="reports.html">📊 View Final Results</a>
       <a class="btn secondary"
          href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
-         download>
+         download
+         onclick="gtag('event', 'download', { 'event_category': 'PDF', 'event_label': 'Trike Final Report' });">
          📄 Download Full Report
       </a>
     </div>
   </section>
 
-  <!-- ─────────── RACE COMPLIANCE ─────────── -->
   <section class="card" id="spec-sheet">
     <h3>📏 Race Compliance – Spec Sheet</h3>
     <p>Official design constraints (seat height, width limits, pedal placement, etc.).</p>
-
-    <!-- three call-out images side-by-side -->
     <div class="spec-grid">
       <figure>
-        <img src="assets/images/9_docs/Front%20Wheel%20Spec%20Sheet%20.png"
-             alt="Front-wheel compliance call-out">
+        <img src="assets/images/9_docs/Front%20Wheel%20Spec%20Sheet%20.png" alt="Front-wheel compliance call-out">
         <figcaption>Front-wheel limits</figcaption>
       </figure>
-
       <figure>
-        <img src="assets/images/9_docs/Top%20(Plan)%20View%20-%20Spec%20Sheet.png"
-             alt="Plan-view compliance call-out">
+        <img src="assets/images/9_docs/Top%20(Plan)%20View%20-%20Spec%20Sheet.png" alt="Plan-view compliance call-out">
         <figcaption>Plan-view limits</figcaption>
       </figure>
-
       <figure>
-        <img src="assets/images/9_docs/Profile%20(Right)%20View%20-Spec%20Sheet.png"
-             alt="Side-profile (right) compliance call-out">
+        <img src="assets/images/9_docs/Profile%20(Right)%20View%20-Spec%20Sheet.png" alt="Side-profile (right) compliance call-out">
         <figcaption>Side-profile limits</figcaption>
       </figure>
     </div>
-
-    <!-- button to open full-resolution PDF -->
     <p class="center" style="margin-top:1rem;">
-      <a class="btn outline"
-         href="assets/images/9_docs/acadiana-500-spec-sheet.pdf"
-         target="_blank">
+      <a class="btn outline" href="assets/images/9_docs/acadiana-500-spec-sheet.pdf" target="_blank">
          📄 Open full-spec PDF
       </a>
     </p>
   </section>
 
-  <!-- ──────────── RACE RULES ──────────── -->
   <section class="card" id="rules">
     <h3>📚 Race Constraints & Requirements</h3>
     <ul class="tight">
@@ -113,54 +104,29 @@
       <li>Relay transitions in 30-ft zones between cones.</li>
       <li>10 s penalty per violation.</li>
     </ul>
-
     <div class="cta-row">
-      <a class="btn outline"
-         href="assets/images/9_docs/Acadiana%20500%20Race%20Rules.pdf"
-         target="_blank">
-         📘 Official Rulebook
-      </a>
-      <a class="btn outline"
-         href="assets/images/9_docs/Acadiana%20500%20Sponsor%20Info%20REV1.pdf"
-         target="_blank">
-         💰 Sponsor Details
-      </a>
-      <a class="btn outline"
-         href="assets/images/9_docs/Acadiana%20500%20Team%20Registration%20Form.pdf"
-         target="_blank">
-         📝 Registration Form
-      </a>
+      <a class="btn outline" href="assets/images/9_docs/Acadiana%20500%20Race%20Rules.pdf" target="_blank">📘 Official Rulebook</a>
+      <a class="btn outline" href="assets/images/9_docs/Acadiana%20500%20Sponsor%20Info%20REV1.pdf" target="_blank">💰 Sponsor Details</a>
+      <a class="btn outline" href="assets/images/9_docs/Acadiana%20500%20Team%20Registration%20Form.pdf" target="_blank">📝 Registration Form</a>
     </div>
   </section>
 
-  <!-- ──────────── RACE HIGHLIGHTS ──────────── -->
   <section class="card" id="highlights">
     <h3>🎬 Race Highlights</h3>
     <p class="center">Live footage from the 2025 Acadiana 500:</p>
-
     <div class="video-grid">
-      <iframe src="https://www.youtube.com/embed/Gqv5KYpIoNs"
-              title="Matt & Andre – Prototype test" loading="lazy" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs"
-              title="Fast Pedal Engineers – Heat 1" loading="lazy" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/JxC-39Dx2WM"
-              title="Heat 2 – last transition" loading="lazy" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/T5bXXW90K8g"
-              title="Final sprint – win" loading="lazy" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/Gqv5KYpIoNs" title="Matt & Andre – Prototype test" loading="lazy" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/f7iSXE2QrNs" title="Fast Pedal Engineers – Heat 1" loading="lazy" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/JxC-39Dx2WM" title="Heat 2 – last transition" loading="lazy" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/T5bXXW90K8g" title="Final sprint – win" loading="lazy" allowfullscreen></iframe>
     </div>
   </section>
 
-  <!-- ───────────── GANTT CHART ───────────── -->
   <section class="card" id="timeline">
     <h3>📆 Project Timeline – Gantt Chart</h3>
     <p>Two-semester plan covering CAD, FEA, machining and testing milestones:</p>
-    <embed class="pdf-embed"
-           src="assets/images/9_docs/Gantt%20Charts(HD).pdf"
-           type="application/pdf"
-           width="100%"
-           height="650px" />
+    <embed class="pdf-embed" src="assets/images/9_docs/Gantt%20Charts(HD).pdf" type="application/pdf" width="100%" height="650px" />
   </section>
-
 </main>
 
 <footer class="site-footer">
