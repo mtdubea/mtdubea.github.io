@@ -4,53 +4,62 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Matthew Dubea | Mechanical Engineer</title>
+  <meta name="description" content="Mechanical Engineering Portfolio — Trike, Mechatronics, Rescue Robot, and Resume."/>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script defer src="theme.js"></script>
 </head>
 
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="site-title">Matthew Dubea</h1>
-    <p class="tagline">Mechanical Engineer | CAD | FEA | Lean Manufacturing </p>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="resume.html">Résumé</a></li>
-        <li><a href="https://mtdubea.github.io/trike" target="_blank">Trike</a></li>
-        <li><a href="https://mtdubea.github.io/mechatronics" target="_blank">Mechatronics</a></li>
-        <li><a href="https://mtdubea.github.io/robot" target="_blank">Robot</a></li>
-        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<main class="container">
-  <section class="hero-card">
-    <h2>🎯 Featured Projects</h2>
-    <div class="grid-3">
-      <a class="card-link" href="https://mtdubea.github.io/trike" target="_blank">
-        <div class="project-card">🏁 Trike Project</div>
-      </a>
-      <a class="card-link" href="https://mtdubea.github.io/mechatronics" target="_blank">
-        <div class="project-card">🚁 Mechatronics Payload</div>
-      </a>
-      <a class="card-link" href="https://mtdubea.github.io/robot" target="_blank">
-        <div class="project-card">🤖 Rescue Robot</div>
-      </a>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Matthew Dubea</h1>
+      <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
-  </section>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="calculations.html">Calculations</a>
+    </nav>
+    <button id="theme-toggle" title="Toggle theme">🌓</button>
+  </header>
 
-  <section class="card">
-    <h2>📈 Profile Tracker</h2>
-    <p>
-      Curious about site visits? This section logs PDF downloads and gives you insight into activity.
-    </p>
-    <p class="center small">🚧 Tracker dashboard coming soon (Google Analytics enabled)</p>
-  </section>
-</main>
+  <main>
+    <section class="hero card">
+      <h2>Welcome</h2>
+      <p>This site showcases my most recent mechanical engineering projects, coursework, and portfolio — all built, documented, and published by me. Each section includes detailed write-ups, media, and code where applicable.</p>
+    </section>
 
-<footer class="site-footer">
-  <div class="container">© 2025 Matthew Dubea — Built with HTML & CSS</div>
-</footer>
+    <section class="card grid-3">
+      <div class="project">
+        <h3>🏆 Acadiana 500 Trike</h3>
+        <p>Race-optimized trike built for New Iberia’s Acadiana 500 competition. Full design, FEA, TIG/CNC manufacturing, and race results.</p>
+        <a class="btn outline" href="trike/index.html">View Project</a>
+      </div>
 
-<script src="theme.js"></script>
+      <div class="project">
+        <h3>🛰️ Mechatronics Payload</h3>
+        <p>Autonomous drone-suspended system that detects water, heat, tilt, and releases a sample. Developed in MCHE 357.</p>
+        <a class="btn outline" href="mechatronics/index.html">View Project</a>
+      </div>
+
+      <div class="project">
+        <h3>🤖 Rescue Robot</h3>
+        <p>Python‑controlled robot that completed a 5‑task course autonomously using sensors, actuators, and modular logic.</p>
+        <a class="btn outline" href="robot/index.html">View Project</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>📄 Resume & Certifications</h2>
+      <p>My most recent resume is available here, along with downloadable credentials for certifications.</p>
+      <a class="btn primary" href="assets/pdf/MTD_Resume_2025.pdf" download>📎 Download Resume PDF</a>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Matthew Dubea · <a href="about.html">About</a> · <a href="resume.html">Resume</a>
+  </footer>
+</body>
+</html>
