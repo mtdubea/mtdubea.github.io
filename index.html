@@ -1,82 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matthew Dubea – Mechanical Engineer & DJ</title>
-  <meta name="description" content="Mechanical Engineer and DJ. Explore portfolio projects including autonomous robots, sensor payloads, and a custom race trike.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Matthew Dubea | Mechanical Engineer</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 <header class="site-header">
-  <div class="brand">
-    <h1>Matthew Dubea</h1>
-    <p class="tagline">Mechanical Engineer · DJ · Designer</p>
+  <div class="container">
+    <h1 class="site-title">Matthew Dubea</h1>
+    <p class="tagline">Mechanical Engineer | CAD | FEA | Lean Manufacturing </p>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="resume.html">Résumé</a></li>
+        <li><a href="https://mtdubea.github.io/trike" target="_blank">Trike</a></li>
+        <li><a href="https://mtdubea.github.io/mechatronics" target="_blank">Mechatronics</a></li>
+        <li><a href="https://mtdubea.github.io/robot" target="_blank">Robot</a></li>
+        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
+      </ul>
+    </nav>
   </div>
-  <nav class="site-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="reports.html">Reports</a>
-    <a href="resume.html">Résumé</a>
-  </nav>
 </header>
 
-<main>
-  <section class="card hero">
-    <h2>🏁 Featured Projects</h2>
-    <div class="grid cols-3">
-      <a class="project-link" href="trike/index.html">
-        <img src="assets/images/thumbs/trike.png" alt="Trike Project">
-        <h3>Race Trike</h3>
-        <p>4130 steel TIG-welded frame, CNC bushings, FEA validation. 1st place at Acadiana 500.</p>
+<main class="container">
+  <section class="hero-card">
+    <h2>🎯 Featured Projects</h2>
+    <div class="grid-3">
+      <a class="card-link" href="https://mtdubea.github.io/trike" target="_blank">
+        <div class="project-card">🏁 Trike Project</div>
       </a>
-      <a class="project-link" href="mechatronics/index.html">
-        <img src="assets/images/thumbs/mechatronics.png" alt="Drone Payload">
-        <h3>Mechatronics Payload</h3>
-        <p>Autonomous sensor package with water, heat, and obstacle detection.</p>
+      <a class="card-link" href="https://mtdubea.github.io/mechatronics" target="_blank">
+        <div class="project-card">🚁 Mechatronics Payload</div>
       </a>
-      <a class="project-link" href="robot/index.html">
-        <img src="assets/images/thumbs/robot.png" alt="Rescue Robot">
-        <h3>Autonomous Rescue Robot</h3>
-        <p>Python-driven robot with PID, actuators, and sensors. 1st in judged design.</p>
+      <a class="card-link" href="https://mtdubea.github.io/robot" target="_blank">
+        <div class="project-card">🤖 Rescue Robot</div>
       </a>
     </div>
   </section>
 
   <section class="card">
-    <h2>🧠 Skills & Tools</h2>
-    <ul class="tag-list">
-      <li>SolidWorks</li>
-      <li>FEA</li>
-      <li>Python</li>
-      <li>DFMA</li>
-      <li>TIG Welding</li>
-      <li>Machining</li>
-      <li>Six Sigma</li>
-      <li>Rekordbox</li>
-      <li>Serum</li>
-      <li>Ableton Live</li>
-    </ul>
-  </section>
-
-  <section class="card">
-    <h2>📄 Featured Document</h2>
-    <a class="btn secondary"
-       href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf"
-       download
-       onclick="gtag('event', 'download', { 'event_category': 'PDF', 'event_label': 'Trike Final Report' });">
-       📄 Download Full Report
-    </a>
+    <h2>📈 Profile Tracker</h2>
+    <p>
+      Curious about site visits? This section logs PDF downloads and gives you insight into activity.
+    </p>
+    <p class="center small">🚧 Tracker dashboard coming soon (Google Analytics enabled)</p>
   </section>
 </main>
 
-<footer>
-  © 2025 Matthew Dubea — Engineering Portfolio
+<footer class="site-footer">
+  <div class="container">© 2025 Matthew Dubea — Built with HTML & CSS</div>
 </footer>
 
-</body>
-</html>
+<script src="theme.js"></script>
