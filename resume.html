@@ -1,53 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Résumé – Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | Matthew Dubea</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <script src="theme.js" defer></script>
 </head>
-
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="site-title">Matthew Dubea</h1>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="resume.html" aria-current="page">Résumé</a></li>
-        <li><a href="calculations.html">Calculations</a></li>
-        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
-      </ul>
+  <header>
+    <h1>Matthew Dubea</h1>
+    <p>Mechanical Engineering • Design • Fabrication • Automation</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html" class="active">Resume</a>
+      <a href="media/certifications.html">Certifications</a>
+      <button id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
     </nav>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <section class="card">
-    <h2>📄 Résumé (2025)</h2>
-    <embed class="pdf-embed"
-           style="height:700px;"
-           src="assets/docs/MTD_Resume_2025.pdf"
-           type="application/pdf">
-    <p class="center" style="margin-top:1rem;">
-      <a class="btn primary"
-         href="assets/docs/MTD_Resume_2025.pdf"
-         download
-         onclick="gtag('event', 'download', { 'event_category': 'PDF', 'event_label': 'Resume 2025' });">
-         ⬇️ Download PDF&nbsp;(MTD_Resume_2025)
-      </a>
-    </p>
-  </section>
-</main>
+  <main class="content">
+    <h2>Embedded Resume PDF</h2>
+    <p>Click the preview or download the full resume using the buttons below.</p>
 
-<footer class="site-footer">
-  <div class="container">© 2025 Matthew Dubea</div>
-</footer>
+    <div class="pdf-viewer">
+      <embed src="media/MTD_Resume_2025.pdf" type="application/pdf" width="100%" height="800px" />
+    </div>
 
-<script src="theme.js"></script>
+    <div class="button-row">
+      <a href="media/MTD_Resume_2025.pdf" target="_blank" class="button">Open in New Tab</a>
+      <a href="media/MTD_Resume_2025.pdf" download class="button">Download Resume</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Matthew Dubea. Built for professional use. Hosted via GitHub Pages.</p>
+  </footer>
 </body>
 </html>
