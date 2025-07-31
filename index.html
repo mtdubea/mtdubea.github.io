@@ -2,64 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Matthew Dubea | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical Engineering Portfolio — Trike, Mechatronics, Rescue Robot, and Resume."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew Dubea | Mechanical Engineering Portfolio</title>
+  <meta name="description" content="Engineering portfolio of Matthew Dubea — mechanical design, fabrication, automation. Featuring trike, mechatronics, and robotics projects." />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <script defer src="theme.js"></script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <script src="theme.js" defer></script>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <h1>Matthew Dubea</h1>
-      <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
+<header class="site-header">
+  <div class="brand">
+    <h1>Matthew Dubea</h1>
+    <p class="tagline">Mechanical Engineering · Design · Fabrication · Automation</p>
+  </div>
+  <nav class="site-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="resume.html">Resume</a>
+    <button id="theme-toggle" title="Toggle light/dark mode">🌓</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero card">
+    <h2>Welcome</h2>
+    <p>This site showcases my most recent mechanical engineering projects, coursework, and portfolio — all built, documented, and published by me. Each section includes detailed write-ups, media, and code where applicable.</p>
+  </section>
+
+  <section class="card project-card">
+    <h2>🛠️ Acadiana 500 Trike</h2>
+    <p>Race-optimized trike built for New Iberia’s Acadiana 500 competition. Full design, FEA, TIG/CNC manufacturing, and race results.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="trike/index.html">🌐 View Project</a>
+      <a class="btn secondary" href="assets/images/9_docs/MCHE484_FinalReport_FastPedalEngineers[1].pdf" download>📄 Download Full Report</a>
     </div>
-    <nav class="site-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="resume.html">Resume</a>
-      <a href="calculations.html">Calculations</a>
-    </nav>
-    <button id="theme-toggle" title="Toggle theme">🌓</button>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero card">
-      <h2>Welcome</h2>
-      <p>This site showcases my most recent mechanical engineering projects, coursework, and portfolio — all built, documented, and published by me. Each section includes detailed write-ups, media, and code where applicable.</p>
-    </section>
+  <section class="card project-card">
+    <h2>🤖 Mechatronics Payload</h2>
+    <p>Autonomous drone-suspended system that detects water, heat, tilt, and releases a sample. Developed in MCHE 357.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mechatronics/index.html">🌐 View Project</a>
+    </div>
+  </section>
 
-    <section class="card grid-3">
-      <div class="project">
-        <h3>🏆 Acadiana 500 Trike</h3>
-        <p>Race-optimized trike built for New Iberia’s Acadiana 500 competition. Full design, FEA, TIG/CNC manufacturing, and race results.</p>
-        <a class="btn outline" href="trike/index.html">View Project</a>
-      </div>
+  <section class="card project-card">
+    <h2>🧩 Rescue Robot</h2>
+    <p>Python-controlled robot that completed a 5-task course using sensors, actuators, and modular logic.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="robot/index.html">🌐 View Project</a>
+    </div>
+  </section>
+</main>
 
-      <div class="project">
-        <h3>🛰️ Mechatronics Payload</h3>
-        <p>Autonomous drone-suspended system that detects water, heat, tilt, and releases a sample. Developed in MCHE 357.</p>
-        <a class="btn outline" href="mechatronics/index.html">View Project</a>
-      </div>
-
-      <div class="project">
-        <h3>🤖 Rescue Robot</h3>
-        <p>Python‑controlled robot that completed a 5‑task course autonomously using sensors, actuators, and modular logic.</p>
-        <a class="btn outline" href="robot/index.html">View Project</a>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>📄 Resume & Certifications</h2>
-      <p>My most recent resume is available here, along with downloadable credentials for certifications.</p>
-      <a class="btn primary" href="assets/pdf/MTD_Resume_2025.pdf" download>📎 Download Resume PDF</a>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 Matthew Dubea · <a href="about.html">About</a> · <a href="resume.html">Resume</a>
-  </footer>
+<footer>
+  © 2025 Matthew Dubea — All rights reserved.
+</footer>
 </body>
 </html>
