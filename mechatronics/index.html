@@ -4,9 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Overview | Mechatronics Payload</title>
-  <meta name="description"
-        content="Autonomous multi‑sensor payload for MCHE 357. Mission summary, live demo, and key firmware links." />
+  <meta name="description" content="Autonomous multi‑sensor payload for MCHE 357. Mission summary, live demo, and key firmware links." />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P82L0MNG3D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-P82L0MNG3D');
+  </script>
 </head>
 
 <body>
@@ -15,17 +25,18 @@
     <h1>Mechatronics Drone Payload</h1>
     <p class="tagline">MCHE 357 — Autonomous Multi‑Sensor System</p>
   </div>
-  <nav class="site-nav">
-    <a href="index.html" class="active">Overview</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="index.html" class="active" aria-current="page">Overview</a>
     <a href="code.html">Source Code</a>
     <a href="media.html">Media Gallery</a>
     <a href="report.html">Project Reports</a>
+    <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+    <button id="langToggle" title="Toggle language (English/Spanish)">🌐</button>
   </nav>
 </header>
 
 <main>
-
-  <!-- HERO / QUICK‑START -->
+  <!-- ───────── HERO ───────── -->
   <section class="card hero">
     <h2 class="sr-only">Project at a glance</h2>
     <p><strong>Goal:</strong> Design a drone‑suspended payload that autonomously detects obstacles,
@@ -37,19 +48,18 @@
     </div>
   </section>
 
-  <!-- FLIGHT VIDEO -->
+  <!-- ───────── FLIGHT VIDEO ───────── -->
   <section class="card">
     <h2>📽️ Flight‑Test Video</h2>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/iJ9-sI1Avf4" allowfullscreen title="Autonomous Payload Demo"></iframe>
     </div>
     <p class="vid-caption">
-      The payload executes a full autonomous sequence: obstacle avoid → water contact detection →
-      servo release → audible confirmation → safety ascent.
+      The payload executes a full autonomous sequence: obstacle avoid → water contact detection → servo release → audible confirmation → safety ascent.
     </p>
   </section>
 
-  <!-- MISSION SNAPSHOT -->
+  <!-- ───────── SNAPSHOT ───────── -->
   <section class="card">
     <h2>⚡ Mission Snapshot</h2>
     <ul>
@@ -63,28 +73,47 @@
     <p class="small-note">All hardware powered by isolated 5 V logic rail + dual 9 V packs for actuators.</p>
   </section>
 
-  <!-- CORE FIRMWARE TABLE -->
+  <!-- ──────── FIRMWARE TABLE ──────── -->
   <section class="card">
     <h2>🧠 Core Firmware Modules</h2>
     <table>
       <thead><tr><th>Sketch</th><th>Role</th></tr></thead>
       <tbody>
-        <tr><td><a href="code/master_payload.ino" target="_blank">master_payload.ino</a></td>
-            <td>Central scheduler &amp; state machine.</td></tr>
-        <tr><td><a href="code/TiltAngle.ino" target="_blank">TiltAngle.ino</a></td>
-            <td>LCD tilt‑angle read‑out.</td></tr>
-        <tr><td><a href="code/Orientation.ino" target="_blank">Orientation.ino</a></td>
-            <td>Complementary‑filter orientation.</td></tr>
-        <tr><td><a href="code/task3-6.ino" target="_blank">task3-6.ino</a></td>
-            <td>Obstacle, water &amp; thermal logic.</td></tr>
+        <tr>
+          <td><a href="code/master_payload.ino" target="_blank" onclick="gtag('event', 'download', { event_category: 'Firmware', event_label: 'master_payload.ino' });">master_payload.ino</a></td>
+          <td>Central scheduler &amp; state machine.</td>
+        </tr>
+        <tr>
+          <td><a href="code/TiltAngle.ino" target="_blank" onclick="gtag('event', 'download', { event_category: 'Firmware', event_label: 'TiltAngle.ino' });">TiltAngle.ino</a></td>
+          <td>LCD tilt‑angle read‑out.</td>
+        </tr>
+        <tr>
+          <td><a href="code/Orientation.ino" target="_blank" onclick="gtag('event', 'download', { event_category: 'Firmware', event_label: 'Orientation.ino' });">Orientation.ino</a></td>
+          <td>Complementary‑filter orientation.</td>
+        </tr>
+        <tr>
+          <td><a href="code/task3-6.ino" target="_blank" onclick="gtag('event', 'download', { event_category: 'Firmware', event_label: 'task3-6.ino' });">task3-6.ino</a></td>
+          <td>Obstacle, water &amp; thermal logic.</td>
+        </tr>
       </tbody>
     </table>
   </section>
-
 </main>
 
 <footer>
   © 2025 Matthew Dubea&nbsp;— payload overview
 </footer>
+
+<script src="theme.js"></script>
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  themeToggle.onclick = () => {
+    document.body.classList.toggle("dark");
+  };
+  const langToggle = document.getElementById("langToggle");
+  langToggle.onclick = () => {
+    alert("🌐 Spanish language toggle coming soon.");
+  };
+</script>
 </body>
 </html>
