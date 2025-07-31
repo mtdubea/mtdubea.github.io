@@ -3,38 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Certifications – Matthew Dubea</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="theme.js" defer></script>
+  <title>Certifications - Matthew Dubea</title>
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="../theme.js"></script>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <h1>Certifications</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resume.html">Resume</a>
+    <p class="subtitle">Professional Certifications, Memberships, and Training</p>
+    <nav class="navbar">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../resume.html">Resume</a>
     </nav>
-    <button id="theme-toggle">🌗</button>
+    <div class="theme-toggle">
+      <button id="theme-toggle-button" aria-label="Toggle dark/light mode">🌓</button>
+    </div>
   </header>
 
-  <main class="certifications">
-    <p>Below are my verified certificates and membership credentials across engineering, safety, software, and professional organizations.</p>
+  <main class="certifications-container">
+    <div class="cert-card">
+      <a href="ASME.membership-certificate.pdf" target="_blank">
+        <h3>ASME Membership Certificate</h3>
+        <p>American Society of Mechanical Engineers</p>
+      </a>
+    </div>
 
-    <ul class="cert-list">
-      <li><a href="media/ASME.membership-certificate.pdf" target="_blank">ASME Membership Certificate (PDF)</a></li>
-      <li><a href="media/CSWA OFFICIAL.pdf" target="_blank">Certified SolidWorks Associate (CSWA) – OFFICIAL (PDF)</a></li>
-      <li><a href="media/LES_Membership_Cert_Matthew_Dubea.pdf" target="_blank">Louisiana Engineering Society (LES) Membership (PDF)</a></li>
-      <li><a href="media/MATLAB_MachineLearning_OnRamp_Certification.pdf" target="_blank">MATLAB Machine Learning OnRamp Certificate (PDF)</a></li>
-      <li><a href="media/MATLAB_OnRamp_Cert.pdf" target="_blank">MATLAB OnRamp Certificate (PDF)</a></li>
-      <li><a href="media/Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" target="_blank">Six Sigma Black Belt (CSSC Official) (PDF)</a></li>
-      <li><a href="media/OSHA 10 Hour Health & Safety.png" target="_blank">OSHA 10-Hour Health & Safety (Image)</a></li>
-      <li><a href="media/SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" target="_blank">SME (Society of Manufacturing Engineers) Membership (PDF)</a></li>
-    </ul>
+    <div class="cert-card">
+      <a href="CSWA OFFICIAL.pdf" target="_blank">
+        <h3>CSWA Certification</h3>
+        <p>Certified SolidWorks Associate (CSWA)</p>
+      </a>
+    </div>
+
+    <div class="cert-card">
+      <a href="LES_Membership_Cert_Matthew_Dubea.pdf" target="_blank">
+        <h3>LES Membership</h3>
+        <p>Louisiana Engineering Society</p>
+      </a>
+    </div>
+
+    <div class="cert-card">
+      <a href="MATLAB_MachineLearning_OnRamp_Certification.pdf" target="_blank">
+        <h3>MATLAB Machine Learning</h3>
+        <p>OnRamp Certification</p>
+      </a>
+    </div>
+
+    <div class="cert-card">
+      <a href="MATLAB_OnRamp_Cert.pdf" target="_blank">
+        <h3>MATLAB Core OnRamp</h3>
+        <p>Core Certification</p>
+      </a>
+    </div>
+
+    <div class="cert-card">
+      <a href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" target="_blank">
+        <h3>Six Sigma Black Belt</h3>
+        <p>Issued Certification</p>
+      </a>
+    </div>
+
+    <div class="cert-card">
+      <a href="OSHA 10 Hour Health & Safety.png" target="_blank">
+        <h3>OSHA 10-Hour Safety</h3>
+        <p>Health & Safety Training</p>
+      </a>
+    </div>
+
+    <div class="cert-card">
+      <a href="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" target="_blank">
+        <h3>SME Membership</h3>
+        <p>Society of Manufacturing Engineers</p>
+      </a>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Matthew Dubea</p>
+  <footer class="site-footer">
+    <p>© 2025 Matthew Dubea</p>
   </footer>
 </body>
 </html>
