@@ -4,11 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Autonomous Rescue Robot – Matthew Dubea</title>
+  <meta name="description" content="Python-controlled autonomous rescue robot with PID tuning, modular scripts, and onboard IR/magnetic sensors. MCHE 201 project." />
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+  <link rel="icon" href="favicon.ico">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P82L0MNG3D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P82L0MNG3D');
+  </script>
 </head>
+
 <body>
 <header>
   <h1>Autonomous Rescue Robot</h1>
@@ -18,6 +29,8 @@
     <a href="code.html">Code</a>
     <a href="reports.html">Reports</a>
     <a href="../index.html">↩ Home</a>
+    <button id="themeToggle" title="Toggle light / dark mode">🌓</button>
+    <button id="langToggle" title="Toggle language (English/Spanish)">🌐</button>
   </nav>
 </header>
 
@@ -25,12 +38,7 @@
   <section class="card hero">
     <div>
       <h2>UL Lafayette · MCHE 201 · 2023</h2>
-      <p>
-        Autonomous platform that completed a five‑task course using onboard sensors and a
-        modular Python control stack. I led mechanical design, integration, and tuning. The system
-        used two DC steppers for drive, a telescoping linear actuator and a solenoid hook to retrieve
-        targets, and IR + magnetic sensing for task detection.
-      </p>
+      <p>Autonomous platform that completed a five-task course using onboard sensors and a modular Python control stack. I led mechanical design, integration, and tuning. The system used two DC steppers for drive, a telescoping linear actuator and a solenoid hook to retrieve targets, and IR + magnetic sensing for task detection.</p>
       <div>
         <span class="tag">Python</span>
         <span class="tag">PID</span>
@@ -40,9 +48,7 @@
         <span class="tag">IR / Magnetic Sensors</span>
         <span class="tag">Shielding</span>
       </div>
-      <p class="small">🏆 <strong>1st place</strong> in judged design for mechanical & controls execution.
-        Live trials placed 10th due to an early sensor trigger that caused a collision; subsequent shielding and
-        software delay logic eliminated false triggers.</p>
+      <p class="small">🏆 <strong>1st place</strong> in judged design for mechanical & controls execution. Live trials placed 10th due to an early sensor trigger that caused a collision; subsequent shielding and software delay logic eliminated false triggers.</p>
     </div>
     <img src="media/course.jpg" alt="MCHE 201 Course">
   </section>
@@ -53,13 +59,13 @@
       <div>
         <table>
           <tr><th>Control Language</th><td>Python – 6 modular scripts</td></tr>
-          <tr><th>Platform</th><td>Arduino‑compatible MCHE201 board</td></tr>
+          <tr><th>Platform</th><td>Arduino-compatible MCHE201 board</td></tr>
           <tr><th>Actuation</th><td>2 × drive motors, 1 × telescoping linear actuator, 1 × solenoid hook</td></tr>
           <tr><th>PID Overshoot</th><td>≥ 70% reduction after tuning</td></tr>
-          <tr><th>Constraints</th><td>18&quot; H × 12&quot; W × 24&quot; L (deployed)</td></tr>
+          <tr><th>Constraints</th><td>18" H × 12" W × 24" L (deployed)</td></tr>
           <tr><th>Sensor Suite</th><td>IR proximity + magnetic detection, debounced & shielded</td></tr>
           <tr><th>Reach</th><td>12 in spinner center zone</td></tr>
-          <tr><th>Power</th><td>Logic isolated from high‑current actuation</td></tr>
+          <tr><th>Power</th><td>Logic isolated from high-current actuation</td></tr>
         </table>
       </div>
       <div>
@@ -78,16 +84,13 @@
     <h3>Software Stack (modular)</h3>
     <ul>
       <li><strong>main.py</strong> — system integration and run sequence.</li>
-      <li><strong>navigation.py</strong> — path and turning logic. <em>(represented in the variants below)</em></li>
+      <li><strong>navigation.py</strong> — path and turning logic.</li>
       <li><strong>pid_control.py</strong> — tuned stepper motor loop.</li>
       <li><strong>sensor_readings.py</strong> — IR/magnetic filtering and timing guards.</li>
       <li><strong>actuation.py</strong> — actuator / solenoid control.</li>
-      <li><strong>state_manager.py</strong> — event sequencing and fail‑safes.</li>
+      <li><strong>state_manager.py</strong> — event sequencing and fail-safes.</li>
     </ul>
-    <p class="small">
-      Multiple iterations of the above modules are archived in <a href="code.html">Code</a>. Later files with similar
-      names supersede earlier drafts; where applicable, the page calls out “updated” or “final” versions.
-    </p>
+    <p class="small">Multiple iterations are archived in <a href="code.html">Code</a>. Later files supersede earlier drafts and final versions are marked.</p>
   </section>
 
   <section class="card">
@@ -95,7 +98,7 @@
     <table>
       <tr><th>Design Score (judges)</th><td><strong>1st place</strong> – best mechanical & controls execution</td></tr>
       <tr><th>Live Trial Score</th><td>10th – early trigger caused collision in Round 1; improved thereafter</td></tr>
-      <tr><th>Control Execution</th><td>Fully autonomous, start‑to‑finish</td></tr>
+      <tr><th>Control Execution</th><td>Fully autonomous, start-to-finish</td></tr>
     </table>
   </section>
 
@@ -103,7 +106,7 @@
     <h3>Demo Videos</h3>
     <div class="video-grid">
       <iframe class="embed" src="https://www.youtube.com/embed/C8qst3b0bK0" title="Robot testing and home course" allowfullscreen></iframe>
-      <iframe class="embed" src="https://www.youtube.com/embed/fh_ySG63_24" title="On‑campus practice run" allowfullscreen></iframe>
+      <iframe class="embed" src="https://www.youtube.com/embed/fh_ySG63_24" title="On-campus practice run" allowfullscreen></iframe>
       <iframe class="embed" src="https://www.youtube.com/embed/IKf5D2DOjHw" title="Final competition rounds" allowfullscreen></iframe>
     </div>
   </section>
@@ -122,7 +125,7 @@
       <li>Sensor placement & shielding matter as much as code; physical mitigation crushed false positives.</li>
       <li>Isolating logic power avoided brownouts during solenoid inrush.</li>
       <li>PID tuning reduced overshoot by ~70%, improving alignment and hook reliability.</li>
-      <li>Module boundaries (sensing, actuation, state) made on‑site debugging fast.</li>
+      <li>Module boundaries (sensing, actuation, state) made on-site debugging fast.</li>
     </ul>
   </section>
 </main>
@@ -131,5 +134,15 @@
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-clike.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script>
+  const themeToggle = document.getElementById("themeToggle");
+  themeToggle.onclick = () => {
+    document.body.classList.toggle("dark");
+  };
+  const langToggle = document.getElementById("langToggle");
+  langToggle.onclick = () => {
+    alert("🌐 Spanish language toggle coming soon.");
+  };
+</script>
 </body>
 </html>
