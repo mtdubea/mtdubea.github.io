@@ -1,90 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>About – Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Matthew Dubea</title>
+  <meta name="description" content="Mechanical Engineer | Designer | Music Producer" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
 <header class="site-header">
-  <div class="container">
-    <h1 class="site-title">Matthew Dubea</h1>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" aria-current="page">About</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="resume.html">Résumé</a></li>
-        <li><a href="calculations.html">Calculations</a></li>
-        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
-      </ul>
-    </nav>
+  <div class="brand">
+    <h1>About Matthew Dubea</h1>
+    <p class="tagline">Mechanical Engineer • Designer • Builder • DJ</p>
   </div>
+  <nav class="site-nav">
+    <a href="index.html">Home</a>
+    <a href="resume.html">Resume</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="reports.html">Reports</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
 </header>
 
-<main class="container">
-
-  <!-- personal bio ---------------------------------------------------- -->
-  <section class="card">
-    <h2>👋 About Me</h2>
-    <div style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;">
-      <img src="assets/images/profile-headshot.jpg"
-           alt="Matthew Dubea head-shot"
-           style="width:170px;height:170px;border-radius:50%;object-fit:cover;box-shadow:0 1px 6px rgba(0,0,0,.15);">
-
-      <p style="flex:1;min-width:240px;">
-        I’m a graduating <strong>Mechanical Engineer</strong> who loves turning rough
-        sketches into race-winning machines. My focus areas are lightweight
-        welded structures, FEA/CFD validation, and cost-optimised build
-        strategies. Outside the lab you can find me recording bass riffs and
-        volunteering at STEM outreach events.
-      </p>
-    </div>
-  </section>
-
-  <!-- project at-a-glance --------------------------------------------- -->
-  <section class="card">
-    <h3>📌 Project At-a-Glance</h3>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr><th>Item</th><th>Value / Note</th></tr>
-      <tr><td>Final weight</td><td>35&nbsp;lb (15.9&nbsp;kg)</td></tr>
-      <tr><td>Top speed (test)</td><td>15&nbsp;mph (24&nbsp;km/h)</td></tr>
-      <tr><td>Frame material</td><td>1020 main triangle + 4130 chromoly rear</td></tr>
-      <tr><td>Rear axle</td><td>4140 steel, 0.625&nbsp;in Ø</td></tr>
-      <tr><td>FEA peak σ<sub>vm</sub></td><td>2.8&nbsp;×10<sup>8</sup> N/m² &nbsp;→&nbsp; FoS&nbsp;2.2</td></tr>
-      <tr><td>Budget</td><td>$120 (incl. recycled parts)</td></tr>
-      <tr><td>Awards</td><td>🥇 1st overall, Acadiana&nbsp;500 (2025)</td></tr>
-    </table>
-  </section>
-
-  <!-- team photo + race clip ------------------------------------------ -->
-  <section class="card">
-    <h3>🏆 Race-day Moments</h3>
-    <div class="spec-grid" style="--gap:1.5rem;">
-      <img src="assets/images/12_race/Acadiana500_GroupPhoto_FastPedalEngineers.jpg"
-           alt="Fast Pedal Engineers – team photo" loading="lazy">
-      <img src="assets/images/12_race/Holding Trophy.jpg"
-           alt="Team holding trophy" loading="lazy">
-    </div>
-
-    <p class="center" style="margin-top:1rem;">
-      <iframe src="https://www.youtube.com/embed/JxC-39Dx2WM"
-              title="Final transition & finish"
-              loading="lazy"
-              style="width:420px;aspect-ratio:16/9;border:none;"></iframe>
+<main class="card">
+  <section>
+    <h2>🔧 Engineering Background</h2>
+    <p>
+      I’m a Mechanical Engineering graduate from the University of Louisiana at Lafayette, with a strong foundation in
+      CAD/FEA, process design, and hands-on fabrication. I’ve built race trikes, autonomous robots, and multi-sensor payloads
+      using SolidWorks, Python, MATLAB, and microcontrollers.
+    </p>
+    <p>
+      My portfolio focuses on <strong>functional design, efficiency, and innovation</strong>. I’ve led fabrication using TIG welding,
+      CNC machining, and Lean/DFA principles — often under real-world manufacturing constraints.
     </p>
   </section>
 
+  <section>
+    <h2>📁 Technical Tools</h2>
+    <ul class="grid cols-2">
+      <li>SolidWorks (CSWA)</li>
+      <li>MATLAB & Simulink</li>
+      <li>Python (Autonomous control)</li>
+      <li>Arduino / Embedded Systems</li>
+      <li>DFMA, PFMEA, Lean</li>
+      <li>FL Studio / Ableton</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>📍 Goals & Interests</h2>
+    <p>
+      I aim to bridge practical engineering with automation, design for manufacturability, and intelligent systems. I’m also passionate
+      about DJing under the alias <strong>DuBayce</strong>, where I apply logic, phrasing, and AI tools to streamline mixes and performance.
+    </p>
+  </section>
+
+  <section>
+    <h2>🔗 Explore My Projects</h2>
+    <ul>
+      <li><a href="trike/index.html">Race Trike: Acadiana 500</a></li>
+      <li><a href="mechatronics/index.html">Drone Payload System</a></li>
+      <li><a href="robot/index.html">Autonomous Rescue Robot</a></li>
+    </ul>
+  </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container">© 2025 Matthew Dubea</div>
+<footer>
+  © 2025 Matthew Dubea — <a href="index.html">Home</a>
 </footer>
-
-<script src="theme.js"></script>
 </body>
 </html>
