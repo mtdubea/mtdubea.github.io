@@ -1,11 +1,10 @@
-const toggle = document.getElementById("theme-toggle");
-const isDark = localStorage.getItem("dark-mode") === "true";
-
-if (isDark) {
-  document.body.classList.add("dark-mode");
-}
-
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-  localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+const toggle = document.getElementById('theme-toggle');
+toggle?.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 });
+window.onload = () => {
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+};
