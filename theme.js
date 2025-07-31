@@ -1,20 +1,19 @@
-// theme.js
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("theme-toggle");
-  const html = document.documentElement;
+// theme.js — toggles dark/light mode using localStorage
 
-  // Load previously saved theme
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    html.classList.add("dark");
-  } else {
-    html.classList.remove("dark");
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.querySelector('.theme-btn');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const storedTheme = localStorage.getItem('theme');
+  const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+  // Apply stored or preferred theme on load
+  if (currentTheme === 'dark') {
+    document.body.classList.add('dark');
   }
 
-  // Toggle theme on click
-  toggle?.addEventListener("click", () => {
-    html.classList.toggle("dark");
-    const newTheme = html.classList.contains("dark") ? "dark" : "light";
-    localStorage.setItem("theme", newTheme);
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 });
