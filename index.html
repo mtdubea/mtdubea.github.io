@@ -3,72 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matthew Dubea | Mechanical Engineering Portfolio</title>
+  <title>Matthew Dubea | Mechanical Engineer</title>
+  <meta name="description" content="Mechanical Engineer portfolio featuring design, fabrication, automation, and technical documentation.">
   <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
 </head>
+
 <body>
-  <header>
-    <div class="header-container">
+  <header class="site-header">
+    <div class="brand">
       <h1>Matthew Dubea</h1>
-      <p class="tagline">Mechanical Engineering · Design · Fabrication · Automation</p>
-      <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="resume.html">Resume</a>
-        <a href="reports.html">Reports</a>
-        <a href="media/certifications.html">Certifications</a>
-        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
-      </nav>
+      <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
+    <nav class="site-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="resume.html">Resume</a>
+      <a href="reports.html">Reports</a>
+      <a href="media/certifications.html">Certifications</a>
+    </nav>
   </header>
 
-  <main class="content">
-    <!-- Intro Section -->
-    <section class="intro">
+  <main class="home-main">
+    <section class="card hero">
       <h2>Welcome</h2>
-      <p>This site showcases my most recent mechanical engineering projects, technical reports, and design achievements — all designed, documented, and published independently. Each section includes in-depth visuals, performance data, and where relevant, downloadable reports or source code.</p>
-    </section>
-
-    <!-- Project 1: Acadiana Trike -->
-    <section class="project-card">
-      <h3>⚙️ Acadiana 500 Trike</h3>
       <p>
-        Award-winning race trike designed and built for New Iberia’s <strong>Acadiana 500</strong>. 
-        Project included full CAD/FEA validation, material selection, TIG welding, CNC machining, 
-        and rigorous performance analysis. Placed <strong>1st overall</strong>.
+        I'm Matthew Dubea, a mechanical engineer focused on process improvement, product design, and engineering documentation. I bring hands-on manufacturing experience and a growing portfolio of technical projects.
       </p>
-      <div class="btn-group">
-        <a class="btn" href="https://mtdubea.github.io/trike" target="_blank">View Project</a>
-        <a class="btn secondary" href="https://mtdubea.github.io/trike/reports/final.pdf" target="_blank">Download Report</a>
+      <div class="cta-row">
+        <a class="btn primary" href="resume.html">📄 View Resume</a>
+        <a class="btn outline" href="about.html">👋 Learn More</a>
       </div>
     </section>
 
-    <!-- Project 2: Mechatronics -->
-    <section class="project-card">
-      <h3>📡 Mechatronics Payload System</h3>
-      <p>
-        Autonomous payload system for drone delivery, capable of sensing water, tilt, and thermal 
-        gradients before precision-releasing a sample. Built during <strong>MCHE 357: Mechatronics</strong> 
-        using analog sensors, microcontroller programming, and sensor fusion logic.
-      </p>
-      <a class="btn" href="https://mtdubea.github.io/mechatronics" target="_blank">View Project</a>
-    </section>
-
-    <!-- Project 3: Rescue Robot -->
-    <section class="project-card">
-      <h3>🛠️ Rescue Robot</h3>
-      <p>
-        Python-controlled autonomous robot built to complete a five-task obstacle course. 
-        Integrated linear actuators, IR/magnetic sensors, solenoid control, and modular PID logic. 
-        Earned <strong>1st in engineering design score</strong> during judged competition.
-      </p>
-      <a class="btn" href="https://mtdubea.github.io/robot" target="_blank">View Project</a>
+    <section class="card highlights">
+      <h2>📌 Featured Projects</h2>
+      <ul class="project-list">
+        <li>
+          <a href="https://mtdubea.github.io/trike" target="_blank">
+            <h3>Acadiana 500 Trike</h3>
+            <p>Custom-built race tricycle designed, welded, and raced to victory using DFM and FEA principles.</p>
+          </a>
+        </li>
+        <li>
+          <a href="https://mtdubea.github.io/mechatronics" target="_blank">
+            <h3>Mechatronics Payload</h3>
+            <p>Autonomous drone payload system with obstacle sensing, temperature detection, and servo control.</p>
+          </a>
+        </li>
+        <li>
+          <a href="https://mtdubea.github.io/robot" target="_blank">
+            <h3>Rescue Robot</h3>
+            <p>Python-controlled robot designed for a themed engineering course competition using IR and magnetics.</p>
+          </a>
+        </li>
+      </ul>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Matthew Dubea · All rights reserved.</p>
+    © 2025 Matthew Dubea
   </footer>
 </body>
 </html>
