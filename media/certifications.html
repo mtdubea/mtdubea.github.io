@@ -3,31 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Certifications - Matthew Dubea</title>
+  <title>Certifications | Matthew Dubea</title>
   <link rel="stylesheet" href="../style.css" />
+  <script defer src="../theme.js"></script>
+  <style>
+    main {
+      padding: 2rem;
+    }
+
+    h1, p {
+      text-align: center;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .cert-card {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .cert-card iframe {
+      width: 100%;
+      height: 360px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .cert-title {
+      margin-top: 0.8rem;
+      font-weight: bold;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>Certifications</h1>
+    <p>Technical, Safety, and Professional Memberships</p>
     <nav>
       <a href="../index.html">Home</a>
       <a href="../about.html">About</a>
       <a href="../resume.html">Resume</a>
       <a href="../reports.html">Reports</a>
-      <button id="theme-toggle">.🌓.</button>
     </nav>
+    <button id="theme-toggle">🌓</button>
   </header>
-  <main>
-    <ul>
-      <li><a href="ASME.membership-certificate.pdf">ASME Membership</a></li>
-      <li><a href="CSWA_OFFICIAL.pdf">CSWA Certification</a></li>
-      <li><a href="LES_Membership_Cert_Matthew_Dubea.pdf">LES Membership</a></li>
-      <li><a href="MATLAB_MachineLearning_OnRamp_Certification.pdf">MATLAB ML OnRamp</a></li>
-      <li><a href="MATLAB_OnRamp_Cert.pdf">MATLAB OnRamp</a></li>
-      <li><a href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf">Six Sigma Black Belt</a></li>
-      <li><a href="OSHA 10 Hour Health & Safety.png">OSHA 10 Hour</a></li>
-      <li><a href="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf">SME Certificate</a></li>
-    </ul>
+
+  <main class="cert-grid">
+    <div class="cert-card">
+      <iframe src="ASME.membership-certificate.pdf"></iframe>
+      <div class="cert-title">ASME Membership Certificate</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="CSWA OFFICIAL.pdf"></iframe>
+      <div class="cert-title">Certified SOLIDWORKS Associate (CSWA)</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="LES_Membership_Cert_Matthew_Dubea.pdf"></iframe>
+      <div class="cert-title">Louisiana Engineering Society (LES)</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="MATLAB_MachineLearning_OnRamp_Certification.pdf"></iframe>
+      <div class="cert-title">MATLAB Machine Learning OnRamp</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="MATLAB_OnRamp_Cert.pdf"></iframe>
+      <div class="cert-title">MATLAB OnRamp Certification</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf"></iframe>
+      <div class="cert-title">Six Sigma Black Belt (CSSC)</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="OSHA 10 Hour Health & Safety.png"></iframe>
+      <div class="cert-title">OSHA 10-Hour Health & Safety</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf"></iframe>
+      <div class="cert-title">SME Membership Certificate</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="AI Prompting Essentials Certified-348043438.pdf"></iframe>
+      <div class="cert-title">AI Prompting Essentials</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="Business Management Essentials Certified-348043411.pdf"></iframe>
+      <div class="cert-title">Business Management Essentials</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="Eight Disciplines (8D) Problem Solving Method.pdf"></iframe>
+      <div class="cert-title">8D Problem Solving Method</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="Lean Six Sigma White Belt-348043276.pdf"></iframe>
+      <div class="cert-title">Lean Six Sigma White Belt</div>
+    </div>
+    <div class="cert-card">
+      <iframe src="Project Management Essentials-348043249.pdf"></iframe>
+      <div class="cert-title">Project Management Essentials</div>
+    </div>
   </main>
+
+  <footer>
+    <p>© 2025 Matthew Dubea | All Rights Reserved</p>
+  </footer>
 </body>
 </html>
