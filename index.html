@@ -31,7 +31,7 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero fade-in">
       <h2>Welcome to My Engineering Portfolio</h2>
       <p>
         Explore a curated collection of engineering projects, technical reports, certifications, and professional development artifacts that reflect my experience and growth as a mechanical engineer.
@@ -44,23 +44,23 @@
     </section>
 
     <section class="search-filter">
-      <input type="text" id="searchInput" placeholder="🔍 Search this site..." />
+      <input type="text" id="searchInput" placeholder="🔍 Search projects..." />
     </section>
 
     <section class="featured-projects">
       <h2>📂 Featured Projects</h2>
       <div class="project-grid">
-        <a href="https://mtdubea.github.io/trike" class="card">
+        <a href="https://mtdubea.github.io/trike" class="card" data-title="Senior Trike Project" data-category="mechanical">
           <h3>🏁 Senior Trike Project</h3>
-          <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
+          <p>Race-winning mechanical trike built from scratch using CAD, FEA, TIG welding, and Lean manufacturing.</p>
         </a>
-        <a href="https://mtdubea.github.io/mechatronics" class="card">
+        <a href="https://mtdubea.github.io/mechatronics" class="card" data-title="Mechatronics Payload" data-category="automation">
           <h3>🛰️ Mechatronics Payload</h3>
-          <p>Autonomous drone payload system for MCHE 357 with multi-sensor integration and logic control.</p>
+          <p>Autonomous drone payload built with sensor logic, modular integration, and Python/MATLAB logic.</p>
         </a>
-        <a href="https://mtdubea.github.io/robot" class="card">
+        <a href="https://mtdubea.github.io/robot" class="card" data-title="Rescue Robot" data-category="robotics">
           <h3>🤖 Rescue Robot</h3>
-          <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
+          <p>Python-driven autonomous robot with DC/stepper motors and real-time navigation logic in a dynamic track.</p>
         </a>
       </div>
     </section>
@@ -78,21 +78,23 @@
         <li>QA/QC</li>
         <li>MATLAB</li>
         <li>Automation</li>
-        <li>Hands-on Fabrication</li>
+        <li>Fabrication</li>
       </ul>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a></p>
+    <p>&copy; 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a> &nbsp;|&nbsp; Built for performance & clarity</p>
   </footer>
 
   <script>
-    // 🔍 Real-time search
+    // 🔍 Real-time search for project cards
     document.getElementById("searchInput").addEventListener("input", function () {
       const query = this.value.toLowerCase();
-      document.querySelectorAll(".card").forEach(card => {
-        card.style.display = card.textContent.toLowerCase().includes(query) ? "block" : "none";
+      document.querySelectorAll(".project-grid .card").forEach(card => {
+        const title = card.dataset.title.toLowerCase();
+        const category = card.dataset.category.toLowerCase();
+        card.style.display = (title.includes(query) || category.includes(query)) ? "block" : "none";
       });
     });
   </script>
