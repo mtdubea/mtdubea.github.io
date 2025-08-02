@@ -4,107 +4,161 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Certifications | Matthew Dubea</title>
+  <meta name="description" content="Certifications and professional training of Mechanical Engineer Matthew Dubea." />
   <link rel="stylesheet" href="../style.css" />
   <script defer src="../theme.js"></script>
 </head>
-<body class="fade-in">
-  <header>
-    <h1>Certifications</h1>
-    <p>Verified Engineering & Safety Credentials</p>
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../resume.html">Resume</a>
-      <a href="../reports.html">Reports</a>
-      <a href="certifications.html" class="active">Certifications</a>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <h1>Matthew Dubea</h1>
+      <p class="tagline">Mechanical Engineer · Certifications</p>
+    </div>
+    <nav class="site-nav">
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../resume.html">Resume</a></li>
+        <li><a href="../reports.html">Reports</a></li>
+        <li><a class="active" href="certifications.html">Certifications</a></li>
+        <li class="theme-toggle"><button id="darkModeToggle">🌓</button></li>
+      </ul>
     </nav>
-    <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
 
   <main>
-    <!-- Search Bar -->
-    <div class="search-bar">
-      <input type="text" placeholder="Search certifications..." />
-    </div>
+    <section class="certifications-section">
+      <h2>🎓 Certifications & Training</h2>
+      <p>All certifications and credentials have been earned through rigorous coursework and hands-on training.</p>
 
-    <!-- Filter Tabs -->
-    <div class="tab-menu">
-      <button data-filter="all" class="active">All</button>
-      <button data-filter="safety">Safety</button>
-      <button data-filter="software">Software</button>
-      <button data-filter="engineering">Engineering</button>
-      <button data-filter="involvement">Involvement</button>
-    </div>
-
-    <!-- Certification Grid -->
-    <div class="cert-grid">
-      <!-- Example (Repeat for each certificate) -->
-
-      <div class="cert-item" data-title="OSHA 10 Hour Health and Safety" data-category="safety">
-        <img src="../media/OSHA_10_Hour_Health_&_Safety.png" alt="OSHA 10 Hour Health and Safety" />
-        <p>OSHA 10-Hour Health & Safety</p>
+      <div class="search-sort-controls">
+        <input type="text" id="cert-search" placeholder="🔍 Search certifications..." />
+        <select id="sort-select">
+          <option value="default">Sort by</option>
+          <option value="title">Title (A–Z)</option>
+          <option value="category">Category</option>
+        </select>
       </div>
 
-      <div class="cert-item" data-title="AI Prompting and Reasoning" data-category="software">
-        <embed src="../media/AI_Prompting_and_Reasoning_Certificate.pdf" type="application/pdf" />
-        <p>AI Prompting & Reasoning</p>
+      <div class="tab-menu">
+        <button class="tab-button active" data-filter="all">All</button>
+        <button class="tab-button" data-filter="quality">Quality</button>
+        <button class="tab-button" data-filter="safety">Safety</button>
+        <button class="tab-button" data-filter="software">Software</button>
+        <button class="tab-button" data-filter="professional">Professional</button>
       </div>
 
-      <div class="cert-item" data-title="Six Sigma Black Belt" data-category="engineering">
-        <embed src="../media/Six_Sigma_Black_Belt_Certificate.pdf" type="application/pdf" />
-        <p>Six Sigma Black Belt</p>
-      </div>
+      <div class="certifications-grid">
+        <!-- Certificate Cards (add/update as needed) -->
+        <div class="cert-card" data-title="Six Sigma Black Belt" data-category="quality">
+          <a href="../media/Six_Sigma_Black_Belt_Cert.pdf" target="_blank">
+            <embed src="../media/Six_Sigma_Black_Belt_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Six Sigma Black Belt</p>
+          <a href="../media/Six_Sigma_Black_Belt_Cert.pdf" download class="download-icon" title="Download PDF">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="CSWA SolidWorks Certification" data-category="software">
-        <embed src="../media/CSWA_SolidWorks_Certification.pdf" type="application/pdf" />
-        <p>CSWA SolidWorks</p>
-      </div>
+        <div class="cert-card" data-title="CSWA" data-category="software">
+          <a href="../media/CSWA_SolidWorks_Cert.pdf" target="_blank">
+            <embed src="../media/CSWA_SolidWorks_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Certified SOLIDWORKS Associate (CSWA)</p>
+          <a href="../media/CSWA_SolidWorks_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="MATLAB Onramp" data-category="software">
-        <embed src="../media/MATLAB_Onramp_Certificate.pdf" type="application/pdf" />
-        <p>MATLAB Onramp</p>
-      </div>
+        <div class="cert-card" data-title="AI Prompt Engineering" data-category="software">
+          <a href="../media/AI_Prompting_Cert.pdf" target="_blank">
+            <embed src="../media/AI_Prompting_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>AI Prompt Engineering Certificate</p>
+          <a href="../media/AI_Prompting_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="LES Membership" data-category="involvement">
-        <embed src="../media/LES_Membership.pdf" type="application/pdf" />
-        <p>LES Membership</p>
-      </div>
+        <div class="cert-card" data-title="MATLAB Onramp" data-category="software">
+          <a href="../media/MATLAB_Onramp_Cert.pdf" target="_blank">
+            <embed src="../media/MATLAB_Onramp_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>MATLAB Onramp</p>
+          <a href="../media/MATLAB_Onramp_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="ASME Membership" data-category="involvement">
-        <embed src="../media/ASME_Membership_Card.pdf" type="application/pdf" />
-        <p>ASME Membership</p>
-      </div>
+        <div class="cert-card" data-title="OSHA Safety" data-category="safety">
+          <a href="../media/OSHA_10_Hour_Health_&_Safety.png" target="_blank">
+            <img src="../media/OSHA_10_Hour_Health_&_Safety.png" class="cert-preview" alt="OSHA 10-Hour Safety" />
+          </a>
+          <p>OSHA 10-Hour Safety Training</p>
+          <a href="../media/OSHA_10_Hour_Health_&_Safety.png" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="Hazard Identification" data-category="safety">
-        <embed src="../media/Hazard_Identification_Certificate.pdf" type="application/pdf" />
-        <p>Hazard Identification</p>
-      </div>
+        <div class="cert-card" data-title="LES Member" data-category="professional">
+          <a href="../media/LES_Membership_Cert.pdf" target="_blank">
+            <embed src="../media/LES_Membership_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Louisiana Engineering Society Member</p>
+          <a href="../media/LES_Membership_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="Process Safety Management Overview" data-category="engineering">
-        <embed src="../media/Process_Safety_Management_Overview.pdf" type="application/pdf" />
-        <p>Process Safety Mgmt (PSM)</p>
-      </div>
+        <div class="cert-card" data-title="ASME Member" data-category="professional">
+          <a href="../media/ASME_Membership_Cert.pdf" target="_blank">
+            <embed src="../media/ASME_Membership_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>ASME Student Member</p>
+          <a href="../media/ASME_Membership_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="Machine Guarding" data-category="safety">
-        <embed src="../media/Machine_Guarding.pdf" type="application/pdf" />
-        <p>Machine Guarding</p>
-      </div>
+        <div class="cert-card" data-title="Resume Workshop" data-category="professional">
+          <a href="../media/Resume_Workshop_Cert.pdf" target="_blank">
+            <embed src="../media/Resume_Workshop_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Resume Workshop Completion</p>
+          <a href="../media/Resume_Workshop_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="P&ID Identification" data-category="engineering">
-        <embed src="../media/PID_Identification.pdf" type="application/pdf" />
-        <p>P&ID Identification</p>
-      </div>
+        <div class="cert-card" data-title="Project-Based Learning" data-category="professional">
+          <a href="../media/Project_Based_Learning_Cert.pdf" target="_blank">
+            <embed src="../media/Project_Based_Learning_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Project-Based Learning Certificate</p>
+          <a href="../media/Project_Based_Learning_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-      <div class="cert-item" data-title="Chemical Labeling and Hazard Communication" data-category="safety">
-        <embed src="../media/Chemical_Labeling_and_Hazard_Communication.pdf" type="application/pdf" />
-        <p>Chemical Labeling & HAZCOM</p>
-      </div>
+        <div class="cert-card" data-title="Electrical Substation Training" data-category="safety">
+          <a href="../media/Electrical_Substation_Cert.pdf" target="_blank">
+            <embed src="../media/Electrical_Substation_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Electrical Substation Safety & Install</p>
+          <a href="../media/Electrical_Substation_Cert.pdf" download class="download-icon">📥</a>
+        </div>
 
-    </div>
+        <div class="cert-card" data-title="Career Fair Participation" data-category="professional">
+          <a href="../media/Career_Fair_Participation.pdf" target="_blank">
+            <embed src="../media/Career_Fair_Participation.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Career Fair Participation</p>
+          <a href="../media/Career_Fair_Participation.pdf" download class="download-icon">📥</a>
+        </div>
+
+        <div class="cert-card" data-title="Rekordbox Training" data-category="software">
+          <a href="../media/Rekordbox_Training_Cert.pdf" target="_blank">
+            <embed src="../media/Rekordbox_Training_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>Rekordbox Performance Certificate</p>
+          <a href="../media/Rekordbox_Training_Cert.pdf" download class="download-icon">📥</a>
+        </div>
+
+        <div class="cert-card" data-title="University Orientation" data-category="professional">
+          <a href="../media/University_Orientation_Cert.pdf" target="_blank">
+            <embed src="../media/University_Orientation_Cert.pdf" type="application/pdf" class="cert-preview" />
+          </a>
+          <p>University Orientation Certificate</p>
+          <a href="../media/University_Orientation_Cert.pdf" download class="download-icon">📥</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Matthew Dubea</p>
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a></p>
   </footer>
 </body>
 </html>
