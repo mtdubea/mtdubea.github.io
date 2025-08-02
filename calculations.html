@@ -1,234 +1,54 @@
-<!-- calculations.html — full replacement -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Engineering Calculations | Matthew Dubea</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Certifications | Matthew Dubea</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script defer src="../theme.js"></script>
 </head>
-
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="site-title">Matthew Dubea</h1>
-
-    <nav class="main-nav" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="resume.html">Résumé</a></li>
-        <li><a href="calculations.html" aria-current="page">Calculations</a></li>
-        <li class="theme-toggle"><button id="themeToggle" title="Toggle dark / light theme">🌓</button></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
-<main class="container">
-
-  <!-- ──────────────────────────────────────────────────────────────
-       1 · Symbol & equation reference
-  ────────────────────────────────────────────────────────────── -->
-  <section class="card" id="symbols">
-    <h2>🧮 Symbol &amp; Equation Key</h2>
-
-    <div class="table-scroll">
-      <table class="data-table">
-        <thead>
-          <tr><th>Symbol</th><th>Meaning / Description</th><th>Units</th><th>Typical Value / Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>m</td><td>Mass</td><td>kg / lbm</td><td>Trike, rider, or combined</td></tr>
-          <tr><td>W</td><td>Weight</td><td>N / lbf</td><td><code>W = m × g</code></td></tr>
-          <tr><td>g</td><td>Gravity</td><td>9.81 m s⁻² / 32.174 ft s⁻²</td><td>Standard g</td></tr>
-          <tr><td>v</td><td>Velocity</td><td>m s⁻¹ / ft s⁻¹</td><td></td></tr>
-          <tr><td>t</td><td>Time</td><td>s</td><td>Lap time</td></tr>
-          <tr><td>L</td><td>Lap length</td><td>ft / m</td><td>3 485 ft</td></tr>
-          <tr><td>v<sub>avg</sub></td><td>Average speed</td><td>ft s⁻¹</td><td><code>L / t</code></td></tr>
-          <tr><td>KE</td><td>Kinetic energy</td><td>J / ft lbf</td><td><code>½ m v²</code></td></tr>
-          <tr><td>W<sub>mech</sub></td><td>Mechanical work</td><td>kJ</td><td><code>P × t</code></td></tr>
-          <tr><td>θ<sub>tip</sub></td><td>Tip-over angle</td><td>°</td><td><code>atan((b⁄2)/h)</code></td></tr>
-          <tr><td>a<sub>y</sub></td><td>Lateral accel.</td><td>ft s⁻² / g</td><td><code>g tan θ<sub>tip</sub></code></td></tr>
-          <tr><td>R</td><td>Turn radius</td><td>ft</td><td></td></tr>
-          <tr><td>v<sub>max</sub></td><td>Cornering speed</td><td>ft s⁻¹ / mph</td><td><code>√(a<sub>y</sub> R)</code></td></tr>
-          <tr><td>C</td><td>Wheel circumference</td><td>in / ft</td><td><code>π D</code></td></tr>
-          <tr><td>D</td><td>Wheel diameter</td><td>in</td><td>20 in front</td></tr>
-          <tr><td>N</td><td>Cadence</td><td>rev min⁻¹</td><td><code>v / 0 .357</code></td></tr>
-          <tr><td>τ</td><td>Shear stress</td><td>psi</td><td><code>V⁄A</code></td></tr>
-          <tr><td>σ<sub>b</sub></td><td>Bending stress</td><td>psi</td><td><code>M⁄S</code></td></tr>
-          <tr><td>σ<sub>vm</sub></td><td>von Mises</td><td>psi</td><td><code>√(σ<sub>b</sub>² + 3 τ²)</code></td></tr>
-          <tr><td>FoS</td><td>Factor of safety</td><td>—</td><td><code>σ<sub>y</sub> ⁄ σ<sub>vm</sub></code></td></tr>
-        </tbody>
-      </table>
+  <header>
+    <div class="header-container">
+      <h1>Certifications</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../resume.html">Resume</a>
+        <a href="../reports.html">Reports</a>
+        <a href="certifications.html" class="active">Certifications</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </nav>
     </div>
-  </section>
+  </header>
 
+  <main class="content">
+    <section>
+      <h2>Professional Certifications</h2>
+      <p>Below are my earned certifications, including technical and professional development credentials:</p>
 
+      <div class="cert-container">
+        <div style="width:400px; background:url(https://www.proprofs.com/images/loader.gif) center center no-repeat;">
+          <a href="https://www.proprofs.com/quiz-school/ugc/story.php?title=business-management-essentials-certifiedcs" 
+             target="_blank" title="Try this Quiz to get your own certificate">
+            <img alt="Business Management Essentials Certificate" border="0" 
+                 src="https://www.proprofs.com/quiz-school/certificate/certificate.php?id=348043411&qid=3612909&uname=Matthew%20Dubea" />
+          </a>
+        </div>
 
-  <!-- ──────────────────────────────────────────────────────────────
-       2 · Performance metrics
-  ────────────────────────────────────────────────────────────── -->
-  <section class="card" id="performance">
-    <h2>📈 Key Performance Metrics</h2>
-
-    <div class="table-scroll">
-      <table class="data-table">
-        <thead><tr><th>Metric</th><th>Value</th><th>Units</th></tr></thead>
-        <tbody>
-          <tr><td>Total Mass</td><td>209.4</td><td>lbm</td></tr>
-          <tr><td>Trike Weight</td><td>39.4</td><td>lbm</td></tr>
-          <tr><td>Rider Weight</td><td>170</td><td>lbm</td></tr>
-          <tr><td>Total Weight</td><td>209.4</td><td>lbf</td></tr>
-          <tr><td>Average Speed</td><td>11.3</td><td>mph</td></tr>
-          <tr><td>Top Speed (calc.)</td><td>14.5</td><td>mph</td></tr>
-          <tr><td>Lap Length</td><td>3 485</td><td>ft</td></tr>
-          <tr><td>Average Speed</td><td>16.5</td><td>ft s⁻¹</td></tr>
-          <tr><td>Wheel Rev / Lap</td><td>665</td><td>rev</td></tr>
-          <tr><td>Tip-over Angle</td><td>23</td><td>°</td></tr>
-          <tr><td>Max Lateral Accel.</td><td>0.42</td><td>g</td></tr>
-          <tr><td>Max Safe Speed (R = 15 ft)</td><td>9.8</td><td>mph</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-
-
-  <!-- ──────────────────────────────────────────────────────────────
-       3 · Worked examples – collapsible
-  ────────────────────────────────────────────────────────────── -->
-  <section class="card" id="worked">
-    <h2>📝 Sample Calculations &amp; Analysis</h2>
-
-    <details open>
-      <summary><strong>1. Mass, Weight &amp; Velocity</strong></summary>
-      <p>Total weight: <code>W = m × g = 209.4 lbm × 32.174 ft s⁻² = 209.4 lbf ≈ 932 N</code> (95 kg).</p>
-      <p>Average lap speed: <code>v<sub>avg</sub> = L ⁄ t = 3 485 ft ⁄ 211 s ≈ 16.5 ft s⁻¹ = 11.3 mph</code>.</p>
-      <p>Wheel revs per lap (20 in front wheel): <code>N<sub>rot</sub> = L ⁄ C ≈ 665 rev</code>.</p>
-    </details>
-
-    <details>
-      <summary><strong>2. Energy &amp; Power Budget</strong></summary>
-      <p>Kinetic energy @ 11.3 mph: <code>KE ≈ 886 ft lbf ≈ 1.20 kJ</code>.</p>
-      <p>Work per lap (84 W rider): <code>W<sub>mech</sub> = P t ≈ 17.7 kJ</code>.</p>
-    </details>
-
-    <details>
-      <summary><strong>3. Stability &amp; Cornering</strong></summary>
-      <p>θ<sub>tip</sub> = <code>atan((19.5 in⁄2) ⁄ 23 in) ≈ 23°</code> → <code>a<sub>y</sub> ≈ 0.42 g</code>.</p>
-      <p>Max safe speed (R = 15 ft): <code>v<sub>max</sub> ≈ 9.8 mph</code>.</p>
-    </details>
-
-    <details>
-      <summary><strong>4. Cadence vs Speed</strong></summary>
-      <p><code>v (mph) ≈ 0.357 × N<sub>rpm</sub></code> → 11.3 mph ≈ 32 rpm, 14.5 mph ≈ 41 rpm.</p>
-    </details>
-
-    <details>
-      <summary><strong>5. Strength &amp; Deflection Checks</strong></summary>
-      <ul>
-        <li><strong>Axle (4140 HT):</strong> τ = 903 psi, σ<sub>b</sub> = 39.7 ksi → σ<sub>vm</sub> ≈ 39.7 ksi, FoS ≈ 1.7.</li>
-        <li><strong>Seat-rail deflection:</strong> δ = 0.062 in &lt; 0.25 in spec.</li>
-        <li><strong>Frame FEA:</strong> σ<sub>vm,max</sub> = 2.795 × 10⁸ N m⁻², σ<sub>y</sub> = 6.204 × 10⁸ N m⁻² → FoS ≈ 2.22.</li>
-      </ul>
-    </details>
-  </section>
-
-
-
-  <!-- ──────────────────────────────────────────────────────────────
-       4 · Material & FEA tables
-  ────────────────────────────────────────────────────────────── -->
-  <section class="card" id="materials">
-    <h2>🔩 Material &amp; FEA Summary</h2>
-
-    <!-- Structural materials -->
-    <details open>
-      <summary><strong>Structural Material Comparison</strong></summary>
-      <div class="table-scroll">
-        <table class="data-table small">
-          <thead>
-            <tr>
-              <th>Component</th><th>Material</th><th>Yield Strength (psi)</th>
-              <th>Density (lb in⁻³)</th><th>Machinability (%)</th>
-              <th>Weldability (%)</th><th>Source</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Frame / Fork / Stem</td><td>1018/1020 Steel</td><td>53 700</td><td>0.284</td><td>60</td><td>85</td><td>Salvaged</td></tr>
-            <tr><td>Rear Axle Tube</td><td>4130 Steel</td><td>97 000</td><td>0.283</td><td>35</td><td>60</td><td>Machined</td></tr>
-            <tr><td>Rear Axle Stub</td><td>4140 Steel (HT)</td><td>69 500</td><td>0.284</td><td>40</td><td>40</td><td>Machined</td></tr>
-            <tr><td>Bushings</td><td>1018 Steel</td><td>53 700</td><td>0.284</td><td>60</td><td>85</td><td>Machined</td></tr>
-            <tr><td>Brass Spacers</td><td>C360 Brass</td><td>49 000</td><td>0.307</td><td>80</td><td>20</td><td>Machined</td></tr>
-          </tbody>
-        </table>
+        <div style="width:400px; background:url(https://www.proprofs.com/images/loader.gif) center center no-repeat;">
+          <a href="https://www.proprofs.com/quiz-school/ugc/story.php?title=ai-prompting-essentials-certifiedee" 
+             target="_blank" title="Try this Quiz to get your own certificate">
+            <img alt="AI Prompting Essentials Certificate" border="0" 
+                 src="https://www.proprofs.com/quiz-school/certificate/certificate.php?id=348043438&qid=3809416&uname=Matthew%20Dubea" />
+          </a>
+        </div>
       </div>
-    </details>
+    </section>
+  </main>
 
-
-    <!-- FEA input & results -->
-    <details open>
-      <summary><strong>FEA Setup &amp; Critical Results</strong></summary>
-      <div class="table-scroll">
-        <table class="data-table small">
-          <thead>
-            <tr>
-              <th>FEA Case</th><th>Part</th><th>Load</th><th>Fixed BCs</th>
-              <th>Material</th><th>Max&nbsp;V.M. (psi)</th><th>Yield (psi)</th><th>FoS</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Axle Shear / Bend</td><td>Rear Axle</td><td>170 lbf@midpt</td><td>Bushings</td><td>4140 Steel</td><td>39 700</td><td>69 000</td><td>≈ 1.74</td></tr>
-            <tr><td>Frame Compression</td><td>Down Tube</td><td>Rider</td><td>Headset&nbsp;+&nbsp;Axle</td><td>1020 Steel</td><td>16 200</td><td>51 000</td><td>≈ 3.15</td></tr>
-            <tr><td>Seat Deflection</td><td>Seat Rail</td><td>85 lbf end-load</td><td>Support base</td><td>1018 Steel</td><td>3 930</td><td>53 000</td><td>≈ 13.5</td></tr>
-            <tr><td>Torsional Flex</td><td>Axle → Frame</td><td>Turning torque</td><td>Axle ends</td><td>4130 Steel</td><td>21 900</td><td>97 000</td><td>≈ 4.43</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </details>
-
-
-    <!-- Aggregate FoS -->
-    <details open>
-      <summary><strong>Aggregate Strength &amp; FoS</strong></summary>
-      <div class="table-scroll">
-        <table class="data-table small">
-          <thead><tr><th>Property</th><th>Value</th><th>Units</th></tr></thead>
-          <tbody>
-            <tr><td>Rear Axle Shear Stress</td><td>903</td><td>psi</td></tr>
-            <tr><td>Rear Axle Bending Stress</td><td>39 700</td><td>psi</td></tr>
-            <tr><td>Yield Strength (4140 HT)</td><td>69 000</td><td>psi</td></tr>
-            <tr><td>Frame FoS (FEA)</td><td>2.22</td><td>—</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </details>
-  </section>
-
-
-
-  <!-- ──────────────────────────────────────────────────────────────
-       5 · Download link
-  ────────────────────────────────────────────────────────────── -->
-  <section class="card">
-    <h3>📄 Download Full Calculation Package</h3>
-    <p>A consolidated PDF (symbol tables, derivations, and appendix worksheets) is available for reference:</p>
-    <a class="btn primary" href="assets/images/9_docs/Engineering_Calc_Package.pdf" download>
-      ⬇️ Download Calculations PDF
-    </a>
-  </section>
-
-</main>
-
-
-<footer class="site-footer">
-  <div class="container">© 2025 Matthew Dubea</div>
-</footer>
-
-<script src="theme.js"></script>
+  <footer>
+    <p>© 2025 Matthew Dubea · All rights reserved</p>
+  </footer>
 </body>
 </html>
