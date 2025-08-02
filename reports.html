@@ -2,26 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reports - Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Reports | Matthew Dubea</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="theme.js"></script>
 </head>
 <body>
   <header>
-    <h1>Project Reports</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="resume.html">Resume</a>
-      <a href="media/certifications.html">Certifications</a>
-      <button id="theme-toggle">🌓</button>
-    </nav>
+    <div class="header-container">
+      <h1>Project Reports</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="resume.html">Resume</a>
+        <a href="reports.html" class="active">Reports</a>
+        <a href="media/certifications.html">Certifications</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
   </header>
-  <main>
-    <ul>
-      <li><a href="https://mtdubea.github.io/trike/reports/final.pdf">Acadiana 500 Trike Final Report</a></li>
-      <li><a href="https://mtdubea.github.io/mechatronics/reports/mechatronics_payload.pdf">Mechatronics Payload Report</a></li>
-    </ul>
+
+  <main class="content">
+    <section class="reports">
+      <h2>Engineering Project Reports</h2>
+      <p>Download and explore full reports from my key mechanical engineering projects:</p>
+
+      <ul class="report-list">
+        <li>
+          <h3>Acadiana 500 Tricycle Project</h3>
+          <a class="btn" href="https://mtdubea.github.io/trike/reports/final.pdf" target="_blank">Final Report PDF</a>
+        </li>
+        <li>
+          <h3>Mechatronics Payload System</h3>
+          <a class="btn" href="https://mtdubea.github.io/mechatronics/reports/final.pdf" target="_blank">Final Report PDF</a>
+        </li>
+        <li>
+          <h3>Autonomous Rescue Robot</h3>
+          <a class="btn" href="https://mtdubea.github.io/robot/reports/final.pdf" target="_blank">Final Report PDF</a>
+        </li>
+      </ul>
+    </section>
   </main>
+
+  <footer>
+    <p>© 2025 Matthew Dubea · Last updated May 2025</p>
+  </footer>
 </body>
 </html>
