@@ -1,4 +1,18 @@
-/* Headshot Styling */
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn ease 0.8s;
+  -webkit-animation: fadeIn ease 0.8s;
+  -moz-animation: fadeIn ease 0.8s;
+  -o-animation: fadeIn ease 0.8s;
+  -ms-animation: fadeIn ease 0.8s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+/* Headshot Image */
 .profile-headshot {
   max-width: 180px;
   width: 100%;
@@ -11,7 +25,7 @@
 }
 
 .profile-headshot:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
   filter: brightness(1.1);
 }
 
@@ -23,6 +37,18 @@
   text-align: center;
 }
 
+.about-section h2 {
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  color: var(--text-color, #222);
+}
+
+.about-section p {
+  margin: 0.8rem 0;
+  line-height: 1.6;
+  color: var(--text-color, #444);
+}
+
 /* Link List */
 .link-list {
   list-style: none;
@@ -31,35 +57,19 @@
 }
 
 .link-list li {
-  margin: 0.5rem 0;
+  margin: 0.6rem 0;
 }
 
 .link-list a {
   color: var(--link-color, #007bff);
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .link-list a:hover {
+  color: #0056b3;
   text-decoration: underline;
-}
-
-/* Theme Toggle Button */
-#theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.4rem 0.8rem;
-  background-color: var(--link-color, #007bff);
-  border: none;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#theme-toggle:hover {
-  background-color: #0056b3;
 }
 
 /* Dark Mode Theme */
@@ -70,7 +80,7 @@ body.dark-mode {
 
 body.dark-mode header,
 body.dark-mode footer {
-  background-color: #1f1f1f;
+  background-color: #1e1e1e;
 }
 
 body.dark-mode nav a {
@@ -79,4 +89,8 @@ body.dark-mode nav a {
 
 body.dark-mode .link-list a {
   color: #90caf9;
+}
+
+body.dark-mode .link-list a:hover {
+  color: #82b1ff;
 }
