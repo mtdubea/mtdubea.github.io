@@ -10,7 +10,7 @@
   <script defer src="theme.js"></script>
 </head>
 
-<body>
+<body class="fade-in">
   <header class="site-header">
     <div class="brand">
       <h1>Matthew Dubea</h1>
@@ -31,7 +31,7 @@
   </header>
 
   <main>
-    <section class="hero fade-in">
+    <section class="hero">
       <h2>Welcome to My Engineering Portfolio</h2>
       <p>
         Explore a curated collection of engineering projects, technical reports, certifications, and professional development artifacts that reflect my experience and growth as a mechanical engineer.
@@ -44,23 +44,23 @@
     </section>
 
     <section class="search-filter">
-      <input type="text" id="searchInput" placeholder="🔍 Search projects..." />
+      <input type="text" id="searchInput" placeholder="🔍 Search this site..." />
     </section>
 
     <section class="featured-projects">
       <h2>📂 Featured Projects</h2>
       <div class="project-grid">
-        <a href="https://mtdubea.github.io/trike" class="card" data-title="Senior Trike Project" data-category="mechanical">
+        <a href="https://mtdubea.github.io/trike" class="card" data-title="Senior Trike Project" data-category="Mechanical">
           <h3>🏁 Senior Trike Project</h3>
-          <p>Race-winning mechanical trike built from scratch using CAD, FEA, TIG welding, and Lean manufacturing.</p>
+          <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
         </a>
-        <a href="https://mtdubea.github.io/mechatronics" class="card" data-title="Mechatronics Payload" data-category="automation">
+        <a href="https://mtdubea.github.io/mechatronics" class="card" data-title="Mechatronics Payload" data-category="Mechatronics">
           <h3>🛰️ Mechatronics Payload</h3>
-          <p>Autonomous drone payload built with sensor logic, modular integration, and Python/MATLAB logic.</p>
+          <p>Autonomous drone payload system for MCHE 357 with multi-sensor integration and logic control.</p>
         </a>
-        <a href="https://mtdubea.github.io/robot" class="card" data-title="Rescue Robot" data-category="robotics">
+        <a href="https://mtdubea.github.io/robot" class="card" data-title="Rescue Robot" data-category="Autonomous Systems">
           <h3>🤖 Rescue Robot</h3>
-          <p>Python-driven autonomous robot with DC/stepper motors and real-time navigation logic in a dynamic track.</p>
+          <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
         </a>
       </div>
     </section>
@@ -78,23 +78,23 @@
         <li>QA/QC</li>
         <li>MATLAB</li>
         <li>Automation</li>
-        <li>Fabrication</li>
+        <li>Hands-on Fabrication</li>
       </ul>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a> &nbsp;|&nbsp; Built for performance & clarity</p>
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a></p>
   </footer>
 
   <script>
-    // 🔍 Real-time search for project cards
     document.getElementById("searchInput").addEventListener("input", function () {
       const query = this.value.toLowerCase();
-      document.querySelectorAll(".project-grid .card").forEach(card => {
-        const title = card.dataset.title.toLowerCase();
-        const category = card.dataset.category.toLowerCase();
-        card.style.display = (title.includes(query) || category.includes(query)) ? "block" : "none";
+      document.querySelectorAll(".card").forEach(card => {
+        const title = card.getAttribute("data-title")?.toLowerCase() || "";
+        const category = card.getAttribute("data-category")?.toLowerCase() || "";
+        const content = card.textContent.toLowerCase();
+        card.style.display = title.includes(query) || category.includes(query) || content.includes(query) ? "block" : "none";
       });
     });
   </script>
