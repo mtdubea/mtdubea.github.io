@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Matthew Dubea | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical Engineer portfolio featuring design, fabrication, automation, and technical documentation.">
+  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea showcasing projects, certifications, and technical capabilities." />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <script defer src="theme.js"></script>
 </head>
 
@@ -16,53 +17,84 @@
       <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
     <nav class="site-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="resume.html">Resume</a>
-      <a href="reports.html">Reports</a>
-      <a href="media/certifications.html">Certifications</a>
+      <ul class="nav-links">
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="media/certifications.html">Certifications</a></li>
+        <li class="theme-toggle">
+          <button id="darkModeToggle" title="Toggle Dark Mode">🌓</button>
+        </li>
+      </ul>
     </nav>
   </header>
 
-  <main class="home-main">
-    <section class="card hero">
-      <h2>Welcome</h2>
+  <main>
+    <section class="hero">
+      <h2>Welcome to My Engineering Portfolio</h2>
       <p>
-        I'm Matthew Dubea, a mechanical engineer focused on process improvement, product design, and engineering documentation. I bring hands-on manufacturing experience and a growing portfolio of technical projects.
+        Explore a curated collection of engineering projects, technical reports, certifications, and professional development artifacts that reflect my experience and growth as a mechanical engineer.
       </p>
       <div class="cta-row">
         <a class="btn primary" href="resume.html">📄 View Resume</a>
-        <a class="btn outline" href="about.html">👋 Learn More</a>
+        <a class="btn outline" href="about.html">ℹ️ Learn More</a>
+        <a class="btn outline" href="media/certifications.html">🎓 See Certifications</a>
       </div>
     </section>
 
-    <section class="card highlights">
-      <h2>📌 Featured Projects</h2>
-      <ul class="project-list">
-        <li>
-          <a href="https://mtdubea.github.io/trike" target="_blank">
-            <h3>Acadiana 500 Trike</h3>
-            <p>Custom-built race tricycle designed, welded, and raced to victory using DFM and FEA principles.</p>
-          </a>
-        </li>
-        <li>
-          <a href="https://mtdubea.github.io/mechatronics" target="_blank">
-            <h3>Mechatronics Payload</h3>
-            <p>Autonomous drone payload system with obstacle sensing, temperature detection, and servo control.</p>
-          </a>
-        </li>
-        <li>
-          <a href="https://mtdubea.github.io/robot" target="_blank">
-            <h3>Rescue Robot</h3>
-            <p>Python-controlled robot designed for a themed engineering course competition using IR and magnetics.</p>
-          </a>
-        </li>
+    <section class="search-filter">
+      <input type="text" id="searchInput" placeholder="🔍 Search this site..." />
+    </section>
+
+    <section class="featured-projects">
+      <h2>📂 Featured Projects</h2>
+      <div class="project-grid">
+        <a href="https://mtdubea.github.io/trike" class="card">
+          <h3>🏁 Senior Trike Project</h3>
+          <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
+        </a>
+        <a href="https://mtdubea.github.io/mechatronics" class="card">
+          <h3>🛰️ Mechatronics Payload</h3>
+          <p>Autonomous drone payload system for MCHE 357 with multi-sensor integration and logic control.</p>
+        </a>
+        <a href="https://mtdubea.github.io/robot" class="card">
+          <h3>🤖 Rescue Robot</h3>
+          <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="highlight-section">
+      <h2>🛠️ Technical Skills</h2>
+      <ul class="skill-tags">
+        <li>CAD (SOLIDWORKS)</li>
+        <li>FEA</li>
+        <li>Python</li>
+        <li>Process Improvement</li>
+        <li>Six Sigma</li>
+        <li>DFM/DFA</li>
+        <li>TIG Welding</li>
+        <li>QA/QC</li>
+        <li>MATLAB</li>
+        <li>Automation</li>
+        <li>Hands-on Fabrication</li>
       </ul>
     </section>
   </main>
 
   <footer>
-    © 2025 Matthew Dubea
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a></p>
   </footer>
+
+  <script>
+    // 🔍 Real-time search
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const query = this.value.toLowerCase();
+      document.querySelectorAll(".card").forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(query) ? "block" : "none";
+      });
+    });
+  </script>
 </body>
 </html>
