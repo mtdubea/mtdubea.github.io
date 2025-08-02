@@ -2,24 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resume - Matthew Dubea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | Matthew Dubea</title>
   <link rel="stylesheet" href="style.css" />
+  <script defer src="theme.js"></script>
 </head>
 <body>
   <header>
-    <h1>Resume</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="reports.html">Reports</a>
-      <a href="media/certifications.html">Certifications</a>
-      <button id="theme-toggle">🌓</button>
-    </nav>
+    <div class="header-container">
+      <h1>Resume</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="resume.html" class="active">Resume</a>
+        <a href="reports.html">Reports</a>
+        <a href="media/certifications.html">Certifications</a>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </nav>
+    </div>
   </header>
-  <main>
-    <iframe src="media/MatthewDubea_Resume.pdf" width="100%" height="800px"></iframe>
-    <a class="btn" href="media/MatthewDubea_Resume.pdf" download>Download Resume</a>
+
+  <main class="content">
+    <section class="resume">
+      <h2>Download Resume</h2>
+      <p>
+        Click the button below to download my latest resume, or view it inline using the PDF viewer.
+      </p>
+      <a class="btn" href="media/Matthew_Dubea_Resume.pdf" target="_blank" download>Download PDF</a>
+    </section>
+
+    <section class="pdf-viewer">
+      <iframe
+        src="media/Matthew_Dubea_Resume.pdf"
+        width="100%"
+        height="800px"
+        style="border: 1px solid #ccc; margin-top: 1em;"
+        title="Resume PDF Viewer"
+      ></iframe>
+    </section>
   </main>
+
+  <footer>
+    <p>© 2025 Matthew Dubea · Last updated May 2025</p>
+  </footer>
 </body>
 </html>
