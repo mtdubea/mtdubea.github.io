@@ -8,6 +8,7 @@
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <script defer src="../theme.js"></script>
   <style>
+    /* minimal helpers if your global CSS doesn’t already have these */
     .certifications-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
     .cert-card{background:var(--card-bg,#fff);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:.75rem;display:flex;flex-direction:column}
     .cert-card embed,.cert-card img{width:100%;height:280px;border:0;border-radius:8px;background:#f3f5f8}
@@ -45,70 +46,62 @@
     <section class="card">
       <div class="certifications-grid">
 
-        <!-- 1) CSWA -->
+        <!-- Use file names exactly as shown here or change the href/src to match your actual files -->
+
         <div class="cert-card" onclick="openLightbox('CSWA_OFFICIAL.pdf')">
           <embed src="CSWA_OFFICIAL.pdf" type="application/pdf" />
           <div class="cert-title">CSWA — Certified SOLIDWORKS Associate</div>
           <a class="download-link" href="CSWA_OFFICIAL.pdf" download>⬇ Download</a>
         </div>
 
-        <!-- 2) NDE (moved up) -->
-        <div class="cert-card" onclick="openLightbox('NDE.pdf')">
-          <embed src="NDE.pdf" type="application/pdf" />
-          <div class="cert-title">ASME — BPVC Section V (NDE)</div>
-          <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
-        </div>
-
-        <!-- 3) GD&T (moved up) -->
-        <div class="cert-card" onclick="openLightbox('GDnT.pdf')">
-          <embed src="GDnT.pdf" type="application/pdf" />
-          <div class="cert-title">ASME — Drawing Interpretation (GD&T)</div>
-          <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
-        </div>
-
-        <!-- 4) Six Sigma Black Belt -->
         <div class="cert-card" onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
           <embed src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
           <div class="cert-title">Six Sigma — Black Belt (Standard)</div>
           <a class="download-link" href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" download>⬇ Download</a>
         </div>
 
-        <!-- 5) Lean Six Sigma White Belt -->
         <div class="cert-card" onclick="openLightbox('Lean_Six_Sigma_White_Belt-348043276.pdf')">
           <embed src="Lean_Six_Sigma_White_Belt-348043276.pdf" type="application/pdf" />
           <div class="cert-title">Lean Six Sigma — White Belt</div>
           <a class="download-link" href="Lean_Six_Sigma_White_Belt-348043276.pdf" download>⬇ Download</a>
         </div>
 
-        <!-- 6) Business Mgmt Essentials -->
         <div class="cert-card" onclick="openLightbox('Business_Management_Essentials_Certified-348043411.pdf')">
           <embed src="Business_Management_Essentials_Certified-348043411.pdf" type="application/pdf" />
           <div class="cert-title">Business Management Essentials</div>
           <a class="download-link" href="Business_Management_Essentials_Certified-348043411.pdf" download>⬇ Download</a>
         </div>
 
-        <!-- 7) OSHA 10 -->
         <div class="cert-card" onclick="openLightbox('OSHA_10_Hour_Health_and_Safety.png')">
           <img src="OSHA_10_Hour_Health_and_Safety.png" alt="OSHA 10-Hour Card" />
           <div class="cert-title">OSHA 10-Hour — Construction Safety</div>
           <a class="download-link" href="OSHA_10_Hour_Health_and_Safety.png" download>⬇ Download</a>
         </div>
 
-        <!-- 8) PM Essentials -->
         <div class="cert-card" onclick="openLightbox('Project_Management_Essentials-348043249.pdf')">
           <embed src="Project_Management_Essentials-348043249.pdf" type="application/pdf" />
           <div class="cert-title">Project Management Essentials</div>
           <a class="download-link" href="Project_Management_Essentials-348043249.pdf" download>⬇ Download</a>
         </div>
 
-        <!-- 9) MATLAB ML Onramp -->
+        <div class="cert-card" onclick="openLightbox('GDnT.pdf')">
+          <embed src="GDnT.pdf" type="application/pdf" />
+          <div class="cert-title">ASME — Drawing Interpretation (GD&T)</div>
+          <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
+        </div>
+
+        <div class="cert-card" onclick="openLightbox('NDE.pdf')">
+          <embed src="NDE.pdf" type="application/pdf" />
+          <div class="cert-title">ASME — BPVC Section V (NDE)</div>
+          <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
+        </div>
+
         <div class="cert-card" onclick="openLightbox('MATLAB_MachineLearning_OnRamp_Certification.pdf')">
           <embed src="MATLAB_MachineLearning_OnRamp_Certification.pdf" type="application/pdf" />
           <div class="cert-title">MATLAB — Machine Learning Onramp</div>
           <a class="download-link" href="MATLAB_MachineLearning_OnRamp_Certification.pdf" download>⬇ Download</a>
         </div>
 
-        <!-- 10) MATLAB Onramp -->
         <div class="cert-card" onclick="openLightbox('MATLAB_OnRamp_Cert.pdf')">
           <embed src="MATLAB_OnRamp_Cert.pdf" type="application/pdf" />
           <div class="cert-title">MATLAB — Onramp</div>
