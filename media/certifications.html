@@ -7,18 +7,6 @@
   <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <script defer src="../theme.js"></script>
-  <style>
-    /* minimal helpers if your global CSS doesn’t already have these */
-    .certifications-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
-    .cert-card{background:var(--card-bg,#fff);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:.75rem;display:flex;flex-direction:column}
-    .cert-card embed,.cert-card img{width:100%;height:280px;border:0;border-radius:8px;background:#f3f5f8}
-    .cert-title{margin:.6rem 0 .3rem;font-weight:600}
-    .download-link{font-size:.9rem}
-    #lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.7);z-index:9999;padding:2vw}
-    #lightbox.open{display:flex}
-    #lightbox-content{width:min(1200px,95vw);height:min(90vh,900px);background:#000;border:0;border-radius:8px}
-    .close-lightbox{position:absolute;top:14px;right:16px;background:#fff;border:0;border-radius:999px;padding:.4rem .6rem;font-size:1rem;cursor:pointer}
-  </style>
 </head>
 <body>
   <header class="site-header">
@@ -38,126 +26,109 @@
   </header>
 
   <main>
-    <section class="card">
+    <section>
       <h2>📜 Certifications & Training</h2>
       <p>All certifications below are from verified technical training, professional associations, and engineering coursework.</p>
     </section>
 
-    <section class="card">
-      <div class="certifications-grid">
-
-        <!-- Use file names exactly as shown here or change the href/src to match your actual files -->
-
-        <div class="cert-card" onclick="openLightbox('CSWA_OFFICIAL.pdf')">
-          <embed src="CSWA_OFFICIAL.pdf" type="application/pdf" />
-          <div class="cert-title">CSWA — Certified SOLIDWORKS Associate</div>
-          <a class="download-link" href="CSWA_OFFICIAL.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
-          <embed src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
-          <div class="cert-title">Six Sigma — Black Belt (Standard)</div>
-          <a class="download-link" href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('Lean_Six_Sigma_White_Belt-348043276.pdf')">
-          <embed src="Lean_Six_Sigma_White_Belt-348043276.pdf" type="application/pdf" />
-          <div class="cert-title">Lean Six Sigma — White Belt</div>
-          <a class="download-link" href="Lean_Six_Sigma_White_Belt-348043276.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('Business_Management_Essentials_Certified-348043411.pdf')">
-          <embed src="Business_Management_Essentials_Certified-348043411.pdf" type="application/pdf" />
-          <div class="cert-title">Business Management Essentials</div>
-          <a class="download-link" href="Business_Management_Essentials_Certified-348043411.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('OSHA_10_Hour_Health_and_Safety.png')">
-          <img src="OSHA_10_Hour_Health_and_Safety.png" alt="OSHA 10-Hour Card" />
-          <div class="cert-title">OSHA 10-Hour — Construction Safety</div>
-          <a class="download-link" href="OSHA_10_Hour_Health_and_Safety.png" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('Project_Management_Essentials-348043249.pdf')">
-          <embed src="Project_Management_Essentials-348043249.pdf" type="application/pdf" />
-          <div class="cert-title">Project Management Essentials</div>
-          <a class="download-link" href="Project_Management_Essentials-348043249.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('GDnT.pdf')">
-          <embed src="GDnT.pdf" type="application/pdf" />
-          <div class="cert-title">ASME — Drawing Interpretation (GD&T)</div>
-          <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('NDE.pdf')">
-          <embed src="NDE.pdf" type="application/pdf" />
-          <div class="cert-title">ASME — BPVC Section V (NDE)</div>
-          <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('MATLAB_MachineLearning_OnRamp_Certification.pdf')">
-          <embed src="MATLAB_MachineLearning_OnRamp_Certification.pdf" type="application/pdf" />
-          <div class="cert-title">MATLAB — Machine Learning Onramp</div>
-          <a class="download-link" href="MATLAB_MachineLearning_OnRamp_Certification.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('MATLAB_OnRamp_Cert.pdf')">
-          <embed src="MATLAB_OnRamp_Cert.pdf" type="application/pdf" />
-          <div class="cert-title">MATLAB — Onramp</div>
-          <a class="download-link" href="MATLAB_OnRamp_Cert.pdf" download>⬇ Download</a>
-        </div>
-
+    <div class="certifications-grid">
+      <!-- Certification Previews -->
+      <div class="cert-card" onclick="openLightbox('CSWA_OFFICIAL.pdf')">
+        <embed src="CSWA OFFICIAL.pdf" type="application/pdf" />
+        <div class="cert-title">CSWA (Certified SOLIDWORKS Associate)</div>
+        <a class="download-link" href="CSWA_OFFICIAL.pdf" download>⬇ Download</a>
       </div>
-    </section>
 
-    <section class="card">
+      <div class="cert-card" onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
+        <embed src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
+        <div class="cert-title">SSBB</div>
+        <a class="download-link" href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" download>⬇ Download</a>
+      </div>
+
+      <div class="cert-card" onclick="openLightbox('Lean_Six_Sigma_White_Belt-348043276.pdf')">
+        <embed src="Lean Six Sigma White Belt-348043276.pdf" type="application/pdf" />
+        <div class="cert-title">LSSWB</div>
+        <a class="download-link" href="Lean_Six_Sigma_White_Belt-348043276.pdf" download>⬇ Download</a>
+      </div>
+
+      <div class="cert-card" onclick="openLightbox('Business_Management_Essentials_Certified-348043411.pdf')">
+        <embed src="Business Management Essentials Certified-348043411.pdf" type="application/pdf" />
+        <div class="cert-title">BMEC</div>
+        <a class="download-link" href="Business_Management_Essentials_Certified-348043411.pdf" download>⬇ Download</a>
+      </div>
+
+      <div class="cert-card" onclick="openLightbox('OSHA_10_Hour_Health_&_Safety.png')">
+        <img src="OSHA_10_Hour_Health_&_Safety.png" alt="OSHA Card" />
+        <div class="cert-title">OSHA 10-Hour Safety</div>
+        <a class="download-link" href="OSHA_10_Hour_Health_&_Safety.png" download>⬇ Download</a>
+      </div>
+
+      <div class="cert-card" onclick="openLightbox('Project_Management_Essentials-348043249.pdf')">
+        <embed src="Project Management Essentials-348043249.pdf" type="application/pdf" />
+        <div class="cert-title">PMEC</div>
+        <a class="download-link" href="Project_Management_Essentials-348043249.pdf" download>⬇ Download</a>
+      </div>
+      
+      <div class="cert-card" onclick="openLightbox('GDnT.pdf')">
+        <embed src="GDnT.pdf" type="application/pdf" />
+        <div class="cert-title">GD&T</div>
+        <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
+      </div>
+
+    <div class="cert-card" onclick="openLightbox('NDE.pdf')">
+        <embed src="NDE.pdf" type="application/pdf" />
+        <div class="cert-title">NDE</div>
+        <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
+      </div>
+      
+  
+    </div>
+      <div class="cert-card" onclick="openLightbox('MATLAB_MachineLearning_OnRamp_Certification.pdf')">
+        <embed src="MATLAB_MachineLearning_OnRamp_Certification.pdf" type="application/pdf" />
+        <div class="cert-title">MLO</div>
+        <a class="download-link" href="MATLAB_MachineLearning_OnRamp_Certification.pdf" download>⬇ Download</a>
+      </div>
+
+   <div class="cert-card" onclick="openLightbox('MATLAB_OnRamp_Cert.pdf')">
+        <embed src="MATLAB_OnRamp_Cert.pdf" type="application/pdf" />
+        <div class="cert-title">MATLAB-O</div>
+        <a class="download-link" href="MATLAB_OnRamp_Cert.pdf" download>⬇ Download</a>
+      </div>
+    </div>
+
+    <section>
       <h3>🧰 Professional Memberships</h3>
-      <div class="certifications-grid">
-
-        <div class="cert-card" onclick="openLightbox('ASME_membership_certificate.pdf')">
-          <embed src="ASME_membership_certificate.pdf" type="application/pdf" />
-          <div class="cert-title">ASME — Member</div>
-          <a class="download-link" href="ASME_membership_certificate.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf')">
-          <embed src="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" type="application/pdf" />
-          <div class="cert-title">SME — Member</div>
-          <a class="download-link" href="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" download>⬇ Download</a>
-        </div>
-
-        <div class="cert-card" onclick="openLightbox('LES_Membership_Cert_Matthew_Dubea.pdf')">
-          <embed src="LES_Membership_Cert_Matthew_Dubea.pdf" type="application/pdf" />
-          <div class="cert-title">LES — Student Member</div>
-          <a class="download-link" href="LES_Membership_Cert_Matthew_Dubea.pdf" download>⬇ Download</a>
-        </div>
-
-      </div>
     </section>
+
+    <div class="certifications-grid">
+      <div class="cert-card" onclick="openLightbox('ASME-membership-certificate.pdf')">
+        <embed src="ASME.membership-certificate.pdf" type="application/pdf" />
+        <div class="cert-title">ASME</div>
+        <a class="download-link" href="ASME-membership-certificate.pdf" download>⬇ Download</a>
+      </div>
+
+      <div class="cert-card" onclick="openLightbox('SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf')">
+        <embed src="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" type="application/pdf" />
+        <div class="cert-title">SME</div>
+        <a class="download-link" href="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" download>⬇ Download</a>
+      </div>
+
+      <div class="cert-card" onclick="openLightbox('LES_Membership_Cert_Matthew_Dubea.pdf')">
+        <embed src="LES_Membership_Cert_Matthew_Dubea.pdf" type="application/pdf" />
+        <div class="cert-title">LES</div>
+        <a class="download-link" href="LES_Membership_Cert_Matthew_Dubea.pdf" download>⬇ Download</a>
+      </div>
+    </div>
   </main>
 
   <!-- Lightbox Viewer -->
   <div id="lightbox" onclick="closeLightbox()">
-    <button class="close-lightbox" type="button" onclick="closeLightbox();event.stopPropagation();">✕</button>
+    <button class="close-lightbox">✕</button>
     <iframe id="lightbox-content" frameborder="0"></iframe>
   </div>
 
   <footer>
-    <p>© 2025 Matthew Dubea · <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
+    <p>© 2025 Matthew Dubea | <a href="mailto:mtdubea@gmail.com">mtdubea@gmail.com</a></p>
   </footer>
-
-  <script>
-    function openLightbox(src){
-      const lb=document.getElementById('lightbox');
-      const f=document.getElementById('lightbox-content');
-      f.src=src; lb.classList.add('open'); document.body.style.overflow='hidden';
-    }
-    function closeLightbox(){
-      const lb=document.getElementById('lightbox');
-      const f=document.getElementById('lightbox-content');
-      lb.classList.remove('open'); f.src=''; document.body.style.overflow='';
-    }
-  </script>
 </body>
 </html>
