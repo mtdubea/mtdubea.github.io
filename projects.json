@@ -2,30 +2,49 @@
   "projects": [
     {
       "title": "Senior Trike Project",
-      "url": "https://mtdubea.github.io/trike",
-      "description": "Design, manufacturing, and race-winning performance of a custom trike built for competition.",
-      "category": "mechanical",
       "icon": "🏁",
-      "featured": true,
-      "order": 10
+      "url": "https://mtdubea.github.io/trike",
+      "description": "Competition trike designed and built from the ground up: CAD & FEA of a 4130/1018 steel frame, TIG welding & machining, drivetrain optimization, and DFM/DFA changes that cut assembly time and reduced BOM cost while maintaining safety factors.",
+      "category": "Mechanical",
+      "tags": ["CAD", "FEA", "DFM/DFA", "Manufacturing", "Welding"],
+      "year": 2025,
+      "order": 1,
+      "featured": true
     },
     {
-      "title": "Mechatronics Payload",
-      "url": "https://mtdubea.github.io/mechatronics",
-      "description": "Autonomous drone payload system with multi-sensor integration and logic control.",
-      "category": "mechatronics",
+      "title": "Mechatronics Sensor Payload",
       "icon": "🛰️",
-      "featured": true,
-      "order": 20
+      "url": "https://mtdubea.github.io/mechatronics",
+      "description": "Multi-sensor payload for a UAV platform: IMU, temperature, and distance sensing; PWM motor/servo control; PID tuning to minimize overshoot; C++/Python logic; safe-states and telemetry for reliable field testing.",
+      "category": "Mechatronics",
+      "tags": ["Embedded", "Sensors", "Control", "PID", "C++", "Python", "PWM"],
+      "year": 2024,
+      "order": 2,
+      "featured": true
     },
     {
-      "title": "Rescue Robot",
-      "url": "https://mtdubea.github.io/robot",
-      "description": "Python-controlled autonomous robot designed to navigate and retrieve targets across complex terrain.",
-      "category": "autonomous systems",
+      "title": "Autonomous Rescue Robot",
       "icon": "🤖",
-      "featured": true,
-      "order": 30
+      "url": "https://mtdubea.github.io/robot",
+      "description": "Autonomous ground robot that navigates to targets and retrieves them with a modular hook/actuator. Ultrasonic and IR sensing, Python control stack, and robust behaviors validated across obstacle courses.",
+      "category": "Autonomous Systems",
+      "tags": ["Robotics", "Python", "Autonomy", "Ultrasonic", "Infrared", "Mechanisms"],
+      "year": 2023,
+      "order": 3,
+      "featured": true
+    },
+
+    /* ------- Optional extras (not shown on Home because featured=false) ------- */
+    {
+      "title": "Portfolio Website & Design System",
+      "icon": "💻",
+      "url": "https://mtdubea.github.io/",
+      "description": "This responsive portfolio—built with accessible, mobile-first HTML/CSS/JS, JSON-driven sections, and light/dark theming. Focus on performance, semantics, and maintainability.",
+      "category": "Web",
+      "tags": ["HTML", "CSS", "Accessibility", "Performance"],
+      "year": 2025,
+      "order": 99,
+      "featured": false
     }
   ]
 }
