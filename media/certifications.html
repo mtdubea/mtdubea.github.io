@@ -2,42 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matthew Dubea | Certifications</title>
-  <meta name="description" content="All certifications and professional training for Matthew Dubea with mobile-safe PDF viewing and smart filtering." />
-  <link rel="stylesheet" href="../style.css" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>Certifications & Training | Matthew Dubea</title>
+  <meta name="description" content="Verified certifications, technical training, and professional memberships for Matthew Dubea." />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0a66c2" />
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="../style.css" />
   <script defer src="../theme.js"></script>
 
-  <!-- Rich result metadata for featured credentials -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "EducationalOccupationalCredential",
-        "name": "SOLIDWORKS CSWA (Certified Associate)",
-        "url": "CSWA_OFFICIAL.pdf",
-        "issuer": { "@type": "Organization", "name": "Dassault Systèmes (SOLIDWORKS)" },
-        "credentialCategory": "Certification"
-      },
-      {
-        "@type": "EducationalOccupationalCredential",
-        "name": "Six Sigma Black Belt (CSSC)",
-        "url": "Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf",
-        "issuer": { "@type": "Organization", "name": "The Council for Six Sigma Certification" },
-        "credentialCategory": "Certification"
-      },
-      {
-        "@type": "EducationalOccupationalCredential",
-        "name": "ASME B31.12: Hydrogen Piping & Pipelines (Advanced)",
-        "url": "Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf",
-        "issuer": { "@type": "Organization", "name": "ASME" },
-        "credentialCategory": "Training"
-      }
-    ]
-  }
-  </script>
+  <style>
+    /* Page-local cosmetics that complement style.css */
+    .toolbar-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .5rem;
+    }
+    body.dark-mode .toolbar-sticky {
+      background: var(--bg-dark);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .hint {
+      text-align: center; color: var(--muted); margin: .5rem 0 0;
+      font-size: .95rem;
+    }
+    /* When we disable embeds on mobile, show a neutral doc placeholder */
+    .no-embed .cert-card .media {
+      background: linear-gradient(180deg, #f7f7f7, #eee);
+      display: grid; place-items: center;
+    }
+    .no-embed .cert-card .media::after {
+      content: "Document preview not available on mobile";
+      font-size: .85rem; color: var(--muted);
+    }
+    /* Make the lightbox slightly larger on desktops */
+    #lightbox.open #lightbox-frame { width: 90vw; height: 86vh; }
+  </style>
 </head>
 
 <body class="fade-in">
@@ -52,370 +58,304 @@
         <li><a href="../about.html">About</a></li>
         <li><a href="../resume.html">Resume</a></li>
         <li><a href="../reports.html">Reports</a></li>
-        <li><a class="active" aria-current="page" href="certifications.html">Certifications</a></li>
-        <li class="theme-toggle"><button id="darkModeToggle" title="Toggle Dark Mode">🌓</button></li>
+        <li><a class="active" href="certifications.html" aria-current="page">Certifications</a></li>
+        <li class="theme-toggle"><button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🖥️</button></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero">
+    <!-- Hero -->
+    <section class="hero" style="padding-bottom:1rem">
       <h2>Certifications & Training</h2>
       <p>All certifications are from verified technical training, professional associations, and engineering coursework.</p>
 
-      <!-- Quick anchor index -->
+      <!-- Quick index (filled after JSON) -->
       <nav id="sectionIndex" class="section-index" aria-label="Section index"></nav>
-
-      <!-- Global Search + Count -->
-      <div class="searchbar" role="search" aria-label="Search certifications">
-        <input id="searchInput" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
-        <span id="resultCount" aria-live="polite" style="margin-left:.5rem;"></span>
-      </div>
-
-      <!-- Filter bar -->
-      <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
     </section>
 
-    <!-- Sections get injected here -->
-    <div id="sections" class="fade-in"></div>
+    <!-- Sticky toolbar: search + filters -->
+    <div class="toolbar-sticky">
+      <div class="searchbar" role="search" aria-label="Search certifications">
+        <input id="certSearch" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
+        <span id="certCount" aria-live="polite" style="margin-left:.5rem;"></span>
+      </div>
+      <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
+    </div>
+    <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
+
+    <!-- Sections target (rendered from JSON) -->
+    <div id="certSections" style="margin-top:.75rem"></div>
   </main>
 
-  <!-- Lightbox (desktop-capable browsers only; disabled on mobile/iOS) -->
+  <!-- Desktop lightbox -->
   <div id="lightbox" aria-hidden="true">
     <button class="close-lightbox" aria-label="Close">✕</button>
     <button id="prevBtn" class="nav-btn" aria-label="Previous">←</button>
-    <iframe id="lightbox-content" frameborder="0" title="Certification document viewer"></iframe>
+    <iframe id="lightbox-frame" title="Certification document viewer" frameborder="0"></iframe>
     <button id="nextBtn" class="nav-btn" aria-label="Next">→</button>
   </div>
 
   <footer>
-    <p style="text-align:center;">© 2025 Matthew Dubea | <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 
   <script>
-  (function () {
-    // ---------- Capability detection (robust iOS/mobile fallback) ----------
-    const UA = navigator.userAgent || "";
-    const isIOS = /iPad|iPhone|iPod/.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(UA);
-    const canEmbedPDF = !!(navigator.mimeTypes && navigator.mimeTypes["application/pdf"]);
-    const isWide = matchMedia("(min-width: 900px)").matches;
+    // ======= Mobile-safe embed policy =======
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const canInlinePDF = !isIOS && window.matchMedia('(min-width: 992px)').matches;
+    if (!canInlinePDF) document.body.classList.add('no-embed');
 
-    // Inline PDF only on wide screens, not iOS, and where the browser advertises PDF support.
-    const INLINE_PDF_OK = isWide && !isIOS && canEmbedPDF;
-
-    // ---------- Helpers ----------
-    const $  = (s, r = document) => r.querySelector(s);
-    const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
-    const sectionsHost = $("#sections");
-    const filtersHost  = $("#filters");
-    const indexHost    = $("#sectionIndex");
-    const searchInput  = $("#searchInput");
-    const resultCount  = $("#resultCount");
+    // ======= DOM helpers =======
+    const $  = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
     const qs = new URLSearchParams(location.search);
 
-    const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
-    const escapeAttr = s => escapeHTML(s).replace(/"/g, "&quot;");
+    const sectionsHost = $('#certSections');
+    const filtersHost  = $('#filters');
+    const indexHost    = $('#sectionIndex');
+    const searchInput  = $('#certSearch');
+    const resultCount  = $('#certCount');
 
-    // ---------- Build UI from certs.json ----------
-    fetch("certs.json", { cache: "no-store" })
-      .then(r => r.json())
-      .then(data => {
-        const groups = (data.groups || [])
-          .slice()
-          .sort((a, b) => (a.order || 9999) - (b.order || 9999));
-
-        // Anchor index
-        indexHost.innerHTML = groups.map(g => `<a href="#sec-${escapeAttr(g.id)}">${escapeHTML(g.title)}</a>`).join(" • ");
-
-        // Filters (All + groups)
-        const initialFilter = (qs.get("filter") || "all").toLowerCase();
-        filtersHost.innerHTML =
-          `<button data-filter="all" class="tab ${initialFilter === "all" ? "active" : ""}" role="tab" aria-selected="${initialFilter === "all"}">All</button>` +
-          groups.map(g => {
-            const active = initialFilter === String(g.id).toLowerCase();
-            return `<button data-filter="${escapeAttr(g.id)}" class="tab ${active ? "active" : ""}" role="tab" aria-selected="${active}">${escapeHTML(g.title)}</button>`;
-          }).join("");
-
-        // Sections and cards
-        sectionsHost.innerHTML = groups.map(g => renderGroup(g)).join("");
-
-        // A→Z sort within sections unless data-sort-exempt
-        $$('[data-section]:not([data-sort-exempt]) .certifications-grid').forEach(grid => {
-          const cards = Array.from(grid.children);
-          cards.sort((a,b) => {
-            const ta = a.querySelector('.cert-title')?.textContent.trim().toLowerCase() || '';
-            const tb = b.querySelector('.cert-title')?.textContent.trim().toLowerCase() || '';
-            return ta.localeCompare(tb);
-          });
-          cards.forEach(c => grid.appendChild(c));
-        });
-
-        // Lazy-load embeds (desktop capable only)
-        if (INLINE_PDF_OK) setupLazyEmbeds();
-
-        // Wire up behaviors
-        setupFilters();
-        setupSearch();
-        applyFilterAndSearch(); // initialize count
-
-        // Lightbox (desktop capable only)
-        if (INLINE_PDF_OK) setupLightbox();
-
-        // On mobile or when embed isn't supported, clicking a card opens the file in a new tab
-        if (!INLINE_PDF_OK) {
-          sectionsHost.addEventListener("click", e => {
-            const card = e.target.closest(".cert-card");
-            if (!card) return;
-            if (e.target.closest(".download-link")) return;
-            const src = card.getAttribute("data-file");
-            if (src) window.open(src, "_blank", "noopener");
-          });
-        }
-
-        // Prefetch PDFs on hover (desktop) for snappier open
-        if (!isMobile) {
-          sectionsHost.addEventListener("mouseenter", e => {
-            const card = e.target.closest(".cert-card");
-            if (!card) return;
-            const src = card.getAttribute("data-file") || "";
-            if (!src.toLowerCase().endsWith(".pdf")) return;
-            const l = document.createElement("link");
-            l.rel = "prefetch";
-            l.href = src;
-            document.head.appendChild(l);
-          }, true);
-        }
-
-      })
+    // ======= Fetch & render =======
+    fetch('certs.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(json => render(json))
       .catch(err => {
-        console.error("Failed to load certs.json", err);
-        sectionsHost.innerHTML = `<p style="text-align:center;color:var(--muted);">Unable to load certifications.</p>`;
+        console.error('Failed to load certs.json', err);
+        sectionsHost.innerHTML = '<p style="text-align:center;color:var(--muted)">Unable to load certifications right now.</p>';
       });
 
-    // ---------- Renderers ----------
-    function renderGroup(group) {
-      const items = (group.items || []).map(renderCard).join("");
-      const sortExempt = group.sort_exempt ? " data-sort-exempt" : "";
-      return `
-        <details id="sec-${escapeAttr(group.id)}" data-section${sortExempt} open>
-          <summary><h3 class="section-title">${escapeHTML(group.title)}</h3></summary>
-          <div class="certifications-grid">
-            ${items}
-          </div>
-        </details>
-      `;
+    function render(json) {
+      const groups = (json.groups || []).sort((a,b) => (a.order || 0) - (b.order || 0));
+
+      // Section index with counts
+      indexHost.innerHTML = groups
+        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span style="color:var(--muted)">(${(g.items||[]).length})</span></a>`)
+        .join(' · ');
+
+      // Filters + deep link
+      const initialFilter = (qs.get('filter') || 'all').toLowerCase();
+      filtersHost.innerHTML = [
+        `<button data-filter="all" class="${initialFilter==='all'?'active':''}" role="tab" aria-selected="${initialFilter==='all'}">All</button>`,
+        ...groups.map(g => {
+          const isActive = initialFilter === g.id.toLowerCase();
+          return `<button data-filter="${g.id}" class="${isActive?'active':''}" role="tab" aria-selected="${isActive}">${escapeHTML(g.title)}</button>`;
+        })
+      ].join('');
+
+      // Sections
+      sectionsHost.innerHTML = groups.map(g => sectionTemplate(g)).join('');
+      groups.forEach(g => {
+        const grid = document.getElementById(`grid-${g.id}`);
+        (g.items || []).forEach(item => grid.insertAdjacentHTML('beforeend', cardTemplate(item)));
+      });
+
+      // Lazy <object> PDFs on desktop only
+      if (canInlinePDF) setupLazyObjects();
+
+      // Interactions
+      setupFilters(initialFilter);
+      setupSearch();
+
+      if (canInlinePDF) setupLightbox();
     }
 
-    function renderCard(item) {
-      const file = item.file;
-      const cat  = (item.category || []).join(" ");
-      const badges = (item.badges || []).map(b => `<span class="badge">${escapeHTML(b)}</span>`).join("");
+    function sectionTemplate(group) {
+      return `
+        <details id="sec-${group.id}" data-section open>
+          <summary><h3 class="section-title">${escapeHTML(group.title)}</h3></summary>
+          <div class="certifications-grid" id="grid-${group.id}"></div>
+        </details>`;
+    }
 
-      // MEDIA AREA
-      let mediaHTML = "";
-      if (item.type === "pdf") {
-        if (INLINE_PDF_OK) {
-          mediaHTML = `<embed class="media" data-src="${escapeAttr(file)}" type="application/pdf" />`;
+    function cardTemplate(item) {
+      const isImage = (item.type || '').toLowerCase() === 'image';
+      const file    = item.file;
+      const issuer  = (item.issuer || '').trim();
+      const badges  = (item.badges || []).map(b => `<span class="badge">${escapeHTML(b)}</span>`).join('');
+      const openBtn = `<a class="btn outline" href="${file}" target="_blank" rel="noopener">Open</a>`;
+      const dlBtn   = `<a class="btn outline" href="${file}" download>Download</a>`;
+
+      let media = '';
+      if (canInlinePDF) {
+        if (isImage) {
+          media = `<img class="media" src="${file}" alt="${escapeHTML(item.title)}" loading="lazy" />`;
         } else {
-          // Placeholder on mobile / iOS / small viewports
-          mediaHTML = `
-            <div class="media" aria-label="PDF preview unavailable" style="display:flex;align-items:center;justify-content:center;font-weight:600;">
-              PDF Preview
-            </div>
-          `;
+          media = `
+            <object class="media" type="application/pdf" data="" data-src="${file}">
+              <div style="padding:1rem;text-align:center">
+                <p style="margin:.25rem 0 .5rem;color:var(--muted)">Preview failed to load.</p>
+                ${openBtn}
+              </div>
+            </object>`;
         }
-      } else if (item.type === "image") {
-        mediaHTML = `<img class="media" src="${escapeAttr(file)}" alt="${escapeAttr(item.title)}" />`;
       } else {
-        mediaHTML = `<div class="media" style="display:flex;align-items:center;justify-content:center;"><span style="opacity:.7;">Document</span></div>`;
+        media = `<div class="media" aria-hidden="true"></div>`;
       }
 
-      // CTA: always a download; add "Open PDF" button when inline is not available
-      const openBtn = (!INLINE_PDF_OK && item.type === "pdf")
-        ? `<a class="btn outline" href="${escapeAttr(file)}" target="_blank" rel="noopener">Open PDF</a>`
-        : "";
-
       return `
-        <div class="cert-card" data-file="${escapeAttr(file)}" data-category="${escapeAttr(cat)}">
-          ${mediaHTML}
+        <article class="cert-card" data-file="${file}" data-category="${(item.category || []).join(' ')}" role="group" aria-label="${escapeHTML(item.title)}">
+          ${media}
           <div class="cert-body">
             <div class="cert-title">${escapeHTML(item.title)}</div>
-            <div class="cert-badges">${badges}</div>
-            <a class="download-link" href="${escapeAttr(file)}" download>⬇ Download</a>
-            ${openBtn}
+            <div class="cert-badges">
+              ${issuer ? `<span class="badge">Issuer: ${escapeHTML(issuer)}</span>` : ''}${badges}
+            </div>
+            <div class="cta-row" style="gap:.5rem;flex-wrap:wrap">${openBtn}${dlBtn}</div>
           </div>
-        </div>
-      `;
+        </article>`;
     }
 
-    // ---------- Search + Filter ----------
-    function cardMatches(card, needle, cat) {
-      if (cat !== "all") {
-        const cats = (card.getAttribute("data-category") || "").toLowerCase().split(/\s+/);
-        if (!cats.includes(cat)) return false;
-      }
-      if (!needle) return true;
-
-      const t = (card.querySelector(".cert-title")?.textContent || "").toLowerCase();
-      const issuer = (card.querySelector(".cert-badges")?.textContent || "").toLowerCase();
-      const cats = (card.getAttribute("data-category") || "").toLowerCase();
-      return t.includes(needle) || issuer.includes(needle) || cats.includes(needle);
-    }
-
-    let activeFilter = (qs.get("filter") || "all").toLowerCase();
-
-    function applyFilterAndSearch() {
-      const needle = (searchInput?.value || "").trim().toLowerCase();
-      const cards = $$(".cert-card");
-      let visible = 0;
-
-      cards.forEach(card => {
-        const show = cardMatches(card, needle, activeFilter);
-        card.hidden = !show;
-        if (show) visible++;
-      });
-
-      // Toggle sections (hide when empty)
-      $$("[data-section]").forEach(sec => {
-        const hasVisible = sec.querySelector(".cert-card:not([hidden])");
-        sec.hidden = !hasVisible;
-        if (hasVisible) sec.setAttribute("open", "");
-      });
-
-      if (resultCount) resultCount.textContent = visible ? `${visible} shown` : "No results";
-    }
-
-    function setupFilters() {
-      const btns = $$("#filters .tab");
-      btns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          activeFilter = (btn.dataset.filter || "all").toLowerCase();
-          btns.forEach(b => b.classList.toggle("active", b === btn));
-          // Persist to URL (no reload)
-          const url = new URL(location.href);
-          if (activeFilter === "all") url.searchParams.delete("filter");
-          else url.searchParams.set("filter", activeFilter);
-          history.replaceState({}, "", url);
-          applyFilterAndSearch();
-        });
-      });
-    }
-
-    function setupSearch() {
-      if (searchInput) searchInput.addEventListener("input", applyFilterAndSearch);
-    }
-
-    // ---------- Lazy loading for embeds (desktop only) ----------
-    function setupLazyEmbeds() {
-      const lazy = [];
-      $$(".cert-card embed.media").forEach(el => {
-        const s = el.getAttribute("data-src");
-        if (s) lazy.push(el);
-      });
-      if (!lazy.length) return;
+    function setupLazyObjects() {
+      const lazyObjs = $$('object.media[data-src]');
+      if (!lazyObjs.length) return;
 
       const io = new IntersectionObserver(entries => {
         entries.forEach(e => {
           if (e.isIntersecting) {
-            const el = e.target;
-            const src = el.getAttribute("data-src");
-            if (src && !el.getAttribute("src")) {
-              el.setAttribute("src", src);
+            const el  = e.target;
+            const src = el.getAttribute('data-src');
+            if (src && !el.getAttribute('data')) {
+              el.setAttribute('data', src);
+              // If the PDF plug-in errors, show the inline fallback
+              el.addEventListener('error', () => {
+                el.outerHTML = `
+                  <div style="padding:1rem;text-align:center">
+                    <p style="margin:.25rem 0 .5rem;color:var(--muted)">Preview unavailable.</p>
+                    <a class="btn outline" href="${src}" target="_blank" rel="noopener">Open</a>
+                  </div>`;
+              });
               io.unobserve(el);
             }
           }
         });
-      }, { rootMargin: "200px" });
+      }, { rootMargin: '200px' });
 
-      lazy.forEach(el => io.observe(el));
+      lazyObjs.forEach(el => io.observe(el));
     }
 
-    // ---------- Lightbox (desktop only) ----------
+    function setupFilters(initial) {
+      let active = (initial || 'all').toLowerCase();
+      const buttons  = $$('#filters button');
+      const sections = $$('[data-section]');
+
+      function apply(needle) {
+        const cards = $$('.cert-card');
+        let visible = 0;
+
+        cards.forEach(card => {
+          const cats   = (card.getAttribute('data-category') || '').toLowerCase().split(/\s+/);
+          const title  = card.querySelector('.cert-title')?.textContent.toLowerCase() || '';
+          const issuer = card.querySelector('.cert-badges')?.textContent.toLowerCase() || '';
+          const fOK    = active === 'all' || cats.includes(active);
+          const sOK    = !needle || title.includes(needle) || issuer.includes(needle) || cats.join(' ').includes(needle);
+          const show   = fOK && sOK;
+          card.hidden  = !show;
+          if (show) visible++;
+        });
+
+        sections.forEach(sec => {
+          const hasVisible = sec.querySelector('.cert-card:not([hidden])');
+          sec.hidden = !hasVisible;
+          if (hasVisible) sec.setAttribute('open','');
+        });
+
+        if (resultCount) resultCount.textContent = visible ? `${visible} shown` : 'No results';
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          active = btn.dataset.filter.toLowerCase();
+          // update URL (no navigation)
+          const url = new URL(location.href);
+          if (active === 'all') url.searchParams.delete('filter');
+          else url.searchParams.set('filter', active);
+          history.replaceState({}, '', url);
+
+          buttons.forEach(b => b.classList.toggle('active', b === btn));
+          buttons.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
+          apply((searchInput?.value || '').toLowerCase());
+        });
+      });
+
+      // initial application
+      apply((searchInput?.value || '').toLowerCase());
+    }
+
+    function setupSearch() {
+      searchInput?.addEventListener('input', () => {
+        // re-apply current filter after text changes
+        const activeBtn = $('#filters button.active') || $('#filters button[data-filter="all"]');
+        activeBtn?.click();
+      });
+    }
+
+    // Desktop-only lightbox
     function setupLightbox() {
-      const lightbox = $("#lightbox");
-      const frame = $("#lightbox-content");
-      const prevBtn = $("#prevBtn");
-      const nextBtn = $("#nextBtn");
-      const closeBtn = $(".close-lightbox");
+      const lightbox = $('#lightbox');
+      const frame    = $('#lightbox-frame');
+      const prevBtn  = $('#prevBtn');
+      const nextBtn  = $('#nextBtn');
+      const closeBtn = $('.close-lightbox');
       let currentIndex = -1;
-      let lastFocused = null;
+      let lastFocused  = null;
 
       function visibleCards() {
-        return $$(".cert-card").filter(c => !c.hidden && c.offsetParent !== null);
+        return $$('.cert-card').filter(c => !c.hidden && c.offsetParent !== null);
       }
-      function indexFromSrc(src) {
+      function indexFromFile(f) {
         const list = visibleCards();
-        return list.findIndex(c => (c.getAttribute("data-file") || "") === src);
+        return list.findIndex(c => (c.getAttribute('data-file') || '') === f);
       }
       function openLightbox(src) {
         lastFocused = document.activeElement;
-        currentIndex = indexFromSrc(src);
+        currentIndex = indexFromFile(src);
         frame.src = src;
-        lightbox.classList.add("open");
-        lightbox.setAttribute("aria-modal", "true");
-        lightbox.setAttribute("role", "dialog");
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
         closeBtn.focus();
-        document.addEventListener("keydown", onKey);
-        document.addEventListener("focus", trapFocus, true);
+        document.addEventListener('keydown', onKey);
       }
       function closeLightbox() {
-        lightbox.classList.remove("open");
-        frame.src = "about:blank";
-        document.removeEventListener("keydown", onKey);
-        document.removeEventListener("focus", trapFocus, true);
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        frame.src = 'about:blank';
+        document.removeEventListener('keydown', onKey);
         if (lastFocused) lastFocused.focus();
       }
-      function showAt(index) {
+      function showAt(i) {
         const list = visibleCards();
         if (!list.length) return;
-        currentIndex = (index + list.length) % list.length;
-        const src = list[currentIndex].getAttribute("data-file");
+        currentIndex = (i + list.length) % list.length;
+        const src = list[currentIndex].getAttribute('data-file');
         frame.src = src;
       }
       function onKey(e) {
-        if (e.key === "Escape") { e.preventDefault(); closeLightbox(); }
-        if (e.key === "ArrowLeft") { e.preventDefault(); showAt(currentIndex - 1); }
-        if (e.key === "ArrowRight") { e.preventDefault(); showAt(currentIndex + 1); }
-        if (e.key === "Tab") trapFocus(e);
-      }
-      function trapFocus(e) {
-        const focusables = $$('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', lightbox)
-          .filter(el => !el.hasAttribute("disabled"));
-        if (!lightbox.classList.contains("open") || !focusables.length) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.type === "focus") {
-          if (!lightbox.contains(document.activeElement)) first.focus();
-          return;
-        }
-        if (e.key === "Tab") {
-          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        }
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') showAt(currentIndex - 1);
+        if (e.key === 'ArrowRight') showAt(currentIndex + 1);
       }
 
-      prevBtn.addEventListener("click", e => { e.stopPropagation(); showAt(currentIndex - 1); });
-      nextBtn.addEventListener("click", e => { e.stopPropagation(); showAt(currentIndex + 1); });
-      closeBtn.addEventListener("click", e => { e.stopPropagation(); closeLightbox(); });
-      lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+      prevBtn.addEventListener('click', e => { e.stopPropagation(); showAt(currentIndex - 1); });
+      nextBtn.addEventListener('click', e => { e.stopPropagation(); showAt(currentIndex + 1); });
+      closeBtn.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 
-      // Open lightbox when clicking any card (except download link)
-      document.addEventListener("click", (e) => {
-        const card = e.target.closest(".cert-card");
+      // Only cards (not the explicit Open/Download links) open the lightbox
+      document.addEventListener('click', e => {
+        const card = e.target.closest('.cert-card');
         if (!card) return;
-        if (e.target.closest(".download-link")) return;
-        const src = card.getAttribute("data-file");
-        const isPDF = src && src.toLowerCase().endsWith(".pdf");
-        if (isPDF) {
-          e.preventDefault();
-          openLightbox(src);
-        } else if (src) {
-          window.open(src, "_blank", "noopener");
-        }
+        if (e.target.closest('a')) return; // let links work
+        const src = card.getAttribute('data-file');
+        if (src) openLightbox(src);
       });
     }
-  })();
+
+    function escapeHTML(s) {
+      return (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    }
   </script>
 </body>
 </html>
