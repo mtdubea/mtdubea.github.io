@@ -1,43 +1,128 @@
-/* =========================================================
-   About page components
-   ========================================================= */
-.hero h2 { margin-top: .25rem; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Matthew Dubea</title>
+  <meta name="description" content="Matthew Dubea — Mechanical Engineer focused on manufacturing, process optimization, tooling design, and practical automation." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <script defer src="theme.js"></script>
 
-.kicker{
-  display:inline-flex; align-items:center; gap:.5rem;
-  padding:.35rem .6rem; border-radius:999px;
-  font-weight:600; font-size:.95rem;
-  background:#eef6ff; border:1px solid var(--border);
-  margin-bottom:.5rem;
-}
-.lead{ max-width:75ch; margin:0 auto; font-size:1.05rem; }
-.lead + .lead{ margin-top:.9rem; }
+  <!-- Page-scoped polish to complement style.css -->
+  <style>
+    .hero h2 { margin-top: .25rem; }
+    .kicker {
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.35rem .6rem; border-radius: 999px;
+      font-weight: 600; font-size:.95rem;
+      background:#eef6ff; border:1px solid var(--border);
+      margin-bottom:.5rem;
+    }
+    .lead { max-width: 75ch; margin: 0 auto; font-size: 1.05rem; }
+    .lead + .lead { margin-top: .9rem; }
+    .about-block { max-width: 960px; margin: 1.25rem auto 0; padding: 0 1rem; }
+    .about-cols {
+      display:grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 1.25rem;
+    }
+    .about-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.1rem;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+    body.dark-mode .about-card { background: var(--surface-dark); border-color: var(--border-dark); }
+    .about-card h4 { margin: 0 0 .5rem; }
+    .about-list { margin: 0; padding-left: 1.1rem; }
+    .about-list li { margin: .4rem 0; }
+    .statline { color: var(--muted); font-size: .95rem; margin-top: .4rem; }
+  </style>
+</head>
 
-.about-block{ max-width:960px; margin:1.25rem auto 0; padding:0 1rem; }
-.about-cols{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+<body class="fade-in">
+  <header class="site-header">
+    <div class="brand">
+      <h1>Matthew Dubea</h1>
+      <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
+    </div>
+    <nav class="site-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="about.html" aria-current="page">About</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="media/certifications.html">Certifications</a></li>
+        <li class="theme-toggle">
+          <button id="darkModeToggle" title="Toggle Dark Mode">🌓</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-.about-card{
-  background:var(--surface); border:1px solid var(--border);
-  border-radius:10px; padding:1rem 1.1rem;
-  box-shadow:0 10px 30px var(--shadow);
-}
-body.dark-mode .about-card{ background:var(--surface-dark); border-color:var(--border-dark); }
-.about-card h4{ margin:0 0 .5rem; }
-.about-list{ margin:0; padding-left:1.1rem; }
-.about-list li{ margin:.4rem 0; }
-.statline{ color:var(--muted); font-size:.95rem; margin-top:.4rem; }
+  <main>
+    <section class="hero">
+      <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width: 180px; border-radius: 50%; margin-bottom: 1em; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" />
+      <span class="kicker">About Me</span>
+      <h2>Designing How Things Are Made</h2>
 
-/* Featured Links (pill anchors to match chips) */
-.skill-tags li a{
-  display:inline-block; padding:.45em .9em;
-  border:1px solid var(--border); border-radius:999px;
-  background:var(--surface); color:inherit; text-decoration:none;
-  transition:background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
-}
-.skill-tags li a:hover{ background:#eef6ff; border-color:var(--accent); color:var(--text-light); }
-body.dark-mode .skill-tags li a{ background:var(--surface-dark); border-color:var(--border-dark); color:var(--text-dark); }
-body.dark-mode .skill-tags li a:hover{ background:#0f2138; border-color:var(--accent-hover); }
+      <p class="lead">
+        I’m a mechanical engineer who loves the factory floor as much as CAD. My sweet spot is manufacturing and
+        process optimization—designing parts and the tooling/fixtures that build them, then tightening the flow with
+        data, automation, and disciplined quality. I blend hands-on build experience with FEA, GD&amp;T, and Six Sigma
+        thinking to deliver throughput, reliability, and cost control.
+      </p>
+      <p class="lead">
+        Where I’m headed next: a design/manufacturing team that owns DFM/DFA, jigs &amp; fixtures, line balance, and
+        continuous improvement. I enjoy simplifying processes, turning repeat work into scripts, and building dashboards
+        that keep production honest. Tools I reach for: SOLIDWORKS, AutoCAD, Siemens NX, Python, Power BI, and SAP.
+      </p>
 
-/* Ensure nav pills are consistent on every page */
-.site-nav .nav-links a{ border-radius:8px; font-weight:500; }
-.site-nav .nav-links a.active{ background-color:var(--accent); color:#fff; }
+      <div class="about-block about-cols">
+        <div class="about-card">
+          <h4>Currently</h4>
+          <ul class="about-list">
+            <li>📚 <strong>FE Mechanical exam</strong> scheduled for <strong>October 2025</strong> (PE path to follow).</li>
+            <li>🧰 Building small automations for BOM/ECN/reporting with <strong>Python</strong> + <strong>Power BI</strong>.</li>
+            <li>🧪 Sharpening advanced <strong>GD&amp;T</strong> and FEA workflows for production reliability.</li>
+          </ul>
+          <p class="statline">I like turning tribal knowledge into fixtures, checklists, and code.</p>
+        </div>
+
+        <div class="about-card">
+          <h4>Certifications (highlights)</h4>
+          <ul class="about-list">
+            <li>🛠️ <strong>CSWA</strong> – Certified SOLIDWORKS Associate.</li>
+            <li>📈 <strong>Six Sigma Black Belt (CSSC)</strong> – data-driven improvement &amp; variation reduction.</li>
+            <li>📘 <strong>ASME</strong> – B31.12 Hydrogen Piping (Intro &amp; Advanced), BPVC Sec V (NDE), GD&amp;T.</li>
+            <li>💡 Plus: Power&nbsp;BI, SAP&nbsp;MM, PCAP-Python, MATLAB Onramp, OSHA-10, and more.</li>
+          </ul>
+          <p class="statline"><a href="media/certifications.html">See all credentials</a> (dozens, verified).</p>
+        </div>
+
+        <div class="about-card">
+          <h4>Background (short)</h4>
+          <ul class="about-list">
+            <li>🎓 B.S. Mechanical Engineering — University of Louisiana at Lafayette.</li>
+            <li>🌍 Engineering design study in London (UCL).</li>
+            <li>🔧 Built award-winning systems across CAD/FEA, welding, machining, mechatronics &amp; system integration.</li>
+          </ul>
+          <p class="statline">Hands-on projects include lightweight vehicle design, mechatronic payloads, and robotics.</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:1.6rem;">🔗 Featured Links</h3>
+      <ul class="skill-tags" style="justify-content: center; margin-top: 1em;">
+        <li><a href="https://github.com/mtdubea" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://louisiana.joinhandshake.com/profiles/pmtbtq" target="_blank" rel="noopener">Handshake</a></li>
+        <li><a href="media/certifications.html">Certifications</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
+  </footer>
+</body>
+</html>
