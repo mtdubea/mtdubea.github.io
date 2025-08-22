@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "lastUpdated": "2025-08-22",
+  "updated": "2025-08-22",
   "groups": [
     {
       "id": "cswa",
@@ -11,20 +11,16 @@
         {
           "title": "SOLIDWORKS CSWA (Certified Associate)",
           "file": "CSWA_OFFICIAL.pdf",
-          "type": "pdf",
-          "category": ["cswa"],
+          "category": ["cswa", "solidworks", "cad"],
           "issuer": "SOLIDWORKS",
           "badges": ["Issuer: SOLIDWORKS", "Level: Associate"],
-          "issued": "",
-          "verify": "",
-          "featured": true,
-          "keywords": ["SOLIDWORKS", "CAD", "modeling", "mechanical design"]
+          "type": "pdf"
         }
       ]
     },
 
     {
-      "id": "ssbb",
+      "id": "six-sigma",
       "title": "Six Sigma Black Belt",
       "order": 2,
       "sort_exempt": true,
@@ -32,14 +28,10 @@
         {
           "title": "Six Sigma Black Belt (CSSC)",
           "file": "Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf",
-          "type": "pdf",
-          "category": ["six-sigma"],
+          "category": ["six-sigma", "lean"],
           "issuer": "CSSC",
           "badges": ["Issuer: CSSC", "Level: Black Belt"],
-          "issued": "",
-          "verify": "",
-          "featured": true,
-          "keywords": ["DMAIC", "process improvement", "quality", "lean", "statistics"]
+          "type": "pdf"
         }
       ]
     },
@@ -48,115 +40,86 @@
       "id": "asme",
       "title": "ASME & Engineering Standards",
       "order": 3,
-      "sort_exempt": true,
       "items": [
         {
           "title": "ASME B31.12: Hydrogen Piping & Pipelines (Intro)",
           "file": "ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf",
-          "type": "pdf",
-          "category": ["asme"],
+          "category": ["asme", "standards"],
           "issuer": "ASME",
           "badges": ["Issuer: ASME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["hydrogen", "piping", "pressure", "safety", "code"]
+          "type": "pdf"
         },
         {
           "title": "ASME B31.12: Hydrogen Piping & Pipelines (Advanced)",
           "file": "Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf",
-          "type": "pdf",
-          "category": ["asme"],
+          "category": ["asme", "standards"],
           "issuer": "ASME",
           "badges": ["Issuer: ASME"],
-          "issued": "",
-          "verify": "",
-          "featured": true,
-          "keywords": ["hydrogen", "B31.12", "design", "materials", "fitness for service"]
+          "type": "pdf"
         },
         {
           "title": "ASME BPV Code Sec V: Nondestructive Examination (Overview)",
           "file": "NDE.pdf",
-          "type": "pdf",
-          "category": ["asme"],
+          "category": ["asme", "standards"],
           "issuer": "ASME",
           "badges": ["Issuer: ASME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["NDE", "inspection", "ASME Section V", "ultrasonic", "radiography"]
+          "type": "pdf"
         },
         {
           "title": "ASME Boiler & Pressure Vessel: Certification Process",
           "file": "ASME%20Boiler%20&%20Pressure%20Vessel.pdf",
-          "type": "pdf",
-          "category": ["asme"],
+          "category": ["asme", "standards"],
           "issuer": "ASME",
           "badges": ["Issuer: ASME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["BPVC", "compliance", "certification"]
+          "type": "pdf"
         },
         {
           "title": "ASME Drawing Interpretation: GD&T",
           "file": "GDnT.pdf",
-          "type": "pdf",
-          "category": ["asme"],
+          "category": ["asme", "gd&t", "standards"],
           "issuer": "ASME",
           "badges": ["Issuer: ASME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["GD&T", "tolerancing", "datums", "manufacturability"]
+          "type": "pdf"
         }
       ]
     },
 
     {
-      "id": "pm",
+      "id": "pmi",
       "title": "Project Management & PMI",
       "order": 10,
       "items": [
         {
           "title": "Agile Project Management",
           "file": "AgileProjectManagement.pdf",
-          "type": "pdf",
-          "category": ["pmi"],
+          "category": ["pmi", "project-management"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["agile", "scrum", "roadmaps", "stakeholders"]
+          "type": "pdf"
         },
         {
           "title": "Project Management Essentials",
           "file": "Project_Management_Essentials-348043249.pdf",
-          "type": "pdf",
-          "category": ["pmi"],
+          "category": ["pmi", "project-management"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["WBS", "critical path", "risk", "schedule"]
+          "type": "pdf"
         },
         {
           "title": "Microsoft Project: Planning for Successful Project Management",
           "file": "--PMI_MicrosoftProject.Project.Management.pdf",
-          "type": "pdf",
-          "category": ["pmi"],
+          "category": ["pmi", "project-management", "microsoft-project"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["MS Project", "Gantt", "baseline"]
+          "type": "pdf"
         },
         {
           "title": "Practical GitHub Project Management & Collaboration",
           "file": "--PMI-GitHub_Project_Management.pdf",
-          "type": "pdf",
-          "category": ["pmi"],
+          "category": ["pmi", "project-management", "github"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["GitHub", "issues", "projects", "automation"]
+          "type": "pdf"
         }
       ]
     },
@@ -169,35 +132,26 @@
         {
           "title": "AutoCAD 2025: Essential Training",
           "file": "-AutoCAD.2025.Essential.Training.pdf",
-          "type": "pdf",
-          "category": ["autocad"],
+          "category": ["autocad", "cad"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["AutoCAD", "drafting", "blocks", "layouts"]
+          "type": "pdf"
         },
         {
           "title": "AutoCAD 2026: Essential Training",
           "file": "-AutoCAD.2026.Essential.Training.pdf",
-          "type": "pdf",
-          "category": ["autocad"],
+          "category": ["autocad", "cad"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["AutoCAD", "annotation", "sheet set"]
+          "type": "pdf"
         },
         {
           "title": "Learning AutoCAD 2026",
           "file": "-AutoCAD2026.pdf",
-          "type": "pdf",
-          "category": ["autocad"],
+          "category": ["autocad", "cad"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["AutoCAD", "model space", "paper space"]
+          "type": "pdf"
         }
       ]
     },
@@ -210,46 +164,34 @@
         {
           "title": "SAP MM: Materials Management",
           "file": "-SAP.MM_MaterialsManagement.pdf",
-          "type": "pdf",
-          "category": ["sap"],
+          "category": ["sap", "erp"],
           "issuer": "SAP",
           "badges": ["Issuer: SAP"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["SAP", "MM", "procurement", "inventory"]
+          "type": "pdf"
         },
         {
           "title": "SAP Business One: Essential Training",
           "file": "CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf",
-          "type": "pdf",
-          "category": ["sap"],
+          "category": ["sap", "erp"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["SAP B1", "SMB ERP", "finance", "logistics"]
+          "type": "pdf"
         },
         {
           "title": "SAP ERP: Essential Training",
           "file": "CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf",
-          "type": "pdf",
-          "category": ["sap"],
+          "category": ["sap", "erp"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["SAP ERP", "processes", "modules"]
+          "type": "pdf"
         },
         {
           "title": "SAP Financials: Essential Training",
           "file": "CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf",
-          "type": "pdf",
-          "category": ["sap"],
+          "category": ["sap", "erp", "finance"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["SAP FI", "accounting", "reporting"]
+          "type": "pdf"
         }
       ]
     },
@@ -262,13 +204,10 @@
         {
           "title": "Learning Siemens NX",
           "file": "-SiemensNX.pdf",
-          "type": "pdf",
-          "category": ["nx"],
+          "category": ["nx", "cad"],
           "issuer": "Siemens",
           "badges": ["Issuer: Siemens"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Siemens NX", "CAD", "assemblies"]
+          "type": "pdf"
         }
       ]
     },
@@ -281,13 +220,10 @@
         {
           "title": "Revit 2023: Essential Training for MEP",
           "file": "-Revit.2023.MEP.pdf",
-          "type": "pdf",
-          "category": ["revit"],
+          "category": ["revit", "cad", "mep"],
           "issuer": "Autodesk",
           "badges": ["Issuer: Autodesk"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Revit", "MEP", "BIM"]
+          "type": "pdf"
         }
       ]
     },
@@ -300,13 +236,10 @@
         {
           "title": "Architecture CAD Technician (32 hours)",
           "file": "-32hours.ArchitectureCADTechnician.pdf",
-          "type": "pdf",
-          "category": ["arch-cad"],
+          "category": ["arch-cad", "cad"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning", "Hours: 32h"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["architecture", "CAD", "construction docs"]
+          "type": "pdf"
         }
       ]
     },
@@ -319,46 +252,34 @@
         {
           "title": "Power BI: Data Methods",
           "file": "CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf",
-          "type": "pdf",
-          "category": ["power-bi"],
+          "category": ["power-bi", "bi"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Power BI", "data prep", "ETL"]
+          "type": "pdf"
         },
         {
           "title": "Power BI: Essential Training (Business Intelligence)",
           "file": "-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf",
-          "type": "pdf",
-          "category": ["power-bi"],
+          "category": ["power-bi", "bi"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Power BI", "dashboards", "DAX"]
+          "type": "pdf"
         },
         {
           "title": "Power BI: Essential Training (2024)",
           "file": "CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf",
-          "type": "pdf",
-          "category": ["power-bi"],
+          "category": ["power-bi", "bi"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Power BI", "visualization", "reports"]
+          "type": "pdf"
         },
         {
           "title": "Complete Guide to Power BI for Data Analysts",
           "file": "CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf",
-          "type": "pdf",
-          "category": ["power-bi"],
+          "category": ["power-bi", "bi"],
           "issuer": "Microsoft Press",
           "badges": ["Issuer: Microsoft Press"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Power BI", "data analysis", "best practices"]
+          "type": "pdf"
         }
       ]
     },
@@ -371,35 +292,26 @@
         {
           "title": "PCAP: Programming Essentials in Python (OpenEDG)",
           "file": "OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf",
-          "type": "pdf",
-          "category": ["programming"],
+          "category": ["programming", "python"],
           "issuer": "OpenEDG Python Institute",
           "badges": ["Issuer: OpenEDG Python Institute"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Python", "PCAP", "programming"]
+          "type": "pdf"
         },
         {
           "title": "Career Essentials: GitHub Copilot (Professional Certificate)",
           "file": "CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf",
-          "type": "pdf",
-          "category": ["programming"],
+          "category": ["programming", "github"],
           "issuer": "Microsoft / LinkedIn",
           "badges": ["Issuer: Microsoft / LinkedIn"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["GitHub Copilot", "AI", "developer productivity"]
+          "type": "pdf"
         },
         {
           "title": "Career Essentials in GitHub — Professional Certificate",
           "file": "CareerEssentialsinGitHubProfessionalCertificate.pdf",
-          "type": "pdf",
-          "category": ["programming"],
+          "category": ["programming", "github"],
           "issuer": "Microsoft / LinkedIn",
           "badges": ["Issuer: Microsoft / LinkedIn"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["Git", "GitHub", "collaboration"]
+          "type": "pdf"
         }
       ]
     },
@@ -412,24 +324,18 @@
         {
           "title": "Data Science Professional — KNIME",
           "file": "DataScienceProfessional-KNIME.pdf",
-          "type": "pdf",
-          "category": ["data"],
+          "category": ["data", "analytics"],
           "issuer": "KNIME",
           "badges": ["Issuer: KNIME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["KNIME", "data science", "analytics"]
+          "type": "pdf"
         },
         {
           "title": "Learning Data Analytics 1: Foundations",
           "file": "LearningDataAnalytics1Foundations.pdf",
-          "type": "pdf",
-          "category": ["data"],
+          "category": ["data", "analytics"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["analytics", "statistics", "data"]
+          "type": "pdf"
         }
       ]
     },
@@ -442,24 +348,18 @@
         {
           "title": "MATLAB: Onramp",
           "file": "MATLAB_OnRamp_Cert.pdf",
-          "type": "pdf",
-          "category": ["matlab"],
+          "category": ["matlab", "analytics"],
           "issuer": "MathWorks",
           "badges": ["Issuer: MathWorks"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["MATLAB", "basics", "vectors", "scripts"]
+          "type": "pdf"
         },
         {
           "title": "MATLAB: Machine Learning Onramp",
           "file": "MATLAB_MachineLearning_OnRamp_Certification.pdf",
-          "type": "pdf",
-          "category": ["matlab"],
+          "category": ["matlab", "analytics", "ml"],
           "issuer": "MathWorks",
           "badges": ["Issuer: MathWorks"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["MATLAB", "machine learning", "classification", "regression"]
+          "type": "pdf"
         }
       ]
     },
@@ -472,35 +372,26 @@
         {
           "title": "Lean Six Sigma: White Belt",
           "file": "Lean_Six_Sigma_White_Belt-348043276.pdf",
-          "type": "pdf",
           "category": ["lean", "six-sigma"],
           "issuer": "CSSC / LinkedIn",
           "badges": ["Issuer: CSSC / LinkedIn"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["lean", "white belt", "waste reduction"]
+          "type": "pdf"
         },
         {
           "title": "Process Improvement: Foundations",
           "file": "CertificateOfCompletion_Process%20Improvement%20Foundations.pdf",
-          "type": "pdf",
           "category": ["lean"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["process mapping", "kaizen", "metrics"]
+          "type": "pdf"
         },
         {
           "title": "Business Management Essentials (Certified)",
           "file": "Business_Management_Essentials_Certified-348043411.pdf",
-          "type": "pdf",
-          "category": ["lean"],
+          "category": ["lean", "business"],
           "issuer": "LinkedIn Learning",
           "badges": ["Issuer: LinkedIn Learning"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["management", "operations", "communication"]
+          "type": "pdf"
         }
       ]
     },
@@ -513,14 +404,10 @@
         {
           "title": "OSHA 10-Hour: Health & Safety",
           "file": "OSHA_10_Hour_Health_&_Safety.png",
-          "type": "image",
           "category": ["safety"],
           "issuer": "OSHA",
           "badges": ["Issuer: OSHA"],
-          "imageAlt": "OSHA 10-Hour Health & Safety Card",
-          "issued": "",
-          "verify": "",
-          "keywords": ["OSHA", "safety", "workplace"]
+          "type": "image"
         }
       ]
     },
@@ -533,35 +420,26 @@
         {
           "title": "ASME — Membership Certificate",
           "file": "ASME-membership-certificate.pdf",
-          "type": "pdf",
           "category": ["memberships"],
           "issuer": "ASME",
           "badges": ["Issuer: ASME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["membership", "ASME"]
+          "type": "pdf"
         },
         {
           "title": "SME — Membership Certificate",
           "file": "SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf",
-          "type": "pdf",
           "category": ["memberships"],
           "issuer": "SME",
           "badges": ["Issuer: SME"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["membership", "SME"]
+          "type": "pdf"
         },
         {
           "title": "LES — Membership Certificate",
           "file": "LES_Membership_Cert_Matthew_Dubea.pdf",
-          "type": "pdf",
           "category": ["memberships"],
           "issuer": "LES",
           "badges": ["Issuer: LES"],
-          "issued": "",
-          "verify": "",
-          "keywords": ["membership", "LES"]
+          "type": "pdf"
         }
       ]
     }
