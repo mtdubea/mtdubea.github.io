@@ -7,12 +7,13 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   />
   <title>Matthew Dubea | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
 
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <!-- Meta -->
+  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0a66c2" />
 
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta property="og:type" content="website" />
@@ -23,9 +24,52 @@
   <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta name="twitter:image" content="assets/images/profile-headshot.jpg" />
 
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
 
+  <!-- iOS-specific fix to prevent CTA overlap and ensure nice wrapping -->
+  <style>
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      justify-content: center;
+      align-items: stretch;
+      margin-top: .75rem;
+    }
+    .cta-row .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;           /* thumb target */
+      padding: 0.7em 1.1em;
+      line-height: 1.1;
+      text-align: center;
+      white-space: nowrap;
+      flex: 0 1 260px;            /* wrap on small widths */
+    }
+    @media (max-width: 520px) {
+      .cta-row .btn { flex: 1 1 100%; }
+    }
+    /* iOS Safari quirk: make sure the action chips never overlap */
+    @supports (-webkit-touch-callout: none) {
+      .cta-row .btn { flex: 1 1 300px; }
+    }
+
+    /* Simple skeleton for project cards while JSON loads */
+    .skeleton {
+      border-radius: 10px;
+      height: 120px;
+      border: 1px solid var(--border);
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+      background-size: 400% 100%;
+      animation: sk 1.2s infinite linear;
+    }
+    @keyframes sk { 0% {background-position: -200% 0;} 100% {background-position: 200% 0;} }
+  </style>
+
+  <!-- Structured data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,9 +103,10 @@
 <body class="fade-in">
   <a href="#main" class="visually-hidden-focusable" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
+  <!-- Header -->
   <header class="site-header" role="banner">
     <div class="brand">
-      <h1 style="margin:0">Matthew Dubea</h1>
+      <h1>Matthew Dubea</h1>
       <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
     <nav class="site-nav" aria-label="Primary">
@@ -72,7 +117,7 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
         <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🖥️</button>
+          <button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🌓</button>
         </li>
       </ul>
     </nav>
@@ -83,12 +128,14 @@
     <section class="hero" aria-labelledby="home-hero-title">
       <h2 id="home-hero-title">Welcome to My Engineering Portfolio</h2>
       <p>
-        Explore a curated collection of engineering projects, technical reports, certifications, and professional development artifacts that reflect my experience and growth as a mechanical engineer.
+        Explore a curated collection of engineering projects, technical reports, certifications,
+        and professional development artifacts that reflect my experience and growth as a
+        mechanical engineer.
       </p>
       <div class="cta-row" role="group" aria-label="Primary actions">
-        <a class="btn primary" href="resume.html">📄 View Resume</a>
-        <a class="btn outline" href="about.html">ℹ️ Learn More</a>
-        <a class="btn outline" href="media/certifications.html">🎓 See Certifications</a>
+        <a class="btn primary" href="resume.html">📄&nbsp;View Resume</a>
+        <a class="btn outline" href="about.html">ℹ️&nbsp;Learn More</a>
+        <a class="btn outline" href="media/certifications.html">🎓&nbsp;See Certifications</a>
       </div>
     </section>
 
@@ -100,25 +147,29 @@
       <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
     </section>
 
-    <!-- Featured Projects (JSON-driven) -->
+    <!-- Featured Projects -->
     <section class="featured-projects" aria-labelledby="featured-title">
       <h2 id="featured-title">📂 Featured Projects</h2>
 
-      <!-- JSON will populate this container -->
-      <div id="projectGrid" class="project-grid" role="list"></div>
+      <!-- A few skeletons while JSON loads -->
+      <div id="projectGrid" class="project-grid" role="list">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
 
-      <!-- <noscript> fallback so content is still visible without JS -->
+      <!-- No-JS fallback -->
       <noscript>
-        <div class="project-grid">
-          <a href="https://mtdubea.github.io/trike" class="card">
+        <div class="project-grid" role="list">
+          <a href="https://mtdubea.github.io/trike" class="card" role="listitem">
             <h3>🏁 Senior Trike Project</h3>
             <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
           </a>
-          <a href="https://mtdubea.github.io/mechatronics" class="card">
+          <a href="https://mtdubea.github.io/mechatronics" class="card" role="listitem">
             <h3>🛰️ Mechatronics Payload</h3>
             <p>Autonomous drone payload system with multi-sensor integration and logic control.</p>
           </a>
-          <a href="https://mtdubea.github.io/robot" class="card">
+          <a href="https://mtdubea.github.io/robot" class="card" role="listitem">
             <h3>🤖 Rescue Robot</h3>
             <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
           </a>
@@ -146,17 +197,15 @@
   </main>
 
   <footer role="contentinfo">
-    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@outlook.com">mattdubea@outlook.com</a></p>
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 
+  <!-- Projects loader + search hook -->
   <script>
-    // ---- JSON-driven Featured Projects ----
     (function () {
-      const grid = document.getElementById("projectGrid");
-      const input = document.getElementById("searchInput");
-      const countEl = document.getElementById("searchCount");
-
-      if (!grid) return;
+      const grid   = document.getElementById("projectGrid");
+      const input  = document.getElementById("searchInput");
+      const count  = document.getElementById("searchCount");
 
       function renderCards(projects) {
         grid.innerHTML = "";
@@ -179,19 +228,19 @@
         const cards = Array.from(grid.querySelectorAll(".card"));
         if (!input || !cards.length) return;
 
-        function updateCount(n) {
-          if (!countEl) return;
-          countEl.textContent = n === cards.length ? "" : (n ? \`\${n} shown\` : "No results");
-        }
+        const updateCount = (n) => {
+          if (!count) return;
+          count.textContent = n === cards.length ? "" : (n ? `${n} shown` : "No results");
+        };
 
         input.addEventListener("input", () => {
           const q = (input.value || "").toLowerCase();
           let visible = 0;
           cards.forEach(card => {
             const title = card.getAttribute("data-title") || "";
-            const cat = card.getAttribute("data-category") || "";
-            const txt = card.textContent.toLowerCase();
-            const show = !q || title.includes(q) || cat.includes(q) || txt.includes(q);
+            const cat   = card.getAttribute("data-category") || "";
+            const txt   = card.textContent.toLowerCase();
+            const show  = !q || title.includes(q) || cat.includes(q) || txt.includes(q);
             card.style.display = show ? "block" : "none";
             if (show) visible++;
           });
@@ -203,21 +252,33 @@
         .then(r => r.ok ? r.json() : Promise.reject(r.status))
         .then(data => {
           const list = (data.projects || [])
-            .filter(p => p.featured !== false)     // default to featured if omitted
+            .filter(p => p.featured !== false)
             .sort((a, b) => (a.order || 9999) - (b.order || 9999));
-
           renderCards(list);
           attachSearch();
         })
-        .catch(err => {
-          console.warn("[projects] Could not load projects.json", err);
-          // Graceful fallback: mirror the <noscript> items (already in markup).
-          grid.outerHTML = "";
+        .catch(() => {
+          // Graceful fallback: if JSON fails, show the <noscript> version by replacing skeletons
+          grid.outerHTML = `
+            <div class="project-grid" role="list">
+              <a href="https://mtdubea.github.io/trike" class="card" role="listitem">
+                <h3>🏁 Senior Trike Project</h3>
+                <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
+              </a>
+              <a href="https://mtdubea.github.io/mechatronics" class="card" role="listitem">
+                <h3>🛰️ Mechatronics Payload</h3>
+                <p>Autonomous drone payload system with multi-sensor integration and logic control.</p>
+              </a>
+              <a href="https://mtdubea.github.io/robot" class="card" role="listitem">
+                <h3>🤖 Rescue Robot</h3>
+                <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
+              </a>
+            </div>`;
         });
     })();
   </script>
 
-  <!-- Tiny helper for skip link -->
+  <!-- Accessible skip-link reveal -->
   <style>
     .visually-hidden-focusable:focus {
       position: static !important;
