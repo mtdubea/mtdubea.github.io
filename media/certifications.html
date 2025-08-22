@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <script defer src="../theme.js"></script>
+
+  <style>
+    /* Minimal extras for filters and empty-section hiding */
+    .filters {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 1.25rem;
+    }
+    .filters button {
+      padding: .4rem .7rem; border: 1px solid var(--border, #ddd);
+      background: var(--card, #f8f8f8); cursor: pointer; border-radius: .5rem;
+      font-size: .9rem;
+    }
+    .filters button.active { outline: 2px solid var(--accent, #0a66c2); }
+    section[hidden] { display: none !important; }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -31,195 +45,367 @@
       <p>All certifications below are from verified technical training, professional associations, and engineering coursework.</p>
     </section>
 
-    <div class="certifications-grid">
-      <!-- Certification Previews -->
-      <div class="cert-card" onclick="openLightbox('CSWA_OFFICIAL.pdf')">
-        <embed src="CSWA OFFICIAL.pdf" type="application/pdf" />
-        <div class="cert-title">CSWA (Certified SOLIDWORKS Associate)</div>
-        <a class="download-link" href="CSWA_OFFICIAL.pdf" download>⬇ Download</a>
-      </div>
-      
-      <div class="cert-card" onclick="openLightbox('Lean_Six_Sigma_White_Belt-348043276.pdf')">
-        <embed src="Lean Six Sigma White Belt-348043276.pdf" type="application/pdf" />
-        <div class="cert-title">LSSWB - Lean Six Sigma White Belt</div>
-        <a class="download-link" href="Lean_Six_Sigma_White_Belt-348043276.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
-        <embed src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
-        <div class="cert-title">SSBB - CSSC</div>
-        <a class="download-link" href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" download>⬇ Download</a>
-      </div>
-      
-      <div class="cert-card" onclick="openLightbox('ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf')">
-        <embed src="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" type="application/pdf" />
-        <div class="cert-title">ASME (Intro) B31.12 — Hydrogen Piping and Pipelines</div>
-        <a class="download-link" href="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf')">
-        <embed src="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" type="application/pdf" />
-        <div class="cert-title">ASME — (ADVANCED) B31.12 (Hydrogen Piping & Pipelines)</div>
-        <a class="download-link" href="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('NDE.pdf')">
-        <embed src="NDE.pdf" type="application/pdf" />
-        <div class="cert-title">ASME - BPV Code, Section V: Nondestructive Examination Overview</div>
-        <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('ASME%20Boiler%20&%20Pressure%20Vessel.pdf')">
-        <embed src="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" type="application/pdf" />
-        <div class="cert-title">ASME - Boiler & Pressure Vessel Certification Process</div>
-        <a class="download-link" href="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('GDnT.pdf')">
-        <embed src="GDnT.pdf" type="application/pdf" />
-        <div class="cert-title">ASME - Drawing Interpretation - Geometric Dimensioning and Tolerancing (GD&T)</div>
-        <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('AgileProjectManagement.pdf')">
-        <embed src="AgileProjectManagement.pdf" type="application/pdf" />
-        <div class="cert-title">Agile Project Management</div>
-        <a class="download-link" href="AgileProjectManagement.pdf" download>⬇ Download</a>
-      </div>
-      
-      <div class="cert-card" onclick="openLightbox('OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf')">
-        <embed src="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" type="application/pdf" />
-        <div class="cert-title">PCAP – Programming Essentials in Python (OpenEDG Python Institute)</div>
-        <a class="download-link" href="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf')">
-        <embed src="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" type="application/pdf" />
-        <div class="cert-title">Power BI Data Methods</div>
-        <a class="download-link" href="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf')">
-        <embed src="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" type="application/pdf" />
-        <div class="cert-title">Power BI Essential Training (2024)</div>
-        <a class="download-link" href="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_Process%20Improvement%20Foundations.pdf')">
-        <embed src="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" type="application/pdf" />
-        <div class="cert-title">Process Improvement Foundations</div>
-        <a class="download-link" href="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf')">
-        <embed src="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" type="application/pdf" />
-        <div class="cert-title">Complete Guide to Power BI for Data Analysts (Microsoft Press)</div>
-        <a class="download-link" href="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf')">
-        <embed src="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" type="application/pdf" />
-        <div class="cert-title">SAP Business One Essential Training</div>
-        <a class="download-link" href="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf')">
-        <embed src="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" type="application/pdf" />
-        <div class="cert-title">SAP ERP Essential Training</div>
-        <a class="download-link" href="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf')">
-        <embed src="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" type="application/pdf" />
-        <div class="cert-title">SAP Financials Essential Training</div>
-        <a class="download-link" href="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf')">
-        <embed src="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" type="application/pdf" />
-        <div class="cert-title">Career Essentials in GitHub Copilot Professional Certificate</div>
-        <a class="download-link" href="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" download>⬇ Download</a>
-      </div>
-
-      <!-- CareerEssentialsinGitHubProfessionalCertificate.pdf -->
-      <div class="cert-card" onclick="openLightbox('CareerEssentialsinGitHubProfessionalCertificate.pdf')">
-        <embed src="CareerEssentialsinGitHubProfessionalCertificate.pdf" type="application/pdf" />
-        <div class="cert-title">Career Essentials in GitHub — Professional Certificate</div>
-        <a class="download-link" href="CareerEssentialsinGitHubProfessionalCertificate.pdf" download>⬇ Download</a>
-      </div>
-
-
-      <div class="cert-card" onclick="openLightbox('Business_Management_Essentials_Certified-348043411.pdf')">
-        <embed src="Business Management Essentials Certified-348043411.pdf" type="application/pdf" />
-        <div class="cert-title">BMEC</div>
-        <a class="download-link" href="Business_Management_Essentials_Certified-348043411.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('OSHA_10_Hour_Health_&_Safety.png')">
-        <img src="OSHA_10_Hour_Health_&_Safety.png" alt="OSHA Card" />
-        <div class="cert-title">OSHA 10-Hour Safety</div>
-        <a class="download-link" href="OSHA_10_Hour_Health_&_Safety.png" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('Project_Management_Essentials-348043249.pdf')">
-        <embed src="Project Management Essentials-348043249.pdf" type="application/pdf" />
-        <div class="cert-title">PMEC</div>
-        <a class="download-link" href="Project_Management_Essentials-348043249.pdf" download>⬇ Download</a>
-      </div>
-
-      <div class="cert-card" onclick="openLightbox('MATLAB_MachineLearning_OnRamp_Certification.pdf')">
-        <embed src="MATLAB_MachineLearning_OnRamp_Certification.pdf" type="application/pdf" />
-        <div class="cert-title">MLO</div>
-        <a class="download-link" href="MATLAB_MachineLearning_OnRamp_Certification.pdf" download>⬇ Download</a>
-      </div>
-
-      <!-- DataScienceProfessional-KNIME.pdf -->
-      <div class="cert-card" onclick="openLightbox('DataScienceProfessional-KNIME.pdf')">
-        <embed src="DataScienceProfessional-KNIME.pdf" type="application/pdf" />
-        <div class="cert-title">Data Science Professional — KNIME</div>
-        <a class="download-link" href="DataScienceProfessional-KNIME.pdf" download>⬇ Download</a>
-      </div>
-
-<!-- LearningDataAnalytics1Foundations.pdf -->
-      <div class="cert-card" onclick="openLightbox('LearningDataAnalytics1Foundations.pdf')">
-        <embed src="LearningDataAnalytics1Foundations.pdf" type="application/pdf" />
-        <div class="cert-title">Learning Data Analytics 1: Foundations</div>
-        <a class="download-link" href="LearningDataAnalytics1Foundations.pdf" download>⬇ Download</a>
-      </div>
-
-
-      <div class="cert-card" onclick="openLightbox('MATLAB_OnRamp_Cert.pdf')">
-        <embed src="MATLAB_OnRamp_Cert.pdf" type="application/pdf" />
-        <div class="cert-title">MATLAB-O</div>
-        <a class="download-link" href="MATLAB_OnRamp_Cert.pdf" download>⬇ Download</a>
-      </div>
+    <!-- Filter bar -->
+    <div class="filters" id="filters">
+      <button data-filter="featured" class="active">Featured</button>
+      <button data-filter="all">All</button>
+      <button data-filter="asme">ASME</button>
+      <button data-filter="cswa">CSWA</button>
+      <button data-filter="six-sigma">Six Sigma</button>
+      <button data-filter="pmi">Project Mgmt & PMI</button>
+      <button data-filter="autocad">AutoCAD</button>
+      <button data-filter="sap">SAP</button>
+      <button data-filter="nx">Siemens NX</button>
+      <button data-filter="revit">Revit (MEP)</button>
+      <button data-filter="arch-cad">Architecture CAD Tech</button>
+      <button data-filter="power-bi">Power BI</button>
+      <button data-filter="programming">Programming & GitHub</button>
+      <button data-filter="data">Data Science & Analytics</button>
+      <button data-filter="matlab">MATLAB</button>
+      <button data-filter="lean">Lean/Business</button>
+      <button data-filter="safety">Safety</button>
+      <button data-filter="memberships">Memberships</button>
     </div>
 
-    
+    <!-- ===== Featured (best certifications first) ===== -->
+    <section id="sec-featured" data-section>
+      <h3>Featured</h3>
+      <div class="certifications-grid">
+        <!-- CSWA -->
+        <div class="cert-card" data-category="cswa featured" onclick="openLightbox('CSWA_OFFICIAL.pdf')">
+          <embed src="CSWA_OFFICIAL.pdf" type="application/pdf" />
+          <div class="cert-title">SOLIDWORKS CSWA (Certified Associate)</div>
+          <a class="download-link" href="CSWA_OFFICIAL.pdf" download>⬇ Download</a>
+        </div>
 
-    <section>
-      <h3>🧰 Professional Memberships</h3>
+        <!-- Six Sigma Black Belt -->
+        <div class="cert-card" data-category="six-sigma featured" onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
+          <embed src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
+          <div class="cert-title">Six Sigma Black Belt (CSSC)</div>
+          <a class="download-link" href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" download>⬇ Download</a>
+        </div>
+
+        <!-- ASME (all) -->
+        <div class="cert-card" data-category="asme featured" onclick="openLightbox('ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf')">
+          <embed src="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" type="application/pdf" />
+          <div class="cert-title">ASME B31.12 Introduction: Hydrogen Piping & Pipelines</div>
+          <a class="download-link" href="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" download>⬇ Download</a>
+        </div>
+
+        <div class="cert-card" data-category="asme featured" onclick="openLightbox('Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf')">
+          <embed src="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" type="application/pdf" />
+          <div class="cert-title">ASME B31.12 Advanced: Hydrogen Piping & Pipelines</div>
+          <a class="download-link" href="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" download>⬇ Download</a>
+        </div>
+
+        <div class="cert-card" data-category="asme featured" onclick="openLightbox('NDE.pdf')">
+          <embed src="NDE.pdf" type="application/pdf" />
+          <div class="cert-title">ASME BPV Code, Section V: Nondestructive Examination (Overview)</div>
+          <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
+        </div>
+
+        <div class="cert-card" data-category="asme featured" onclick="openLightbox('ASME%20Boiler%20&%20Pressure%20Vessel.pdf')">
+          <embed src="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" type="application/pdf" />
+          <div class="cert-title">ASME Boiler & Pressure Vessel: Certification Process</div>
+          <a class="download-link" href="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" download>⬇ Download</a>
+        </div>
+
+        <div class="cert-card" data-category="asme featured" onclick="openLightbox('GDnT.pdf')">
+          <embed src="GDnT.pdf" type="application/pdf" />
+          <div class="cert-title">ASME Drawing Interpretation: GD&T</div>
+          <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
+        </div>
+      </div>
     </section>
 
-    <div class="certifications-grid">
-      <div class="cert-card" onclick="openLightbox('ASME-membership-certificate.pdf')">
-        <embed src="ASME.membership-certificate.pdf" type="application/pdf" />
-        <div class="cert-title">ASME</div>
-        <a class="download-link" href="ASME-membership-certificate.pdf" download>⬇ Download</a>
+    <!-- ===== Power BI ===== -->
+    <section id="sec-powerbi" data-section>
+      <h3>Power BI</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="power-bi" onclick="openLightbox('CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf')">
+          <embed src="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" type="application/pdf" />
+          <div class="cert-title">Power BI: Data Methods</div>
+          <a class="download-link" href="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="power-bi" onclick="openLightbox('CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf')">
+          <embed src="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" type="application/pdf" />
+          <div class="cert-title">Power BI: Essential Training (2024)</div>
+          <a class="download-link" href="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="power-bi" onclick="openLightbox('CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf')">
+          <embed src="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" type="application/pdf" />
+          <div class="cert-title">Complete Guide to Power BI for Data Analysts (Microsoft Press)</div>
+          <a class="download-link" href="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="power-bi" onclick="openLightbox('-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf')">
+          <embed src="-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf" type="application/pdf" />
+          <div class="cert-title">Power BI: Essential Training (Business Intelligence)</div>
+          <a class="download-link" href="-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf" download>⬇ Download</a>
+        </div>
       </div>
+    </section>
 
-      <div class="cert-card" onclick="openLightbox('SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf')">
-        <embed src="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" type="application/pdf" />
-        <div class="cert-title">SME</div>
-        <a class="download-link" href="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" download>⬇ Download</a>
+    <!-- ===== Project Management & PMI ===== -->
+    <section id="sec-pm" data-section>
+      <h3>Project Management & PMI</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="pmi" onclick="openLightbox('AgileProjectManagement.pdf')">
+          <embed src="AgileProjectManagement.pdf" type="application/pdf" />
+          <div class="cert-title">Agile Project Management</div>
+          <a class="download-link" href="AgileProjectManagement.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="pmi" onclick="openLightbox('Project_Management_Essentials-348043249.pdf')">
+          <embed src="Project_Management_Essentials-348043249.pdf" type="application/pdf" />
+          <div class="cert-title">Project Management Essentials</div>
+          <a class="download-link" href="Project_Management_Essentials-348043249.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="pmi" onclick="openLightbox('--PMI_MicrosoftProject.Project.Management.pdf')">
+          <embed src="--PMI_MicrosoftProject.Project.Management.pdf" type="application/pdf" />
+          <div class="cert-title">Microsoft Project: Planning for Successful Project Management (PMI)</div>
+          <a class="download-link" href="--PMI_MicrosoftProject.Project.Management.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="pmi" onclick="openLightbox('--PMI-GitHub_Project_Management.pdf')">
+          <embed src="--PMI-GitHub_Project_Management.pdf" type="application/pdf" />
+          <div class="cert-title">Practical GitHub Project Management & Collaboration (PMI)</div>
+          <a class="download-link" href="--PMI-GitHub_Project_Management.pdf" download>⬇ Download</a>
+        </div>
       </div>
+    </section>
 
-      <div class="cert-card" onclick="openLightbox('LES_Membership_Cert_Matthew_Dubea.pdf')">
-        <embed src="LES_Membership_Cert_Matthew_Dubea.pdf" type="application/pdf" />
-        <div class="cert-title">LES</div>
-        <a class="download-link" href="LES_Membership_Cert_Matthew_Dubea.pdf" download>⬇ Download</a>
+    <!-- ===== AutoCAD ===== -->
+    <section id="sec-autocad" data-section>
+      <h3>AutoCAD</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="autocad" onclick="openLightbox('-AutoCAD.2025.Essential.Training.pdf')">
+          <embed src="-AutoCAD.2025.Essential.Training.pdf" type="application/pdf" />
+          <div class="cert-title">AutoCAD 2025: Essential Training</div>
+          <a class="download-link" href="-AutoCAD.2025.Essential.Training.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="autocad" onclick="openLightbox('-AutoCAD.2026.Essential.Training.pdf')">
+          <embed src="-AutoCAD.2026.Essential.Training.pdf" type="application/pdf" />
+          <div class="cert-title">AutoCAD 2026: Essential Training</div>
+          <a class="download-link" href="-AutoCAD.2026.Essential.Training.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="autocad" onclick="openLightbox('-AutoCAD2026.pdf')">
+          <embed src="-AutoCAD2026.pdf" type="application/pdf" />
+          <div class="cert-title">Learning AutoCAD 2026</div>
+          <a class="download-link" href="-AutoCAD2026.pdf" download>⬇ Download</a>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ===== SAP ===== -->
+    <section id="sec-sap" data-section>
+      <h3>SAP</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="sap" onclick="openLightbox('-SAP.MM_MaterialsManagement.pdf')">
+          <embed src="-SAP.MM_MaterialsManagement.pdf" type="application/pdf" />
+          <div class="cert-title">SAP MM: Materials Management</div>
+          <a class="download-link" href="-SAP.MM_MaterialsManagement.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="sap" onclick="openLightbox('CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf')">
+          <embed src="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" type="application/pdf" />
+          <div class="cert-title">SAP Business One: Essential Training</div>
+          <a class="download-link" href="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="sap" onclick="openLightbox('CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf')">
+          <embed src="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" type="application/pdf" />
+          <div class="cert-title">SAP ERP: Essential Training</div>
+          <a class="download-link" href="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="sap" onclick="openLightbox('CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf')">
+          <embed src="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" type="application/pdf" />
+          <div class="cert-title">SAP Financials: Essential Training</div>
+          <a class="download-link" href="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Siemens NX ===== -->
+    <section id="sec-nx" data-section>
+      <h3>Siemens NX</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="nx" onclick="openLightbox('-SiemensNX.pdf')">
+          <embed src="-SiemensNX.pdf" type="application/pdf" />
+          <div class="cert-title">Learning Siemens NX</div>
+          <a class="download-link" href="-SiemensNX.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Revit (MEP) ===== -->
+    <section id="sec-revit" data-section>
+      <h3>Revit (MEP)</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="revit" onclick="openLightbox('-Revit.2023.MEP.pdf')">
+          <embed src="-Revit.2023.MEP.pdf" type="application/pdf" />
+          <div class="cert-title">Revit 2023: Essential Training for MEP</div>
+          <a class="download-link" href="-Revit.2023.MEP.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Architecture CAD Technician ===== -->
+    <section id="sec-archcad" data-section>
+      <h3>Architecture CAD Technician</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="arch-cad" onclick="openLightbox('-32hours.ArchitectureCADTechnician.pdf')">
+          <embed src="-32hours.ArchitectureCADTechnician.pdf" type="application/pdf" />
+          <div class="cert-title">Architecture CAD Technician (32 Hours)</div>
+          <a class="download-link" href="-32hours.ArchitectureCADTechnician.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ASME & Engineering Standards (kept for full list) ===== -->
+    <section id="sec-asme" data-section>
+      <h3>ASME & Engineering Standards</h3>
+      <div class="certifications-grid">
+        <!-- duplicates of featured are intentionally kept here for full list browsing -->
+        <div class="cert-card" data-category="asme" onclick="openLightbox('ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf')">
+          <embed src="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" type="application/pdf" />
+          <div class="cert-title">ASME B31.12 Introduction: Hydrogen Piping & Pipelines</div>
+          <a class="download-link" href="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="asme" onclick="openLightbox('Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf')">
+          <embed src="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" type="application/pdf" />
+          <div class="cert-title">ASME B31.12 Advanced: Hydrogen Piping & Pipelines</div>
+          <a class="download-link" href="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="asme" onclick="openLightbox('NDE.pdf')">
+          <embed src="NDE.pdf" type="application/pdf" />
+          <div class="cert-title">ASME BPV Code, Section V: Nondestructive Examination (Overview)</div>
+          <a class="download-link" href="NDE.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="asme" onclick="openLightbox('ASME%20Boiler%20&%20Pressure%20Vessel.pdf')">
+          <embed src="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" type="application/pdf" />
+          <div class="cert-title">ASME Boiler & Pressure Vessel: Certification Process</div>
+          <a class="download-link" href="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="asme" onclick="openLightbox('GDnT.pdf')">
+          <embed src="GDnT.pdf" type="application/pdf" />
+          <div class="cert-title">ASME Drawing Interpretation: GD&T</div>
+          <a class="download-link" href="GDnT.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Programming & GitHub ===== -->
+    <section id="sec-programming" data-section>
+      <h3>Programming & GitHub</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="programming" onclick="openLightbox('OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf')">
+          <embed src="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" type="application/pdf" />
+          <div class="cert-title">PCAP: Programming Essentials in Python (OpenEDG)</div>
+          <a class="download-link" href="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="programming" onclick="openLightbox('CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf')">
+          <embed src="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" type="application/pdf" />
+          <div class="cert-title">Career Essentials: GitHub Copilot (Professional Certificate)</div>
+          <a class="download-link" href="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="programming" onclick="openLightbox('CareerEssentialsinGitHubProfessionalCertificate.pdf')">
+          <embed src="CareerEssentialsinGitHubProfessionalCertificate.pdf" type="application/pdf" />
+          <div class="cert-title">Career Essentials in GitHub — Professional Certificate</div>
+          <a class="download-link" href="CareerEssentialsinGitHubProfessionalCertificate.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Data Science & Analytics ===== -->
+    <section id="sec-data" data-section>
+      <h3>Data Science & Analytics</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="data" onclick="openLightbox('DataScienceProfessional-KNIME.pdf')">
+          <embed src="DataScienceProfessional-KNIME.pdf" type="application/pdf" />
+          <div class="cert-title">Data Science Professional — KNIME</div>
+          <a class="download-link" href="DataScienceProfessional-KNIME.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="data" onclick="openLightbox('LearningDataAnalytics1Foundations.pdf')">
+          <embed src="LearningDataAnalytics1Foundations.pdf" type="application/pdf" />
+          <div class="cert-title">Learning Data Analytics 1: Foundations</div>
+          <a class="download-link" href="LearningDataAnalytics1Foundations.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MATLAB ===== -->
+    <section id="sec-matlab" data-section>
+      <h3>MATLAB</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="matlab" onclick="openLightbox('MATLAB_OnRamp_Cert.pdf')">
+          <embed src="MATLAB_OnRamp_Cert.pdf" type="application/pdf" />
+          <div class="cert-title">MATLAB: Onramp</div>
+          <a class="download-link" href="MATLAB_OnRamp_Cert.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="matlab" onclick="openLightbox('MATLAB_MachineLearning_OnRamp_Certification.pdf')">
+          <embed src="MATLAB_MachineLearning_OnRamp_Certification.pdf" type="application/pdf" />
+          <div class="cert-title">MATLAB: Machine Learning Onramp</div>
+          <a class="download-link" href="MATLAB_MachineLearning_OnRamp_Certification.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Lean/Six Sigma & Business ===== -->
+    <section id="sec-lean" data-section>
+      <h3>Lean/Six Sigma & Business</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="lean six-sigma" onclick="openLightbox('Lean_Six_Sigma_White_Belt-348043276.pdf')">
+          <embed src="Lean_Six_Sigma_White_Belt-348043276.pdf" type="application/pdf" />
+          <div class="cert-title">Lean Six Sigma: White Belt</div>
+          <a class="download-link" href="Lean_Six_Sigma_White_Belt-348043276.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="lean six-sigma" onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
+          <embed src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
+          <div class="cert-title">Six Sigma Black Belt (CSSC)</div>
+          <a class="download-link" href="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="lean" onclick="openLightbox('CertificateOfCompletion_Process%20Improvement%20Foundations.pdf')">
+          <embed src="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" type="application/pdf" />
+          <div class="cert-title">Process Improvement: Foundations</div>
+          <a class="download-link" href="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="lean" onclick="openLightbox('Business_Management_Essentials_Certified-348043411.pdf')">
+          <embed src="Business_Management_Essentials_Certified-348043411.pdf" type="application/pdf" />
+          <div class="cert-title">Business Management Essentials (Certified)</div>
+          <a class="download-link" href="Business_Management_Essentials_Certified-348043411.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Safety ===== -->
+    <section id="sec-safety" data-section>
+      <h3>Safety</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="safety" onclick="openLightbox('OSHA_10_Hour_Health_&_Safety.png')">
+          <img src="OSHA_10_Hour_Health_&_Safety.png" alt="OSHA 10-Hour: Health & Safety" />
+          <div class="cert-title">OSHA 10-Hour: Health & Safety</div>
+          <a class="download-link" href="OSHA_10_Hour_Health_&_Safety.png" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Professional Memberships ===== -->
+    <section id="sec-memberships" data-section>
+      <h3>🧰 Professional Memberships</h3>
+      <div class="certifications-grid">
+        <div class="cert-card" data-category="memberships" onclick="openLightbox('ASME-membership-certificate.pdf')">
+          <embed src="ASME-membership-certificate.pdf" type="application/pdf" />
+          <div class="cert-title">ASME — Membership Certificate</div>
+          <a class="download-link" href="ASME-membership-certificate.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="memberships" onclick="openLightbox('SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf')">
+          <embed src="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" type="application/pdf" />
+          <div class="cert-title">SME — Membership Certificate</div>
+          <a class="download-link" href="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" download>⬇ Download</a>
+        </div>
+        <div class="cert-card" data-category="memberships" onclick="openLightbox('LES_Membership_Cert_Matthew_Dubea.pdf')">
+          <embed src="LES_Membership_Cert_Matthew_Dubea.pdf" type="application/pdf" />
+          <div class="cert-title">LES — Membership Certificate</div>
+          <a class="download-link" href="LES_Membership_Cert_Matthew_Dubea.pdf" download>⬇ Download</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Lightbox Viewer -->
@@ -228,8 +414,40 @@
     <iframe id="lightbox-content" frameborder="0"></iframe>
   </div>
 
+  <script>
+    // Simple category filter: shows cards whose data-category contains the selected token.
+    const buttons = Array.from(document.querySelectorAll('#filters button'));
+    const sections = Array.from(document.querySelectorAll('[data-section]'));
+
+    function filterCards(cat) {
+      // button UI
+      buttons.forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+
+      // show/hide cards
+      const cards = Array.from(document.querySelectorAll('.cert-card'));
+      cards.forEach(card => {
+        if (cat === 'all') { card.hidden = false; return; }
+        const cats = (card.getAttribute('data-category') || '').split(/\s+/);
+        card.hidden = !cats.includes(cat);
+      });
+
+      // hide whole sections that have no visible cards
+      sections.forEach(sec => {
+        const visible = sec.querySelector('.cert-card:not([hidden])');
+        sec.hidden = !visible;
+      });
+    }
+
+    // Hook up buttons
+    buttons.forEach(btn => btn.addEventListener('click', () => filterCards(btn.dataset.filter)));
+
+    // Default: Featured
+    window.addEventListener('DOMContentLoaded', () => filterCards('featured'));
+  </script>
+
   <footer>
     <p>© 2025 Matthew Dubea | <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 </body>
 </html>
+
