@@ -7,6 +7,40 @@
   <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <script defer src="../theme.js"></script>
+
+  <!-- Rich result metadata for featured credentials -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "SOLIDWORKS CSWA (Certified Associate)",
+        "url": "CSWA_OFFICIAL.pdf",
+        "issuer": { "@type": "Organization", "name": "Dassault Systèmes (SOLIDWORKS)" },
+        "credentialCategory": "Certification",
+        "dateIssued": "2025-01-01"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Six Sigma Black Belt (CSSC)",
+        "url": "Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf",
+        "issuer": { "@type": "Organization", "name": "The Council for Six Sigma Certification" },
+        "credentialCategory": "Certification",
+        "dateIssued": "2025-01-01"
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "ASME B31.12: Hydrogen Piping & Pipelines (Advanced)",
+        "url": "Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf",
+        "issuer": { "@type": "Organization", "name": "ASME" },
+        "credentialCategory": "Training",
+        "dateIssued": "2025-01-01"
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --card-w: 360px;
@@ -17,12 +51,20 @@
       --accent: #0a66c2;
       --badge-bg: #eef2f7;
     }
+
     .section-index, .filters { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1rem 0 1.25rem; }
     .filters button {
       padding: .4rem .7rem; border: 1px solid var(--border);
       background: #f8f9fb; cursor: pointer; border-radius: .5rem; font-size: .9rem;
     }
     .filters button.active { outline: 2px solid var(--accent); }
+
+    /* Search bar */
+    .searchbar { display:flex; align-items:center; justify-content:center; gap:.5rem; margin: .75rem 0; }
+    .searchbar input[type="search"] {
+      width:min(680px, 90vw); padding:.5rem .75rem; border:1px solid var(--border);
+      border-radius:.5rem; font-size:1rem;
+    }
 
     details { margin: 2rem auto; max-width: 1200px; }
     summary { list-style: none; cursor: pointer; }
@@ -40,7 +82,7 @@
     .cert-card {
       width: 100%; max-width: var(--card-w);
       border: 1px solid var(--border); border-radius: .75rem;
-      background: #fff; overflow: hidden; margin-inline: auto; /* consistent size, centered */
+      background: #fff; overflow: hidden; margin-inline: auto;
     }
     .cert-card .media {
       width: 100%; height: var(--card-h-media); background: #fafafa; display: block; border-bottom: 1px solid var(--border);
@@ -68,6 +110,18 @@
 
     /* Hide empty sections after filtering */
     details[hidden] { display: none !important; }
+
+    /* Focus ring for keyboard navigation */
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+    /* Print-friendly single-column layout */
+    @media print {
+      .filters, .searchbar, .section-index, nav.site-nav, header.site-header, footer { display:none !important; }
+      details { max-width: 100% !important; margin: 0 !important; }
+      .certifications-grid { display:block !important; }
+      .cert-card { page-break-inside: avoid; max-width: 100% !important; margin: 0 0 1rem 0 !important; }
+      .cert-card .media { height: 320px !important; }
+    }
   </style>
 </head>
 <body>
@@ -93,8 +147,8 @@
       <p style="text-align:center;color:var(--muted);">All certifications are from verified technical training, professional associations, and engineering coursework.</p>
     </section>
 
-    <!-- Optional Quick Index -->
-    <nav class="section-index">
+    <!-- Quick Index -->
+    <nav class="section-index" aria-label="Section index">
       <a href="#sec-cswa">CSWA</a> •
       <a href="#sec-ssbb">Six Sigma Black Belt</a> •
       <a href="#sec-asme">ASME & Standards</a> •
@@ -113,32 +167,38 @@
       <a href="#sec-memberships">Memberships</a>
     </nav>
 
+    <!-- Global Search -->
+    <div class="searchbar" role="search" aria-label="Search certifications">
+      <input id="searchInput" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
+      <span id="resultCount" aria-live="polite" style="margin-left:.5rem;"></span>
+    </div>
+
     <!-- Filter bar -->
-    <div class="filters" id="filters">
-      <button data-filter="all" class="active">All</button>
-      <button data-filter="cswa">CSWA</button>
-      <button data-filter="six-sigma">Six Sigma</button>
-      <button data-filter="asme">ASME</button>
-      <button data-filter="pmi">Project Mgmt & PMI</button>
-      <button data-filter="autocad">AutoCAD</button>
-      <button data-filter="sap">SAP</button>
-      <button data-filter="nx">Siemens NX</button>
-      <button data-filter="revit">Revit (MEP)</button>
-      <button data-filter="arch-cad">Architecture CAD Tech</button>
-      <button data-filter="power-bi">Power BI</button>
-      <button data-filter="programming">Programming & GitHub</button>
-      <button data-filter="data">Data & Analytics</button>
-      <button data-filter="matlab">MATLAB</button>
-      <button data-filter="lean">Lean/Business</button>
-      <button data-filter="safety">Safety</button>
-      <button data-filter="memberships">Memberships</button>
+    <div class="filters" id="filters" role="tablist" aria-label="Filter categories">
+      <button data-filter="all" class="active" role="tab" aria-selected="true">All</button>
+      <button data-filter="cswa" role="tab">CSWA</button>
+      <button data-filter="six-sigma" role="tab">Six Sigma</button>
+      <button data-filter="asme" role="tab">ASME</button>
+      <button data-filter="pmi" role="tab">Project Mgmt & PMI</button>
+      <button data-filter="autocad" role="tab">AutoCAD</button>
+      <button data-filter="sap" role="tab">SAP</button>
+      <button data-filter="nx" role="tab">Siemens NX</button>
+      <button data-filter="revit" role="tab">Revit (MEP)</button>
+      <button data-filter="arch-cad" role="tab">Architecture CAD Tech</button>
+      <button data-filter="power-bi" role="tab">Power BI</button>
+      <button data-filter="programming" role="tab">Programming & GitHub</button>
+      <button data-filter="data" role="tab">Data & Analytics</button>
+      <button data-filter="matlab" role="tab">MATLAB</button>
+      <button data-filter="lean" role="tab">Lean/Business</button>
+      <button data-filter="safety" role="tab">Safety</button>
+      <button data-filter="memberships" role="tab">Memberships</button>
     </div>
 
     <!-- 1) CSWA (top) -->
     <details id="sec-cswa" data-section data-sort-exempt open>
       <summary><h3 class="section-title">CSWA</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="CSWA_OFFICIAL.pdf" data-category="cswa" onclick="openLightbox('CSWA_OFFICIAL.pdf')">
+        <div class="cert-card" data-file="CSWA_OFFICIAL.pdf" data-category="cswa">
           <embed class="media" src="CSWA_OFFICIAL.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">SOLIDWORKS CSWA (Certified Associate)</div>
@@ -156,8 +216,7 @@
     <details id="sec-ssbb" data-section data-sort-exempt open>
       <summary><h3 class="section-title">Six Sigma Black Belt</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" data-category="six-sigma"
-             onclick="openLightbox('Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf')">
+        <div class="cert-card" data-file="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" data-category="six-sigma">
           <embed class="media" src="Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Six Sigma Black Belt (CSSC)</div>
@@ -175,8 +234,7 @@
     <details id="sec-asme" data-section open>
       <summary><h3 class="section-title">ASME & Engineering Standards</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" data-category="asme"
-             onclick="openLightbox('ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf')">
+        <div class="cert-card" data-file="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" data-category="asme">
           <embed class="media" src="ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">ASME B31.12: Hydrogen Piping & Pipelines (Intro)</div>
@@ -185,8 +243,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" data-category="asme"
-             onclick="openLightbox('Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf')">
+        <div class="cert-card" data-file="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" data-category="asme">
           <embed class="media" src="Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">ASME B31.12: Hydrogen Piping & Pipelines (Advanced)</div>
@@ -195,7 +252,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="NDE.pdf" data-category="asme" onclick="openLightbox('NDE.pdf')">
+        <div class="cert-card" data-file="NDE.pdf" data-category="asme">
           <embed class="media" src="NDE.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">ASME BPV Code Sec V: Nondestructive Examination (Overview)</div>
@@ -204,8 +261,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" data-category="asme"
-             onclick="openLightbox('ASME%20Boiler%20&%20Pressure%20Vessel.pdf')">
+        <div class="cert-card" data-file="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" data-category="asme">
           <embed class="media" src="ASME%20Boiler%20&%20Pressure%20Vessel.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">ASME Boiler & Pressure Vessel: Certification Process</div>
@@ -214,7 +270,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="GDnT.pdf" data-category="asme" onclick="openLightbox('GDnT.pdf')">
+        <div class="cert-card" data-file="GDnT.pdf" data-category="asme">
           <embed class="media" src="GDnT.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">ASME Drawing Interpretation: GD&T</div>
@@ -225,11 +281,11 @@
       </div>
     </details>
 
-    <!-- Rest of groups (A–Z sorted within each) -->
+    <!-- Project Management & PMI -->
     <details id="sec-pm" data-section open>
       <summary><h3 class="section-title">Project Management & PMI</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="AgileProjectManagement.pdf" data-category="pmi" onclick="openLightbox('AgileProjectManagement.pdf')">
+        <div class="cert-card" data-file="AgileProjectManagement.pdf" data-category="pmi">
           <embed class="media" src="AgileProjectManagement.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Agile Project Management</div>
@@ -238,7 +294,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="Project_Management_Essentials-348043249.pdf" data-category="pmi" onclick="openLightbox('Project_Management_Essentials-348043249.pdf')">
+        <div class="cert-card" data-file="Project_Management_Essentials-348043249.pdf" data-category="pmi">
           <embed class="media" src="Project_Management_Essentials-348043249.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Project Management Essentials</div>
@@ -247,7 +303,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="--PMI_MicrosoftProject.Project.Management.pdf" data-category="pmi" onclick="openLightbox('--PMI_MicrosoftProject.Project.Management.pdf')">
+        <div class="cert-card" data-file="--PMI_MicrosoftProject.Project.Management.pdf" data-category="pmi">
           <embed class="media" src="--PMI_MicrosoftProject.Project.Management.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Microsoft Project: Planning for Successful Project Management</div>
@@ -256,7 +312,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="--PMI-GitHub_Project_Management.pdf" data-category="pmi" onclick="openLightbox('--PMI-GitHub_Project_Management.pdf')">
+        <div class="cert-card" data-file="--PMI-GitHub_Project_Management.pdf" data-category="pmi">
           <embed class="media" src="--PMI-GitHub_Project_Management.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Practical GitHub Project Management & Collaboration</div>
@@ -267,10 +323,11 @@
       </div>
     </details>
 
+    <!-- AutoCAD -->
     <details id="sec-autocad" data-section open>
       <summary><h3 class="section-title">AutoCAD</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="-AutoCAD.2025.Essential.Training.pdf" data-category="autocad" onclick="openLightbox('-AutoCAD.2025.Essential.Training.pdf')">
+        <div class="cert-card" data-file="-AutoCAD.2025.Essential.Training.pdf" data-category="autocad">
           <embed class="media" src="-AutoCAD.2025.Essential.Training.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">AutoCAD 2025: Essential Training</div>
@@ -279,7 +336,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="-AutoCAD.2026.Essential.Training.pdf" data-category="autocad" onclick="openLightbox('-AutoCAD.2026.Essential.Training.pdf')">
+        <div class="cert-card" data-file="-AutoCAD.2026.Essential.Training.pdf" data-category="autocad">
           <embed class="media" src="-AutoCAD.2026.Essential.Training.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">AutoCAD 2026: Essential Training</div>
@@ -288,7 +345,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="-AutoCAD2026.pdf" data-category="autocad" onclick="openLightbox('-AutoCAD2026.pdf')">
+        <div class="cert-card" data-file="-AutoCAD2026.pdf" data-category="autocad">
           <embed class="media" src="-AutoCAD2026.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Learning AutoCAD 2026</div>
@@ -299,10 +356,11 @@
       </div>
     </details>
 
+    <!-- SAP -->
     <details id="sec-sap" data-section open>
       <summary><h3 class="section-title">SAP</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="-SAP.MM_MaterialsManagement.pdf" data-category="sap" onclick="openLightbox('-SAP.MM_MaterialsManagement.pdf')">
+        <div class="cert-card" data-file="-SAP.MM_MaterialsManagement.pdf" data-category="sap">
           <embed class="media" src="-SAP.MM_MaterialsManagement.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">SAP MM: Materials Management</div>
@@ -311,8 +369,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" data-category="sap"
-             onclick="openLightbox('CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" data-category="sap">
           <embed class="media" src="CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">SAP Business One: Essential Training</div>
@@ -321,8 +378,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" data-category="sap"
-             onclick="openLightbox('CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" data-category="sap">
           <embed class="media" src="CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">SAP ERP: Essential Training</div>
@@ -331,8 +387,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" data-category="sap"
-             onclick="openLightbox('CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" data-category="sap">
           <embed class="media" src="CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">SAP Financials: Essential Training</div>
@@ -343,10 +398,11 @@
       </div>
     </details>
 
+    <!-- Siemens NX -->
     <details id="sec-nx" data-section open>
       <summary><h3 class="section-title">Siemens NX</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="-SiemensNX.pdf" data-category="nx" onclick="openLightbox('-SiemensNX.pdf')">
+        <div class="cert-card" data-file="-SiemensNX.pdf" data-category="nx">
           <embed class="media" src="-SiemensNX.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Learning Siemens NX</div>
@@ -357,10 +413,11 @@
       </div>
     </details>
 
+    <!-- Revit (MEP) -->
     <details id="sec-revit" data-section open>
       <summary><h3 class="section-title">Revit (MEP)</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="-Revit.2023.MEP.pdf" data-category="revit" onclick="openLightbox('-Revit.2023.MEP.pdf')">
+        <div class="cert-card" data-file="-Revit.2023.MEP.pdf" data-category="revit">
           <embed class="media" src="-Revit.2023.MEP.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Revit 2023: Essential Training for MEP</div>
@@ -371,11 +428,11 @@
       </div>
     </details>
 
+    <!-- Architecture CAD Technician -->
     <details id="sec-archcad" data-section open>
       <summary><h3 class="section-title">Architecture CAD Technician</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="-32hours.ArchitectureCADTechnician.pdf" data-category="arch-cad"
-             onclick="openLightbox('-32hours.ArchitectureCADTechnician.pdf')">
+        <div class="cert-card" data-file="-32hours.ArchitectureCADTechnician.pdf" data-category="arch-cad">
           <embed class="media" src="-32hours.ArchitectureCADTechnician.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Architecture CAD Technician</div>
@@ -389,11 +446,11 @@
       </div>
     </details>
 
+    <!-- Power BI -->
     <details id="sec-powerbi" data-section open>
       <summary><h3 class="section-title">Power BI</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" data-category="power-bi"
-             onclick="openLightbox('CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" data-category="power-bi">
           <embed class="media" src="CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Power BI: Data Methods</div>
@@ -402,8 +459,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf" data-category="power-bi"
-             onclick="openLightbox('-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf')">
+        <div class="cert-card" data-file="-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf" data-category="power-bi">
           <embed class="media" src="-PowerBI_Business_Intelligence_%28BI%29_MS_Power_BI.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Power BI: Essential Training (Business Intelligence)</div>
@@ -412,8 +468,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" data-category="power-bi"
-             onclick="openLightbox('CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" data-category="power-bi">
           <embed class="media" src="CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Power BI: Essential Training (2024)</div>
@@ -422,8 +477,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" data-category="power-bi"
-             onclick="openLightbox('CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" data-category="power-bi">
           <embed class="media" src="CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Complete Guide to Power BI for Data Analysts</div>
@@ -434,11 +488,11 @@
       </div>
     </details>
 
+    <!-- Programming & GitHub -->
     <details id="sec-programming" data-section open>
       <summary><h3 class="section-title">Programming & GitHub</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" data-category="programming"
-             onclick="openLightbox('OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf')">
+        <div class="cert-card" data-file="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" data-category="programming">
           <embed class="media" src="OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">PCAP: Programming Essentials in Python (OpenEDG)</div>
@@ -447,8 +501,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" data-category="programming"
-             onclick="openLightbox('CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" data-category="programming">
           <embed class="media" src="CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Career Essentials: GitHub Copilot (Professional Certificate)</div>
@@ -457,8 +510,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CareerEssentialsinGitHubProfessionalCertificate.pdf" data-category="programming"
-             onclick="openLightbox('CareerEssentialsinGitHubProfessionalCertificate.pdf')">
+        <div class="cert-card" data-file="CareerEssentialsinGitHubProfessionalCertificate.pdf" data-category="programming">
           <embed class="media" src="CareerEssentialsinGitHubProfessionalCertificate.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Career Essentials in GitHub — Professional Certificate</div>
@@ -469,10 +521,11 @@
       </div>
     </details>
 
+    <!-- Data Science & Analytics -->
     <details id="sec-data" data-section open>
       <summary><h3 class="section-title">Data Science & Analytics</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="DataScienceProfessional-KNIME.pdf" data-category="data" onclick="openLightbox('DataScienceProfessional-KNIME.pdf')">
+        <div class="cert-card" data-file="DataScienceProfessional-KNIME.pdf" data-category="data">
           <embed class="media" src="DataScienceProfessional-KNIME.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Data Science Professional — KNIME</div>
@@ -481,7 +534,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="LearningDataAnalytics1Foundations.pdf" data-category="data" onclick="openLightbox('LearningDataAnalytics1Foundations.pdf')">
+        <div class="cert-card" data-file="LearningDataAnalytics1Foundations.pdf" data-category="data">
           <embed class="media" src="LearningDataAnalytics1Foundations.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Learning Data Analytics 1: Foundations</div>
@@ -492,10 +545,11 @@
       </div>
     </details>
 
+    <!-- MATLAB -->
     <details id="sec-matlab" data-section open>
       <summary><h3 class="section-title">MATLAB</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="MATLAB_OnRamp_Cert.pdf" data-category="matlab" onclick="openLightbox('MATLAB_OnRamp_Cert.pdf')">
+        <div class="cert-card" data-file="MATLAB_OnRamp_Cert.pdf" data-category="matlab">
           <embed class="media" src="MATLAB_OnRamp_Cert.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">MATLAB: Onramp</div>
@@ -504,8 +558,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="MATLAB_MachineLearning_OnRamp_Certification.pdf" data-category="matlab"
-             onclick="openLightbox('MATLAB_MachineLearning_OnRamp_Certification.pdf')">
+        <div class="cert-card" data-file="MATLAB_MachineLearning_OnRamp_Certification.pdf" data-category="matlab">
           <embed class="media" src="MATLAB_MachineLearning_OnRamp_Certification.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">MATLAB: Machine Learning Onramp</div>
@@ -516,11 +569,11 @@
       </div>
     </details>
 
+    <!-- Lean / Business -->
     <details id="sec-lean" data-section open>
       <summary><h3 class="section-title">Lean / Business</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="Lean_Six_Sigma_White_Belt-348043276.pdf" data-category="lean six-sigma"
-             onclick="openLightbox('Lean_Six_Sigma_White_Belt-348043276.pdf')">
+        <div class="cert-card" data-file="Lean_Six_Sigma_White_Belt-348043276.pdf" data-category="lean six-sigma">
           <embed class="media" src="Lean_Six_Sigma_White_Belt-348043276.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Lean Six Sigma: White Belt</div>
@@ -529,8 +582,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" data-category="lean"
-             onclick="openLightbox('CertificateOfCompletion_Process%20Improvement%20Foundations.pdf')">
+        <div class="cert-card" data-file="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" data-category="lean">
           <embed class="media" src="CertificateOfCompletion_Process%20Improvement%20Foundations.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Process Improvement: Foundations</div>
@@ -539,8 +591,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="Business_Management_Essentials_Certified-348043411.pdf" data-category="lean"
-             onclick="openLightbox('Business_Management_Essentials_Certified-348043411.pdf')">
+        <div class="cert-card" data-file="Business_Management_Essentials_Certified-348043411.pdf" data-category="lean">
           <embed class="media" src="Business_Management_Essentials_Certified-348043411.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">Business Management Essentials (Certified)</div>
@@ -551,10 +602,11 @@
       </div>
     </details>
 
+    <!-- Safety -->
     <details id="sec-safety" data-section open>
       <summary><h3 class="section-title">Safety</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="OSHA_10_Hour_Health_&_Safety.png" data-category="safety" onclick="openLightbox('OSHA_10_Hour_Health_&_Safety.png')">
+        <div class="cert-card" data-file="OSHA_10_Hour_Health_&_Safety.png" data-category="safety">
           <img class="media" src="OSHA_10_Hour_Health_&_Safety.png" alt="OSHA 10-Hour: Health & Safety" />
           <div class="cert-body">
             <div class="cert-title">OSHA 10-Hour: Health & Safety</div>
@@ -565,10 +617,11 @@
       </div>
     </details>
 
+    <!-- Professional Memberships -->
     <details id="sec-memberships" data-section open>
       <summary><h3 class="section-title">Professional Memberships</h3></summary>
       <div class="certifications-grid">
-        <div class="cert-card" data-file="ASME-membership-certificate.pdf" data-category="memberships" onclick="openLightbox('ASME-membership-certificate.pdf')">
+        <div class="cert-card" data-file="ASME-membership-certificate.pdf" data-category="memberships">
           <embed class="media" src="ASME-membership-certificate.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">ASME — Membership Certificate</div>
@@ -577,8 +630,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" data-category="memberships"
-             onclick="openLightbox('SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf')">
+        <div class="cert-card" data-file="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" data-category="memberships">
           <embed class="media" src="SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">SME — Membership Certificate</div>
@@ -587,7 +639,7 @@
           </div>
         </div>
 
-        <div class="cert-card" data-file="LES_Membership_Cert_Matthew_Dubea.pdf" data-category="memberships" onclick="openLightbox('LES_Membership_Cert_Matthew_Dubea.pdf')">
+        <div class="cert-card" data-file="LES_Membership_Cert_Matthew_Dubea.pdf" data-category="memberships">
           <embed class="media" src="LES_Membership_Cert_Matthew_Dubea.pdf" type="application/pdf" />
           <div class="cert-body">
             <div class="cert-title">LES — Membership Certificate</div>
@@ -600,15 +652,20 @@
   </main>
 
   <!-- Lightbox Viewer -->
-  <div id="lightbox" onclick="closeLightbox()">
+  <div id="lightbox">
     <button class="close-lightbox" aria-label="Close">✕</button>
     <button id="prevBtn" class="nav-btn" aria-label="Previous">←</button>
-    <iframe id="lightbox-content" frameborder="0"></iframe>
+    <iframe id="lightbox-content" frameborder="0" title="Certification document viewer"></iframe>
     <button id="nextBtn" class="nav-btn" aria-label="Next">→</button>
   </div>
 
   <script>
-    // --- A–Z sort within each section (by .cert-title) ---
+    // ===== Helpers =====
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+    const qs = new URLSearchParams(location.search);
+
+    // ===== A–Z sort within each section (by .cert-title) =====
     document.querySelectorAll('[data-section]:not([data-sort-exempt]) .certifications-grid').forEach(grid => {
       const cards = Array.from(grid.children);
       cards.sort((a,b) => {
@@ -619,38 +676,107 @@
       cards.forEach(c => grid.appendChild(c));
     });
 
-    // --- Filter logic (default All) ---
-    const filterButtons = Array.from(document.querySelectorAll('#filters button'));
-    const sections = Array.from(document.querySelectorAll('[data-section]'));
+    // ===== Search + Filters =====
+    const filterButtons = $$('#filters button');
+    const sections = $$('[data-section]');
+    const searchInput = $('#searchInput');
+    const resultCount = $('#resultCount');
+
+    let activeFilter = (qs.get('filter') || 'all').toLowerCase();
+
+    function cardMatches(card, needle, cat) {
+      // Category match
+      if (cat !== 'all') {
+        const cats = (card.getAttribute('data-category') || '').toLowerCase().split(/\s+/);
+        if (!cats.includes(cat)) return false;
+      }
+      // Text match
+      if (!needle) return true;
+      const t = card.querySelector('.cert-title')?.textContent.toLowerCase() || '';
+      const issuer = card.querySelector('.cert-badges')?.textContent.toLowerCase() || '';
+      const cats = (card.getAttribute('data-category') || '').toLowerCase();
+      return t.includes(needle) || issuer.includes(needle) || cats.includes(needle);
+    }
+
+    function applyFilterAndSearch() {
+      const needle = (searchInput?.value || '').trim().toLowerCase();
+      const cards = $$('.cert-card');
+
+      let visible = 0;
+      cards.forEach(card => {
+        const show = cardMatches(card, needle, activeFilter);
+        card.hidden = !show;
+        if (show) visible++;
+      });
+
+      // Show sections that have visible cards; open them
+      sections.forEach(sec => {
+        const hasVisible = sec.querySelector('.cert-card:not([hidden])');
+        sec.hidden = !hasVisible;
+        if (hasVisible) sec.setAttribute('open','');
+      });
+
+      if (resultCount) resultCount.textContent = visible ? `${visible} shown` : 'No results';
+    }
+
+    // Filter button behavior
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.dataset.filter.toLowerCase();
+        filterButtons.forEach(b => b.classList.toggle('active', b === btn));
+        const url = new URL(location.href);
+        if (activeFilter === 'all') url.searchParams.delete('filter');
+        else url.searchParams.set('filter', activeFilter);
+        history.replaceState({}, '', url);
+        applyFilterAndSearch();
+      });
+    });
+
+    // Search typing
+    if (searchInput) searchInput.addEventListener('input', applyFilterAndSearch);
+
+    // Initial state
+    filterButtons.forEach(b => b.classList.toggle('active', b.dataset.filter.toLowerCase() === activeFilter));
+    applyFilterAndSearch();
+
+    // ===== Lazy-load PDF embeds =====
+    const lazyEmbeds = [];
+    $$('.cert-card embed.media').forEach(el => {
+      const s = el.getAttribute('src');
+      if (s) {
+        el.setAttribute('data-src', s);
+        el.removeAttribute('src');
+        lazyEmbeds.push(el);
+      }
+    });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const src = el.getAttribute('data-src');
+          if (src && !el.getAttribute('src')) {
+            el.setAttribute('src', src);
+            io.unobserve(el);
+          }
+        }
+      });
+    }, { rootMargin: '200px' });
+
+    lazyEmbeds.forEach(el => io.observe(el));
+
+    // ===== Lightbox with keyboard nav + focus management =====
+    const lightbox = $('#lightbox');
+    const frame = $('#lightbox-content');
+    const prevBtn = $('#prevBtn');
+    const nextBtn = $('#nextBtn');
+    const closeBtn = $('.close-lightbox');
+    let currentIndex = -1;
+    let lastFocused = null;
 
     function visibleCards() {
-      return Array.from(document.querySelectorAll('.cert-card')).filter(c => !c.hidden && c.offsetParent !== null);
+      return $$('.cert-card').filter(c => !c.hidden && c.offsetParent !== null);
     }
-
-    function applyFilter(cat) {
-      filterButtons.forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
-      const cards = Array.from(document.querySelectorAll('.cert-card'));
-      cards.forEach(card => {
-        if (cat === 'all') { card.hidden = false; return; }
-        const cats = (card.getAttribute('data-category') || '').split(/\s+/);
-        card.hidden = !cats.includes(cat);
-      });
-      // hide empty sections; open those with results
-      sections.forEach(sec => {
-        const anyVisible = sec.querySelector('.cert-card:not([hidden])');
-        sec.hidden = !anyVisible;
-        if (anyVisible) sec.setAttribute('open','');
-      });
-    }
-    filterButtons.forEach(btn => btn.addEventListener('click', () => applyFilter(btn.dataset.filter)));
-    applyFilter('all'); // default show all (in the specified top-first order)
-
-    // --- Lightbox with keyboard nav ---
-    const lightbox = document.getElementById('lightbox');
-    const frame = document.getElementById('lightbox-content');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    let currentIndex = -1;
 
     function indexFromSrc(src) {
       const list = visibleCards();
@@ -658,16 +784,25 @@
     }
 
     function openLightbox(src) {
+      lastFocused = document.activeElement;
       currentIndex = indexFromSrc(src);
       frame.src = src;
       lightbox.classList.add('open');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('role', 'dialog');
+      closeBtn.focus();
       document.addEventListener('keydown', onKey);
+      document.addEventListener('focus', trapFocus, true);
+      track('lightbox_open', { src });
     }
 
     function closeLightbox() {
       lightbox.classList.remove('open');
       frame.src = 'about:blank';
       document.removeEventListener('keydown', onKey);
+      document.removeEventListener('focus', trapFocus, true);
+      if (lastFocused) lastFocused.focus();
+      track('lightbox_close', {});
     }
 
     function showAt(index) {
@@ -676,21 +811,54 @@
       currentIndex = (index + list.length) % list.length;
       const src = list[currentIndex].getAttribute('data-file');
       frame.src = src;
+      track('lightbox_nav', { index: currentIndex, src });
     }
 
     function onKey(e) {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showAt(currentIndex - 1);
-      if (e.key === 'ArrowRight') showAt(currentIndex + 1);
+      if (e.key === 'Escape') { e.preventDefault(); closeLightbox(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); showAt(currentIndex - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); showAt(currentIndex + 1); }
+      if (e.key === 'Tab') trapFocus(e);
+    }
+
+    function trapFocus(e) {
+      const focusables = $$('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])', lightbox)
+        .filter(el => !el.hasAttribute('disabled'));
+      if (!lightbox.classList.contains('open') || !focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.type === 'focus') {
+        if (!lightbox.contains(document.activeElement)) first.focus();
+        return;
+      }
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     }
 
     prevBtn.addEventListener('click', e => { e.stopPropagation(); showAt(currentIndex - 1); });
     nextBtn.addEventListener('click', e => { e.stopPropagation(); showAt(currentIndex + 1); });
-    document.querySelector('.close-lightbox').addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    closeBtn.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 
-    // expose to inline onclick attributes
-    window.openLightbox = openLightbox;
-    window.closeLightbox = closeLightbox;
+    // Open lightbox when clicking any card (except download link)
+    document.addEventListener('click', (e) => {
+      const card = e.target.closest('.cert-card');
+      if (!card) return;
+      if (e.target.closest('.download-link')) {
+        track('download_click', { file: card.getAttribute('data-file') });
+        return;
+      }
+      const src = card.getAttribute('data-file');
+      if (src) openLightbox(src);
+    });
+
+    // ===== Basic analytics hook (replace with GA if needed) =====
+    function track(event, data) {
+      // Example: gtag('event', event, data);
+      console.debug('[certs]', event, data || {});
+    }
   </script>
 
   <footer>
