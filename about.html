@@ -1,124 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About | Matthew Dubea</title>
-  <meta name="description" content="About Matthew Dubea — Mechanical Engineer focused on design, fabrication, quality, and automation." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-  <script defer src="theme.js"></script>
+/* =========================================================
+   About page components
+   ========================================================= */
+.hero h2 { margin-top: .25rem; }
 
-  <!-- Structured data for richer snippets -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Matthew Dubea",
-    "jobTitle": "Mechanical Engineer",
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Louisiana at Lafayette" },
-    "email": "mailto:mattdubea@outlook.com",
-    "url": "https://your-domain.example/about.html",
-    "sameAs": [
-      "https://github.com/mtdubea",
-      "https://www.linkedin.com/in/mdubea/",
-      "https://louisiana.joinhandshake.com/profiles/pmtbtq"
-    ]
-  }
-  </script>
-</head>
+.kicker{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.35rem .6rem; border-radius:999px;
+  font-weight:600; font-size:.95rem;
+  background:#eef6ff; border:1px solid var(--border);
+  margin-bottom:.5rem;
+}
+.lead{ max-width:75ch; margin:0 auto; font-size:1.05rem; }
+.lead + .lead{ margin-top:.9rem; }
 
-<body class="fade-in">
-  <header class="site-header">
-    <div class="brand">
-      <h1>Matthew Dubea</h1>
-      <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
-    </div>
-    <nav class="site-nav" aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a class="active" href="about.html" aria-current="page">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="media/certifications.html">Certifications</a></li>
-        <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle Dark Mode" aria-label="Toggle dark mode">🌓</button>
-        </li>
-      </ul>
-    </nav>
-  </header>
+.about-block{ max-width:960px; margin:1.25rem auto 0; padding:0 1rem; }
+.about-cols{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
 
-  <main>
-    <!-- HERO / INTRO -->
-    <section class="hero" aria-labelledby="about-title">
-      <img
-        src="assets/images/profile-headshot.jpg"
-        alt="Headshot of Matthew Dubea"
-        style="max-width: 180px; border-radius: 50%; margin-bottom: 1em; box-shadow: 0 4px 15px rgba(0,0,0,0.2);"
-      />
-      <h2 id="about-title">About Me</h2>
+.about-card{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:10px; padding:1rem 1.1rem;
+  box-shadow:0 10px 30px var(--shadow);
+}
+body.dark-mode .about-card{ background:var(--surface-dark); border-color:var(--border-dark); }
+.about-card h4{ margin:0 0 .5rem; }
+.about-list{ margin:0; padding-left:1.1rem; }
+.about-list li{ margin:.4rem 0; }
+.statline{ color:var(--muted); font-size:.95rem; margin-top:.4rem; }
 
-      <!-- Polished, more technical + personal paragraphs -->
-      <p style="max-width: 750px; margin: 0 auto;">
-        I’m Matthew Dubea, a Mechanical Engineering graduate from the University of Louisiana at Lafayette. I design and build reliable hardware—and the processes to manufacture it. My work sits at the intersection of CAD/FEA and the shop floor: weldments, machined parts, jigs/fixtures, and integrated assemblies. The goal is consistent—parts that fit, perform, and can be produced repeatably. I combine hands-on fabrication with analytical modeling to make decisions grounded in data and practicality.
-      </p>
-      <p style="max-width: 750px; margin: 1em auto 2em;">
-        From race-ready trike builds to mechatronic payloads, I run projects with a Lean mindset: clear requirements, DFM/DFA, tolerance stacks, and FMEA built in from day one. I’m actively pursuing FE/PE licensure and expanding my toolkit with Python to automate analysis, generate reports, and connect data across CAD, quality, and production workflows.
-      </p>
+/* Featured Links (pill anchors to match chips) */
+.skill-tags li a{
+  display:inline-block; padding:.45em .9em;
+  border:1px solid var(--border); border-radius:999px;
+  background:var(--surface); color:inherit; text-decoration:none;
+  transition:background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
+}
+.skill-tags li a:hover{ background:#eef6ff; border-color:var(--accent); color:var(--text-light); }
+body.dark-mode .skill-tags li a{ background:var(--surface-dark); border-color:var(--border-dark); color:var(--text-dark); }
+body.dark-mode .skill-tags li a:hover{ background:#0f2138; border-color:var(--accent-hover); }
 
-      <!-- Featured links (kept) -->
-      <h3>🔗 Featured Links</h3>
-      <ul class="skill-tags" style="justify-content: center; margin-top: 1em;">
-        <li><a href="https://github.com/mtdubea" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://louisiana.joinhandshake.com/profiles/pmtbtq" target="_blank" rel="noopener">Handshake</a></li>
-        <li><a href="media/certifications.html">Certifications</a></li>
-      </ul>
-    </section>
-
-    <!-- VALUE SNAPSHOT (cards reusing your project-card styles) -->
-    <section class="featured-projects" aria-labelledby="value-snapshot">
-      <h2 id="value-snapshot">Where I Add Value</h2>
-      <div class="project-grid">
-        <article class="card">
-          <h3>Design → Fabrication</h3>
-          <p>Concept through detailed drawings and BOMs. Solid modeling, tolerance analysis, and manufacturable designs for weldments, machined parts, and assemblies.</p>
-        </article>
-        <article class="card">
-          <h3>Quality & Process</h3>
-          <p>Six Sigma Black Belt (CSSC). DFM/DFA, FMEA, SPC mindset. Root cause, standard work, and feedback loops that improve yield and reliability.</p>
-        </article>
-        <article class="card">
-          <h3>Automation & Data</h3>
-          <p>Python for calculation and reporting, lightweight tools to remove manual steps, and data plumbing between CAD, QA, and production dashboards.</p>
-        </article>
-        <article class="card">
-          <h3>Standards & Safety</h3>
-          <p>ASME coursework (B31.12 hydrogen piping, BPV Sec V NDE, GD&amp;T). OSHA-10. I design with code intent and safe operation in mind.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- CREDENTIALS SNAPSHOT (soft, non-intrusive) -->
-    <section class="highlight-section" aria-labelledby="cred-snapshot">
-      <h2 id="cred-snapshot">Credentials Snapshot</h2>
-      <ul class="skill-tags" style="justify-content:center;">
-        <li>CSWA — SOLIDWORKS</li>
-        <li>Six Sigma Black Belt — CSSC</li>
-        <li>ASME B31.12 / BPV Sec V / GD&amp;T</li>
-        <li>OSHA-10</li>
-        <li>AutoCAD · Siemens NX</li>
-        <li>Power BI · MATLAB</li>
-        <li>GitHub · Python</li>
-      </ul>
-      <p style="text-align:center; margin-top: .75rem;">
-        Full list and PDFs: <a href="media/certifications.html">view certifications</a>.
-      </p>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
-  </footer>
-</body>
-</html>
+/* Ensure nav pills are consistent on every page */
+.site-nav .nav-links a{ border-radius:8px; font-weight:500; }
+.site-nav .nav-links a.active{ background-color:var(--accent); color:#fff; }
