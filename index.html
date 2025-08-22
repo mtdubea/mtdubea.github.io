@@ -7,33 +7,25 @@
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   />
   <title>Matthew Dubea | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea, featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
+  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
 
-  <!-- Favicons -->
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-
-  <!-- Theming + color scheme -->
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0a66c2" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mtdubea.github.io/" />
   <meta property="og:image" content="assets/images/profile-headshot.jpg" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta name="twitter:image" content="assets/images/profile-headshot.jpg" />
 
-  <!-- Styles & Scripts -->
   <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
 
-  <!-- Structured data (Person + WebSite) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -108,23 +100,30 @@
       <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
     </section>
 
-    <!-- Featured Projects -->
+    <!-- Featured Projects (JSON-driven) -->
     <section class="featured-projects" aria-labelledby="featured-title">
       <h2 id="featured-title">📂 Featured Projects</h2>
-      <div class="project-grid">
-        <a href="https://mtdubea.github.io/trike" class="card" data-title="Senior Trike Project" data-category="mechanical">
-          <h3>🏁 Senior Trike Project</h3>
-          <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
-        </a>
-        <a href="https://mtdubea.github.io/mechatronics" class="card" data-title="Mechatronics Payload" data-category="mechatronics">
-          <h3>🛰️ Mechatronics Payload</h3>
-          <p>Autonomous drone payload system for MCHE 357 with multi-sensor integration and logic control.</p>
-        </a>
-        <a href="https://mtdubea.github.io/robot" class="card" data-title="Rescue Robot" data-category="autonomous systems">
-          <h3>🤖 Rescue Robot</h3>
-          <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
-        </a>
-      </div>
+
+      <!-- JSON will populate this container -->
+      <div id="projectGrid" class="project-grid" role="list"></div>
+
+      <!-- <noscript> fallback so content is still visible without JS -->
+      <noscript>
+        <div class="project-grid">
+          <a href="https://mtdubea.github.io/trike" class="card">
+            <h3>🏁 Senior Trike Project</h3>
+            <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
+          </a>
+          <a href="https://mtdubea.github.io/mechatronics" class="card">
+            <h3>🛰️ Mechatronics Payload</h3>
+            <p>Autonomous drone payload system with multi-sensor integration and logic control.</p>
+          </a>
+          <a href="https://mtdubea.github.io/robot" class="card">
+            <h3>🤖 Rescue Robot</h3>
+            <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
+          </a>
+        </div>
+      </noscript>
     </section>
 
     <!-- Skills -->
@@ -151,29 +150,48 @@
   </footer>
 
   <script>
-    // Progressive enhancement: use Theme/UI helpers if available; otherwise fall back
-    (function(){
+    // ---- JSON-driven Featured Projects ----
+    (function () {
+      const grid = document.getElementById("projectGrid");
       const input = document.getElementById("searchInput");
       const countEl = document.getElementById("searchCount");
-      const cards = Array.from(document.querySelectorAll(".card"));
 
-      function updateCount(visible) {
-        if (!countEl) return;
-        countEl.textContent = visible === cards.length
-          ? ""
-          : (visible ? `${visible} shown` : "No results");
+      if (!grid) return;
+
+      function renderCards(projects) {
+        grid.innerHTML = "";
+        projects.forEach(p => {
+          const a = document.createElement("a");
+          a.className = "card";
+          a.href = p.url;
+          a.setAttribute("role", "listitem");
+          a.setAttribute("data-title", (p.title || "").toLowerCase());
+          a.setAttribute("data-category", (p.category || "").toLowerCase());
+          a.innerHTML = `
+            <h3>${p.icon ? p.icon + " " : ""}${p.title}</h3>
+            <p>${p.description || ""}</p>
+          `;
+          grid.appendChild(a);
+        });
       }
 
-      function fallbackSearch() {
+      function attachSearch() {
+        const cards = Array.from(grid.querySelectorAll(".card"));
         if (!input || !cards.length) return;
+
+        function updateCount(n) {
+          if (!countEl) return;
+          countEl.textContent = n === cards.length ? "" : (n ? \`\${n} shown\` : "No results");
+        }
+
         input.addEventListener("input", () => {
           const q = (input.value || "").toLowerCase();
           let visible = 0;
           cards.forEach(card => {
-            const title = (card.getAttribute("data-title") || "").toLowerCase();
-            const cat = (card.getAttribute("data-category") || "").toLowerCase();
-            const text = card.textContent.toLowerCase();
-            const show = !q || title.includes(q) || cat.includes(q) || text.includes(q);
+            const title = card.getAttribute("data-title") || "";
+            const cat = card.getAttribute("data-category") || "";
+            const txt = card.textContent.toLowerCase();
+            const show = !q || title.includes(q) || cat.includes(q) || txt.includes(q);
             card.style.display = show ? "block" : "none";
             if (show) visible++;
           });
@@ -181,20 +199,25 @@
         });
       }
 
-      if (window.UI && typeof UI.handleSearch === "function") {
-        UI.handleSearch({
-          input: "#searchInput",
-          cards: ".card",
-          fields: [], // attributes are enough here
-          count: "#searchCount"
+      fetch("projects.json", { cache: "no-store" })
+        .then(r => r.ok ? r.json() : Promise.reject(r.status))
+        .then(data => {
+          const list = (data.projects || [])
+            .filter(p => p.featured !== false)     // default to featured if omitted
+            .sort((a, b) => (a.order || 9999) - (b.order || 9999));
+
+          renderCards(list);
+          attachSearch();
+        })
+        .catch(err => {
+          console.warn("[projects] Could not load projects.json", err);
+          // Graceful fallback: mirror the <noscript> items (already in markup).
+          grid.outerHTML = "";
         });
-      } else {
-        fallbackSearch();
-      }
     })();
   </script>
 
-  <!-- Tiny helper class for skip link (only appears on focus) -->
+  <!-- Tiny helper for skip link -->
   <style>
     .visually-hidden-focusable:focus {
       position: static !important;
