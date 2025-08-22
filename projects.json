@@ -1,0 +1,31 @@
+{
+  "projects": [
+    {
+      "title": "Senior Trike Project",
+      "url": "https://mtdubea.github.io/trike",
+      "description": "Design, manufacturing, and race-winning performance of a custom trike built for competition.",
+      "category": "mechanical",
+      "icon": "🏁",
+      "featured": true,
+      "order": 10
+    },
+    {
+      "title": "Mechatronics Payload",
+      "url": "https://mtdubea.github.io/mechatronics",
+      "description": "Autonomous drone payload system with multi-sensor integration and logic control.",
+      "category": "mechatronics",
+      "icon": "🛰️",
+      "featured": true,
+      "order": 20
+    },
+    {
+      "title": "Rescue Robot",
+      "url": "https://mtdubea.github.io/robot",
+      "description": "Python-controlled autonomous robot designed to navigate and retrieve targets across complex terrain.",
+      "category": "autonomous systems",
+      "icon": "🤖",
+      "featured": true,
+      "order": 30
+    }
+  ]
+}
