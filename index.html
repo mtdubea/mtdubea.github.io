@@ -2,71 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
   <title>Matthew Dubea | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea showcasing projects, certifications, and technical capabilities." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea, featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
+
+  <!-- Favicons -->
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+  <!-- Theming + color scheme -->
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0a66c2" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
+  <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mtdubea.github.io/" />
+  <meta property="og:image" content="assets/images/profile-headshot.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Matthew Dubea | Mechanical Engineer" />
+  <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
+  <meta name="twitter:image" content="assets/images/profile-headshot.jpg" />
+
+  <!-- Styles & Scripts -->
+  <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
+
+  <!-- Structured data (Person + WebSite) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "name": "Matthew Dubea",
+        "jobTitle": "Mechanical Engineer",
+        "url": "https://mtdubea.github.io/",
+        "image": "https://mtdubea.github.io/assets/images/profile-headshot.jpg",
+        "sameAs": [
+          "https://www.linkedin.com/in/mdubea/",
+          "https://github.com/mtdubea"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://mtdubea.github.io/",
+        "name": "Matthew Dubea — Portfolio",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://mtdubea.github.io/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body class="fade-in">
-  <header class="site-header">
+  <a href="#main" class="visually-hidden-focusable" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <header class="site-header" role="banner">
     <div class="brand">
-      <h1>Matthew Dubea</h1>
+      <h1 style="margin:0">Matthew Dubea</h1>
       <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
       <ul class="nav-links">
-        <li><a class="active" href="index.html">Home</a></li>
+        <li><a class="active" href="index.html" aria-current="page">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
         <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle Dark Mode">🌓</button>
+          <button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🖥️</button>
         </li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h2>Welcome to My Engineering Portfolio</h2>
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="home-hero-title">
+      <h2 id="home-hero-title">Welcome to My Engineering Portfolio</h2>
       <p>
         Explore a curated collection of engineering projects, technical reports, certifications, and professional development artifacts that reflect my experience and growth as a mechanical engineer.
       </p>
-      <div class="cta-row">
+      <div class="cta-row" role="group" aria-label="Primary actions">
         <a class="btn primary" href="resume.html">📄 View Resume</a>
         <a class="btn outline" href="about.html">ℹ️ Learn More</a>
         <a class="btn outline" href="media/certifications.html">🎓 See Certifications</a>
       </div>
     </section>
 
-    <section class="search-filter">
-      <input type="text" id="searchInput" placeholder="🔍 Search this site..." />
+    <!-- Site Search -->
+    <section class="search-filter" aria-labelledby="site-search-title">
+      <h2 id="site-search-title" class="visually-hidden" style="position:absolute;left:-9999px;">Search</h2>
+      <label for="searchInput" class="visually-hidden" style="position:absolute;left:-9999px;">Search site content</label>
+      <input type="text" id="searchInput" placeholder="🔍 Search this site..." inputmode="search" autocomplete="off" />
+      <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
     </section>
 
-    <section class="featured-projects">
-      <h2>📂 Featured Projects</h2>
+    <!-- Featured Projects -->
+    <section class="featured-projects" aria-labelledby="featured-title">
+      <h2 id="featured-title">📂 Featured Projects</h2>
       <div class="project-grid">
-        <a href="https://mtdubea.github.io/trike" class="card" data-title="Senior Trike Project" data-category="Mechanical">
+        <a href="https://mtdubea.github.io/trike" class="card" data-title="Senior Trike Project" data-category="mechanical">
           <h3>🏁 Senior Trike Project</h3>
           <p>Design, manufacturing, and race-winning performance of a fully custom tricycle built for competition.</p>
         </a>
-        <a href="https://mtdubea.github.io/mechatronics" class="card" data-title="Mechatronics Payload" data-category="Mechatronics">
+        <a href="https://mtdubea.github.io/mechatronics" class="card" data-title="Mechatronics Payload" data-category="mechatronics">
           <h3>🛰️ Mechatronics Payload</h3>
           <p>Autonomous drone payload system for MCHE 357 with multi-sensor integration and logic control.</p>
         </a>
-        <a href="https://mtdubea.github.io/robot" class="card" data-title="Rescue Robot" data-category="Autonomous Systems">
+        <a href="https://mtdubea.github.io/robot" class="card" data-title="Rescue Robot" data-category="autonomous systems">
           <h3>🤖 Rescue Robot</h3>
           <p>Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
         </a>
       </div>
     </section>
 
-    <section class="highlight-section">
-      <h2>🛠️ Technical Skills</h2>
+    <!-- Skills -->
+    <section class="highlight-section" aria-labelledby="skills-title">
+      <h2 id="skills-title">🛠️ Technical Skills</h2>
       <ul class="skill-tags">
         <li>CAD (SOLIDWORKS)</li>
         <li>FEA</li>
@@ -83,20 +146,68 @@
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mattdubea@outlook.com</a></p>
+  <footer role="contentinfo">
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 
   <script>
-    document.getElementById("searchInput").addEventListener("input", function () {
-      const query = this.value.toLowerCase();
-      document.querySelectorAll(".card").forEach(card => {
-        const title = card.getAttribute("data-title")?.toLowerCase() || "";
-        const category = card.getAttribute("data-category")?.toLowerCase() || "";
-        const content = card.textContent.toLowerCase();
-        card.style.display = title.includes(query) || category.includes(query) || content.includes(query) ? "block" : "none";
-      });
-    });
+    // Progressive enhancement: use Theme/UI helpers if available; otherwise fall back
+    (function(){
+      const input = document.getElementById("searchInput");
+      const countEl = document.getElementById("searchCount");
+      const cards = Array.from(document.querySelectorAll(".card"));
+
+      function updateCount(visible) {
+        if (!countEl) return;
+        countEl.textContent = visible === cards.length
+          ? ""
+          : (visible ? `${visible} shown` : "No results");
+      }
+
+      function fallbackSearch() {
+        if (!input || !cards.length) return;
+        input.addEventListener("input", () => {
+          const q = (input.value || "").toLowerCase();
+          let visible = 0;
+          cards.forEach(card => {
+            const title = (card.getAttribute("data-title") || "").toLowerCase();
+            const cat = (card.getAttribute("data-category") || "").toLowerCase();
+            const text = card.textContent.toLowerCase();
+            const show = !q || title.includes(q) || cat.includes(q) || text.includes(q);
+            card.style.display = show ? "block" : "none";
+            if (show) visible++;
+          });
+          updateCount(visible);
+        });
+      }
+
+      if (window.UI && typeof UI.handleSearch === "function") {
+        UI.handleSearch({
+          input: "#searchInput",
+          cards: ".card",
+          fields: [], // attributes are enough here
+          count: "#searchCount"
+        });
+      } else {
+        fallbackSearch();
+      }
+    })();
   </script>
+
+  <!-- Tiny helper class for skip link (only appears on focus) -->
+  <style>
+    .visually-hidden-focusable:focus {
+      position: static !important;
+      width: auto !important;
+      height: auto !important;
+      padding: .5rem .75rem;
+      margin: .5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .5rem;
+      box-shadow: 0 4px 12px var(--shadow);
+      z-index: 1000;
+    }
+  </style>
 </body>
 </html>
