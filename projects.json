@@ -11,7 +11,8 @@
       "order": 1,
       "featured": true,
       "thumbnail": "assets/images/thumb-trike.jpg",
-      "report": "media/Trike_Final_Report.pdf",
+      "report": "assets/images/Trike_Final_Report.pdf",
+      "source": "https://github.com/mtdubea/trike",
       "repo": "https://github.com/mtdubea/trike"
     },
     {
@@ -25,7 +26,8 @@
       "order": 2,
       "featured": true,
       "thumbnail": "assets/images/thumb-mechatronics.jpg",
-      "report": "media/Mechatronics_Report.pdf",
+      "report": "assets/images/Mechatronics_Report.pdf",
+      "source": "https://github.com/mtdubea/mechatronics",
       "repo": "https://github.com/mtdubea/mechatronics"
     },
     {
@@ -39,7 +41,8 @@
       "order": 3,
       "featured": true,
       "thumbnail": "assets/images/thumb-robot.jpg",
-      "report": "media/Robot_Report.pdf",
+      "report": "assets/images/Robot_Report.pdf",
+      "source": "https://github.com/mtdubea/robot",
       "repo": "https://github.com/mtdubea/robot"
     },
     {
