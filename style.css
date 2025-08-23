@@ -573,3 +573,30 @@ footer {
   box-shadow: 0 4px 12px var(--shadow);
   z-index: 1000;
 }
+
+/* === Fix: project card footer buttons (equal, compact, always fit) === */
+.project-card .actions{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: .5rem;
+  padding: .65rem .85rem .85rem;
+  border-top: 1px solid var(--border);
+}
+
+.project-card .actions .btn{
+  width: 100%;
+  min-width: 0;           /* allow shrinking instead of overflow */
+  padding: .5rem .7rem;   /* tighter */
+  font-size: .9rem;       /* slightly smaller text */
+  white-space: nowrap;    /* keep on one line */
+}
+
+/* remove any leftover flex sizing */
+.project-card .actions .btn:first-child { flex: unset !important; }
+
+/* On very small screens, stack the buttons cleanly */
+@media (max-width: 420px){
+  .project-card .actions{ grid-template-columns: 1fr; }
+}
+
+
