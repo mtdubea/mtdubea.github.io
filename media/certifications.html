@@ -13,13 +13,19 @@
 
   <!-- Page-scoped polish -->
   <style>
+    /* Layout + helpers */
+    .section-index{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.5rem}
+    .section-index a{padding:.35rem .6rem;border:1px solid var(--border);border-radius:999px;background:var(--surface-2);font-size:.9rem}
+
     /* Sticky tools */
     .toolbar-sticky{position:sticky;top:0;z-index:20;background:var(--bg-light);border-bottom:1px solid var(--border);padding:.6rem .75rem}
     .hint{color:var(--muted);text-align:center;font-size:.95rem;margin:.5rem 0 0}
 
-    /* Grid + card */
+    /* Sections and grid */
     .cert-section{margin:1rem auto;max-width:1100px;padding:0 1rem}
-    .certifications-grid{display:grid;grid-template-columns:repeat( auto-fill, minmax(280px,1fr) );gap:1rem}
+    .certifications-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+
+    /* Card */
     .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 30px var(--shadow);overflow:hidden;display:flex;flex-direction:column}
     .cert-body{padding:.85rem}
     .cert-title{font-weight:700;margin:.15rem 0 .35rem}
@@ -34,7 +40,7 @@
     .frame object{position:absolute;inset:0;width:100%;height:100%;border:0}
     .frame__fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:.9rem}
 
-    /* Mobile: don’t inline PDFs — keep clean lightweight cards */
+    /* Mobile/touch/ios: don’t inline PDFs (keeps cards clean & fast) */
     .no-embed object{display:none}
     .no-embed .frame__fallback{display:grid}
 
@@ -42,7 +48,7 @@
     .section-title{display:flex;align-items:center;gap:.5rem;font-size:1.15rem;margin:.25rem 0 .6rem}
     .section-title::before{content:"📂"}
 
-    /* Minor tweaks in dark */
+    /* Dark-mode friendly via CSS variables (no toggle in UI) */
     body.dark-mode .toolbar-sticky{background:var(--bg-dark);border-color:var(--border-dark)}
     body.dark-mode .cert-card{background:var(--surface-dark);border-color:var(--border-dark)}
   </style>
@@ -52,7 +58,7 @@
   <header class="site-header">
     <div class="brand">
       <h1>Matthew Dubea</h1>
-      <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
+      <p class="tagline">Mechanical Engineer · Design (CAD/CAE) · Lean Manufacturing · Process Automation</p>
     </div>
     <nav class="site-nav" aria-label="Primary">
       <ul class="nav-links">
@@ -97,10 +103,9 @@
     const canInlinePDF = !isIOS && !isTouch && window.matchMedia('(min-width: 900px)').matches;
     if (!canInlinePDF) document.body.classList.add('no-embed');
 
-    /* ---------- small helpers ---------- */
+    /* ---------- helpers ---------- */
     const $  = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-    const qs = new URLSearchParams(location.search);
     const BASE = location.pathname.replace(/\/[^/]*$/, '/'); // "/media/"
 
     function join(p1, p2) {
