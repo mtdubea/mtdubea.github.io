@@ -2,72 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-  <title>My Resume | Matthew Dubea</title>
-  <meta name="description" content="View or download Matthew Dubea’s resume: education, engineering projects, technical expertise, process improvement, and professional experience." />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Resume | Matthew Dubea</title>
+
+  <link rel="canonical" href="https://mtdubea.github.io/resume.html" />
+  <meta name="description" content="Resume for Matthew Dubea — Mechanical Engineer with strengths in manufacturing, process optimization, automation, and design." />
+  <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <script defer src="theme.js"></script>
 
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Matthew Dubea",
-    "jobTitle":"Mechanical Engineer",
-    "url":"https://mtdubea.github.io/resume.html",
-    "image":"https://mtdubea.github.io/assets/images/profile-headshot.jpg",
-    "sameAs":["https://www.linkedin.com/in/mdubea/","https://github.com/mtdubea"]
-  }
-  </script>
-
+  <!-- Page-specific print enhancements -->
   <style>
-    /* Page-local polish that complements style.css */
-    .resume-hero .cta-row { gap:.6rem; flex-wrap:wrap; justify-content:center; }
-    .pdf-shell {
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: .75rem;
-      box-shadow: 0 10px 30px var(--shadow);
-      overflow: hidden;
-    }
-    .pdf-actions {
-      display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center;
-      margin: 0 auto 1rem; padding-top:.25rem;
-    }
-    .pdf-frame {
-      width: 100%;
-      height: min(82vh, 1100px);
-      border: 0;
-      display: block;
-      background: #0b1220; /* dark backdrop for viewer chrome */
-    }
-    /* Shimmer while the PDF <object> lazy-loads */
-    object.pdf-frame[data-src]:not([data]) {
-      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
-      background-size: 400% 100%;
-      animation: shimmer 1.2s infinite linear;
-    }
-    /* Mobile: show a tasteful placeholder + buttons when embeds are disabled */
-    .no-embed .pdf-shell {
-      padding: 1.25rem 1rem;
-    }
-    .no-embed .pdf-placeholder {
-      text-align:center; color: var(--muted); margin: .5rem 0 1rem;
+    @media print {
+      body { background: #fff !important; color: #111 !important; }
+      header.site-header, footer, .cta-row, .search-filter, .edge-grad { display: none !important; }
+      main { padding: 0 !important; }
+      .resume-section { break-inside: avoid; page-break-inside: avoid; margin-bottom: 1rem; }
+      .resume-grid { display: block !important; }
+      .resume-grid > * { margin-bottom: .75rem; }
     }
   </style>
 </head>
 
 <body class="fade-in">
-  <header class="site-header" role="banner">
+  <header class="site-header">
     <div class="brand">
       <h1>Matthew Dubea</h1>
       <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
@@ -79,113 +40,66 @@
         <li><a class="active" href="resume.html" aria-current="page">Resume</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
-        <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🖥️</button>
-        </li>
       </ul>
     </nav>
   </header>
 
-  <main id="main">
-    <!-- Hero -->
-    <section class="hero resume-hero" aria-labelledby="resume-title">
-      <h2 id="resume-title">📄 My Resume</h2>
-      <p>
-        View or download my latest resume showcasing academic achievements, engineering projects,
-        technical expertise, and professional experience.
-      </p>
-      <div class="pdf-actions" role="group" aria-label="Resume actions (top)">
-        <a class="btn primary" id="dlTop" href="Matthew_Dubea_Resume.pdf" download>📥 Download PDF</a>
-        <a class="btn outline" id="openTop" href="Matthew_Dubea_Resume.pdf" target="_blank" rel="noopener">🔎 View Fullscreen</a>
+  <main class="resume-page">
+    <section class="hero hero--tight">
+      <h2>Resume</h2>
+      <p class="lead">Manufacturing-minded mechanical engineer focused on reliability, throughput, and cost-effective design.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="media/resume.pdf" download>⬇️ Download PDF</a>
+        <a class="btn outline" href="mailto:mattdubea@outlook.com">Contact</a>
+        <a class="btn outline" href="media/certifications.html">View Certifications</a>
       </div>
     </section>
 
-    <!-- PDF Viewer -->
-    <section class="pdf-shell" aria-label="Resume viewer">
-      <!-- Desktop/tablet with PDF support: lazy-load the PDF into <object> -->
-      <object id="pdfObject"
-              class="pdf-frame"
-              type="application/pdf"
-              data=""
-              data-src="Matthew_Dubea_Resume.pdf#view=FitH">
-        <!-- If the browser cannot render the PDF, show this fallback surface -->
-        <div style="padding:1rem;text-align:center">
-          <p class="pdf-placeholder">Your browser can’t show the inline preview.</p>
-          <div class="pdf-actions">
-            <a class="btn primary" href="Matthew_Dubea_Resume.pdf" download>📥 Download PDF</a>
-            <a class="btn outline" href="Matthew_Dubea_Resume.pdf" target="_blank" rel="noopener">🔎 View Fullscreen</a>
+    <section class="resume-grid">
+      <article class="resume-section">
+        <h3>Core Competencies</h3>
+        <ul class="cols-2">
+          <li>Tooling &amp; Fixture Design (DFM/DFA)</li>
+          <li>Process &amp; Throughput Optimization</li>
+          <li>CAD/CAE (SOLIDWORKS, FEA)</li>
+          <li>Quality (GD&amp;T, FMEA, PPAP/FAI exposure)</li>
+          <li>Automation (Python, Power BI)</li>
+          <li>Documentation &amp; ECN/BOM workflows</li>
+        </ul>
+      </article>
+
+      <article class="resume-section">
+        <h3>Selected Projects</h3>
+        <div class="resume-cards">
+          <div class="resume-card">
+            <h4>Senior Trike — Design &amp; Build</h4>
+            <p>CAD/FEA of 4130/1018 frame; TIG welding & machining; drivetrain optimization; DFM/DFA to cut assembly time and reduce BOM cost while meeting factors of safety.</p>
+          </div>
+          <div class="resume-card">
+            <h4>Mechatronics Payload</h4>
+            <p>Sensor fusion (IMU/thermal/distance), PWM motor/servo control, PID tuning, C++/Python logic, telemetry for reliable field tests.</p>
+          </div>
+          <div class="resume-card">
+            <h4>Autonomous Rescue Robot</h4>
+            <p>Python control stack, ultrasonic/IR sensing, modular retrieval mechanism; robust performance validated on obstacle courses.</p>
           </div>
         </div>
-      </object>
+      </article>
 
-      <!-- Mobile-only placeholder when embeds are disabled via JS -->
-      <div id="mobilePlaceholder" hidden>
-        <p class="pdf-placeholder">Inline preview is disabled on mobile for the best experience.</p>
-        <div class="pdf-actions">
-          <a class="btn primary" href="Matthew_Dubea_Resume.pdf" download>📥 Download PDF</a>
-          <a class="btn outline" href="Matthew_Dubea_Resume.pdf" target="_blank" rel="noopener">🔎 View Fullscreen</a>
-        </div>
-      </div>
+      <article class="resume-section">
+        <h3>Education &amp; Professional Development</h3>
+        <ul>
+          <li>B.S. Mechanical Engineering — University of Louisiana at Lafayette</li>
+          <li>Study Abroad: UCL London — Energy Systems &amp; Design (2024)</li>
+          <li>FE Mechanical: <strong>Oct 2025 (scheduled)</strong></li>
+          <li>Certifications: CSWA, CSSC Six Sigma Black Belt, ASME coursework (B31.12, BPVC V, GD&amp;T), SAP, Power BI, PCAP, MATLAB Onramp, OSHA-10</li>
+        </ul>
+      </article>
     </section>
-
-    <!-- Bottom actions (mirrored) -->
-    <section class="pdf-actions" role="group" aria-label="Resume actions (bottom)">
-      <a class="btn primary" id="dlBottom" href="Matthew_Dubea_Resume.pdf" download>📥 Download PDF</a>
-      <a class="btn outline" id="openBottom" href="Matthew_Dubea_Resume.pdf" target="_blank" rel="noopener">🔎 View Fullscreen</a>
-    </section>
-
-    <noscript>
-      <p style="text-align:center;color:var(--muted);max-width:60ch;margin:1rem auto;">
-        JavaScript is disabled. Use the buttons above to download or open the resume PDF.
-      </p>
-    </noscript>
   </main>
 
-  <footer role="contentinfo">
+  <footer>
     <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
-
-  <script>
-    // Detect iOS and small screens where inline PDF embedding is unreliable.
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const canInlinePDF = !isIOS && window.matchMedia('(min-width: 768px)').matches;
-
-    const obj   = document.getElementById('pdfObject');
-    const mobPh = document.getElementById('mobilePlaceholder');
-
-    if (!canInlinePDF) {
-      // Disable embeds for mobile/iOS → show clean fallback with buttons
-      document.body.classList.add('no-embed');
-      if (obj) obj.style.display = 'none';
-      if (mobPh) mobPh.hidden = false;
-    } else {
-      // Lazy-load the PDF when the viewer scrolls near it
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const src = obj.getAttribute('data-src');
-            if (src && !obj.getAttribute('data')) {
-              obj.setAttribute('data', src);
-              io.unobserve(obj);
-            }
-          }
-        });
-      }, { rootMargin: '200px' });
-      io.observe(obj);
-
-      // If the PDF plug-in errors, swap to the embedded fallback surface
-      obj?.addEventListener('error', () => {
-        obj.outerHTML = `
-          <div class="pdf-shell" style="padding:1rem;text-align:center">
-            <p class="pdf-placeholder">Preview unavailable in this browser.</p>
-            <div class="pdf-actions">
-              <a class="btn primary" href="Matthew_Dubea_Resume.pdf" download>📥 Download PDF</a>
-              <a class="btn outline" href="Matthew_Dubea_Resume.pdf" target="_blank" rel="noopener">🔎 View Fullscreen</a>
-            </div>
-          </div>`;
-      });
-    }
-  </script>
 </body>
 </html>
