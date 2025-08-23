@@ -1,6 +1,7 @@
 /* ==========================================================================
-   Matthew Dubea – Global Stylesheet
-   Consistent colors, spacing, buttons, cards, inputs, nav, hero, utilities.
+   Matthew Dubea – Global Stylesheet (v2)
+   Professional, consistent system for header/nav, hero, rails, metrics,
+   cards, buttons, inputs, project grid, certifications, resume, & utilities.
    ========================================================================== */
 
 /* --------- Reset / Base -------------------------------------------------- */
@@ -30,7 +31,7 @@ img, svg, video, canvas {
   height: auto;
 }
 
-/* Friendly defaults for headings */
+/* Headings */
 h1, h2, h3, h4 {
   color: var(--heading);
   line-height: 1.2;
@@ -54,7 +55,7 @@ a:hover { text-decoration: underline; }
   border-radius: 8px;
 }
 
-/* Motion-friendly */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
@@ -62,39 +63,35 @@ a:hover { text-decoration: underline; }
 /* --------- Theme Tokens -------------------------------------------------- */
 
 :root {
-  /* Palette */
   --bg-light: #f6f8fc;
   --surface: #ffffff;
   --surface-2: #f3f6fb;
   --surface-3: #eef2f8;
 
-  --heading: #0f172a;   /* slate-900 */
-  --text: #111827;      /* gray-900 */
-  --muted: #6b7280;     /* gray-500 */
+  --heading: #0f172a;
+  --text: #111827;
+  --muted: #6b7280;
 
-  --primary: #0a66c2;   /* LinkedIn-ish blue */
+  --primary: #0a66c2;
   --primary-600: #095cad;
   --primary-700: #084f95;
 
-  --border: #e5e7eb;    /* gray-200 */
+  --border: #e5e7eb;
   --border-strong: #d1d5db;
 
-  --focus: #84caff;     /* accessible focus ring */
+  --focus: #84caff;
 
   --shadow: rgba(13, 25, 44, 0.08);
   --shadow-strong: rgba(13, 25, 44, 0.14);
 
-  /* Radius */
   --r-lg: 12px;
   --r-md: 10px;
   --r-sm: 8px;
 
-  /* Sizing */
   --container: 1200px;
-  --gutter: 1rem;
 }
 
-/* Optional dark-mode support if body.dark-mode is ever added */
+/* Optional dark-mode support if you ever enable it by adding body.dark-mode */
 body.dark-mode {
   --bg-light: #0b1220;
   --surface: #0e1729;
@@ -118,7 +115,7 @@ body.dark-mode {
   --shadow-strong: rgba(0, 0, 0, 0.5);
 }
 
-/* --------- Layout Shells ------------------------------------------------- */
+/* --------- Layout / Container ------------------------------------------- */
 
 .container {
   width: min(100% - 2rem, var(--container));
@@ -147,7 +144,7 @@ main { min-height: 60vh; }
   padding: .9rem 0 .25rem;
 }
 .brand h1 { font-size: clamp(1.15rem, 2.2vw, 1.35rem); font-weight: 800; letter-spacing: .1px; }
-.brand .tagline { font-size: .9rem; color: var(--muted); }
+.brand .tagline { font-size: .9rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .site-nav {
   width: min(100% - 2rem, var(--container));
@@ -178,6 +175,20 @@ main { min-height: 60vh; }
   border-color: #dbeafe;
 }
 
+/* --------- Gradients (subtle edge fills) -------------------------------- */
+
+.edge-grad {
+  position: fixed;
+  top: 0; bottom: 0;
+  width: 28vw;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(30px);
+  opacity: .45;
+}
+.edge-left  { left: -18vw;  background: radial-gradient(60% 50% at 70% 40%, #cfe6ff 0%, transparent 70%); }
+.edge-right { right: -18vw; background: radial-gradient(60% 50% at 30% 60%, #e4ecff 0%, transparent 70%); }
+
 /* --------- Hero ---------------------------------------------------------- */
 
 .hero {
@@ -186,8 +197,15 @@ main { min-height: 60vh; }
   background: linear-gradient(180deg, #eef3fb 0%, rgba(238,243,251,.0) 60%);
 }
 .hero .lead { color: var(--muted); max-width: 58ch; margin: .25rem auto 0; }
-.hero img { max-width: 120px; border-radius: 50%; }
 
+.hero img,
+.profile-photo,
+.about-photo {
+  max-width: 140px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px var(--shadow);
+}
 .hero--tight { padding-block: 1.8rem 1rem; }
 
 /* --------- Buttons ------------------------------------------------------- */
@@ -199,6 +217,7 @@ main { min-height: 60vh; }
 
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: .5rem;
   padding: .6rem 1rem;
   border-radius: var(--r-sm);
@@ -212,13 +231,12 @@ main { min-height: 60vh; }
   box-shadow: 0 6px 18px var(--shadow);
   transition: transform .06s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
   cursor: pointer;
+  white-space: nowrap;
 }
-
 .btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px var(--shadow);
 }
-
 .btn:active { transform: translateY(0); }
 
 .btn.primary {
@@ -226,14 +244,12 @@ main { min-height: 60vh; }
   --btn-fg: #fff;
   --btn-bd: var(--primary);
 }
-
 .btn.outline {
   --btn-bg: transparent;
   --btn-fg: var(--heading);
   --btn-bd: var(--border-strong);
   background: linear-gradient(180deg, #ffffff, #fafbfe);
 }
-
 .btn.ghost {
   --btn-bg: transparent;
   --btn-fg: var(--primary);
@@ -242,15 +258,9 @@ main { min-height: 60vh; }
 }
 
 .btn.sm { font-size: .92rem; min-height: 34px; padding: .45rem .7rem; }
+.btn.sm--wide { min-width: 120px; }  /* ensures “Read Report” never truncates */
 
-/* Icon squares (for tiny adornments if needed) */
-.icon-square {
-  display:inline-grid; place-items:center;
-  width: 18px; height: 18px; border-radius: 4px;
-  background: #e8f1ff; color: var(--primary); font-size: .78rem;
-}
-
-/* --------- Inputs / Search ------------------------------------------------ */
+/* --------- Inputs / Search ---------------------------------------------- */
 
 input[type="text"],
 input[type="search"],
@@ -264,7 +274,6 @@ select, textarea {
   color: var(--text);
   transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
 }
-
 input::placeholder { color: #9aa4b2; }
 
 input:focus-visible,
@@ -275,23 +284,12 @@ textarea:focus-visible {
   outline: 0;
 }
 
-/* Search bar shell (used on Home & Certifications) */
 .searchbar {
   display: flex; align-items: center; gap: .6rem;
   padding: .35rem; border-radius: var(--r-sm);
 }
 
-/* --------- Cards / Chips / Tags ----------------------------------------- */
-
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  box-shadow: 0 10px 30px var(--shadow);
-  overflow: hidden;
-}
-
-.card-body { padding: 1rem; }
+/* --------- Chips / Badges ------------------------------------------------ */
 
 .badge {
   display:inline-block;
@@ -314,13 +312,160 @@ textarea:focus-visible {
   color: var(--heading);
 }
 
-/* --------- Sections / Headings ------------------------------------------ */
+/* --------- Generic Card -------------------------------------------------- */
 
-section { padding-inline: 1rem; }
-section > h2 { font-size: clamp(1.15rem, 1.9vw, 1.35rem); margin-bottom: .6rem; }
-section > h3 { font-size: clamp(1.05rem, 1.7vw, 1.2rem); }
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 10px 30px var(--shadow);
+  overflow: hidden;
+}
+.card-body { padding: 1rem; }
 
-/* --------- Filters / Chips (Certifications page) ------------------------ */
+/* --------- Home: Rails + Metrics ---------------------------------------- */
+
+.home-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr) minmax(0, 280px);
+  gap: 1rem;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (max-width: 1024px) {
+  .home-shell { grid-template-columns: 1fr; }
+  .rail { position: static; }
+}
+.rail {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  display: grid;
+  gap: .85rem;
+  height: fit-content;
+}
+.rail-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: .9rem 1rem;
+  box-shadow: 0 10px 30px var(--shadow);
+}
+.rail-card h4 { margin: 0 0 .25rem; font-size: 1rem; }
+.rail-card p { margin: .25rem 0 0; font-size: .95rem; color: var(--muted); }
+.rail-list { margin:.25rem 0 0; padding-left: 1.15rem; }
+.rail-list li { margin: .25rem 0; }
+
+/* Metrics band under hero */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: .8rem;
+  margin: 1rem auto 1.25rem;
+  max-width: 980px;
+  padding: 0 1rem;
+}
+@media (max-width: 720px) {
+  .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+.metric {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: .9rem 1rem;
+  text-align: center;
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.metric .num {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 800;
+  line-height: 1;
+}
+.metric .label { margin-top: .25rem; color: var(--muted); font-size: .95rem; }
+.badge--subtle { display:inline-block; margin-top:.35rem; padding:.2rem .5rem; font-size:.75rem; border:1px solid var(--border); border-radius:999px; background:#eef6ff; }
+
+/* --------- Home: Project Grid (Symmetrical) ------------------------------ */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+@media (max-width: 980px) {
+  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .project-grid { grid-template-columns: 1fr; }
+}
+
+/* True equal-height card with sticky footer */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 10px 30px var(--shadow);
+  overflow: hidden;
+}
+
+/* Fixed, consistent media area */
+.project-card .media {
+  height: 150px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.project-card .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* clean crop, no weird zoom or distortion */
+  object-position: center;
+}
+
+/* Content */
+.project-card .content {
+  padding: .9rem 1rem .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+.project-card h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+.project-card .summary {
+  color: var(--muted);
+  font-size: .92rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;   /* consistent text height */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 7.5rem;      /* stabilizes varying summaries */
+}
+.project-card .tags {
+  display: flex; flex-wrap: wrap; gap: .35rem;
+  margin-top: .4rem;
+}
+
+/* Footer: locked to bottom */
+.project-card .actions {
+  margin-top: auto;
+  display: flex;
+  gap: .5rem;
+  justify-content: space-between;
+  padding: .75rem 1rem 1rem;
+  border-top: 1px solid var(--border);
+}
+.project-card .actions .btn { flex: 1 1 auto; min-width: 0; }
+.project-card .actions .btn:first-child { flex: 1 1 55%; }
+.project-card .actions .btn.sm { min-height: 34px; }
+.project-card .actions .btn.sm--wide { min-width: 120px; }
+
+/* --------- Certifications page helpers ---------------------------------- */
 
 .filters {
   display: flex;
@@ -342,7 +487,6 @@ section > h3 { font-size: clamp(1.05rem, 1.7vw, 1.2rem); }
 .filters button:hover   { background: var(--surface-2); }
 .filters button.active  { background: #e8f2ff; border-color: #dbeafe; color: var(--primary); }
 
-/* Inline section index (Certifications) */
 .section-index {
   display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center;
   margin: .35rem auto 0; max-width: min(100% - 2rem, var(--container));
@@ -353,11 +497,42 @@ section > h3 { font-size: clamp(1.05rem, 1.7vw, 1.2rem); }
 }
 .section-index a:hover { color: var(--primary); border-color: #bfdbfe; }
 
-/* --------- Tables (if used in reports) ---------------------------------- */
+/* Cert cards */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(280px,1fr) );
+  gap: 1rem;
+}
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 10px 30px var(--shadow);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.cert-card .frame {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg,#f6f7fb,#edf0f6);
+}
+.cert-card .frame--ratio { aspect-ratio: 16/9; min-height: 160px; }
+.cert-card .frame object { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.cert-card .frame__fallback { position:absolute; inset:0; display:grid; place-items:center; color:var(--muted); font-size:.9rem; }
+.cert-body { padding: .85rem; }
+.cert-title { font-weight: 700; margin: .15rem 0 .35rem; }
+.cert-badges { display:flex; flex-wrap:wrap; gap:.35rem; margin:.25rem 0; }
+.cert-card .cta-row { display:flex; gap:.5rem; justify-content:flex-end; padding:.75rem .85rem .9rem; flex-wrap:wrap; }
 
-table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: .6rem .5rem; border-bottom: 1px solid var(--border); }
-thead th { color: var(--muted); font-weight: 700; }
+/* --------- Resume helpers ------------------------------------------------ */
+
+.resume-page { max-width: var(--container); margin: 0 auto; padding: 0 1rem; }
+.resume-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: 0 10px 30px var(--shadow); padding: 1rem 1.1rem; margin-bottom: 1rem; }
+.resume-section h3 { margin: 0 0 .5rem; }
+.resume-card { border: 1px solid var(--border); border-radius: var(--r-md); padding: .8rem .9rem; background: var(--surface-2); margin-top: .6rem; }
+.cols-2 { columns: 2; column-gap: 1.25rem; }
+.cols-2 li { break-inside: avoid; margin: .25rem 0; }
+@media (max-width: 820px) { .cols-2 { columns: 1; } }
 
 /* --------- Footer -------------------------------------------------------- */
 
@@ -398,20 +573,3 @@ footer {
   box-shadow: 0 4px 12px var(--shadow);
   z-index: 1000;
 }
-
-/* --------- Helpful Page-Specific Tweaks --------------------------------- */
-
-/* keep profile photos from ever ballooning */
-.profile-photo,
-.about-photo,
-.hero img {
-  max-width: 140px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 6px 18px var(--shadow);
-}
-
-/* resume “pill” lists look nicer in two columns on wide screens */
-.cols-2 { columns: 2; column-gap: 1.25rem; }
-.cols-2 li { break-inside: avoid; margin: .25rem 0; }
-@media (max-width: 820px) { .cols-2 { columns: 1; } }
