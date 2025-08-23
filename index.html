@@ -90,10 +90,13 @@
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="home-hero-title">
-    <img src="assets/images/profile-headshot.jpg"
-         alt="Headshot of Matthew Dubea"
-         class="hero-headshot"
-         loading="eager" decoding="async" fetchpriority="high" />
+    <img
+      src="assets/images/profile-headshot.jpg"
+      alt="Headshot of Matthew Dubea"
+      class="hero-headshot"
+      width="120" height="120"
+      loading="eager" decoding="async" fetchpriority="high"
+    />
     <h2 id="home-hero-title">Designing for Reliability, Manufacturability, and Speed</h2>
     <p>I build practical, production-ready solutions across CAD/FEA, fabrication, process optimization, and automation—balancing hands-on execution with engineering rigor.</p>
     <div class="cta-row" role="group" aria-label="Primary actions">
@@ -309,7 +312,6 @@
         renderCards(list);
         attachSearch();
 
-        // Metrics
         const certCount = (certsData.groups||[]).reduce((sum, g) => sum + ((g.items||[]).length), 0);
         if (elProj) elProj.textContent = String(list.length);
         if (elCert) elCert.textContent = String(certCount);
