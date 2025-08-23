@@ -6,142 +6,92 @@
   <title>Matthew Dubea | Mechanical Engineer</title>
 
   <!-- Meta -->
-  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
+  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and capabilities across CAD/CAE, lean manufacturing, and process automation." />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 
-  <!-- Social -->
+  <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
-  <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
+  <meta property="og:description" content="Projects, certifications, and technical work in CAD/CAE, lean manufacturing, and process automation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mtdubea.github.io/" />
   <meta property="og:image" content="assets/images/profile-headshot.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Matthew Dubea | Mechanical Engineer" />
-  <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
+  <meta name="twitter:description" content="Projects, certifications, and technical work in CAD/CAE, lean manufacturing, and process automation." />
   <meta name="twitter:image" content="assets/images/profile-headshot.jpg" />
 
-  <!-- Base styles + page-scoped polish -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
 
+  <!-- Page-scoped additions (grid + rail fixes, equal-height cards, gradient edges) -->
   <style>
-    /* ---------- Decorative edge gradients so the page feels “full” ---------- */
+    /* Edge fills so the page feels “full” */
     .edge-grad{position:fixed;top:0;bottom:0;width:28vw;pointer-events:none;z-index:-1;filter:blur(30px);opacity:.45}
-    .edge-left{left:-18vw;background:radial-gradient(60% 50% at 70% 40%, #cfe6ff 0%, transparent 70%)}
-    .edge-right{right:-18vw;background:radial-gradient(60% 50% at 30% 60%, #e4ecff 0%, transparent 70%)}
+    .edge-left{left:-18vw;background:radial-gradient(60% 50% at 70% 40%,#cfe6ff 0%,transparent 70%)}
+    .edge-right{right:-18vw;background:radial-gradient(60% 50% at 30% 60%,#e4ecff 0%,transparent 70%)}
 
-    /* ---------- Layout shell with left/right rails ---------- */
-    .home-shell{
-      display:grid;gap:1.2rem;
-      grid-template-columns:minmax(0,260px) minmax(0,1fr) minmax(0,260px);
-      max-width:1200px;margin:0 auto;padding:1rem
-    }
-    @media (max-width:1024px){
-      .home-shell{grid-template-columns:1fr}
-      .rail{position:static;order:2}
-      .center{order:1}
-    }
-    .rail{
-      position:sticky;top:1rem;align-self:start;height:fit-content;display:grid;gap:.85rem
-    }
-    .rail-card{
-      background:var(--surface);border:1px solid var(--border);border-radius:12px;
-      padding:.9rem 1rem;box-shadow:0 10px 30px var(--shadow)
-    }
+    /* Layout shell + rails */
+    .home-shell{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr) minmax(0,260px);gap:1.2rem;max-width:1200px;margin:0 auto;padding:1rem}
+    @media (max-width:1024px){.home-shell{grid-template-columns:1fr}.rail{position:static;order:2}.center{order:1}}
+    .rail{position:sticky;top:1rem;align-self:start;display:grid;gap:.85rem;height:fit-content}
+    .rail-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;box-shadow:0 10px 30px var(--shadow)}
     .rail-card h4{margin:0 0 .25rem;font-size:1rem}
-    .rail-card p{margin:.25rem 0 0;color:var(--muted);font-size:.95rem}
     .rail-list{margin:.25rem 0 0;padding-left:1.15rem}
-    .rail-list li{margin:.25rem 0}
 
-    /* ---------- Metrics band under hero ---------- */
-    .metrics{
-      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:.8rem;max-width:980px;margin:1rem auto 1.25rem
-    }
+    /* Metrics */
+    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin:1rem auto 1.25rem;max-width:980px}
     @media (max-width:720px){.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    .metric{
-      background:var(--surface);border:1px solid var(--border);border-radius:12px;
-      padding:.9rem 1rem;text-align:center;box-shadow:0 8px 24px var(--shadow)
-    }
+    .metric{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;text-align:center;box-shadow:0 8px 24px var(--shadow)}
     .metric .num{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;line-height:1}
     .metric .label{margin-top:.25rem;color:var(--muted);font-size:.95rem}
     .badge{display:inline-block;padding:.2rem .5rem;font-size:.78rem;border:1px solid var(--border);border-radius:999px;background:#eef6ff;margin-top:.35rem}
 
-    /* ---------- CTAs (iOS-safe wrapping) ---------- */
+    /* CTA row (iOS-safe) */
     .cta-row{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;align-items:stretch;margin-top:.75rem}
     .cta-row .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.7em 1.1em;line-height:1.1;text-align:center;white-space:nowrap;flex:0 1 260px}
-    @media (max-width:520px){.cta-row .btn{flex:1 1 100%}}
-    @supports (-webkit-touch-callout:none){.cta-row .btn{flex:1 1 300px}}
+    @media(max-width:520px){.cta-row .btn{flex:1 1 100%}}
+    @supports(-webkit-touch-callout:none){.cta-row .btn{flex:1 1 300px}}
 
-    /* ---------- Search ---------- */
-    .search-filter{max-width:680px;margin:0 auto 1rem;padding:0 1rem}
-    .search-filter input{width:100%}
-
-    /* ---------- Project grid: perfectly symmetrical cards ---------- */
-    .featured-projects{padding:0 1rem}
-    .project-grid{
-      display:grid;gap:1rem;
-      grid-template-columns:repeat(3,minmax(260px,1fr));
-      align-items:stretch;
-      max-width:1100px;margin:0 auto
-    }
-    @media (max-width:1024px){.project-grid{grid-template-columns:repeat(2,minmax(220px,1fr))}}
-    @media (max-width:640px){.project-grid{grid-template-columns:1fr}}
-
-    .project-grid .card{
-      display:flex;flex-direction:column;overflow:hidden;
-      background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 30px var(--shadow);
-      text-decoration:none;color:inherit
-    }
-    .card-thumb{
-      width:100%;aspect-ratio:16/9;display:block;object-fit:cover;object-position:center;
-      border-bottom:1px solid var(--border)
-    }
-    .card-body{padding:1rem 1rem .6rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
-    .card h3{margin:0;font-size:1.05rem}
-    .card .muted{color:var(--muted);font-size:.92rem}
-    .tag-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.1rem}
+    /* Project grid – 3-up symmetric cards with equal heights */
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    @media (max-width:1050px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:700px){.project-grid{grid-template-columns:1fr}}
+    .project-grid .card{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);box-shadow:0 10px 30px var(--shadow)}
+    .card-thumb{width:100%;height:170px;object-fit:cover;border-bottom:1px solid var(--border)}
+    .card-body{padding:1rem 1rem .75rem;display:flex;flex-direction:column;gap:.4rem}
+    .card-body p{color:var(--muted)}
+    .tag-row{display:flex;flex-wrap:wrap;gap:.35rem}
     .tag{font-size:.72rem;padding:.16rem .45rem;border:1px solid var(--border);border-radius:999px;background:var(--surface-2)}
-    /* buttons row anchored to bottom for equal height */
     .card-cta{display:flex;gap:.5rem;padding:0 1rem 1rem;margin-top:auto}
     .card-cta .btn{flex:1 1 auto;justify-content:center}
 
-    /* ---------- Skeletons while JSON loads ---------- */
-    .skeleton{border-radius:12px;height:240px;border:1px solid var(--border);
-      background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 37%,#f3f4f6 63%);background-size:400% 100%;animation:sk 1.2s infinite linear}
+    /* Skeletons while JSON loads */
+    .skeleton{border-radius:12px;height:170px;border:1px solid var(--border);background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 37%,#f3f4f6 63%);background-size:400% 100%;animation:sk 1.2s infinite linear}
     @keyframes sk{0%{background-position:-200% 0}100%{background-position:200% 0}}
 
-    /* Accessible skip link when focused */
-    .visually-hidden-focusable:focus{
-      position:static !important;width:auto !important;height:auto !important;
-      padding:.5rem .75rem;margin:.5rem;background:var(--surface);
-      border:1px solid var(--border);border-radius:.5rem;box-shadow:0 4px 12px var(--shadow);z-index:1000
-    }
+    /* Reserve space to keep right-rail from overlapping the third card at some widths */
+    .featured-wrap{min-height:1px}
   </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
+    "@context":"https://schema.org",
+    "@graph":[
       {
-        "@type": "Person",
-        "name": "Matthew Dubea",
-        "jobTitle": "Mechanical Engineer",
-        "url": "https://mtdubea.github.io/",
-        "image": "https://mtdubea.github.io/assets/images/profile-headshot.jpg",
-        "sameAs": ["https://www.linkedin.com/in/mdubea/","https://github.com/mtdubea"]
+        "@type":"Person",
+        "name":"Matthew Dubea",
+        "jobTitle":"Mechanical Engineer",
+        "url":"https://mtdubea.github.io/",
+        "image":"https://mtdubea.github.io/assets/images/profile-headshot.jpg",
+        "sameAs":["https://www.linkedin.com/in/mdubea/","https://github.com/mtdubea"]
       },
       {
-        "@type": "WebSite",
-        "url": "https://mtdubea.github.io/",
-        "name": "Matthew Dubea — Portfolio",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://mtdubea.github.io/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "@type":"WebSite",
+        "url":"https://mtdubea.github.io/",
+        "name":"Matthew Dubea — Portfolio",
+        "potentialAction":{"@type":"SearchAction","target":"https://mtdubea.github.io/?q={search_term_string}","query-input":"required name=search_term_string"}
       }
     ]
   }
@@ -174,7 +124,7 @@
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="home-hero-title">
-    <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width:120px;border-radius:50%;margin-bottom:.6em;box-shadow:0 4px 15px rgba(0,0,0,.18);" />
+    <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width:120px;border-radius:50%;margin-bottom:.6em;box-shadow:0 4px 15px rgba(0,0,0,.18)" />
     <h2 id="home-hero-title">Designing for Reliability, Manufacturability, and Speed</h2>
     <p>Practical, production-ready solutions across CAD/FEA, fabrication, process optimization, and automation—balancing hands-on execution with engineering rigor.</p>
     <div class="cta-row" role="group" aria-label="Primary actions">
@@ -183,15 +133,12 @@
       <a class="btn outline" href="media/certifications.html">🎓&nbsp;Certifications</a>
     </div>
 
-    <!-- Metrics -->
+    <!-- Dynamic Metrics -->
     <div class="metrics" aria-live="polite">
       <div class="metric"><div class="num" id="metric-projects">—</div><div class="label">Projects</div></div>
       <div class="metric"><div class="num" id="metric-certs">—</div><div class="label">Certifications</div></div>
       <div class="metric"><div class="num" id="metric-reports">—</div><div class="label">Technical Reports</div></div>
-      <div class="metric">
-        <div class="num">Oct&nbsp;2025</div><div class="label">FE Mechanical</div>
-        <span class="badge">Scheduled</span>
-      </div>
+      <div class="metric"><div class="num">Oct&nbsp;2025</div><div class="label">FE Mechanical</div><span class="badge">Scheduled</span></div>
     </div>
   </section>
 
@@ -224,44 +171,23 @@
       <section class="search-filter" aria-labelledby="site-search-title">
         <h3 id="site-search-title" class="visually-hidden" style="position:absolute;left:-9999px;">Search</h3>
         <label for="searchInput" class="visually-hidden" style="position:absolute;left:-9999px;">Search site content</label>
-        <input type="text" id="searchInput" placeholder="🔍 Search this site…" inputmode="search" autocomplete="off" />
+        <input type="text" id="searchInput" placeholder="🔍 Search this site..." inputmode="search" autocomplete="off" />
         <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
       </section>
 
       <!-- Featured Projects -->
-      <section class="featured-projects" aria-labelledby="featured-title">
+      <section class="featured-projects featured-wrap" aria-labelledby="featured-title">
         <h2 id="featured-title">📂 Featured Projects</h2>
         <div id="projectGrid" class="project-grid" role="list">
-          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
         </div>
-
-        <!-- No-JS fallback -->
         <noscript>
           <div class="project-grid" role="list">
-            <a href="trike/" class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-trike.jpg" alt="Senior Trike Project thumbnail" />
-              <div class="card-body">
-                <h3>🏁 Senior Trike Project</h3>
-                <p class="muted">Race trike designed and built end-to-end: CAD/FEA, TIG welding & machining, drivetrain optimization, DFM/DFA.</p>
-              </div>
-              <div class="card-cta"><span class="btn primary">Open</span></div>
-            </a>
-            <a href="mechatronics/" class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics Sensor Payload thumbnail" />
-              <div class="card-body">
-                <h3>🛰️ Mechatronics Sensor Payload</h3>
-                <p class="muted">Multi-sensor payload for a UAV platform: IMU, temperature, distance, PWM control, PID tuning, telemetry.</p>
-              </div>
-              <div class="card-cta"><span class="btn primary">Open</span></div>
-            </a>
-            <a href="robot/" class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-robot.jpg" alt="Autonomous Rescue Robot thumbnail" />
-              <div class="card-body">
-                <h3>🤖 Autonomous Rescue Robot</h3>
-                <p class="muted">Ground robot with ultrasonic/IR sensing, Python control, and modular retrieval mechanism.</p>
-              </div>
-              <div class="card-cta"><span class="btn primary">Open</span></div>
-            </a>
+            <a href="trike/" class="card" role="listitem"><h3>🏁 Senior Trike Project</h3><p>Design, manufacturing, and race-winning trike.</p></a>
+            <a href="mechatronics/" class="card" role="listitem"><h3>🛰️ Mechatronics Payload</h3><p>Autonomous UAV sensor payload.</p></a>
+            <a href="robot/" class="card" role="listitem"><h3>🤖 Rescue Robot</h3><p>Python-controlled autonomous robot.</p></a>
           </div>
         </noscript>
       </section>
@@ -303,129 +229,88 @@
       const grid   = document.getElementById("projectGrid");
       const input  = document.getElementById("searchInput");
       const count  = document.getElementById("searchCount");
-
       const elProj = document.getElementById("metric-projects");
       const elCert = document.getElementById("metric-certs");
       const elRept = document.getElementById("metric-reports");
 
-      const REPORTS = [
-        "media/Trike_Final_Report.pdf",
-        "media/Mechatronics_Report.pdf",
-        "media/Robot_Report.pdf"
-      ];
+      const REPORTS = ["media/Trike_Final_Report.pdf","media/Mechatronics_Report.pdf","media/Robot_Report.pdf"];
 
-      function safeText(s){return (s||"").replace(/[&<>"']/g,m=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[m]))}
-
-      // Render equal-height, centered cards
-      function renderCards(projects) {
-        grid.innerHTML = "";
-        projects.forEach(p => {
-          const openURL = p.url || "#";
-          const thumb   = p.thumbnail ? `<img class="card-thumb" src="${safeText(p.thumbnail)}" alt="${safeText(p.title)} thumbnail" loading="lazy" />` : "";
-          const tags    = Array.isArray(p.tags) ? p.tags.slice(0,4) : [];
-          const report  = p.report ? `<a class="btn outline" href="${safeText(p.report)}" target="_blank" rel="noopener">📘 Report</a>` : "";
-          const sourceL = p.source || p.repo;
-          const source  = sourceL ? `<a class="btn outline" href="${safeText(sourceL)}" target="_blank" rel="noopener">🌐 Source</a>` : "";
-
-          const a = document.createElement("a");
-          a.className = "card";
-          a.href = openURL;
-          a.setAttribute("role","listitem");
-          a.setAttribute("data-title", (p.title||"").toLowerCase());
-          a.setAttribute("data-category", (p.category||"").toLowerCase());
-
-          a.innerHTML = `
-            ${thumb}
+      function renderCards(projects){
+        grid.innerHTML="";
+        projects.forEach(p=>{
+          const a=document.createElement("a");
+          a.className="card"; a.href=p.url; a.setAttribute("role","listitem");
+          a.setAttribute("data-title",(p.title||"").toLowerCase());
+          a.setAttribute("data-category",(p.category||"").toLowerCase());
+          const tags=Array.isArray(p.tags)?p.tags.slice(0,4):[];
+          const reportBtn=p.report?`<a class="btn outline" href="${p.report}" target="_blank" rel="noopener">📘 Report</a>`:"";
+          const sourceBtn=p.repo||p.source?`<a class="btn outline" href="${p.repo||p.source}" target="_blank" rel="noopener">🌐 Source</a>`:"";
+          a.innerHTML=`
+            ${p.thumbnail?`<img class="card-thumb" src="${p.thumbnail}" alt="${(p.title||"Project")} thumbnail" loading="lazy" />`:""}
             <div class="card-body">
-              <h3>${p.icon ? p.icon+" " : ""}${safeText(p.title)}</h3>
-              <p class="muted">${safeText(p.description||"")}</p>
-              ${tags.length ? `<div class="tag-row">${tags.map(t=>`<span class="tag">${safeText(t)}</span>`).join("")}</div>` : ""}
+              <h3>${p.icon?p.icon+" ":""}${p.title}</h3>
+              <p>${p.description||""}</p>
+              ${tags.length?`<div class="tag-row">${tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div>`:""}
             </div>
             <div class="card-cta">
               <span class="btn primary" aria-hidden="true">Open</span>
-              ${report}
-              ${source}
-            </div>
-          `;
+              ${reportBtn}${sourceBtn}
+            </div>`;
           grid.appendChild(a);
         });
       }
 
-      function attachSearch() {
-        const cards = Array.from(grid.querySelectorAll(".card"));
-        if (!input || !cards.length) return;
-        const updateCount = (n) => { if (count) count.textContent = n === cards.length ? "" : (n ? `${n} shown` : "No results"); };
-        input.addEventListener("input", () => {
-          const q = (input.value || "").toLowerCase(); let visible = 0;
-          cards.forEach(card => {
-            const title = card.getAttribute("data-title") || "";
-            const cat   = card.getAttribute("data-category") || "";
-            const txt   = card.textContent.toLowerCase();
-            const show  = !q || title.includes(q) || cat.includes(q) || txt.includes(q);
-            card.style.display = show ? "flex" : "none";
-            if (show) visible++;
+      function attachSearch(){
+        const cards=[...grid.querySelectorAll(".card")];
+        if(!input||!cards.length) return;
+        const updateCount=n=>{
+          if(!count) return;
+          count.textContent=n===cards.length?"":(n?`${n} shown`:"No results");
+        };
+        input.addEventListener("input",()=>{
+          const q=(input.value||"").toLowerCase(); let visible=0;
+          cards.forEach(card=>{
+            const title=card.getAttribute("data-title")||"";
+            const cat=card.getAttribute("data-category")||"";
+            const txt=card.textContent.toLowerCase();
+            const show=!q||title.includes(q)||cat.includes(q)||txt.includes(q);
+            card.style.display=show?"flex":"none"; if(show) visible++;
           });
           updateCount(visible);
         });
       }
 
-      function countCerts(groups) {
-        if (!Array.isArray(groups)) return 0;
-        return groups.reduce((sum, g) => sum + (Array.isArray(g.items) ? g.items.length : 0), 0);
+      function countCerts(groups){
+        if(!Array.isArray(groups)) return 0;
+        return groups.reduce((sum,g)=>sum+(Array.isArray(g.items)?g.items.length:0),0);
       }
 
-      // Load both datasets
       Promise.all([
-        fetch("projects.json", { cache:"no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)),
-        fetch("certs.json",    { cache:"no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status))
+        fetch("projects.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject(r.status)),
+        fetch("certs.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject(r.status))
       ])
-      .then(([projectsData, certsData]) => {
-        const list = (projectsData.projects || [])
-          .filter(p => p.featured !== false)
-          .sort((a,b) => (a.order || 9999) - (b.order || 9999));
-
-        renderCards(list);
-        attachSearch();
-
-        // Metrics
-        if (elProj) elProj.textContent = String(list.length);
-        if (elCert) elCert.textContent = String(countCerts(certsData.groups || []));
-        if (elRept) elRept.textContent = String(REPORTS.length);
+      .then(([projectsData, certsData])=>{
+        const list=(projectsData.projects||[]).filter(p=>p.featured!==false).sort((a,b)=>(a.order||9999)-(b.order||9999));
+        renderCards(list); attachSearch();
+        if(elProj) elProj.textContent=String(list.length);
+        if(elCert) elCert.textContent=String(countCerts(certsData.groups||[]));
+        if(elRept) elRept.textContent=String(REPORTS.length);
       })
-      .catch(() => {
-        // Fallback if JSON fails
-        grid.outerHTML = `
+      .catch(()=>{
+        grid.outerHTML=`
           <div class="project-grid" role="list">
-            <a href="trike/" class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-trike.jpg" alt="Senior Trike Project thumbnail" />
-              <div class="card-body">
-                <h3>🏁 Senior Trike Project</h3>
-                <p class="muted">CAD/FEA of 4130/1018 frame; TIG welding & machining; drivetrain optimization; DFM/DFA.</p>
-              </div>
-              <div class="card-cta"><span class="btn primary">Open</span></div>
-            </a>
-            <a href="mechatronics/" class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics Sensor Payload thumbnail" />
-              <div class="card-body">
-                <h3>🛰️ Mechatronics Sensor Payload</h3>
-                <p class="muted">Sensors, PWM control, PID tuning, and telemetry validated in field tests.</p>
-              </div>
-              <div class="card-cta"><span class="btn primary">Open</span></div>
-            </a>
-            <a href="robot/" class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-robot.jpg" alt="Autonomous Rescue Robot thumbnail" />
-              <div class="card-body">
-                <h3>🤖 Autonomous Rescue Robot</h3>
-                <p class="muted">Ultrasonic/IR sensing with Python control and modular retrieval mechanism.</p>
-              </div>
-              <div class="card-cta"><span class="btn primary">Open</span></div>
-            </a>
+            <a href="trike/" class="card" role="listitem"><h3>🏁 Senior Trike Project</h3><p>Design + build competition trike.</p></a>
+            <a href="mechatronics/" class="card" role="listitem"><h3>🛰️ Mechatronics Payload</h3><p>UAV sensor payload.</p></a>
+            <a href="robot/" class="card" role="listitem"><h3>🤖 Rescue Robot</h3><p>Autonomous robot.</p></a>
           </div>`;
-        if (elProj) elProj.textContent = "3";
-        if (elCert) elCert.textContent = "39";
-        if (elRept) elRept.textContent = "3";
+        if(elProj) elProj.textContent="3"; if(elCert) elCert.textContent="39"; if(elRept) elRept.textContent="3";
       });
     })();
   </script>
+
+  <!-- Skip-link reveal -->
+  <style>
+    .visually-hidden-focusable:focus{position:static!important;width:auto!important;height:auto!important;padding:.5rem .75rem;margin:.5rem;background:var(--surface);border:1px solid var(--border);border-radius:.5rem;box-shadow:0 4px 12px var(--shadow);z-index:1000}
+  </style>
 </body>
 </html>
