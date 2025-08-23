@@ -4,7 +4,7 @@
       "title": "Senior Trike Project",
       "icon": "🏁",
       "url": "trike/",
-      "description": "Competition trike engineered end-to-end: CAD + FEA of a 4130/1018 steel frame, TIG welding & machining, drivetrain optimization, and DFM/DFA changes that cut assembly time and reduced BOM cost while preserving safety factors.",
+      "description": "Competition trike engineered end-to-end: CAD + FEA of a 4130/1018 steel frame, TIG welding and machining, drivetrain optimization, and DFM/DFA changes that cut assembly time and reduced BOM cost while preserving safety factors.",
       "category": "Mechanical",
       "tags": ["CAD", "FEA", "DFM/DFA", "Manufacturing", "Welding"],
       "year": 2025,
@@ -12,7 +12,6 @@
       "featured": true,
       "thumbnail": "assets/images/thumb-trike.jpg",
       "report": "media/Trike_Final_Report.pdf",
-      "source": "https://github.com/mtdubea/trike",
       "repo": "https://github.com/mtdubea/trike"
     },
     {
@@ -27,7 +26,6 @@
       "featured": true,
       "thumbnail": "assets/images/thumb-mechatronics.jpg",
       "report": "media/Mechatronics_Report.pdf",
-      "source": "https://github.com/mtdubea/mechatronics",
       "repo": "https://github.com/mtdubea/mechatronics"
     },
     {
@@ -42,14 +40,13 @@
       "featured": true,
       "thumbnail": "assets/images/thumb-robot.jpg",
       "report": "media/Robot_Report.pdf",
-      "source": "https://github.com/mtdubea/robot",
       "repo": "https://github.com/mtdubea/robot"
     },
     {
       "title": "Portfolio Website & Design System",
       "icon": "💻",
       "url": "./",
-      "description": "Responsive portfolio built with accessible, mobile-first HTML/CSS/JS, JSON-driven sections, and a focus on performance and semantics.",
+      "description": "This responsive portfolio: accessible, mobile-first HTML/CSS/JS with JSON-driven sections and a focus on performance and semantics.",
       "category": "Web",
       "tags": ["HTML", "CSS", "Accessibility", "Performance"],
       "year": 2025,
