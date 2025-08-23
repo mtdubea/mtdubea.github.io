@@ -1,35 +1,31 @@
-// Minimal helpers (no dark-mode logic)
+// theme.js — shared, lightweight enhancements (no dark mode)
 
-// Smooth-scroll for on-page anchors (accessibility-friendly)
-document.addEventListener('click', (e) => {
-  const a = e.target.closest('a[href^="#"]');
+/* External links: open safely */
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href]');
   if (!a) return;
-  const id = a.getAttribute('href');
-  if (!id || id === '#') return;
-  const el = document.querySelector(id);
-  if (!el) return;
-  e.preventDefault();
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const url = a.getAttribute('href');
+  const isExternal = /^https?:\/\//i.test(url) && !url.includes(location.host);
+  if (isExternal) a.setAttribute('rel', 'noopener');
 });
 
-// Add :focus-visible polyfill feel on mouse users (visible ring only for keyboard)
-(function () {
-  let hadKeyboardEvent = false;
-  const ringClass = 'focus-ring';
-
-  function onKeyDown(e) {
-    if (e.key === 'Tab' || e.keyCode === 9) hadKeyboardEvent = true;
+/* Skip-link: focus target for better a11y */
+(function() {
+  const hash = window.location.hash;
+  if (hash && document.getElementById(hash.slice(1))) {
+    const el = document.getElementById(hash.slice(1));
+    el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
+    el.scrollIntoView({ block: 'start', behavior: 'smooth' });
   }
-  function onPointerDown() { hadKeyboardEvent = false; }
-  function onFocus(e) {
-    if (hadKeyboardEvent) e.target.classList.add(ringClass);
-  }
-  function onBlur(e) { e.target.classList.remove(ringClass); }
+})();
 
-  document.addEventListener('keydown', onKeyDown, true);
-  document.addEventListener('mousedown', onPointerDown, true);
-  document.addEventListener('pointerdown', onPointerDown, true);
-  document.addEventListener('touchstart', onPointerDown, true);
-  document.addEventListener('focus', onFocus, true);
-  document.addEventListener('blur', onBlur, true);
+/* Small helper for “active” nav state if using subpaths */
+(function() {
+  const links = document.querySelectorAll('.site-nav a[href]');
+  const here = location.pathname.replace(/index\.html?$/,'');
+  links.forEach(a => {
+    const href = a.getAttribute('href').replace(/index\.html?$/,'');
+    if (href === here) a.classList.add('active');
+  });
 })();
