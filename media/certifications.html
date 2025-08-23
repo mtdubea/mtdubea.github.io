@@ -4,15 +4,95 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Certifications & Training | Matthew Dubea</title>
-
-  <link rel="canonical" href="https://mtdubea.github.io/media/certifications.html" />
   <meta name="description" content="Verified certifications, technical training, and professional memberships for Matthew Dubea." />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
-
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="../style.css" />
-  <script defer src="../theme.js"></script>
+
+  <!-- Page-scoped styles (keep here so you can paste once) -->
+  <style>
+    /* Page chrome */
+    .hero { padding-bottom: 1rem; }
+    .hint  { text-align:center; color:var(--muted); margin:.5rem 0 .25rem; font-size:.95rem; }
+
+    /* Sticky toolbar: search + filter chips */
+    .toolbar {
+      position: sticky; top: 0; z-index: 20;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 0 .5rem;
+    }
+    @media (max-width: 720px){ .toolbar { padding-top:.5rem; } }
+
+    /* Filters */
+    .filters {
+      display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin:.5rem auto 0;
+      max-width: 1160px; padding: 0 1rem;
+    }
+    .filters button {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: .45rem .75rem;
+      border-radius: 999px;
+      font-size: .9rem;
+      cursor: pointer;
+    }
+    .filters button.active {
+      background: #eef6ff;
+      border-color: var(--border-strong, #c9d7e8);
+      font-weight: 600;
+    }
+
+    /* Section index pills under hero */
+    .section-index {
+      display:flex; flex-wrap:wrap; gap:.35rem; justify-content:center; margin-top:.75rem;
+    }
+    .section-index a {
+      display:inline-block; padding:.25rem .6rem; border:1px solid var(--border);
+      border-radius:999px; font-size:.88rem; background:var(--surface);
+    }
+
+    /* Certification grid/cards */
+    .cert-section { margin: 1rem auto; max-width: 1160px; padding: 0 1rem; }
+    .cert-section summary { list-style:none; cursor:default; }
+    .cert-section summary::-webkit-details-marker { display:none; }
+    .cert-section .section-title { margin: .25rem 0 1rem; text-align:left; }
+    .certifications-grid {
+      display:grid; gap:.9rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    @media (max-width: 1024px){ .certifications-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 640px){ .certifications-grid { grid-template-columns: 1fr; } }
+
+    .cert-card {
+      display:grid; grid-template-columns: 72px 1fr; gap: .85rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .9rem 1rem;
+      box-shadow: 0 10px 30px var(--shadow);
+      align-items: start;
+    }
+    .cert-card .ico {
+      width: 56px; height: 56px; border-radius: 10px; display:grid; place-items:center;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg,#f7faff,#eef4fb);
+      font-size: 1.25rem;
+    }
+    .cert-title { font-weight: 700; margin: 0 0 .25rem; }
+    .cert-badges { display:flex; flex-wrap:wrap; gap:.35rem; margin:.35rem 0 .5rem; }
+    .badge { display:inline-block; padding:.18rem .5rem; border:1px solid var(--border); border-radius:999px; font-size:.78rem; background:#f7fbff; }
+
+    .cta-row { display:flex; gap:.5rem; flex-wrap:wrap; }
+    .cta-row .btn { flex: 0 0 auto; }
+
+    /* Compact “no-preview” doc placeholder when desired */
+    .doc-chip {
+      font-size:.85rem; color:var(--muted);
+      user-select:none;
+    }
+  </style>
 </head>
 
 <body class="fade-in">
@@ -33,198 +113,156 @@
   </header>
 
   <main>
-    <section class="hero hero--tight">
-      <h2>Certifications &amp; Training</h2>
-      <p>Credentials from verified training providers, standards bodies, and professional associations.</p>
-      <nav id="sectionIndex" class="section-index" aria-label="Section index"></nav>
+    <!-- Hero -->
+    <section class="hero">
+      <h2>Certifications & Training</h2>
+      <p>All credentials are from verified technical training, professional associations, and engineering coursework.</p>
+      <nav id="sectionIndex" class="section-index" aria-label="Quick index"></nav>
     </section>
 
-    <div class="toolbar-sticky">
+    <!-- Sticky toolbar -->
+    <div class="toolbar">
       <div class="searchbar" role="search" aria-label="Search certifications">
-        <input id="certSearch" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
-        <span id="certCount" aria-live="polite" class="search-count"></span>
+        <input id="certSearch" type="search" placeholder="Search title, issuer, category…" aria-label="Search by title, issuer, or category" />
+        <span id="certCount" aria-live="polite" style="margin-left:.5rem;"></span>
       </div>
       <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
     </div>
     <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
 
-    <div id="certSections" style="margin-top:.75rem"></div>
+    <!-- Sections are rendered here -->
+    <div id="certSections"></div>
   </main>
-
-  <!-- Desktop lightbox -->
-  <div id="lightbox" aria-hidden="true">
-    <button class="close-lightbox" aria-label="Close">✕</button>
-    <button id="prevBtn" class="nav-btn" aria-label="Previous">←</button>
-    <iframe id="lightbox-frame" title="Certification document viewer" frameborder="0"></iframe>
-    <button id="nextBtn" class="nav-btn" aria-label="Next">→</button>
-  </div>
 
   <footer>
     <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 
   <script>
-    // ======= Mobile-safe embed policy =======
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const canInlinePDF = !isIOS && window.matchMedia('(min-width: 992px)').matches;
-    if (!canInlinePDF) document.body.classList.add('no-embed');
-
-    // ======= DOM helpers =======
+    /* ========= Helpers ========= */
     const $  = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
     const qs = new URLSearchParams(location.search);
 
-    const sectionsHost = $('#certSections');
     const filtersHost  = $('#filters');
     const indexHost    = $('#sectionIndex');
+    const sectionsHost = $('#certSections');
     const searchInput  = $('#certSearch');
     const resultCount  = $('#certCount');
 
-    // Robust path so it works whether certs.json is at root or in /media
-    const CERTS_PATH = location.pathname.includes('/media/') ? '../certs.json' : 'certs.json';
+    // We keep all documents in /media; this page lives in /media/, so the base is that folder.
+    // Build robust media URL regardless of trailing path.
+    const MEDIA_BASE = location.pathname.replace(/\/[^\/]*$/, '/') || '/media/';
 
-    // ======= Fetch & render =======
-    fetch(CERTS_PATH, { cache: 'no-store' })
+    function fileHref(file){
+      // Ensure spaces are encoded but keep slashes intact.
+      return encodeURI(MEDIA_BASE + (file || ''));
+    }
+
+    function escapeHTML(s){
+      return (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    }
+
+    /* ========= Fetch & Render ========= */
+    fetch('../certs.json', { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(json => render(json))
       .catch(err => {
         console.error('Failed to load certs.json', err);
-        sectionsHost.innerHTML = `
-          <div class="empty-state">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3zm3 4h12v2H6zm-3 4h18v2H3zm3 4h12v2H6z"></path></svg>
-            <p>Unable to load certifications right now.</p>
-          </div>`;
+        sectionsHost.innerHTML = '<p style="text-align:center;color:var(--muted)">Unable to load certifications right now.</p>';
       });
 
-    function render(json) {
-      const groups = (json.groups || []).sort((a,b) => (a.order || 0) - (b.order || 0));
+    function render(data){
+      const groups = (data.groups || []).slice().sort((a,b)=> (a.order||0)-(b.order||0));
 
-      // Section index with counts
+      // Index with group counts
       indexHost.innerHTML = groups
-        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span class="muted">(${(g.items||[]).length})</span></a>`)
-        .join(' · ');
+        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span style="color:var(--muted)">(${(g.items||[]).length})</span></a>`)
+        .join('');
 
-      // Filters + deep link
-      const initialFilter = (qs.get('filter') || 'all').toLowerCase();
+      // Filters (All + group ids)
+      const initial = (qs.get('filter') || 'all').toLowerCase();
       filtersHost.innerHTML = [
-        `<button data-filter="all" class="${initialFilter==='all'?'active':''}" role="tab" aria-selected="${initialFilter==='all'}">All</button>`,
+        `<button data-filter="all" class="${initial==='all'?'active':''}" role="tab" aria-selected="${initial==='all'}">All</button>`,
         ...groups.map(g => {
-          const isActive = initialFilter === g.id.toLowerCase();
-          return `<button data-filter="${g.id}" class="${isActive?'active':''}" role="tab" aria-selected="${isActive}">${escapeHTML(g.title)}</button>`;
+          const active = initial === String(g.id).toLowerCase();
+          return `<button data-filter="${g.id}" class="${active?'active':''}" role="tab" aria-selected="${active}">${escapeHTML(g.title)}</button>`;
         })
       ].join('');
 
-      // Sections
-      sectionsHost.innerHTML = groups.map(g => sectionTemplate(g)).join('');
+      // Sections -> cards (no <embed>, consistent cards)
+      sectionsHost.innerHTML = groups.map(sectionTemplate).join('');
       groups.forEach(g => {
         const grid = document.getElementById(`grid-${g.id}`);
-        (g.items || []).forEach(item => grid.insertAdjacentHTML('beforeend', cardTemplate(item)));
+        (g.items||[]).forEach(item => grid.insertAdjacentHTML('beforeend', cardTemplate(item)));
       });
 
-      // Lazy <object> PDFs on desktop only
-      if (canInlinePDF) setupLazyObjects();
-
-      // Interactions
-      setupFilters(initialFilter);
+      setupFilters(initial);
       setupSearch();
-
-      if (canInlinePDF) setupLightbox();
     }
 
-    function sectionTemplate(group) {
+    function sectionTemplate(group){
       return `
-        <details id="sec-${group.id}" data-section open>
-          <summary><h3 class="section-title">${escapeHTML(group.title)}</h3></summary>
+        <section id="sec-${group.id}" class="cert-section" data-section data-id="${escapeHTML(group.id)}">
+          <h3 class="section-title">${escapeHTML(group.title)}</h3>
           <div class="certifications-grid" id="grid-${group.id}"></div>
-        </details>`;
+        </section>`;
     }
 
-    function cardTemplate(item) {
-      const isImage = (item.type || '').toLowerCase() === 'image';
-      const file    = item.file;
-      const issuer  = (item.issuer || '').trim();
-      const badges  = (item.badges || []).map(b => `<span class="badge">${escapeHTML(b)}</span>`).join('');
-      const openBtn = `<a class="btn outline" href="${file}" target="_blank" rel="noopener">Open</a>`;
-      const dlBtn   = `<a class="btn outline" href="${file}" download>Download</a>`;
+    // Simple doc icon based on type
+    function iconFor(item){
+      const t = (item.type||'pdf').toLowerCase();
+      if (t === 'image') return '🖼️';
+      if (t === 'pdf')   return '📄';
+      return '📁';
+    }
 
-      let media = '';
-      if (canInlinePDF) {
-        if (isImage) {
-          media = `<img class="media" src="${file}" alt="${escapeHTML(item.title)}" loading="lazy" />`;
-        } else {
-          media = `
-            <object class="media" type="application/pdf" data="" data-src="${file}">
-              <div class="media-fallback">
-                <p class="muted">Preview failed to load.</p>
-                ${openBtn}
-              </div>
-            </object>`;
-        }
-      } else {
-        media = `<div class="media" aria-hidden="true"></div>`;
-      }
+    function cardTemplate(item){
+      const issuer  = item.issuer ? `Issuer: ${escapeHTML(item.issuer)}` : '';
+      const badges  = (item.badges||[]).map(b => `<span class="badge">${escapeHTML(b)}</span>`).join('');
+      const href    = fileHref(item.file);
+      const openBtn = `<a class="btn outline" href="${href}" target="_blank" rel="noopener">Open</a>`;
+      const dlBtn   = `<a class="btn outline" href="${href}" download>Download</a>`;
+      const cats    = (item.category || []).join(' ').toLowerCase();
 
       return `
-        <article class="cert-card" data-file="${file}" data-category="${(item.category || []).join(' ')}" role="group" aria-label="${escapeHTML(item.title)}">
-          ${media}
+        <article class="cert-card" data-category="${cats}">
+          <div class="ico" aria-hidden="true">${iconFor(item)}</div>
           <div class="cert-body">
             <div class="cert-title">${escapeHTML(item.title)}</div>
             <div class="cert-badges">
-              ${issuer ? `<span class="badge">Issuer: ${escapeHTML(issuer)}</span>` : ''}${badges}
+              ${issuer ? `<span class="badge">${issuer}</span>` : ''}${badges}
             </div>
-            <div class="cta-row" style="gap:.5rem;flex-wrap:wrap">${openBtn}${dlBtn}</div>
+            <div class="doc-chip">Preview not shown for consistency · opens in a new tab</div>
+            <div class="cta-row" style="margin-top:.5rem">${openBtn}${dlBtn}</div>
           </div>
         </article>`;
     }
 
-    function setupLazyObjects() {
-      const lazyObjs = $$('object.media[data-src]');
-      if (!lazyObjs.length) return;
-
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const el  = e.target;
-            const src = el.getAttribute('data-src');
-            if (src && !el.getAttribute('data')) {
-              el.setAttribute('data', src);
-              el.addEventListener('error', () => {
-                el.outerHTML = `<div class="media-fallback"><p class="muted">Preview unavailable.</p><a class="btn outline" href="${src}" target="_blank" rel="noopener">Open</a></div>`;
-              });
-              io.unobserve(el);
-            }
-          }
-        });
-      }, { rootMargin: '200px' });
-
-      lazyObjs.forEach(el => io.observe(el));
-    }
-
-    function setupFilters(initial) {
+    /* ========= Interactions ========= */
+    function setupFilters(initial){
       let active = (initial || 'all').toLowerCase();
       const buttons  = $$('#filters button');
       const sections = $$('[data-section]');
 
-      function apply(needle) {
+      function apply(needle){
         const cards = $$('.cert-card');
         let visible = 0;
 
         cards.forEach(card => {
-          const cats   = (card.getAttribute('data-category') || '').toLowerCase().split(/\s+/);
-          const title  = card.querySelector('.cert-title')?.textContent.toLowerCase() || '';
-          const issuer = card.querySelector('.cert-badges')?.textContent.toLowerCase() || '';
-          const fOK    = active === 'all' || cats.includes(active);
-          const sOK    = !needle || title.includes(needle) || issuer.includes(needle) || cats.join(' ').includes(needle);
-          const show   = fOK && sOK;
-          card.hidden  = !show;
+          const cats = (card.getAttribute('data-category') || '');
+          const body = card.textContent.toLowerCase();
+          const fOK  = active === 'all' || cats.split(/\s+/).includes(active);
+          const sOK  = !needle || body.includes(needle);
+          const show = fOK && sOK;
+          card.hidden = !show;
           if (show) visible++;
         });
 
+        // Hide sections with no visible cards
         sections.forEach(sec => {
           const hasVisible = sec.querySelector('.cert-card:not([hidden])');
           sec.hidden = !hasVisible;
-          if (hasVisible) sec.setAttribute('open','');
         });
 
         if (resultCount) resultCount.textContent = visible ? `${visible} shown` : 'No results';
@@ -232,7 +270,8 @@
 
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
-          active = btn.dataset.filter.toLowerCase();
+          active = String(btn.dataset.filter).toLowerCase();
+          // update URL quietly
           const url = new URL(location.href);
           if (active === 'all') url.searchParams.delete('filter');
           else url.searchParams.set('filter', active);
@@ -244,94 +283,16 @@
         });
       });
 
-      apply((searchInput?.value || '').toLowerCase());
+      apply('');
     }
 
-    function setupSearch() {
+    function setupSearch(){
       searchInput?.addEventListener('input', () => {
         const activeBtn = $('#filters button.active') || $('#filters button[data-filter="all"]');
+        // Re-apply current filter after text change
         activeBtn?.click();
       });
     }
-
-    // Desktop-only lightbox
-    function setupLightbox() {
-      const lightbox = $('#lightbox');
-      const frame    = $('#lightbox-frame');
-      const prevBtn  = $('#prevBtn');
-      const nextBtn  = $('#nextBtn');
-      const closeBtn = $('.close-lightbox');
-      let currentIndex = -1;
-      let lastFocused  = null;
-
-      function visibleCards() {
-        return $$('.cert-card').filter(c => !c.hidden && c.offsetParent !== null);
-      }
-      function indexFromFile(f) {
-        const list = visibleCards();
-        return list.findIndex(c => (c.getAttribute('data-file') || '') === f);
-      }
-      function openLightbox(src) {
-        lastFocused = document.activeElement;
-        currentIndex = indexFromFile(src);
-        frame.src = src;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
-        closeBtn.focus();
-        document.addEventListener('keydown', onKey);
-      }
-      function closeLightbox() {
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        frame.src = 'about:blank';
-        document.removeEventListener('keydown', onKey);
-        if (lastFocused) lastFocused.focus();
-      }
-      function showAt(i) {
-        const list = visibleCards();
-        if (!list.length) return;
-        currentIndex = (i + list.length) % list.length;
-        const src = list[currentIndex].getAttribute('data-file');
-        frame.src = src;
-      }
-      function onKey(e) {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') showAt(currentIndex - 1);
-        if (e.key === 'ArrowRight') showAt(currentIndex + 1);
-      }
-
-      prevBtn.addEventListener('click', e => { e.stopPropagation(); showAt(currentIndex - 1); });
-      nextBtn.addEventListener('click', e => { e.stopPropagation(); showAt(currentIndex + 1); });
-      closeBtn.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
-      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-
-      document.addEventListener('click', e => {
-        const card = e.target.closest('.cert-card');
-        if (!card) return;
-        if (e.target.closest('a')) return;
-        const src = card.getAttribute('data-file');
-        if (src) openLightbox(src);
-      });
-    }
-
-    function escapeHTML(s) {
-      return (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-    }
   </script>
-
-  <!-- Page-local polish that complements style.css -->
-  <style>
-    .toolbar-sticky {
-      position: sticky; top: 0; z-index: 30;
-      background: var(--bg-light);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: .5rem;
-    }
-    .hint { text-align: center; color: var(--muted); margin: .5rem 0 0; font-size: .95rem; }
-    .no-embed .cert-card .media { background: linear-gradient(180deg, #f7f7f7, #eee); display: grid; place-items: center; }
-    .no-embed .cert-card .media::after { content: "Document preview not available on mobile"; font-size: .85rem; color: var(--muted); }
-    #lightbox.open #lightbox-frame { width: 90vw; height: 86vh; }
-    .media-fallback { padding:1rem; text-align:center; }
-  </style>
 </body>
 </html>
