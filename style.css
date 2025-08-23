@@ -84,9 +84,18 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 .hero h2{font-size:2em;margin-bottom:.5em}
 .hero p{max-width:65ch;margin:0 auto 1.2em;line-height:1.6}
 .hero--tight{padding:2.25em 1em}
-.hero-headshot{
-  width:120px; height:120px; object-fit:cover; border-radius:50%;
-  margin:0 auto .6em; box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+
+/* 🔒 Bulletproof avatar sizing */
+.hero > .hero-headshot,
+img.hero-headshot{
+  width:120px !important;
+  height:120px !important;
+  max-width:120px !important;
+  display:block;
+  margin:0 auto .6em;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.18);
 }
 
 /* Buttons */
@@ -182,7 +191,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 .card-cta{display:flex; gap:.5rem; padding:0 1rem 1rem}
 .card-cta .btn{flex:1 1 auto; justify-content:center}
 
-/* Skeleton (loading placeholder) */
+/* Skeleton */
 .skeleton{
   border-radius: var(--radius); height:120px; border:1px solid var(--border);
   background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 37%,#f3f4f6 63%);
@@ -232,14 +241,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{
 .cert-title{font-weight:700;margin:.15rem 0 .35rem}
 .cert-badges{display:flex;flex-wrap:wrap;gap:.35rem;margin:.25rem 0}
 .badge{font-size:.75rem;border:1px solid var(--border);padding:.18rem .5rem;border-radius:999px;background:var(--surface-2)}
-/* frame / preview box */
 .frame{position:relative;isolation:isolate;background:linear-gradient(180deg,#f6f7fb,#edf0f6);border-bottom:1px solid var(--border)}
 .frame--ratio{aspect-ratio:16/9;min-height:160px}
 .frame object{position:absolute;inset:0;width:100%;height:100%;border:0}
 .frame__fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:.95rem;text-align:center;padding:1rem}
 .frame-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .doc-icon{font-size:2rem;opacity:.6}
-/* mobile/tablet: no inline PDF */
 .no-embed object{display:none}
 .no-embed .frame__fallback{display:grid}
 
