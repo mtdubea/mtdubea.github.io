@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
   <title>Reports | Matthew Dubea</title>
   <meta name="description" content="Download engineering project reports by Matthew Dubea, including final documentation and technical writeups." />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#0a66c2" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-  <style>
-    .report-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:1100px;margin:0 auto}
-    .report-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 30px var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-    .report-body{padding:1rem 1rem .75rem}
-    .report-cta{display:flex;gap:.5rem;padding:0 1rem 1rem;margin-top:auto}
-    .rthumb{width:100%;height:160px;object-fit:cover;border-bottom:1px solid var(--border)}
-  </style>
+  <script defer src="theme.js"></script>
 </head>
 
 <body class="fade-in">
@@ -34,45 +33,42 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero hero--tight">
       <h2>📘 Project Reports</h2>
-      <p style="max-width:720px;margin:0 auto">Full technical documentation from my major engineering projects, including design rationale, analyses, results, and lessons learned.</p>
+      <p class="lead">Full technical documentation from intensive engineering projects—design decisions, calculations, test results, and lessons learned.</p>
     </section>
 
-    <section class="report-grid">
-      <article class="report-card">
-        <img class="rthumb" src="assets/images/thumb-trike.jpg" alt="Senior Trike report thumbnail" />
-        <div class="report-body">
-          <h3>🏁 Senior Trike Final Report</h3>
-          <p>Engineering documentation of the Acadiana 500 trike build and race analysis.</p>
+    <section class="project-grid">
+      <article class="card">
+        <div class="card-body">
+          <h3>🏁 Senior Trike — Final Report</h3>
+          <p>Complete engineering documentation of the Acadiana 500 trike: CAD/FEA, materials, manufacturing plan, testing, and race analysis.</p>
         </div>
-        <div class="report-cta">
-          <a class="btn primary" href="media/Trike_Final_Report.pdf" target="_blank" download>⬇️ Download PDF</a>
-          <a class="btn outline" href="media/Trike_Final_Report.pdf" target="_blank">🔍 View</a>
-        </div>
-      </article>
-
-      <article class="report-card">
-        <img class="rthumb" src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics report thumbnail" />
-        <div class="report-body">
-          <h3>🛰️ Mechatronics Payload Report</h3>
-          <p>Design rationale, sensor integration, wiring diagrams, and control logic behind the UAV payload.</p>
-        </div>
-        <div class="report-cta">
-          <a class="btn primary" href="media/Mechatronics_Report.pdf" target="_blank" download>⬇️ Download PDF</a>
-          <a class="btn outline" href="media/Mechatronics_Report.pdf" target="_blank">🔍 View</a>
+        <div class="card-cta">
+          <a class="btn primary" href="media/Trike_Final_Report.pdf" target="_blank" rel="noopener" download>⬇️ Download PDF</a>
+          <a class="btn outline" href="media/Trike_Final_Report.pdf" target="_blank" rel="noopener">🔍 View</a>
         </div>
       </article>
 
-      <article class="report-card">
-        <img class="rthumb" src="assets/images/thumb-robot.jpg" alt="Rescue Robot report thumbnail" />
-        <div class="report-body">
-          <h3>🤖 Autonomous Rescue Robot</h3>
-          <p>Python-controlled system; autonomous task execution; mechanical design and scoring evaluation.</p>
+      <article class="card">
+        <div class="card-body">
+          <h3>🛰️ Mechatronics Payload — Report</h3>
+          <p>Sensor integration, PWM motor/servo control, PID tuning, embedded logic, safe-states, and telemetry validated in field tests.</p>
         </div>
-        <div class="report-cta">
-          <a class="btn primary" href="media/Robot_Report.pdf" target="_blank" download>⬇️ Download PDF</a>
-          <a class="btn outline" href="media/Robot_Report.pdf" target="_blank">🔍 View</a>
+        <div class="card-cta">
+          <a class="btn primary" href="media/Mechatronics_Report.pdf" target="_blank" rel="noopener" download>⬇️ Download PDF</a>
+          <a class="btn outline" href="media/Mechatronics_Report.pdf" target="_blank" rel="noopener">🔍 View</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-body">
+          <h3>🤖 Autonomous Rescue Robot — Report</h3>
+          <p>Python control stack, ultrasonic/IR sensing, modular retrieval mechanism; performance validated on obstacle courses.</p>
+        </div>
+        <div class="card-cta">
+          <a class="btn primary" href="media/Robot_Report.pdf" target="_blank" rel="noopener" download>⬇️ Download PDF</a>
+          <a class="btn outline" href="media/Robot_Report.pdf" target="_blank" rel="noopener">🔍 View</a>
         </div>
       </article>
     </section>
