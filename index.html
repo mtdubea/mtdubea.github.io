@@ -9,8 +9,9 @@
   <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 
-  <!-- Open Graph / Twitter -->
+  <!-- OG / Twitter -->
   <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta property="og:type" content="website" />
@@ -21,106 +22,128 @@
   <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta name="twitter:image" content="assets/images/profile-headshot.jpg" />
 
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Page-scoped styles that fix the cards and keep your rails/metrics layout -->
+  <!-- Page-scoped layout polish (rails, gradients, metrics, symmetric cards) -->
   <style>
-    /* ---------- Layout shell with rails ---------- */
-    .home-shell{
-      display:grid;
-      grid-template-columns:minmax(0,260px) minmax(0,1fr) minmax(0,260px);
-      gap:1.2rem;
-      max-width:1200px;
-      margin:0 auto;
-      padding:1rem;
+    /* ====== Subtle fixed edge fills so the page feels “full” ====== */
+    .edge-grad {
+      position: fixed; top: 0; bottom: 0; width: 28vw;
+      pointer-events: none; z-index: -1; filter: blur(30px); opacity: .45;
     }
-    @media (max-width:1024px){
-      .home-shell{ grid-template-columns:1fr }
-      .rail{ position:static; order:2 }
-      .center{ order:1 }
+    .edge-left  { left: -18vw;  background: radial-gradient(60% 50% at 70% 40%, #cfe6ff 0%, transparent 70%); }
+    .edge-right { right: -18vw; background: radial-gradient(60% 50% at 30% 60%, #e4ecff 0%, transparent 70%); }
+
+    /* ====== 3-column shell with left/right rails ====== */
+    .home-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr) minmax(0, 260px);
+      gap: 1.2rem; max-width: 1200px; margin: 0 auto; padding: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .home-shell { grid-template-columns: 1fr; }
+      .rail { position: static; order: 2; }
+      .center { order: 1; }
     }
 
-    /* ---------- Rails (left/right floating cards) ---------- */
-    .rail{
-      position:sticky; top:1rem; align-self:start; display:grid; gap:.85rem; height:fit-content;
+    .rail { position: sticky; top: 1rem; align-self: start; display: grid; gap: .85rem; height: fit-content; }
+    .rail-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: .9rem 1rem; box-shadow: 0 10px 30px var(--shadow);
     }
-    .rail-card{
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:12px; padding:.9rem 1rem; box-shadow:0 10px 30px var(--shadow);
-    }
-    .rail-card h4{ margin:0 0 .25rem; font-size:1rem }
-    .rail-card p{ margin:.25rem 0 0; font-size:.95rem; color:var(--muted) }
-    .rail-list{ margin:.25rem 0 0; padding-left:1.15rem }
-    .rail-list li{ margin:.25rem 0 }
+    .rail-card h4 { margin: 0 0 .25rem; font-size: 1rem; }
+    .rail-list { margin:.25rem 0 0; padding-left: 1.15rem; }
+    .rail-list li { margin: .25rem 0; }
+    .muted { color: var(--muted); }
 
-    /* ---------- Metrics band ---------- */
-    .metrics{
-      display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:.8rem; margin:1rem auto 1.25rem; max-width:980px;
-    }
-    @media (max-width:720px){ .metrics{ grid-template-columns:repeat(2,minmax(0,1fr)) } }
-    .metric{
-      background:var(--surface); border:1px solid var(--border); border-radius:12px;
-      padding:.9rem 1rem; text-align:center; box-shadow:0 8px 24px var(--shadow);
-    }
-    .metric .num{ font-size:clamp(1.4rem,4vw,2rem); font-weight:800; line-height:1 }
-    .metric .label{ margin-top:.25rem; color:var(--muted); font-size:.95rem }
-    .badge{ display:inline-block; padding:.2rem .5rem; font-size:.78rem; border:1px solid var(--border); border-radius:999px; background:#eef6ff; margin-top:.35rem }
-
-    /* ---------- CTA row (iOS-safe) ---------- */
-    .cta-row{
+    /* ====== Hero CTA row (iOS-safe) ====== */
+    .cta-row {
       display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; align-items:stretch; margin-top:.75rem;
     }
-    .cta-row .btn{
+    .cta-row .btn {
       display:inline-flex; align-items:center; justify-content:center; min-height:44px;
-      padding:.7em 1.1em; line-height:1.1; text-align:center; white-space:nowrap; flex:0 1 260px;
+      padding:.7em 1.1em; line-height:1.1; white-space:nowrap; flex:0 1 260px;
     }
-    @media (max-width:520px){ .cta-row .btn{ flex:1 1 100% } }
-    @supports (-webkit-touch-callout:none){ .cta-row .btn{ flex:1 1 300px } }
+    @media (max-width:520px){ .cta-row .btn { flex: 1 1 100%; } }
+    @supports (-webkit-touch-callout:none){ .cta-row .btn { flex: 1 1 300px; } }
 
-    /* ---------- Project Grid (symmetrical cards, no nested anchors) ---------- */
-    .project-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:1rem;
+    /* ====== Metrics band under hero ====== */
+    .metrics {
+      display:grid; grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:.8rem; margin: 1rem auto 1.25rem; max-width: 980px;
     }
-    @media (max-width:1100px){ .project-grid{ grid-template-columns:repeat(2,minmax(0,1fr)) } }
-    @media (max-width:680px){ .project-grid{ grid-template-columns:1fr } }
-
-    .card{
-      display:flex; flex-direction:column; height:100%;
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:12px; box-shadow:0 10px 30px var(--shadow); overflow:hidden;
+    @media (max-width:720px){ .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    .metric {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: .9rem 1rem; text-align:center;
+      box-shadow: 0 8px 24px var(--shadow);
     }
-    .card-thumb{
-      width:100%; height:160px; object-fit:cover; border-bottom:1px solid var(--border);
-      background:#f4f6f8;
+    .metric .num { font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; line-height: 1; }
+    .metric .label { margin-top:.25rem; color:var(--muted); font-size:.95rem; }
+    .badge { display:inline-block; padding:.2rem .5rem; font-size:.78rem; border:1px solid var(--border); border-radius:999px; background:#eef6ff; margin-top:.35rem; }
+
+    /* ====== Search above projects ====== */
+    .search-filter { margin-top: .25rem; }
+
+    /* ====== Project grid (strict 3→2→1 columns; cards stay symmetrical) ====== */
+    .project-grid {
+      display:grid; gap:1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-    .card-body{ padding:1rem 1rem .75rem; display:flex; flex-direction:column; gap:.45rem; flex:1 1 auto }
-    .card h3{ margin:0; font-size:1.05rem }
-    .muted{ color:var(--muted); font-size:.93rem }
-    .tag-row{ display:flex; flex-wrap:wrap; gap:.35rem; margin-top:auto }
-    .tag{ font-size:.72rem; padding:.16rem .45rem; border:1px solid var(--border); border-radius:999px; background:var(--surface-2) }
-    .card-cta{ display:flex; gap:.5rem; padding:0 1rem 1rem }
-    .card-cta .btn{ flex:1 1 auto; justify-content:center }
+    @media (max-width: 1100px){ .project-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 640px){  .project-grid { grid-template-columns: 1fr; } }
 
-    /* Make the whole card clickable without nesting anchors */
-    .card-link{ display:block; color:inherit; text-decoration:none }
-    .card-link:focus-visible{ outline:2px solid #0a66c2; outline-offset:2px; border-radius:2px }
-
-    /* ---------- Skeletons while loading ---------- */
-    .skeleton{
-      border-radius:12px; height:238px; border:1px solid var(--border);
-      background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 37%,#f3f4f6 63%);
-      background-size:400% 100%; animation:sk 1.2s infinite linear;
+    .card {
+      display:grid; grid-template-rows: auto auto 1fr auto; /* thumb / title / flexible body / CTA */
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; box-shadow: 0 10px 30px var(--shadow);
+      overflow: hidden; min-height: 360px;
     }
-    @keyframes sk{0%{background-position:-200% 0}100%{background-position:200% 0}}
 
-    /* ---------- Decorative edge gradients ---------- */
-    .edge-grad{ position:fixed; top:0; bottom:0; width:28vw; pointer-events:none; z-index:-1; filter:blur(30px); opacity:.45 }
-    .edge-left{ left:-18vw; background:radial-gradient(60% 50% at 70% 40%, #cfe6ff 0%, transparent 70%) }
-    .edge-right{ right:-18vw; background:radial-gradient(60% 50% at 30% 60%, #e4ecff 0%, transparent 70%) }
+    .thumb-wrap {
+      background: #f3f6fb;
+      border-bottom: 1px solid var(--border);
+      aspect-ratio: 16/9; /* consistent thumbnail height */
+      position: relative; overflow: hidden;
+    }
+    .thumb-wrap img {
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+
+    .card-body { padding: 0.9rem 1rem 0; }
+    .card h3 { margin: 0 0 .35rem; font-size: 1.05rem; display:flex; align-items:center; gap:.35rem; }
+    .desc {
+      color: var(--muted); font-size:.95rem;
+      display:-webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow:hidden;
+      min-height: calc(1em * 4 * 1.25); /* keep bodies consistent even if content is short */
+    }
+    .tag-row { display:flex; flex-wrap:wrap; gap:.35rem; margin:.5rem 0 0; }
+    .tag { font-size:.72rem; padding:.16rem .45rem; border:1px solid var(--border); border-radius:999px; background: var(--surface-2, #f7fbff); }
+
+    .card-cta {
+      display:flex; gap:.5rem; padding: .85rem 1rem 1rem; margin-top:auto;
+    }
+    .card-cta .btn { flex: 1 1 auto; justify-content:center; }
+
+    /* Skeleton placeholders while JSON loads */
+    .skeleton {
+      border-radius: 12px; height: 360px;
+      border: 1px solid var(--border);
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+      background-size: 400% 100%; animation: sk 1.2s infinite linear;
+    }
+    @keyframes sk { 0% {background-position: -200% 0;} 100% {background-position: 200% 0;} }
+
+    /* Skip-link reveal */
+    .visually-hidden-focusable:focus {
+      position: static !important;
+      width: auto !important;
+      height: auto !important;
+      padding: .5rem .75rem; margin: .5rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: .5rem; box-shadow: 0 4px 12px var(--shadow);
+      z-index: 1000;
+    }
   </style>
 
   <!-- Structured data -->
@@ -134,7 +157,7 @@
         "jobTitle": "Mechanical Engineer",
         "url": "https://mtdubea.github.io/",
         "image": "https://mtdubea.github.io/assets/images/profile-headshot.jpg",
-        "sameAs": ["https://www.linkedin.com/in/mdubea/","https://github.com/mtdubea"]
+        "sameAs": ["https://www.linkedin.com/in/mdubea/", "https://github.com/mtdubea"]
       },
       {
         "@type": "WebSite",
@@ -152,7 +175,7 @@
 </head>
 
 <body class="fade-in">
-  <!-- Edge fills -->
+  <!-- Decorative edges -->
   <div class="edge-grad edge-left" aria-hidden="true"></div>
   <div class="edge-grad edge-right" aria-hidden="true"></div>
 
@@ -171,14 +194,13 @@
         <li><a href="resume.html">Resume</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
-        <!-- Dark mode toggle intentionally removed -->
       </ul>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="home-hero-title">
-    <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width:120px;border-radius:50%;margin-bottom:.6em;box-shadow:0 4px 15px rgba(0,0,0,.18)" />
+    <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width: 120px; border-radius: 50%; margin-bottom: .6em; box-shadow: 0 4px 15px rgba(0,0,0,0.18);" />
     <h2 id="home-hero-title">Designing for Reliability, Manufacturability, and Speed</h2>
     <p>Practical, production-ready solutions across CAD/FEA, fabrication, process optimization, and automation—balancing hands-on execution with engineering rigor.</p>
     <div class="cta-row" role="group" aria-label="Primary actions">
@@ -187,12 +209,16 @@
       <a class="btn outline" href="media/certifications.html">🎓&nbsp;Certifications</a>
     </div>
 
-    <!-- Metrics -->
+    <!-- Dynamic Metrics -->
     <div class="metrics" aria-live="polite">
       <div class="metric"><div class="num" id="metric-projects">—</div><div class="label">Projects</div></div>
       <div class="metric"><div class="num" id="metric-certs">—</div><div class="label">Certifications</div></div>
       <div class="metric"><div class="num" id="metric-reports">—</div><div class="label">Technical Reports</div></div>
-      <div class="metric"><div class="num">Oct&nbsp;2025</div><div class="label">FE Mechanical</div><span class="badge">Scheduled</span></div>
+      <div class="metric">
+        <div class="num">Oct&nbsp;2025</div>
+        <div class="label">FE Mechanical</div>
+        <span class="badge">Scheduled</span>
+      </div>
     </div>
   </section>
 
@@ -219,9 +245,8 @@
       </div>
     </aside>
 
-    <!-- CENTER CONTENT -->
+    <!-- CENTER: search + featured projects -->
     <section class="center">
-      <!-- Site Search -->
       <section class="search-filter" aria-labelledby="site-search-title">
         <h3 id="site-search-title" class="visually-hidden" style="position:absolute;left:-9999px;">Search</h3>
         <label for="searchInput" class="visually-hidden" style="position:absolute;left:-9999px;">Search site content</label>
@@ -229,43 +254,27 @@
         <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
       </section>
 
-      <!-- Featured Projects -->
       <section class="featured-projects" aria-labelledby="featured-title">
         <h2 id="featured-title">📂 Featured Projects</h2>
-
         <div id="projectGrid" class="project-grid" role="list">
           <div class="skeleton"></div>
           <div class="skeleton"></div>
           <div class="skeleton"></div>
         </div>
-
-        <!-- No-JS fallback -->
         <noscript>
           <div class="project-grid" role="list">
-            <article class="card" role="listitem">
-              <a class="card-link" href="https://mtdubea.github.io/trike">
-                <div class="card-body">
-                  <h3>🏁 Senior Trike Project</h3>
-                  <p class="muted">Design, manufacturing, and race-winning performance of a custom tricycle.</p>
-                </div>
-              </a>
-            </article>
-            <article class="card" role="listitem">
-              <a class="card-link" href="https://mtdubea.github.io/mechatronics">
-                <div class="card-body">
-                  <h3>🛰️ Mechatronics Payload</h3>
-                  <p class="muted">Multi-sensor payload with control logic and field validation.</p>
-                </div>
-              </a>
-            </article>
-            <article class="card" role="listitem">
-              <a class="card-link" href="https://mtdubea.github.io/robot">
-                <div class="card-body">
-                  <h3>🤖 Rescue Robot</h3>
-                  <p class="muted">Autonomous retrieval bot with robust behaviors.</p>
-                </div>
-              </a>
-            </article>
+            <div class="card" role="listitem">
+              <div class="card-body"><h3>🏁 Senior Trike Project</h3><p class="desc">Design, manufacturing, and race-winning performance of a custom tricycle.</p></div>
+              <div class="card-cta"><a class="btn primary" href="trike/">Open</a></div>
+            </div>
+            <div class="card" role="listitem">
+              <div class="card-body"><h3>🛰️ Mechatronics Payload</h3><p class="desc">Autonomous drone payload system with multi-sensor integration.</p></div>
+              <div class="card-cta"><a class="btn primary" href="mechatronics/">Open</a></div>
+            </div>
+            <div class="card" role="listitem">
+              <div class="card-body"><h3>🤖 Rescue Robot</h3><p class="desc">Python-controlled autonomous robot built for obstacle courses.</p></div>
+              <div class="card-cta"><a class="btn primary" href="robot/">Open</a></div>
+            </div>
           </div>
         </noscript>
       </section>
@@ -301,128 +310,126 @@
     <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 
-  <!-- Project loader, search, and metrics (no nested anchors) -->
+  <!-- Data loader + search + metrics -->
   <script>
     (function () {
       const grid   = document.getElementById("projectGrid");
       const input  = document.getElementById("searchInput");
       const count  = document.getElementById("searchCount");
+
       const elProj = document.getElementById("metric-projects");
       const elCert = document.getElementById("metric-certs");
       const elRept = document.getElementById("metric-reports");
 
-      const REPORTS = [
-        "media/Trike_Final_Report.pdf",
-        "media/Mechatronics_Report.pdf",
-        "media/Robot_Report.pdf"
-      ];
-
-      function escapeHTML(s){return (s||'').replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' }[m]))}
-
-      function renderCards(projects){
+      /* ---------- Render symmetric cards ---------- */
+      function renderCards(projects) {
         grid.innerHTML = "";
-        projects.forEach(p=>{
-          const title = escapeHTML(p.title||"Project");
-          const desc  = escapeHTML(p.description||"");
-          const url   = p.url || "#";
-          const thumb = p.thumbnail || "";
-          const tags  = Array.isArray(p.tags) ? p.tags.slice(0,4) : [];
-          const report = p.report ? `<a class="btn outline" href="${p.report}" target="_blank" rel="noopener">📘 Report</a>` : "";
-          const sourceURL = p.source || p.repo;
-          const source = sourceURL ? `<a class="btn outline" href="${sourceURL}" target="_blank" rel="noopener">🌐 Source</a>` : "";
+        projects.forEach(p => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.setAttribute("role", "listitem");
+          card.setAttribute("data-title", (p.title || "").toLowerCase());
+          card.setAttribute("data-category", (p.category || "").toLowerCase());
+          card.setAttribute("data-tags", (Array.isArray(p.tags)? p.tags.join(" ") : "").toLowerCase());
 
-          const art = document.createElement("article");
-          art.className = "card";
-          art.setAttribute("role", "listitem");
-          art.setAttribute("data-title", (p.title||"").toLowerCase());
-          art.setAttribute("data-category", (p.category||"").toLowerCase());
+          const tags = Array.isArray(p.tags) ? p.tags.slice(0, 4) : [];
 
-          art.innerHTML = `
-            ${thumb ? `<img class="card-thumb" src="${thumb}" alt="${title} thumbnail" loading="lazy">` : ""}
-            <a class="card-link" href="${url}">
-              <div class="card-body">
-                <h3>${p.icon ? p.icon + " " : ""}${title}</h3>
-                <p class="muted">${desc}</p>
-                ${tags.length ? `<div class="tag-row">${tags.map(t=>`<span class="tag">${escapeHTML(t)}</span>`).join("")}</div>` : ""}
-              </div>
-            </a>
+          const openBtn   = `<a class="btn primary" href="${p.url}" target="_blank" rel="noopener">Open</a>`;
+          const reportBtn = p.report ? `<a class="btn outline" href="${p.report}" target="_blank" rel="noopener">Report</a>` : "";
+          const sourceBtn = p.source ? `<a class="btn outline" href="${p.source}" target="_blank" rel="noopener">Source</a>` : "";
+
+          card.innerHTML = `
+            <div class="thumb-wrap">
+              ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${(p.title || "Project")} thumbnail" loading="lazy" />` : ""}
+            </div>
+            <div class="card-body">
+              <h3>${p.icon ? p.icon + " " : ""}${p.title || ""}</h3>
+              <p class="desc">${p.description || ""}</p>
+              ${tags.length ? `<div class="tag-row">${tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>` : ""}
+            </div>
             <div class="card-cta">
-              <a class="btn primary" href="${url}">Open</a>
-              ${report}
-              ${source}
+              ${openBtn}${reportBtn}${sourceBtn}
             </div>
           `;
-          grid.appendChild(art);
+          grid.appendChild(card);
         });
       }
 
-      function attachSearch(){
+      /* ---------- Search filter ---------- */
+      function attachSearch() {
         const cards = Array.from(grid.querySelectorAll(".card"));
         if (!input || !cards.length) return;
 
-        const updateCount = n => { if (count) count.textContent = n===cards.length? "" : (n? `${n} shown` : "No results") };
+        const updateCount = (n) => {
+          if (!count) return;
+          count.textContent = n === cards.length ? "" : (n ? `${n} shown` : "No results");
+        };
 
-        input.addEventListener("input", ()=>{
-          const q = (input.value||"").toLowerCase();
+        input.addEventListener("input", () => {
+          const q = (input.value || "").toLowerCase();
           let visible = 0;
-          cards.forEach(card=>{
-            const title = card.getAttribute("data-title")||"";
-            const cat   = card.getAttribute("data-category")||"";
+          cards.forEach(card => {
+            const title = card.getAttribute("data-title") || "";
+            const cat   = card.getAttribute("data-category") || "";
+            const tags  = card.getAttribute("data-tags") || "";
             const txt   = card.textContent.toLowerCase();
-            const show  = !q || title.includes(q) || cat.includes(q) || txt.includes(q);
-            card.style.display = show ? "flex" : "none";
+            const show  = !q || title.includes(q) || cat.includes(q) || tags.includes(q) || txt.includes(q);
+            card.style.display = show ? "grid" : "none";
             if (show) visible++;
           });
           updateCount(visible);
         });
       }
 
-      function countCerts(groups){
+      /* ---------- Count helpers ---------- */
+      function countCerts(groups) {
         if (!Array.isArray(groups)) return 0;
-        return groups.reduce((sum,g)=> sum + (Array.isArray(g.items)? g.items.length : 0), 0);
+        return groups.reduce((sum, g) => sum + (Array.isArray(g.items) ? g.items.length : 0), 0);
+      }
+      function countReports(projects) {
+        return (projects || []).filter(p => !!p.report).length;
       }
 
+      /* ---------- Load both JSON files ---------- */
       Promise.all([
-        fetch("projects.json", {cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject(r.status)),
-        fetch("certs.json",    {cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject(r.status))
-      ]).then(([projectsData, certsData])=>{
-        const list = (projectsData.projects||[])
-          .filter(p=>p.featured!==false)
-          .sort((a,b)=>(a.order||9999)-(b.order||9999));
+        fetch("projects.json", { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status)),
+        fetch("certs.json",    { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject(r.status))
+      ])
+      .then(([projectsData, certsData]) => {
+        const list = (projectsData.projects || [])
+          .filter(p => p.featured !== false)
+          .sort((a, b) => (a.order || 9999) - (b.order || 9999));
+
         renderCards(list);
         attachSearch();
 
+        /* Metrics */
         if (elProj) elProj.textContent = String(list.length);
-        if (elCert) elCert.textContent = String(countCerts(certsData.groups||[]));
-        if (elRept) elRept.textContent = String(REPORTS.length);
-      }).catch(()=>{
-        // fallback
+        if (elCert) elCert.textContent = String(countCerts(certsData.groups || []));
+        if (elRept) elRept.textContent = String(countReports(list));
+      })
+      .catch(() => {
+        /* Fallback if either JSON fails */
         grid.outerHTML = `
           <div class="project-grid" role="list">
-            <article class="card" role="listitem">
-              <a class="card-link" href="https://mtdubea.github.io/trike"><div class="card-body"><h3>🏁 Senior Trike Project</h3><p class="muted">Design, manufacturing, and race-winning performance of a custom tricycle.</p></div></a>
-            </article>
-            <article class="card" role="listitem">
-              <a class="card-link" href="https://mtdubea.github.io/mechatronics"><div class="card-body"><h3>🛰️ Mechatronics Payload</h3><p class="muted">Multi-sensor payload with control logic and field validation.</p></div></a>
-            </article>
-            <article class="card" role="listitem">
-              <a class="card-link" href="https://mtdubea.github.io/robot"><div class="card-body"><h3>🤖 Rescue Robot</h3><p class="muted">Autonomous retrieval bot with robust behaviors.</p></div></a>
-            </article>
+            <div class="card" role="listitem">
+              <div class="card-body"><h3>🏁 Senior Trike Project</h3><p class="desc">Design, manufacturing, and race-winning performance of a custom tricycle.</p></div>
+              <div class="card-cta"><a class="btn primary" href="trike/">Open</a></div>
+            </div>
+            <div class="card" role="listitem">
+              <div class="card-body"><h3>🛰️ Mechatronics Payload</h3><p class="desc">Autonomous drone payload system with multi-sensor integration.</p></div>
+              <div class="card-cta"><a class="btn primary" href="mechatronics/">Open</a></div>
+            </div>
+            <div class="card" role="listitem">
+              <div class="card-body"><h3>🤖 Rescue Robot</h3><p class="desc">Python-controlled autonomous robot built for obstacle courses.</p></div>
+              <div class="card-cta"><a class="btn primary" href="robot/">Open</a></div>
+            </div>
           </div>`;
         if (elProj) elProj.textContent = "3";
-        if (elCert) elCert.textContent = "30+";
+        if (elCert) elCert.textContent = "39";
         if (elRept) elRept.textContent = "3";
       });
     })();
   </script>
-
-  <!-- Accessible skip-link reveal -->
-  <style>
-    .visually-hidden-focusable:focus{
-      position:static!important; width:auto!important; height:auto!important;
-      padding:.5rem .75rem; margin:.5rem; background:var(--surface);
-      border:1px solid var(--border); border-radius:.5rem; box-shadow:0 4px 12px var(--shadow); z-index:1000;
-    }
-  </style>
 </body>
 </html>
