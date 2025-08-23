@@ -2,59 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
   <title>Certifications & Training | Matthew Dubea</title>
   <meta name="description" content="Verified certifications, technical training, and professional memberships for Matthew Dubea." />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
-
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="../style.css" />
-
-  <!-- Page-scoped polish -->
-  <style>
-    /* Layout + helpers */
-    .section-index{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.5rem}
-    .section-index a{padding:.35rem .6rem;border:1px solid var(--border);border-radius:999px;background:var(--surface-2);font-size:.9rem}
-
-    /* Sticky tools */
-    .toolbar-sticky{position:sticky;top:0;z-index:20;background:var(--bg-light);border-bottom:1px solid var(--border);padding:.6rem .75rem}
-    .hint{color:var(--muted);text-align:center;font-size:.95rem;margin:.5rem 0 0}
-
-    /* Sections and grid */
-    .cert-section{margin:1rem auto;max-width:1100px;padding:0 1rem}
-    .certifications-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
-
-    /* Card */
-    .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 30px var(--shadow);overflow:hidden;display:flex;flex-direction:column}
-    .cert-body{padding:.85rem}
-    .cert-title{font-weight:700;margin:.15rem 0 .35rem}
-    .cert-badges{display:flex;flex-wrap:wrap;gap:.35rem;margin:.25rem 0}
-    .badge{font-size:.75rem;border:1px solid var(--border);padding:.18rem .5rem;border-radius:999px;background:var(--surface-2)}
-    .cta-row{display:flex;gap:.5rem;justify-content:flex-end;padding:.75rem .85rem .9rem;flex-wrap:wrap}
-    .cta-row .btn{min-height:38px}
-
-    /* PDF “thumbnail” area */
-    .frame{position:relative;isolation:isolate;background:linear-gradient(180deg,#f6f7fb,#edf0f6);border-bottom:1px solid var(--border)}
-    .frame--ratio{aspect-ratio:16/9;min-height:160px}
-    .frame object{position:absolute;inset:0;width:100%;height:100%;border:0}
-    .frame__fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:.9rem}
-
-    /* Mobile/touch/ios: don’t inline PDFs (keeps cards clean & fast) */
-    .no-embed object{display:none}
-    .no-embed .frame__fallback{display:grid}
-
-    /* Section headings */
-    .section-title{display:flex;align-items:center;gap:.5rem;font-size:1.15rem;margin:.25rem 0 .6rem}
-    .section-title::before{content:"📂"}
-
-    /* Dark-mode friendly via CSS variables (no toggle in UI) */
-    body.dark-mode .toolbar-sticky{background:var(--bg-dark);border-color:var(--border-dark)}
-    body.dark-mode .cert-card{background:var(--surface-dark);border-color:var(--border-dark)}
-  </style>
+  <script defer src="../theme.js"></script>
 </head>
 
-<body class="fade-in">
+<body class="fade-in no-overscroll">
   <header class="site-header">
     <div class="brand">
       <h1>Matthew Dubea</h1>
@@ -72,7 +33,7 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero" style="padding-bottom:.75rem">
+  <section class="hero hero--tight">
     <h2>Certifications & Training</h2>
     <p>All certifications are from verified technical training, professional associations, and engineering coursework.</p>
     <nav id="sectionIndex" class="section-index" aria-label="Section index"></nav>
@@ -82,14 +43,14 @@
   <div class="toolbar-sticky">
     <div class="searchbar" role="search" aria-label="Search certifications">
       <input id="certSearch" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
-      <span id="certCount" aria-live="polite" style="margin-left:.5rem;"></span>
+      <span id="certCount" aria-live="polite" class="search-count"></span>
     </div>
     <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
   </div>
   <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
 
   <!-- Sections render here -->
-  <div id="certSections" class="cert-section"></div>
+  <div id="certSections" class="cert-section" aria-busy="true"></div>
 
   <footer>
     <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
@@ -100,20 +61,22 @@
     const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     const isIOS   = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    const canInlinePDF = !isIOS && !isTouch && window.matchMedia('(min-width: 900px)').matches;
+    const canInlinePDF = !isIOS && !isTouch && matchMedia('(min-width: 992px)').matches;
     if (!canInlinePDF) document.body.classList.add('no-embed');
 
     /* ---------- helpers ---------- */
     const $  = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-    const BASE = location.pathname.replace(/\/[^/]*$/, '/'); // "/media/"
+    const qs = new URLSearchParams(location.search);
+    const BASE = location.pathname.replace(/\/[^/]*$/, '/'); // current folder "/media/"
 
     function join(p1, p2) {
       if (!p1) return p2 || '';
-      if (/^https?:\/\//.test(p2) || p2?.startsWith('/')) return p2;
-      return (p1.endsWith('/') ? p1 : p1 + '/') + (p2?.replace(/^\//,'') || '');
+      if (!p2) return p1;
+      if (/^https?:\/\//.test(p2) || p2.startsWith('/')) return p2;
+      return (p1.endsWith('/') ? p1 : p1 + '/') + p2.replace(/^\//,'');
     }
-    function escapeHTML(s){return (s||'').replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+    const escapeHTML = s => (s||'').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 
     const sectionsHost = $('#certSections');
     const filtersHost  = $('#filters');
@@ -121,75 +84,96 @@
     const resultCount  = $('#certCount');
     const indexHost    = $('#sectionIndex');
 
-    /* ---------- load certs.json (try root, then local) ---------- */
+    /* ---------- load certs.json (root, then local) ---------- */
     (async function load() {
       try {
         const urls = ['/certs.json', '../certs.json', 'certs.json'];
-        let json = null, lastErr = null;
+        let json = null;
         for (const u of urls) {
-          try { const r = await fetch(u, {cache:'no-store'}); if (r.ok) { json = await r.json(); break; } }
-          catch (e) { lastErr = e; }
+          try {
+            const r = await fetch(u, { cache: 'no-store' });
+            if (r.ok) { json = await r.json(); break; }
+          } catch {}
         }
-        if (!json) throw lastErr || new Error('No certs.json found');
+        if (!json) throw new Error('certs.json not found');
         render(json);
       } catch (err) {
         console.error(err);
-        sectionsHost.innerHTML = '<p style="text-align:center;color:var(--muted)">Unable to load certifications right now.</p>';
+        sectionsHost.innerHTML = '<p class="muted" style="text-align:center">Unable to load certifications right now.</p>';
+        sectionsHost.removeAttribute('aria-busy');
       }
     })();
 
     function render(json){
-      const groups = (json.groups||[]).sort((a,b)=>(a.order||0)-(b.order||0));
+      const groups = (json.groups || []).sort((a,b) => (a.order||0) - (b.order||0));
 
       // section index
-      indexHost.innerHTML = groups.map(g=>`<a href="#sec-${g.id}">${escapeHTML(g.title)} <span style="color:var(--muted)">(${(g.items||[]).length})</span></a>`).join(' · ');
+      indexHost.innerHTML = groups
+        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span class="muted">(${(g.items||[]).length})</span></a>`)
+        .join(' · ');
 
       // filters
-      const initial = (new URLSearchParams(location.search).get('filter') || 'all').toLowerCase();
+      const initial = (qs.get('filter') || 'all').toLowerCase();
       filtersHost.innerHTML = [
         `<button data-filter="all" class="${initial==='all'?'active':''}" role="tab" aria-selected="${initial==='all'}">All</button>`,
-        ...groups.map(g=>{
+        ...groups.map(g => {
           const on = initial === (g.id||'').toLowerCase();
           return `<button data-filter="${g.id}" class="${on?'active':''}" role="tab" aria-selected="${on}">${escapeHTML(g.title)} <span class="muted">(${(g.items||[]).length})</span></button>`;
         })
       ].join('');
 
-      // sections
+      // sections grid
       sectionsHost.innerHTML = groups.map(g => `
         <section id="sec-${g.id}">
-          <h3 class="section-title">${escapeHTML(g.title)}</h3>
+          <h3 class="section-title">📂 ${escapeHTML(g.title)}</h3>
           <div class="certifications-grid" id="grid-${g.id}"></div>
         </section>
       `).join('');
 
       groups.forEach(g => {
-        const grid = $('#grid-'+g.id);
+        const grid = document.getElementById('grid-'+g.id);
         (g.items||[]).forEach(item => grid.insertAdjacentHTML('beforeend', cardTemplate(item)));
       });
 
-      // lazy-load PDFs
+      // lazy-load PDFs for desktop only
       if (canInlinePDF) lazyObjects();
 
       // interactions
       setupFilters(initial);
       setupSearch();
       applyFilter(initial, (searchInput?.value||'').toLowerCase());
+
+      sectionsHost.removeAttribute('aria-busy');
     }
 
     function cardTemplate(item){
-      const filePath = join(BASE, item.file);
-      const issuer   = escapeHTML(item.issuer||'');
-      const title    = escapeHTML(item.title||'');
-      const badges   = (item.badges||[]).map(b=>`<span class="badge">${escapeHTML(b)}</span>`).join('');
+      const title  = escapeHTML(item.title || '');
+      const issuer = escapeHTML(item.issuer || '');
+      const file   = item.file ? join(BASE, item.file) : '';
+      const badges = (item.badges || []).map(b => `<span class="badge">${escapeHTML(b)}</span>`).join('');
 
-      const media = canInlinePDF
+      // Pretty media area:
+      // - Desktop: try <object> for inline preview
+      // - Mobile/tablet: show a friendly gradient with icon
+      const media = canInlinePDF && (item.type || '').toLowerCase() === 'pdf'
         ? `<div class="frame frame--ratio">
-             <object type="application/pdf" data="" data-src="${filePath}">
-               <div class="frame__fallback">Preview unavailable</div>
+             <object type="application/pdf" data="" data-src="${file}">
+               <div class="frame__fallback">
+                 <div class="doc-icon">📄</div>
+                 <div class="muted">Preview unavailable</div>
+               </div>
              </object>
-             <div class="frame__fallback" aria-hidden="true" style="display:none">Preview unavailable</div>
            </div>`
-        : `<div class="frame frame--ratio"><div class="frame__fallback">Preview not shown on mobile</div></div>`;
+        : (item.type || '').toLowerCase() === 'image'
+          ? `<div class="frame frame--ratio">
+               <img class="frame-img" src="${file}" alt="${title}" loading="lazy" decoding="async" />
+             </div>`
+          : `<div class="frame frame--ratio">
+               <div class="frame__fallback">
+                 <div class="doc-icon">📄</div>
+                 <div class="muted">Document preview not shown on mobile</div>
+               </div>
+             </div>`;
 
       return `
         <article class="cert-card" data-category="${(item.category||[]).join(' ').toLowerCase()}">
@@ -201,8 +185,8 @@
             </div>
           </div>
           <div class="cta-row">
-            <a class="btn outline" href="${filePath}" target="_blank" rel="noopener">Open</a>
-            <a class="btn outline" href="${filePath}" download>Download</a>
+            <a class="btn primary" href="${file}" target="_blank" rel="noopener">Open</a>
+            <a class="btn outline" href="${file}" download>Download</a>
           </div>
         </article>`;
     }
@@ -218,25 +202,26 @@
           const src = el.getAttribute('data-src');
           if (!src) return;
           el.setAttribute('data', src);
-          el.addEventListener('error', ()=> {
-            const parent = el.closest('.frame');
-            if (parent) parent.querySelector('.frame__fallback').style.display='grid';
+          // if the PDF plug-in errors, reveal the fallback
+          el.addEventListener('error', () => {
+            const fb = el.parentElement?.querySelector('.frame__fallback');
+            if (fb) fb.style.display = 'grid';
             el.remove();
           });
           io.unobserve(el);
         });
-      }, {rootMargin:'200px'});
+      }, { rootMargin:'200px' });
 
-      objs.forEach(o=>io.observe(o));
+      objs.forEach(o => io.observe(o));
     }
 
     function setupFilters(initial){
       let active = (initial||'all').toLowerCase();
       $$('#filters button').forEach(btn=>{
-        btn.addEventListener('click',()=>{
+        btn.addEventListener('click', ()=>{
           active = btn.dataset.filter.toLowerCase();
           $$('#filters button').forEach(b=>{
-            b.classList.toggle('active', b===btn);
+            b.classList.toggle('active', b === btn);
             b.setAttribute('aria-selected', b===btn ? 'true' : 'false');
           });
           const url = new URL(location.href);
