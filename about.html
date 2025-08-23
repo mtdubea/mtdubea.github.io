@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>About | Matthew Dubea</title>
-  <meta name="description" content="Matthew Dubea — Mechanical Engineer focused on lean manufacturing, process automations, tooling design, and production optimization." />
+  <meta name="description" content="Matthew Dubea — Mechanical Engineer focused on manufacturing/process optimization, tooling & fixture design, and production automation. CAD/FEA, GD&T, DFM/DFA, Six Sigma, Python, Power BI, SAP." />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <script defer src="theme.js"></script>
@@ -19,9 +19,9 @@
       background:#eef6ff; border:1px solid var(--border);
       margin-bottom:.5rem;
     }
-    .lead { max-width: 75ch; margin: 0 auto; font-size: 1.05rem; }
+    .lead { max-width: 75ch; margin: 0 auto; font-size: 1.07rem; }
     .lead + .lead { margin-top: .9rem; }
-    .about-block { max-width: 960px; margin: 1.25rem auto 0; padding: 0 1rem; }
+    .about-block { max-width: 1100px; margin: 1.25rem auto 0; padding: 0 1rem; }
     .about-cols {
       display:grid; gap: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -29,15 +29,44 @@
     }
     .about-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1rem 1.1rem;
+      border-radius: 12px; padding: 1rem 1.1rem;
       box-shadow: 0 10px 30px var(--shadow);
     }
     body.dark-mode .about-card { background: var(--surface-dark); border-color: var(--border-dark); }
-    .about-card h4 { margin: 0 0 .5rem; }
+    .about-card h4 { margin: 0 0 .55rem; }
     .about-list { margin: 0; padding-left: 1.1rem; }
-    .about-list li { margin: .4rem 0; }
+    .about-list li { margin: .38rem 0; }
     .statline { color: var(--muted); font-size: .95rem; margin-top: .4rem; }
+    .pillrow {
+      display:flex; flex-wrap: wrap; gap:.5rem; justify-content:center; margin-top: .75rem;
+    }
+    .pill {
+      padding:.28rem .6rem; border-radius:999px; border:1px solid var(--border);
+      background: var(--surface-2); font-size:.92rem;
+    }
+    body.dark-mode .pill { background:#141c2b; border-color: var(--border-dark); }
+    .headshot {
+      max-width: 180px; width: 40vw; min-width: 120px;
+      border-radius: 50%; margin-bottom: 1em;
+      box-shadow: 0 4px 15px rgba(0,0,0,.2);
+    }
   </style>
+
+  <!-- Optional structured data to help SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matthew Dubea",
+    "jobTitle": "Mechanical Engineer",
+    "url": "https://mtdubea.github.io/",
+    "image": "https://mtdubea.github.io/assets/images/profile-headshot.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/mdubea/",
+      "https://github.com/mtdubea"
+    ]
+  }
+  </script>
 </head>
 
 <body class="fade-in">
@@ -46,63 +75,104 @@
       <h1>Matthew Dubea</h1>
       <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a class="active" href="about.html" aria-current="page">About</a></li>
         <li><a href="resume.html">Resume</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
-        <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle Dark Mode">🌓</button>
-        </li>
+        <!-- Dark mode toggle intentionally removed -->
       </ul>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width: 180px; border-radius: 50%; margin-bottom: 1em; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" />
+      <img class="headshot" src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" />
       <span class="kicker">About Me</span>
-      <h2>Mechanical Engineer Enthusiast</h2>
+      <h2>Manufacturing-Minded Mechanical Engineer</h2>
 
       <p class="lead">
-        I’m a mechanical engineer from Louisiana. Ive works just as hard in the field sweating, as I have on the computer modeling and simulating 3D CAD. I aim to specialize and solidify my knowledge in manufacturing process, utilizing AI and robitics for process automations and production optimization for the robots or tooling/fixtures that will build them.
+        I design reliable, buildable systems—and the processes and fixtures that produce them. My sweet spot is where <strong>CAD/CAE</strong> meets the <strong>factory floor</strong>: converting requirements into drawings and routings, validating with GD&amp;T and basic FEA, and closing the loop with <strong>Lean</strong> methods and <strong>data-driven automation</strong>.
       </p>
       <p class="lead">
-        I have always enjoyed knowing how systems tick and breaking down colplicated systems or structures and applying a simpler, more creative processes to produce progress. Now with AI so prevelant and being able to utilize it, I am turning mundane, repeat work into python scripts, and building dashboards
-        that keep efficiency high. I am always seeking to gain more knowledge to solidify my skills, so im currently in the process of mastering thew following CAE Software: SOLIDWORKS, AutoCAD, Siemens NX, Python, Power BI, and SAP.
+        I’m currently sharpening focus in <strong>manufacturing/process optimization</strong>, <strong>tooling and fixture design</strong>, and <strong>production automation</strong> (Python&nbsp;+&nbsp;Power&nbsp;BI). I work hands-on—welding, machining, fit-up—while building robust digital workflows for BOM/ECN, tolerance stacks, and quality reporting. <strong>FE Mechanical exam: October 2025</strong> (PE path to follow).
       </p>
+
+      <div class="pillrow" aria-label="Top tools">
+        <span class="pill">SOLIDWORKS (CSWA)</span>
+        <span class="pill">AutoCAD</span>
+        <span class="pill">Siemens NX</span>
+        <span class="pill">GD&amp;T · DFM/DFA</span>
+        <span class="pill">Python · pandas</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">SAP (MM/ERP essentials)</span>
+        <span class="pill">Six Sigma (CSSC Black Belt)</span>
+      </div>
 
       <div class="about-block about-cols">
         <div class="about-card">
           <h4>Currently</h4>
           <ul class="about-list">
-            <li>📚 <strong>FE Mechanical exam</strong> scheduled for <strong>October 2025</strong> (PE path to follow).</li>
-            <li>🧰 Building small automations for BOM/ECN/reporting with <strong>Python</strong> + <strong>Power BI</strong>.</li>
-            <li>🧪 Sharpening advanced <strong>GD&amp;T</strong> and FEA workflows for production reliability.</li>
+            <li>📚 Preparing for the <strong>FE Mechanical</strong> exam (Oct&nbsp;2025); building a PE-track fundamentals base.</li>
+            <li>🧰 Converting repetitive engineering work into <strong>Python automations</strong> (BOM/ECN, status reports, basic ETL).</li>
+            <li>🔧 Prototyping <strong>fixtures & tooling</strong> to cut changeover time and improve repeatability.</li>
+            <li>🧪 Deepening <strong>GD&amp;T</strong>, tolerance analysis, and <strong>FEA</strong> fundamentals for production reliability.</li>
           </ul>
+        </div>
+
+        <div class="about-card">
+          <h4>Focus Areas</h4>
+          <ul class="about-list">
+            <li><strong>Manufacturing Engineering:</strong> DFM/DFA, routings, work instructions, fixtures, process capability.</li>
+            <li><strong>Quality:</strong> GD&amp;T, PFMEA, root cause/5-Why, inspection planning, SPC, supplier alignment.</li>
+            <li><strong>Automation & Data:</strong> Python (pandas), Power BI dashboards, Excel/VBA, basic SQL, ETL.</li>
+            <li><strong>CAD/CAE:</strong> SOLIDWORKS drawings/assemblies, AutoCAD, Siemens&nbsp;NX, FEA fundamentals.</li>
+            <li><strong>Shop Integration:</strong> welding (TIG/MIG), machining basics, build-to-print, real-world tolerancing.</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h4>Core Tools & Stacks</h4>
+          <ul class="about-list">
+            <li><strong>CAD/PLM:</strong> SOLIDWORKS, AutoCAD, Siemens NX; revision control, BOM, ECN.</li>
+            <li><strong>Analysis:</strong> FEA fundamentals, hand calcs, material selection, tolerance stacks.</li>
+            <li><strong>Ops/ERP:</strong> SAP (MM & ERP essentials), cost/lead-time awareness, change management.</li>
+            <li><strong>Automation & Data:</strong> Python (pandas), Power BI, MATLAB, Git/GitHub.</li>
+            <li><strong>Standards:</strong> ASME B31.12 (Intro & Advanced), BPVC Sec V (NDE), GD&amp;T; OSHA-10; Agile PM.</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h4>Selected Results</h4>
+          <ul class="about-list">
+            <li>⬇️ <strong>Cycle time reduced ~15%</strong> by streamlining layout and adhesive workflow.</li>
+            <li>📉 Reduced rework via alignment to OEM calibration + updated inspection checkpoints.</li>
+            <li>🏁 Delivered a <strong>race-ready trike</strong> with validated CAD/FEA and a manufacturable plan.</li>
+            <li>📊 Built repeatable reporting pipelines (<strong>Python ➜ Power BI</strong>) for quality/status metrics.</li>
+          </ul>
+        </div>
+
+        <div class="about-card">
+          <h4>Background</h4>
+          <ul class="about-list">
+            <li>🎓 B.S. Mechanical Engineering — University of Louisiana at Lafayette.</li>
+            <li>🌍 Study Abroad (UCL, London): Energy Systems & the Evolution of Engineering Design.</li>
+            <li>🔧 Award-winning, hands-on builds across CAD/FEA, welding, machining, mechatronics, and systems integration.</li>
+          </ul>
+          <p class="statline">Projects include a lightweight racing trike, a multi-sensor mechatronics payload (C++/Python), and an autonomous “avatar” robot.</p>
         </div>
 
         <div class="about-card">
           <h4>Certifications (highlights)</h4>
           <ul class="about-list">
-            <li>🛠️ <strong>CSWA</strong> – Certified SOLIDWORKS Associate.</li>
-            <li>📈 <strong>Six Sigma Black Belt (CSSC)</strong> </li>
-            <li>📘 <strong>ASME</strong> – B31.12 Hydrogen Piping (Intro &amp; Advanced), BPVC Sec V (NDE), GD&amp;T, Agile Project Managment.</li>
-            <li>💡 Power&nbsp;BI, SAP&nbsp;MM, PCAP-Python, MATLAB Onramp, OSHA-10, and more.</li>
+            <li>🛠️ <strong>CSWA</strong> — Certified SOLIDWORKS Associate.</li>
+            <li>📈 <strong>Six Sigma Black Belt (CSSC)</strong>.</li>
+            <li>📘 <strong>ASME</strong> — B31.12 Hydrogen Piping (Intro & Advanced), BPVC Sec V (NDE), GD&amp;T.</li>
+            <li>🧭 Agile Project Management; <strong>Power BI</strong>, <strong>SAP MM</strong>, <strong>PCAP-Python</strong>, <strong>MATLAB</strong>, <strong>OSHA-10</strong>.</li>
           </ul>
           <p class="statline"><a href="media/certifications.html">See all credentials</a> (verified).</p>
-        </div>
-
-        <div class="about-card">
-          <h4>Background (short)</h4>
-          <ul class="about-list">
-            <li>🎓 B.S. Mechanical Engineering — University of Louisiana at Lafayette.</li>
-            <li>🌍 Energy Systems & Sustainability and Evolution of Engineering Design study in London, UK (UCL) - Summer Study Abroad 2024.</li>
-            <li>🔧 Built award-winning systems across CAD/FEA, welding, machining, mechatronics &amp; system integration.</li>
-          </ul>
-          <p class="statline">Hands-on projects include lightweight racing tricycle, mechatronic payloads using Arduino, C++/Python, and autonomous task acheiving robots.</p>
         </div>
       </div>
 
