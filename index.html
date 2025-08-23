@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Matthew Dubea | Mechanical Engineer</title>
 
   <!-- Meta -->
@@ -19,19 +16,162 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mtdubea.github.io/" />
   <meta property="og:image" content="assets/images/profile-headshot.jpg" />
-  <meta property="og:image:alt" content="Headshot of Matthew Dubea" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta name="twitter:image" content="assets/images/profile-headshot.jpg" />
 
-  <!-- Resource hints -->
-  <link rel="preload" href="projects.json" as="fetch" />
-  <link rel="preload" href="certs.json" as="fetch" />
-
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
+
+  <!-- Page-scoped layout/styling to keep cards perfectly symmetrical -->
+  <style>
+    /* ---- Layout Shell with Rails ---- */
+    .home-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr) minmax(0, 260px);
+      gap: 1.2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .home-shell { grid-template-columns: 1fr; }
+      .rail { position: static; order: 2; }
+      .center { order: 1; }
+    }
+
+    /* ---- Rails (left/right floating cards) ---- */
+    .rail {
+      position: sticky;
+      top: 1rem;
+      align-self: start;
+      display: grid;
+      gap: .85rem;
+      height: fit-content;
+      z-index: 1; /* sit below center content if they ever collide */
+    }
+    .rail-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .9rem 1rem;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+    .rail-card h4 { margin: 0 0 .25rem; font-size: 1rem; }
+    .rail-card p { margin: .25rem 0 0; font-size: .95rem; color: var(--muted); }
+    .rail-list { margin:.25rem 0 0; padding-left: 1.15rem; }
+    .rail-list li { margin: .25rem 0; }
+    body.dark-mode .rail-card { background: var(--surface-dark); border-color: var(--border-dark); }
+
+    /* ---- Metrics band ---- */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: .8rem;
+      margin: 1rem auto 1.25rem;
+      max-width: 980px;
+    }
+    @media (max-width: 720px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    .metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .9rem 1rem;
+      text-align: center;
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+    .metric .num {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+    .metric .label { margin-top: .25rem; color: var(--muted); font-size: .95rem; }
+    .badge {
+      display:inline-block; padding:.2rem .5rem; font-size:.78rem;
+      border:1px solid var(--border); border-radius:999px; background:#eef6ff; margin-top:.35rem;
+    }
+    body.dark-mode .metric { background: var(--surface-dark); border-color: var(--border-dark); }
+
+    /* ---- Search ---- */
+    .search-filter { margin: .25rem 0 1rem; }
+    .search-filter input {
+      width: 100%; max-width: 560px; display: block; margin: .35rem auto 0;
+    }
+
+    /* ---- Featured Projects: PERFECT symmetry ---- */
+    .featured-projects { margin-top: .6rem; }
+    .project-grid{
+      display:grid;
+      gap: 1rem;
+      grid-template-columns: repeat(3, minmax(260px, 1fr));
+      align-items: stretch;
+    }
+    @media (max-width: 1100px){ .project-grid{ grid-template-columns: repeat(2, minmax(260px, 1fr)); } }
+    @media (max-width: 720px){ .project-grid{ grid-template-columns: 1fr; } }
+
+    .project-grid .card{
+      display:flex;
+      flex-direction:column;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 8px 26px var(--shadow);
+      overflow: hidden;
+      min-height: 100%;
+    }
+
+    /* Dedicated media slot with locked ratio so nothing shifts/crops oddly */
+    .card-media{
+      width:100%;
+      aspect-ratio: 16 / 9;         /* keeps all thumbs the same height */
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-media img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit: cover;            /* fills the frame nicely */
+      object-position: center;
+    }
+
+    .card-body{ padding: 1rem 1rem .6rem; flex: 1 1 auto; }
+    .card h3{ margin: 0 0 .25rem; font-size: 1.05rem; }
+    .muted{ color: var(--muted); font-size: .95rem; }
+    .tag-row{ display:flex; gap:.35rem; flex-wrap: wrap; margin-top:.5rem; }
+    .tag{ font-size:.72rem; padding:.16rem .45rem; border:1px solid var(--border); border-radius:999px; background: var(--surface-2); }
+
+    .card-cta{
+      display:flex; gap:.5rem; padding: .85rem 1rem 1rem;
+      margin-top: auto;             /* anchors CTAs to bottom for equal height */
+    }
+    .card-cta .btn { flex: 1 1 auto; justify-content:center; min-height: 40px; }
+
+    /* ---- Skeletons (while JSON loads) ---- */
+    .skeleton {
+      border-radius: 12px;
+      height: 280px;
+      border: 1px solid var(--border);
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+      background-size: 400% 100%;
+      animation: sk 1.2s infinite linear;
+    }
+    @keyframes sk { 0% {background-position: -200% 0;} 100% {background-position: 200% 0;} }
+
+    /* ---- Decorative subtle gradient edges so the page feels “full” ---- */
+    .edge-grad {
+      position: fixed; top: 0; bottom: 0; width: 28vw; pointer-events: none; z-index: -1; filter: blur(30px); opacity: .45;
+    }
+    .edge-left  { left: -18vw;  background: radial-gradient(60% 50% at 70% 40%, #cfe6ff 0%, transparent 70%); }
+    .edge-right { right: -18vw; background: radial-gradient(60% 50% at 30% 60%, #e4ecff 0%, transparent 70%); }
+
+    /* Make sure nothing in center gets hidden by rails on narrow wide-ish screens */
+    .center { position: relative; z-index: 2; }
+  </style>
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -69,7 +209,7 @@
   <div class="edge-grad edge-left" aria-hidden="true"></div>
   <div class="edge-grad edge-right" aria-hidden="true"></div>
 
-  <a href="#main" class="visually-hidden-focusable">Skip to content</a>
+  <a href="#main" class="visually-hidden-focusable" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
   <!-- Header -->
   <header class="site-header" role="banner">
@@ -84,21 +224,18 @@
         <li><a href="resume.html">Resume</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
+        <!-- no dark-mode toggle -->
       </ul>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero" aria-labelledby="home-hero-title">
-    <img
-      src="assets/images/profile-headshot.jpg"
-      alt="Headshot of Matthew Dubea"
-      class="hero-headshot"
-      width="120" height="120"
-      loading="eager" decoding="async" fetchpriority="high"
-    />
+    <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" style="max-width: 120px; border-radius: 50%; margin-bottom: .6em; box-shadow: 0 4px 15px rgba(0,0,0,0.18);" />
     <h2 id="home-hero-title">Designing for Reliability, Manufacturability, and Speed</h2>
-    <p>I build practical, production-ready solutions across CAD/FEA, fabrication, process optimization, and automation—balancing hands-on execution with engineering rigor.</p>
+    <p>
+      I build practical, production-ready solutions across CAD/FEA, fabrication, process optimization, and automation—balancing hands-on execution with engineering rigor.
+    </p>
     <div class="cta-row" role="group" aria-label="Primary actions">
       <a class="btn primary" href="resume.html">📄&nbsp;View Resume</a>
       <a class="btn outline" href="about.html">ℹ️&nbsp;About Me</a>
@@ -107,9 +244,18 @@
 
     <!-- Dynamic Metrics -->
     <div class="metrics" aria-live="polite">
-      <div class="metric"><div class="num" id="metric-projects">—</div><div class="label">Projects</div></div>
-      <div class="metric"><div class="num" id="metric-certs">—</div><div class="label">Certifications</div></div>
-      <div class="metric"><div class="num" id="metric-reports">—</div><div class="label">Technical Reports</div></div>
+      <div class="metric">
+        <div class="num" id="metric-projects">—</div>
+        <div class="label">Projects</div>
+      </div>
+      <div class="metric">
+        <div class="num" id="metric-certs">—</div>
+        <div class="label">Certifications</div>
+      </div>
+      <div class="metric">
+        <div class="num" id="metric-reports">—</div>
+        <div class="label">Technical Reports</div>
+      </div>
       <div class="metric">
         <div class="num">Oct&nbsp;2025</div>
         <div class="label">FE Mechanical</div>
@@ -145,17 +291,17 @@
     <section class="center">
       <!-- Site Search -->
       <section class="search-filter" aria-labelledby="site-search-title">
-        <h3 id="site-search-title" class="visually-hidden">Search</h3>
-        <label for="searchInput" class="visually-hidden">Search site content</label>
+        <h3 id="site-search-title" class="visually-hidden" style="position:absolute;left:-9999px;">Search</h3>
+        <label for="searchInput" class="visually-hidden" style="position:absolute;left:-9999px;">Search site content</label>
         <input type="text" id="searchInput" placeholder="🔍 Search this site..." inputmode="search" autocomplete="off" />
-        <div id="searchCount" aria-live="polite" class="search-count"></div>
+        <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
       </section>
 
       <!-- Featured Projects -->
       <section class="featured-projects" aria-labelledby="featured-title">
         <h2 id="featured-title">📂 Featured Projects</h2>
 
-        <div id="projectGrid" class="project-grid" role="list" aria-busy="true">
+        <div id="projectGrid" class="project-grid" role="list">
           <div class="skeleton"></div>
           <div class="skeleton"></div>
           <div class="skeleton"></div>
@@ -164,33 +310,36 @@
         <!-- No-JS fallback -->
         <noscript>
           <div class="project-grid" role="list">
-            <article class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-trike.jpg" alt="Senior Trike Project thumbnail"/>
+            <a href="trike/" class="card" role="listitem">
+              <div class="card-media"><img src="assets/images/thumb-trike.jpg" alt="Senior Trike Project thumbnail"></div>
               <div class="card-body">
                 <h3>🏁 Senior Trike Project</h3>
-                <p>Design, manufacturing, and race-winning performance of a custom tricycle built for competition.</p>
-                <div class="tag-row"><span class="tag">CAD</span><span class="tag">FEA</span><span class="tag">DFM</span></div>
+                <p class="muted">Design, manufacturing, and race-winning performance of a custom tricycle built for competition.</p>
               </div>
-              <div class="card-cta"><a class="btn primary" href="https://mtdubea.github.io/trike">Open</a></div>
-            </article>
-            <article class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics payload thumbnail"/>
+              <div class="card-cta">
+                <span class="btn primary" aria-hidden="true">Open</span>
+              </div>
+            </a>
+            <a href="mechatronics/" class="card" role="listitem">
+              <div class="card-media"><img src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics Payload thumbnail"></div>
               <div class="card-body">
                 <h3>🛰️ Mechatronics Payload</h3>
-                <p>Autonomous payload system with multi-sensor integration and logic control.</p>
-                <div class="tag-row"><span class="tag">Embedded</span><span class="tag">PID</span><span class="tag">Python</span></div>
+                <p class="muted">Autonomous drone payload system with multi-sensor integration and logic control.</p>
               </div>
-              <div class="card-cta"><a class="btn primary" href="https://mtdubea.github.io/mechatronics">Open</a></div>
-            </article>
-            <article class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-robot.jpg" alt="Rescue robot thumbnail"/>
+              <div class="card-cta">
+                <span class="btn primary" aria-hidden="true">Open</span>
+              </div>
+            </a>
+            <a href="robot/" class="card" role="listitem">
+              <div class="card-media"><img src="assets/images/thumb-robot.jpg" alt="Rescue Robot thumbnail"></div>
               <div class="card-body">
                 <h3>🤖 Rescue Robot</h3>
-                <p>Python-controlled autonomous robot validated across obstacle courses.</p>
-                <div class="tag-row"><span class="tag">Robotics</span><span class="tag">Python</span></div>
+                <p class="muted">Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
               </div>
-              <div class="card-cta"><a class="btn primary" href="https://mtdubea.github.io/robot">Open</a></div>
-            </article>
+              <div class="card-cta">
+                <span class="btn primary" aria-hidden="true">Open</span>
+              </div>
+            </a>
           </div>
         </noscript>
       </section>
@@ -243,62 +392,60 @@
         "media/Robot_Report.pdf"
       ];
 
-      function createCard(p){
-        const art = document.createElement("article");
-        art.className = "card";
-        art.setAttribute("role","listitem");
-        art.setAttribute("data-title", (p.title || "").toLowerCase());
-        art.setAttribute("data-category", (p.category || "").toLowerCase());
-
-        const thumb = p.thumbnail
-          ? `<img class="card-thumb" src="${p.thumbnail}" alt="${(p.title||"Project")} thumbnail" loading="lazy" decoding="async" />`
-          : "";
-
+      function cardHTML(p){
         const tags = Array.isArray(p.tags) ? p.tags.slice(0,4) : [];
         const reportBtn = p.report ? `<a class="btn outline" href="${p.report}" target="_blank" rel="noopener">📘 Report</a>` : "";
-        const sourceBtn = (p.source||p.repo) ? `<a class="btn outline" href="${p.source||p.repo}" target="_blank" rel="noopener">🌐 Source</a>` : "";
+        const sourceBtn = p.source || p.repo ? `<a class="btn outline" href="${p.source || p.repo}" target="_blank" rel="noopener">🌐 Source</a>` : "";
 
-        art.innerHTML = `
-          ${thumb}
-          <div class="card-body">
-            <h3>${p.icon ? p.icon + " " : ""}${p.title}</h3>
-            <p>${p.description || ""}</p>
-            ${tags.length ? `<div class="tag-row">${tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>` : ""}
-          </div>
-          <div class="card-cta">
-            <a class="btn primary" href="${p.url}" target="_blank" rel="noopener">Open</a>
-            ${reportBtn}
-            ${sourceBtn}
-          </div>
-        `;
-        return art;
+        return `
+          <a class="card" href="${p.url}" role="listitem" data-title="${(p.title||'').toLowerCase()}" data-category="${(p.category||'').toLowerCase()}">
+            <div class="card-media">
+              <img src="${p.thumbnail || 'assets/images/thumb-placeholder.jpg'}" alt="${(p.title||'Project')} thumbnail" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <h3>${p.icon ? p.icon + " " : ""}${p.title || ""}</h3>
+              <p class="muted">${p.description || ""}</p>
+              ${tags.length ? `<div class="tag-row">${tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>` : ""}
+            </div>
+            <div class="card-cta">
+              <span class="btn primary" aria-hidden="true">Open</span>
+              ${reportBtn}
+              ${sourceBtn}
+            </div>
+          </a>`;
       }
 
       function renderCards(projects) {
-        grid.innerHTML = "";
-        projects.forEach(p => grid.appendChild(createCard(p)));
-        grid.removeAttribute('aria-busy');
+        grid.innerHTML = projects.map(cardHTML).join("");
       }
 
       function attachSearch() {
-        const cards = () => Array.from(grid.querySelectorAll(".card"));
-        if (!input) return;
-        const updateCount = (n, total) => { if (count) count.textContent = n===total ? "" : (n ? `${n} shown` : "No results"); };
+        const cards = Array.from(grid.querySelectorAll(".card"));
+        if (!input || !cards.length) return;
+
+        const updateCount = (n) => {
+          if (!count) return;
+          count.textContent = n === cards.length ? "" : (n ? `${n} shown` : "No results");
+        };
 
         input.addEventListener("input", () => {
           const q = (input.value || "").toLowerCase();
           let visible = 0;
-          const list = cards();
-          list.forEach(card => {
+          cards.forEach(card => {
             const title = card.getAttribute("data-title") || "";
             const cat   = card.getAttribute("data-category") || "";
             const txt   = card.textContent.toLowerCase();
             const show  = !q || title.includes(q) || cat.includes(q) || txt.includes(q);
-            card.style.display = show ? "grid" : "none";
+            card.style.display = show ? "flex" : "none";  // keep flex for equal height
             if (show) visible++;
           });
-          updateCount(visible, list.length);
+          updateCount(visible);
         });
+      }
+
+      function countCerts(groups) {
+        if (!Array.isArray(groups)) return 0;
+        return groups.reduce((sum, g) => sum + (Array.isArray(g.items) ? g.items.length : 0), 0);
       }
 
       Promise.all([
@@ -312,47 +459,61 @@
         renderCards(list);
         attachSearch();
 
-        const certCount = (certsData.groups||[]).reduce((sum, g) => sum + ((g.items||[]).length), 0);
-        if (elProj) elProj.textContent = String(list.length);
-        if (elCert) elCert.textContent = String(certCount);
-        if (elRept) elRept.textContent = String(REPORTS.length);
+        elProj.textContent = String(list.length);
+        elCert.textContent = String(countCerts(certsData.groups || []));
+        elRept.textContent = String(REPORTS.length);
       })
       .catch(() => {
+        // Fallback if either JSON fails
         grid.outerHTML = `
           <div class="project-grid" role="list">
-            <article class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-trike.jpg" alt="Senior Trike Project thumbnail"/>
+            <a href="trike/" class="card" role="listitem">
+              <div class="card-media"><img src="assets/images/thumb-trike.jpg" alt="Senior Trike Project thumbnail"></div>
               <div class="card-body">
                 <h3>🏁 Senior Trike Project</h3>
-                <p>Design, manufacturing, and race-winning performance of a custom tricycle built for competition.</p>
-                <div class="tag-row"><span class="tag">CAD</span><span class="tag">FEA</span><span class="tag">DFM</span></div>
+                <p class="muted">Design, manufacturing, and race-winning performance of a custom tricycle built for competition.</p>
               </div>
-              <div class="card-cta"><a class="btn primary" href="https://mtdubea.github.io/trike" target="_blank" rel="noopener">Open</a></div>
-            </article>
-            <article class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics payload thumbnail"/>
+              <div class="card-cta"><span class="btn primary" aria-hidden="true">Open</span></div>
+            </a>
+            <a href="mechatronics/" class="card" role="listitem">
+              <div class="card-media"><img src="assets/images/thumb-mechatronics.jpg" alt="Mechatronics Payload thumbnail"></div>
               <div class="card-body">
                 <h3>🛰️ Mechatronics Payload</h3>
-                <p>Autonomous payload with multi-sensor integration and logic control.</p>
-                <div class="tag-row"><span class="tag">Embedded</span><span class="tag">PID</span><span class="tag">Python</span></div>
+                <p class="muted">Autonomous drone payload system with multi-sensor integration and logic control.</p>
               </div>
-              <div class="card-cta"><a class="btn primary" href="https://mtdubea.github.io/mechatronics" target="_blank" rel="noopener">Open</a></div>
-            </article>
-            <article class="card" role="listitem">
-              <img class="card-thumb" src="assets/images/thumb-robot.jpg" alt="Rescue robot thumbnail"/>
+              <div class="card-cta"><span class="btn primary" aria-hidden="true">Open</span></div>
+            </a>
+            <a href="robot/" class="card" role="listitem">
+              <div class="card-media"><img src="assets/images/thumb-robot.jpg" alt="Rescue Robot thumbnail"></div>
               <div class="card-body">
                 <h3>🤖 Rescue Robot</h3>
-                <p>Python-controlled autonomous robot validated across obstacle courses.</p>
-                <div class="tag-row"><span class="tag">Robotics</span><span class="tag">Python</span></div>
+                <p class="muted">Python-controlled autonomous robot built to navigate and retrieve targets across complex terrain.</p>
               </div>
-              <div class="card-cta"><a class="btn primary" href="https://mtdubea.github.io/robot" target="_blank" rel="noopener">Open</a></div>
-            </article>
+              <div class="card-cta"><span class="btn primary" aria-hidden="true">Open</span></div>
+            </a>
           </div>`;
+
         if (elProj) elProj.textContent = "3";
         if (elCert) elCert.textContent = "30+";
         if (elRept) elRept.textContent = "3";
       });
     })();
   </script>
+
+  <!-- Accessible skip-link reveal -->
+  <style>
+    .visually-hidden-focusable:focus {
+      position: static !important;
+      width: auto !important;
+      height: auto !important;
+      padding: .5rem .75rem;
+      margin: .5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: .5rem;
+      box-shadow: 0 4px 12px var(--shadow);
+      z-index: 1000;
+    }
+  </style>
 </body>
 </html>
