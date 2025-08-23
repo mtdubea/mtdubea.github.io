@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "updated": "2025-08-23",
+  "version": 1,
+  "updated": "2025-08-22",
   "groups": [
     {
       "id": "cswa",
@@ -48,8 +48,7 @@
           "type": "pdf",
           "category": ["asme"],
           "issuer": "ASME",
-          "badges": ["Issuer: ASME"],
-          "dateIssued": "2025-01-01"
+          "badges": ["Issuer: ASME"]
         },
         {
           "title": "ASME B31.12: Hydrogen Piping & Pipelines (Advanced)",
@@ -57,8 +56,7 @@
           "type": "pdf",
           "category": ["asme"],
           "issuer": "ASME",
-          "badges": ["Issuer: ASME"],
-          "dateIssued": "2025-01-01"
+          "badges": ["Issuer: ASME"]
         },
         {
           "title": "ASME BPV Code Sec V: Nondestructive Examination (Overview)",
@@ -70,7 +68,7 @@
         },
         {
           "title": "ASME Boiler & Pressure Vessel: Certification Process",
-          "file": "ASME%20Boiler%20%26%20Pressure%20Vessel.pdf",
+          "file": "ASME%20Boiler%20&%20Pressure%20Vessel.pdf",
           "type": "pdf",
           "category": ["asme"],
           "issuer": "ASME",
@@ -394,7 +392,7 @@
       "items": [
         {
           "title": "OSHA 10-Hour: Health & Safety",
-          "file": "OSHA_10_Hour_Health_%26_Safety.png",
+          "file": "OSHA_10_Hour_Health_&_Safety.png",
           "type": "image",
           "category": ["safety"],
           "issuer": "OSHA",
