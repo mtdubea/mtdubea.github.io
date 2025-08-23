@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Matthew Dubea | Mechanical Engineer</title>
 
   <!-- Meta -->
   <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring projects, certifications, reports, and technical capabilities across design, manufacturing, quality, and automation." />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#0a66c2" />
+  <link rel="canonical" href="https://mtdubea.github.io/" />
+  <meta name="robots" content="index,follow" />
 
-  <!-- Open Graph / Twitter -->
+  <!-- Social -->
   <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mtdubea.github.io/" />
   <meta property="og:image" content="assets/images/profile-headshot.jpg" />
+  <meta property="og:image:alt" content="Headshot of Matthew Dubea" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Matthew Dubea | Mechanical Engineer" />
   <meta name="twitter:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
@@ -28,36 +28,106 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
 
-  <!-- iOS-specific fix to prevent CTA overlap and ensure nice wrapping -->
+  <!-- Page-scoped polish -->
   <style>
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .75rem;
-      justify-content: center;
-      align-items: stretch;
-      margin-top: .75rem;
+    /* ===== Decorative background (no images, very light) ===== */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20vh -10vw auto auto;
+      width: 55vw;
+      height: 55vh;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(40% 45% at 80% 20%, rgba(10,102,194,.12), transparent 65%);
+      filter: blur(2px);
     }
-    .cta-row .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;           /* thumb target */
-      padding: 0.7em 1.1em;
-      line-height: 1.1;
-      text-align: center;
-      white-space: nowrap;
-      flex: 0 1 260px;            /* wrap on small widths */
-    }
-    @media (max-width: 520px) {
-      .cta-row .btn { flex: 1 1 100%; }
-    }
-    /* iOS Safari quirk: make sure the action chips never overlap */
-    @supports (-webkit-touch-callout: none) {
-      .cta-row .btn { flex: 1 1 300px; }
+    body::after {
+      inset: auto auto -25vh -15vw;
+      background: radial-gradient(40% 45% at 20% 80%, rgba(99,102,241,.12), transparent 65%);
     }
 
-    /* Simple skeleton for project cards while JSON loads */
+    /* ===== Side rails (visible on desktops) ===== */
+    .rail {
+      position: fixed;
+      top: 120px;
+      bottom: 120px;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+      padding: .75rem;
+      background: color-mix(in oklab, var(--surface) 85%, transparent);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px var(--shadow);
+      z-index: 10;
+    }
+    .rail a, .rail span {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .65rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      text-decoration: none;
+      color: inherit;
+      font-size: .95rem;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .rail a:hover { transform: translateY(-2px); box-shadow: 0 8px 18px var(--shadow); border-color: var(--accent); }
+
+    .rail-left { left: 1.25rem; }
+    .rail-right { right: 1.25rem; }
+    .rail-title { font-weight: 700; color: var(--muted); padding: .25rem 0 .1rem; }
+
+    @media (max-width: 1200px) {
+      .rail { display: none; }
+    }
+
+    /* ===== Hero CTA fixes for iOS / small screens ===== */
+    .cta-row {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      justify-content: center; align-items: stretch; margin-top: .75rem;
+    }
+    .cta-row .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 44px; padding: .7em 1.1em; line-height: 1.1; text-align: center;
+      white-space: nowrap; flex: 0 1 260px;
+    }
+    @media (max-width: 520px) { .cta-row .btn { flex: 1 1 100%; } }
+    @supports (-webkit-touch-callout: none) { .cta-row .btn { flex: 1 1 300px; } }
+
+    /* ===== Stats band ===== */
+    .stats-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--surface), color-mix(in oklab, var(--surface) 85%, transparent));
+      padding: 1rem 1rem 1.1rem;
+    }
+    .stats-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; gap: .9rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .9rem 1rem;
+      box-shadow: 0 6px 18px var(--shadow);
+    }
+    .stat .value { font-size: 1.6rem; font-weight: 800; letter-spacing: .2px; }
+    .stat .label { color: var(--muted); margin-top: .1rem; }
+    .stat .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+    .stat .chip {
+      font-size: .82rem; padding: .22rem .5rem; border-radius: 999px;
+      background: var(--surface-2); border: 1px solid var(--border);
+    }
+
+    /* ===== Skeletons while projects load ===== */
     .skeleton {
       border-radius: 10px;
       height: 120px;
@@ -67,6 +137,10 @@
       animation: sk 1.2s infinite linear;
     }
     @keyframes sk { 0% {background-position: -200% 0;} 100% {background-position: 200% 0;} }
+
+    /* Tighten huge blank margins on ultra-wide displays */
+    .hero { padding-top: 3.25rem; padding-bottom: 2.25rem; }
+    .featured-projects { padding-top: 1.6rem; }
   </style>
 
   <!-- Structured data -->
@@ -116,12 +190,28 @@
         <li><a href="resume.html">Resume</a></li>
         <li><a href="reports.html">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
-        <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🌓</button>
-        </li>
       </ul>
     </nav>
   </header>
+
+  <!-- Side rails (auto-hide on mobile) -->
+  <aside class="rail rail-left" aria-label="Quick credentials">
+    <div class="rail-title">Credentials</div>
+    <span>🎓 CSWA</span>
+    <span>🧪 Six Sigma Black Belt</span>
+    <span>📘 ASME (B31.12, NDE, GD&T)</span>
+    <span>💻 PCAP Python</span>
+    <span>📊 Power BI</span>
+  </aside>
+
+  <aside class="rail rail-right" aria-label="Quick links">
+    <div class="rail-title">Quick Links</div>
+    <a href="resume.html">📄 Resume</a>
+    <a href="media/certifications.html">🎓 Certifications</a>
+    <a href="reports.html">📘 Reports</a>
+    <a href="https://github.com/mtdubea" target="_blank" rel="noopener">🧰 GitHub</a>
+    <a href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener">💼 LinkedIn</a>
+  </aside>
 
   <main id="main">
     <!-- Hero -->
@@ -139,26 +229,58 @@
       </div>
     </section>
 
+    <!-- Stats band (reduces “blank” feel and signals professionalism) -->
+    <section class="stats-band" aria-label="Portfolio stats">
+      <div class="stats-grid">
+        <div class="stat" role="group" aria-label="Projects delivered">
+          <div class="value">3+</div>
+          <div class="label">Projects Delivered</div>
+        </div>
+        <div class="stat" role="group" aria-label="Verified certifications">
+          <div class="value">39</div>
+          <div class="label">Verified Certifications</div>
+        </div>
+        <div class="stat" role="group" aria-label="Current technical focus">
+          <div class="value">Tooling & Automation</div>
+          <div class="chips">
+            <span class="chip">DFM/DFA</span>
+            <span class="chip">Lean</span>
+            <span class="chip">FEA</span>
+            <span class="chip">Python</span>
+            <span class="chip">Power&nbsp;BI</span>
+          </div>
+        </div>
+        <div class="stat" role="group" aria-label="Next milestone">
+          <div class="value">FE Exam</div>
+          <div class="label">Scheduled: Oct&nbsp;2025</div>
+        </div>
+      </div>
+    </section>
+
     <!-- Site Search -->
     <section class="search-filter" aria-labelledby="site-search-title">
       <h2 id="site-search-title" class="visually-hidden" style="position:absolute;left:-9999px;">Search</h2>
       <label for="searchInput" class="visually-hidden" style="position:absolute;left:-9999px;">Search site content</label>
-      <input type="text" id="searchInput" placeholder="🔍 Search this site..." inputmode="search" autocomplete="off" />
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search this site..."
+        inputmode="search"
+        autocomplete="off"
+        aria-describedby="searchCount"
+      />
       <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
     </section>
 
     <!-- Featured Projects -->
     <section class="featured-projects" aria-labelledby="featured-title">
       <h2 id="featured-title">📂 Featured Projects</h2>
-
-      <!-- A few skeletons while JSON loads -->
       <div id="projectGrid" class="project-grid" role="list">
-        <div class="skeleton"></div>
-        <div class="skeleton"></div>
-        <div class="skeleton"></div>
+        <div class="skeleton" aria-hidden="true"></div>
+        <div class="skeleton" aria-hidden="true"></div>
+        <div class="skeleton" aria-hidden="true"></div>
       </div>
 
-      <!-- No-JS fallback -->
       <noscript>
         <div class="project-grid" role="list">
           <a href="https://mtdubea.github.io/trike" class="card" role="listitem">
@@ -228,10 +350,7 @@
         const cards = Array.from(grid.querySelectorAll(".card"));
         if (!input || !cards.length) return;
 
-        const updateCount = (n) => {
-          if (!count) return;
-          count.textContent = n === cards.length ? "" : (n ? `${n} shown` : "No results");
-        };
+        const updateCount = (n) => { if (count) count.textContent = n === cards.length ? "" : (n ? \`\${n} shown\` : "No results"); };
 
         input.addEventListener("input", () => {
           const q = (input.value || "").toLowerCase();
@@ -258,7 +377,6 @@
           attachSearch();
         })
         .catch(() => {
-          // Graceful fallback: if JSON fails, show the <noscript> version by replacing skeletons
           grid.outerHTML = `
             <div class="project-grid" role="list">
               <a href="https://mtdubea.github.io/trike" class="card" role="listitem">
