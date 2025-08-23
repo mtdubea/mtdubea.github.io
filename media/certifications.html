@@ -32,6 +32,7 @@
       text-align: center; color: var(--muted); margin: .5rem 0 0;
       font-size: .95rem;
     }
+
     /* When we disable embeds on mobile, show a neutral doc placeholder */
     .no-embed .cert-card .media {
       background: linear-gradient(180deg, #f7f7f7, #eee);
@@ -41,8 +42,16 @@
       content: "Document preview not available on mobile";
       font-size: .85rem; color: var(--muted);
     }
+
     /* Make the lightbox slightly larger on desktops */
     #lightbox.open #lightbox-frame { width: 90vw; height: 86vh; }
+
+    /* Shimmer for lazy <object> PDFs (style.css already handles img/embed/iframe) */
+    object.media[data-src]:not([data]) {
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
+      background-size: 400% 100%;
+      animation: shimmer 1.2s infinite linear;
+    }
   </style>
 </head>
 
@@ -84,6 +93,9 @@
     </div>
     <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
 
+    <!-- Inline error surface (filled if JSON cannot load) -->
+    <p id="errorBox" hidden style="text-align:center;color:var(--muted);margin:.5rem 0;"></p>
+
     <!-- Sections target (rendered from JSON) -->
     <div id="certSections" style="margin-top:.75rem"></div>
   </main>
@@ -117,16 +129,50 @@
     const indexHost    = $('#sectionIndex');
     const searchInput  = $('#certSearch');
     const resultCount  = $('#certCount');
+    const errorBox     = $('#errorBox');
 
-    // ======= Fetch & render =======
-    fetch('certs.json', { cache: 'no-store' })
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then(json => render(json))
-      .catch(err => {
-        console.error('Failed to load certs.json', err);
+    // ======= Fetch JSON with robust path fallback =======
+    (async function loadAndRender() {
+      const candidates = [
+        '/certs.json',              // root (recommended)
+        'certs.json',               // same folder (if you keep it beside this file)
+        '../certs.json',            // parent
+        '/media/certs.json'         // legacy path
+      ];
+
+      let data = null, lastErr = null;
+
+      for (const url of candidates) {
+        try {
+          const res = await fetch(url, { cache: 'no-store' });
+          if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+          data = await res.json();
+          break;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+
+      if (!data) {
+        showError(`Could not load certs.json → ${String(lastErr?.message || lastErr || 'Unknown error')}`);
         sectionsHost.innerHTML = '<p style="text-align:center;color:var(--muted)">Unable to load certifications right now.</p>';
-      });
+        return;
+      }
 
+      try {
+        render(data);
+      } catch (e) {
+        showError(`Render error: ${String(e.message || e)}`);
+      }
+    })();
+
+    function showError(msg) {
+      if (!errorBox) return;
+      errorBox.hidden = false;
+      errorBox.textContent = msg;
+    }
+
+    // ======= Render =======
     function render(json) {
       const groups = (json.groups || []).sort((a,b) => (a.order || 0) - (b.order || 0));
 
