@@ -1,0 +1,452 @@
+{
+  "version": 1,
+  "updated": "2025-08-22",
+  "groups": [
+    {
+      "id": "cswa",
+      "title": "CSWA",
+      "order": 1,
+      "sort_exempt": true,
+      "items": [
+        {
+          "title": "SOLIDWORKS CSWA (Certified Associate)",
+          "file": "CSWA_OFFICIAL.pdf",
+          "type": "pdf",
+          "category": ["cswa"],
+          "issuer": "SOLIDWORKS",
+          "badges": ["Issuer: SOLIDWORKS", "Level: Associate"],
+          "dateIssued": "2025-01-01"
+        }
+      ]
+    },
+
+    {
+      "id": "ssbb",
+      "title": "Six Sigma Black Belt",
+      "order": 2,
+      "sort_exempt": true,
+      "items": [
+        {
+          "title": "Six Sigma Black Belt (CSSC)",
+          "file": "Official_Certification_Issued_Six_Sigma_Black_Belt_Certification_Standard.pdf",
+          "type": "pdf",
+          "category": ["six-sigma"],
+          "issuer": "CSSC",
+          "badges": ["Issuer: CSSC", "Level: Black Belt"],
+          "dateIssued": "2025-01-01"
+        }
+      ]
+    },
+
+    {
+      "id": "asme",
+      "title": "ASME & Engineering Standards",
+      "order": 3,
+      "sort_exempt": true,
+      "items": [
+        {
+          "title": "ASME B31.12: Hydrogen Piping & Pipelines (Intro)",
+          "file": "ASME_B31.12_Hydrogen Piping and Pipelines.pdf",
+          "type": "pdf",
+          "category": ["asme"],
+          "issuer": "ASME",
+          "badges": ["Issuer: ASME"],
+          "dateIssued": "2025-01-01"
+        },
+        {
+          "title": "ASME B31.12: Hydrogen Piping & Pipelines (Advanced)",
+          "file": "Advanced_B31.12_Hydrogen_Piping_Pipelines.pdf",
+          "type": "pdf",
+          "category": ["asme"],
+          "issuer": "ASME",
+          "badges": ["Issuer: ASME"],
+          "dateIssued": "2025-01-01"
+        },
+        {
+          "title": "ASME BPV Code Sec V: Nondestructive Examination (Overview)",
+          "file": "NDE.pdf",
+          "type": "pdf",
+          "category": ["asme"],
+          "issuer": "ASME",
+          "badges": ["Issuer: ASME"]
+        },
+        {
+          "title": "ASME Boiler & Pressure Vessel: Certification Process",
+          "file": "ASME Boiler & Pressure Vessel.pdf",
+          "type": "pdf",
+          "category": ["asme"],
+          "issuer": "ASME",
+          "badges": ["Issuer: ASME"]
+        },
+        {
+          "title": "ASME Drawing Interpretation: GD&T",
+          "file": "GDnT.pdf",
+          "type": "pdf",
+          "category": ["asme"],
+          "issuer": "ASME",
+          "badges": ["Issuer: ASME"]
+        }
+      ]
+    },
+
+    {
+      "id": "pm",
+      "title": "Project Management & PMI",
+      "order": 10,
+      "items": [
+        {
+          "title": "Agile Project Management",
+          "file": "AgileProjectManagement.pdf",
+          "type": "pdf",
+          "category": ["pmi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Project Management Essentials",
+          "file": "Project_Management_Essentials-348043249.pdf",
+          "type": "pdf",
+          "category": ["pmi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Microsoft Project: Planning for Successful Project Management",
+          "file": "--PMI_MicrosoftProject.Project.Management.pdf",
+          "type": "pdf",
+          "category": ["pmi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Practical GitHub Project Management & Collaboration",
+          "file": "--PMI-GitHub_Project_Management.pdf",
+          "type": "pdf",
+          "category": ["pmi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        }
+      ]
+    },
+
+    {
+      "id": "autocad",
+      "title": "AutoCAD",
+      "order": 20,
+      "items": [
+        {
+          "title": "AutoCAD 2025: Essential Training",
+          "file": "-AutoCAD.2025.Essential.Training.pdf",
+          "type": "pdf",
+          "category": ["autocad"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "AutoCAD 2026: Essential Training",
+          "file": "-AutoCAD.2026.Essential.Training.pdf",
+          "type": "pdf",
+          "category": ["autocad"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Learning AutoCAD 2026",
+          "file": "-AutoCAD2026.pdf",
+          "type": "pdf",
+          "category": ["autocad"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        }
+      ]
+    },
+
+    {
+      "id": "sap",
+      "title": "SAP",
+      "order": 30,
+      "items": [
+        {
+          "title": "SAP MM: Materials Management",
+          "file": "-SAP.MM_MaterialsManagement.pdf",
+          "type": "pdf",
+          "category": ["sap"],
+          "issuer": "SAP",
+          "badges": ["Issuer: SAP"]
+        },
+        {
+          "title": "SAP Business One: Essential Training",
+          "file": "CertificateOfCompletion_SAP Business One Essential Training.pdf",
+          "type": "pdf",
+          "category": ["sap"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "SAP ERP: Essential Training",
+          "file": "CertificateOfCompletion_SAP ERP Essential Training.pdf",
+          "type": "pdf",
+          "category": ["sap"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "SAP Financials: Essential Training",
+          "file": "CertificateOfCompletion_SAP Financials Essential Training.pdf",
+          "type": "pdf",
+          "category": ["sap"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        }
+      ]
+    },
+
+    {
+      "id": "nx",
+      "title": "Siemens NX",
+      "order": 40,
+      "items": [
+        {
+          "title": "Learning Siemens NX",
+          "file": "-SiemensNX.pdf",
+          "type": "pdf",
+          "category": ["nx"],
+          "issuer": "Siemens",
+          "badges": ["Issuer: Siemens"]
+        }
+      ]
+    },
+
+    {
+      "id": "revit",
+      "title": "Revit (MEP)",
+      "order": 50,
+      "items": [
+        {
+          "title": "Revit 2023: Essential Training for MEP",
+          "file": "-Revit.2023.MEP.pdf",
+          "type": "pdf",
+          "category": ["revit"],
+          "issuer": "Autodesk",
+          "badges": ["Issuer: Autodesk"]
+        }
+      ]
+    },
+
+    {
+      "id": "arch-cad",
+      "title": "Architecture CAD Technician",
+      "order": 60,
+      "items": [
+        {
+          "title": "Architecture CAD Technician (32 hours)",
+          "file": "-32hours.ArchitectureCADTechnician.pdf",
+          "type": "pdf",
+          "category": ["arch-cad"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning", "Hours: 32h"]
+        }
+      ]
+    },
+
+    {
+      "id": "power-bi",
+      "title": "Power BI",
+      "order": 70,
+      "items": [
+        {
+          "title": "Power BI: Data Methods",
+          "file": "CertificateOfCompletion_Power BI Data Methods.pdf",
+          "type": "pdf",
+          "category": ["power-bi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Power BI: Essential Training (Business Intelligence)",
+          "file": "-PowerBI_Business_Intelligence_(BI)_MS_Power_BI.pdf",
+          "type": "pdf",
+          "category": ["power-bi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Power BI: Essential Training (2024)",
+          "file": "CertificateOfCompletion_Power BI Essential Training 2024.pdf",
+          "type": "pdf",
+          "category": ["power-bi"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Complete Guide to Power BI for Data Analysts",
+          "file": "CertificateOfCompletion_Complete Guide to Power BI for Data Analysts by Microsoft Press.pdf",
+          "type": "pdf",
+          "category": ["power-bi"],
+          "issuer": "Microsoft Press",
+          "badges": ["Issuer: Microsoft Press"]
+        }
+      ]
+    },
+
+    {
+      "id": "programming",
+      "title": "Programming & GitHub",
+      "order": 80,
+      "items": [
+        {
+          "title": "PCAP: Programming Essentials in Python (OpenEDG)",
+          "file": "OpenEDG_PCAP_PythonInstitute_ProgrammingwithPython.pdf",
+          "type": "pdf",
+          "category": ["programming"],
+          "issuer": "OpenEDG Python Institute",
+          "badges": ["Issuer: OpenEDG Python Institute"]
+        },
+        {
+          "title": "Career Essentials: GitHub Copilot (Professional Certificate)",
+          "file": "CertificateOfCompletion_Career Essentials in GitHub Copilot Professional Certificate.pdf",
+          "type": "pdf",
+          "category": ["programming"],
+          "issuer": "Microsoft / LinkedIn",
+          "badges": ["Issuer: Microsoft / LinkedIn"]
+        },
+        {
+          "title": "Career Essentials in GitHub — Professional Certificate",
+          "file": "CareerEssentialsinGitHubProfessionalCertificate.pdf",
+          "type": "pdf",
+          "category": ["programming"],
+          "issuer": "Microsoft / LinkedIn",
+          "badges": ["Issuer: Microsoft / LinkedIn"]
+        }
+      ]
+    },
+
+    {
+      "id": "data",
+      "title": "Data Science & Analytics",
+      "order": 90,
+      "items": [
+        {
+          "title": "Data Science Professional — KNIME",
+          "file": "DataScienceProfessional-KNIME.pdf",
+          "type": "pdf",
+          "category": ["data"],
+          "issuer": "KNIME",
+          "badges": ["Issuer: KNIME"]
+        },
+        {
+          "title": "Learning Data Analytics 1: Foundations",
+          "file": "LearningDataAnalytics1Foundations.pdf",
+          "type": "pdf",
+          "category": ["data"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        }
+      ]
+    },
+
+    {
+      "id": "matlab",
+      "title": "MATLAB",
+      "order": 100,
+      "items": [
+        {
+          "title": "MATLAB: Onramp",
+          "file": "MATLAB_OnRamp_Cert.pdf",
+          "type": "pdf",
+          "category": ["matlab"],
+          "issuer": "MathWorks",
+          "badges": ["Issuer: MathWorks"]
+        },
+        {
+          "title": "MATLAB: Machine Learning Onramp",
+          "file": "MATLAB_MachineLearning_OnRamp_Certification.pdf",
+          "type": "pdf",
+          "category": ["matlab"],
+          "issuer": "MathWorks",
+          "badges": ["Issuer: MathWorks"]
+        }
+      ]
+    },
+
+    {
+      "id": "lean",
+      "title": "Lean / Business",
+      "order": 110,
+      "items": [
+        {
+          "title": "Lean Six Sigma: White Belt",
+          "file": "Lean_Six_Sigma_White_Belt-348043276.pdf",
+          "type": "pdf",
+          "category": ["lean", "six-sigma"],
+          "issuer": "CSSC / LinkedIn",
+          "badges": ["Issuer: CSSC / LinkedIn"]
+        },
+        {
+          "title": "Process Improvement: Foundations",
+          "file": "CertificateOfCompletion_Process Improvement Foundations.pdf",
+          "type": "pdf",
+          "category": ["lean"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        },
+        {
+          "title": "Business Management Essentials (Certified)",
+          "file": "Business_Management_Essentials_Certified-348043411.pdf",
+          "type": "pdf",
+          "category": ["lean"],
+          "issuer": "LinkedIn Learning",
+          "badges": ["Issuer: LinkedIn Learning"]
+        }
+      ]
+    },
+
+    {
+      "id": "safety",
+      "title": "Safety",
+      "order": 120,
+      "items": [
+        {
+          "title": "OSHA 10-Hour: Health & Safety",
+          "file": "OSHA_10_Hour_Health_&_Safety.png",
+          "type": "image",
+          "category": ["safety"],
+          "issuer": "OSHA",
+          "badges": ["Issuer: OSHA"]
+        }
+      ]
+    },
+
+    {
+      "id": "memberships",
+      "title": "Professional Memberships",
+      "order": 130,
+      "items": [
+        {
+          "title": "ASME — Membership Certificate",
+          "file": "ASME-membership-certificate.pdf",
+          "type": "pdf",
+          "category": ["memberships"],
+          "issuer": "ASME",
+          "badges": ["Issuer: ASME"]
+        },
+        {
+          "title": "SME — Membership Certificate",
+          "file": "SocietyOfManufacturingEngineers_SME_MatthewDubea.pdf",
+          "type": "pdf",
+          "category": ["memberships"],
+          "issuer": "SME",
+          "badges": ["Issuer: SME"]
+        },
+        {
+          "title": "LES — Membership Certificate",
+          "file": "LES_Membership_Cert_Matthew_Dubea.pdf",
+          "type": "pdf",
+          "category": ["memberships"],
+          "issuer": "LES",
+          "badges": ["Issuer: LES"]
+        }
+      ]
+    }
+  ]
+}
