@@ -3,8 +3,8 @@
     {
       "title": "Senior Trike Project",
       "icon": "🏁",
-      "url": "https://mtdubea.github.io/trike",
-      "description": "Competition trike engineered end-to-end: CAD + FEA of a 4130/1018 steel frame, TIG welding and machining, drivetrain optimization, and DFM/DFA changes that cut assembly time and reduced BOM cost while preserving safety factors.",
+      "url": "trike/",
+      "description": "Competition trike engineered end-to-end: CAD + FEA of a 4130/1018 steel frame, TIG welding & machining, drivetrain optimization, and DFM/DFA changes that cut assembly time and reduced BOM cost while preserving safety factors.",
       "category": "Mechanical",
       "tags": ["CAD", "FEA", "DFM/DFA", "Manufacturing", "Welding"],
       "year": 2025,
@@ -18,7 +18,7 @@
     {
       "title": "Mechatronics Sensor Payload",
       "icon": "🛰️",
-      "url": "https://mtdubea.github.io/mechatronics",
+      "url": "mechatronics/",
       "description": "Multi-sensor payload for a UAV: IMU, temperature, and distance sensing; PWM motor/servo control; PID tuning to minimize overshoot; C++/Python logic; safe states and telemetry validated in field tests.",
       "category": "Mechatronics",
       "tags": ["Embedded", "Sensors", "Control", "PID", "C++", "Python", "PWM"],
@@ -33,7 +33,7 @@
     {
       "title": "Autonomous Rescue Robot",
       "icon": "🤖",
-      "url": "https://mtdubea.github.io/robot",
+      "url": "robot/",
       "description": "Autonomous ground robot that navigates to and retrieves targets using ultrasonic and IR sensing with a Python control stack. Modular hook/actuator, robust behaviors, and reliability proven on obstacle courses.",
       "category": "Autonomous Systems",
       "tags": ["Robotics", "Python", "Autonomy", "Ultrasonic", "Infrared", "Mechanisms"],
@@ -48,8 +48,8 @@
     {
       "title": "Portfolio Website & Design System",
       "icon": "💻",
-      "url": "https://mtdubea.github.io/",
-      "description": "This responsive portfolio: accessible, mobile-first HTML/CSS/JS with JSON-driven sections and a focus on performance and semantics.",
+      "url": "./",
+      "description": "Responsive portfolio built with accessible, mobile-first HTML/CSS/JS, JSON-driven sections, and a focus on performance and semantics.",
       "category": "Web",
       "tags": ["HTML", "CSS", "Accessibility", "Performance"],
       "year": 2025,
