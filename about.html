@@ -2,21 +2,71 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>About | Matthew Dubea</title>
-  <meta name="description" content="Matthew Dubea — Mechanical Engineer focused on lean manufacturing, process automation, tooling design, and production optimization." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="About Matthew Dubea — Mechanical Engineer focused on CAD/CAE design, lean manufacturing, and process automation. Builder mindset with measurable results." />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#0a66c2" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
   <script defer src="theme.js"></script>
+
+  <!-- Page-scoped styles (only for layout pieces unique to About) -->
+  <style>
+    .about-hero {
+      padding: 2.25em 1em 2em;
+      background: linear-gradient(180deg, #eef5ff 0%, #f7faff 65%, #ffffff 100%);
+      border-bottom: 1px solid #dde7f4;
+    }
+    .profile-card {
+      max-width: 1100px; margin: 0 auto; padding: 1rem;
+      display: grid; grid-template-columns: 160px 1fr; gap: 1.25rem;
+      align-items: center; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+    .profile-photo {
+      width: 160px !important; height: 160px !important;
+      max-width: 160px !important; border-radius: 12px; object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .profile-intro h2 { margin: 0 0 .35rem; font-size: 1.6rem; }
+    .profile-intro p.lead { margin: .25rem 0 0; color: var(--muted); max-width: 65ch; }
+    .profile-cta { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .8rem; }
+    .profile-cta .btn { min-height: 40px; }
+
+    @media (max-width: 720px) {
+      .profile-card { grid-template-columns: 1fr; text-align: center; }
+      .profile-photo { margin: 0 auto; border-radius: 50%; }
+      .profile-intro p.lead { margin-left: auto; margin-right: auto; }
+      .profile-cta { justify-content: center; }
+    }
+
+    /* About grid uses the same visual language as the home "rails" */
+    .about-shell {
+      display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+      gap: 1.2rem; max-width: 1200px; margin: 1rem auto 2.5rem; padding: 0 1rem;
+      align-items: start;
+    }
+    @media (max-width: 1024px) { .about-shell { grid-template-columns: 1fr; } }
+
+    .pill-row { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem }
+    .pill { padding:.32rem .65rem; border:1px solid var(--border); border-radius:999px; background:var(--surface-2); font-size:.85rem; }
+    .list-tight { margin:.25rem 0 0; padding-left:1.1rem; }
+    .list-tight li { margin:.25rem 0; }
+    .win { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:.65rem .75rem; }
+    .win + .win { margin-top:.6rem; }
+  </style>
 </head>
 
 <body class="fade-in">
+  <!-- Header -->
   <header class="site-header">
     <div class="brand">
       <h1>Matthew Dubea</h1>
       <p class="tagline">Mechanical Engineer · Design (CAD/CAE) · Lean Manufacturing · Process Automation</p>
     </div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a class="active" href="about.html" aria-current="page">About</a></li>
@@ -27,58 +77,138 @@
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <img src="assets/images/profile-headshot.jpg" alt="Headshot of Matthew Dubea" class="hero-headshot" />
-      <span class="kicker">About Me</span>
-      <h2>Mechanical Engineer — hands-on builder, systems thinker</h2>
-
-      <p class="lead">
-        I’m a mechanical engineer from Louisiana who is equally at home on the shop floor and in CAD/CAE. I specialize in manufacturable design, lean workflows, and practical automation that removes friction from production—using Python, Power BI, and robust documentation to keep teams moving fast with confidence.
-      </p>
-      <p class="lead">
-        I like breaking complex problems into simple, reliable systems: tooling and fixtures that assemble faster, processes that produce fewer defects, and dashboards that surface the right signals. I’m currently deepening my CAE stack (SOLIDWORKS, AutoCAD, Siemens NX), building small automations, and preparing for the FE Mechanical exam (Oct 2025).
-      </p>
-
-      <div class="about-block about-cols">
-        <div class="about-card">
-          <h4>Currently</h4>
-          <ul class="about-list">
-            <li>📚 <strong>FE Mechanical exam</strong> scheduled for <strong>October 2025</strong>.</li>
-            <li>🧰 Automating BOM/ECN/reporting with <strong>Python</strong> + <strong>Power BI</strong>.</li>
-            <li>🧪 Sharpening advanced <strong>GD&amp;T</strong> and FEA workflows for production reliability.</li>
-          </ul>
+  <!-- About hero -->
+  <section class="about-hero">
+    <div class="profile-card">
+      <!-- 🔁 Use a different photo just for this page -->
+      <!-- Put your new image at assets/images/about-headshot.jpg -->
+      <img
+        src="assets/images/about-headshot.jpg"
+        alt="Matthew Dubea"
+        class="profile-photo"
+        width="160" height="160"
+        loading="eager" decoding="async" fetchpriority="high"
+      />
+      <div class="profile-intro">
+        <h2>Engineer who ships real hardware—and improves how it gets built</h2>
+        <p class="lead">
+          I design parts, tools, and processes that hold up on the floor: clean CAD/CAE, practical fixtures,
+          clear drawings, and small automations that remove friction from production. I like turning tribal knowledge
+          into standards, dashboards, and checklists that raise the bar for everyone.
+        </p>
+        <div class="profile-cta">
+          <a class="btn primary" href="resume.html">📄 View Resume</a>
+          <a class="btn outline" href="media/certifications.html">🎓 Certifications</a>
+          <a class="btn outline" href="reports.html">📘 Project Reports</a>
+          <a class="btn outline" href="mailto:mattdubea@outlook.com">✉️ Contact</a>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="about-card">
-          <h4>Certifications (highlights)</h4>
-          <ul class="about-list">
-            <li>🛠️ <strong>CSWA</strong> — Certified SOLIDWORKS Associate</li>
-            <li>📈 <strong>Six Sigma Black Belt (CSSC)</strong></li>
-            <li>📘 <strong>ASME</strong> — B31.12 Hydrogen Piping (Intro/Advanced), BPVC Sec V (NDE), GD&amp;T</li>
-            <li>💡 Power&nbsp;BI, SAP&nbsp;MM, PCAP-Python, MATLAB Onramp, OSHA-10</li>
-          </ul>
-          <p class="statline"><a href="media/certifications.html">See all credentials</a>.</p>
-        </div>
-
-        <div class="about-card">
-          <h4>Background</h4>
-          <ul class="about-list">
-            <li>🎓 B.S. Mechanical Engineering — University of Louisiana at Lafayette</li>
-            <li>🌍 Study Abroad: UCL London (2024) — Energy Systems &amp; Design</li>
-            <li>🔧 Projects: race trike, mechatronics payloads (C++/Python), autonomous robots</li>
-          </ul>
-          <p class="statline">Focus: reliable designs, measurable improvements, clean documentation.</p>
+  <!-- Main content -->
+  <main class="about-shell">
+    <!-- Left rail -->
+    <aside class="rail" aria-label="Quick facts">
+      <div class="rail-card">
+        <h4>Quick Facts</h4>
+        <ul class="list-tight">
+          <li>🎯 Focus: DFM/DFA, fixtures & tooling, throughput, reliability</li>
+          <li>🧮 CAD/CAE: SOLIDWORKS (CSWA), FEA workflows</li>
+          <li>🤖 Automation: Python scripts, Power&nbsp;BI dashboards</li>
+          <li>📐 Quality: GD&amp;T, drawing clarity, FMEA habits</li>
+          <li>🧪 FE Mechanical: <strong>Oct&nbsp;2025</strong> (scheduled)</li>
+        </ul>
+        <div class="pill-row" style="margin-top:.75rem">
+          <span class="pill">Welding &amp; fab</span>
+          <span class="pill">Machining</span>
+          <span class="pill">ECN/BOM</span>
+          <span class="pill">Metrology</span>
         </div>
       </div>
 
-      <h3 style="margin-top:1.6rem;">🔗 Featured Links</h3>
-      <ul class="skill-tags" style="justify-content: center; margin-top: 1em;">
-        <li><a href="https://github.com/mtdubea" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://louisiana.joinhandshake.com/profiles/pmtbtq" target="_blank" rel="noopener">Handshake</a></li>
-        <li><a href="media/certifications.html">Certifications</a></li>
-      </ul>
+      <div class="rail-card">
+        <h4>Toolchain</h4>
+        <div class="pill-row">
+          <span class="pill">SOLIDWORKS</span>
+          <span class="pill">AutoCAD</span>
+          <span class="pill">Siemens&nbsp;NX</span>
+          <span class="pill">MATLAB</span>
+          <span class="pill">Python</span>
+          <span class="pill">Power&nbsp;BI</span>
+          <span class="pill">SAP</span>
+        </div>
+      </div>
+
+      <div class="rail-card">
+        <h4>Certifications (select)</h4>
+        <ul class="list-tight">
+          <li>CSWA — SOLIDWORKS Associate</li>
+          <li>Six Sigma Black Belt (CSSC)</li>
+          <li>ASME coursework (B31.12, BPVC V, GD&amp;T)</li>
+          <li>PCAP–Python, SAP MM, MATLAB Onramp, OSHA-10</li>
+        </ul>
+        <p class="muted" style="margin-top:.4rem"><a href="media/certifications.html">See all 39+ credentials</a></p>
+      </div>
+    </aside>
+
+    <!-- Right content -->
+    <section class="center">
+      <article class="rail-card">
+        <h4>What I Do</h4>
+        <ul class="list-tight">
+          <li><strong>Design for manufacturability:</strong> parts, assemblies, and fixtures that build fast and repeatably.</li>
+          <li><strong>Process optimization:</strong> remove waste, reduce setup, simplify documentation.</li>
+          <li><strong>Quality by design:</strong> clear GD&amp;T, inspection intent, and failure-mode thinking from day one.</li>
+          <li><strong>Lightweight automation:</strong> Python + Power&nbsp;BI to turn manual steps into simple tools and live metrics.</li>
+        </ul>
+      </article>
+
+      <article class="rail-card">
+        <h4>Recent Wins</h4>
+        <div class="win">
+          ⚙️ <strong>Racing Trike:</strong> designed &amp; built 4130/1018 steel frame, TIG welded and machined; drivetrain tweaks +
+          DFM/DFA changes <em>cut assembly time</em> and reduced BOM cost while preserving factors of safety.
+        </div>
+        <div class="win">
+          🛰️ <strong>Mechatronics Payload:</strong> multi-sensor integration with IMU/thermal/distance; PWM motor/servo control; tuned PID
+          to reduce overshoot; C++/Python logic with telemetry for reliable field tests.
+        </div>
+        <div class="win">
+          🤖 <strong>Autonomous Robot:</strong> Python control stack with ultrasonic/IR sensing; modular retrieval mechanism; performance
+          validated across obstacle courses.
+        </div>
+      </article>
+
+      <article class="rail-card">
+        <h4>How I Work</h4>
+        <ul class="list-tight">
+          <li>Start with constraints and failure modes. Design for test and serviceability.</li>
+          <li>Prefer simple mechanisms, clear drawings, and standard hardware.</li>
+          <li>Instrument processes—then remove steps or automate them.</li>
+          <li>Document as I build: build sheets, checklists, and lightweight dashboards.</li>
+        </ul>
+      </article>
+
+      <article class="rail-card">
+        <h4>Education &amp; Development</h4>
+        <ul class="list-tight">
+          <li>B.S. Mechanical Engineering — University of Louisiana at Lafayette</li>
+          <li>Study Abroad: UCL London (2024) — Energy Systems &amp; Design</li>
+          <li>Continuing: GD&amp;T depth, FEA repetition, scripting for engineering workflows</li>
+        </ul>
+      </article>
+
+      <article class="rail-card">
+        <h4>Links</h4>
+        <div class="pill-row">
+          <a class="pill" href="https://github.com/mtdubea" target="_blank" rel="noopener">GitHub</a>
+          <a class="pill" href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="pill" href="media/certifications.html">Certifications</a>
+          <a class="pill" href="reports.html">Project Reports</a>
+          <a class="pill" href="resume.html">Resume</a>
+        </div>
+      </article>
     </section>
   </main>
 
