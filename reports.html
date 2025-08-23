@@ -2,12 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
   <title>Reports | Matthew Dubea</title>
-  <meta name="description" content="Download engineering project reports by Matthew Dubea, including final documentation and technical writeups." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Download engineering project reports by Matthew Dubea: complete technical documentation, design choices, analyses, results, and lessons learned." />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#0a66c2" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- theme.js is safe to include; there is no dark-mode toggle on this page -->
   <script defer src="theme.js"></script>
+
+  <!-- Structured data: ItemList of reports -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Engineering Project Reports",
+    "itemListElement": [
+      {
+        "@type": "CreativeWork",
+        "position": 1,
+        "name": "Senior Trike Final Report",
+        "url": "https://mtdubea.github.io/media/reports/Trike_Final_Report.pdf",
+        "description": "Complete engineering documentation of the Acadiana 500 trike build and race analysis."
+      },
+      {
+        "@type": "CreativeWork",
+        "position": 2,
+        "name": "Mechatronics Payload Report",
+        "url": "https://mtdubea.github.io/media/reports/Mechatronics_Report.pdf",
+        "description": "Design rationale, sensor integration, wiring diagrams, and logic behind an autonomous payload."
+      },
+      {
+        "@type": "CreativeWork",
+        "position": 3,
+        "name": "Avatar Robot Project Report",
+        "url": "https://mtdubea.github.io/media/reports/Robot_Report.pdf",
+        "description": "Python-controlled system write-up including task automation, mechanical design, and scoring evaluation."
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Page-local polish to complement style.css */
+    .reports-hero p { max-width: 70ch; margin: 0 auto; }
+    .reports-toolbar {
+      display:flex; justify-content:center; align-items:center; gap:.5rem;
+      padding: 1rem 1rem 0; flex-wrap:wrap;
+    }
+    #reportSearch {
+      width:min(680px, 90vw);
+      padding:.5rem .75rem;
+      border:1px solid var(--border);
+      border-radius:.6rem;
+      font-size:1rem;
+      background: var(--surface);
+      color: inherit;
+    }
+    #reportCount { color: var(--muted); }
+    .reports-grid {
+      padding: 1.25rem 1.25rem 2rem;
+      display:grid; gap:1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      max-width: 1200px; margin: 0 auto;
+    }
+    .card h3 { display:flex; align-items:center; gap:.5rem; }
+    .card ul {
+      margin:.5rem 0 0 1rem;
+      padding:0; color:var(--muted);
+    }
+    .card ul li { margin:.15rem 0; }
+    .card .cta-row { margin-top:.75rem; gap:.6rem; flex-wrap:wrap; }
+  </style>
 </head>
 
 <body class="fade-in">
@@ -16,60 +86,125 @@
       <h1>Matthew Dubea</h1>
       <p class="tagline">Mechanical Engineer · Design · Fabrication · Automation</p>
     </div>
-    <nav class="site-nav">
+    <nav class="site-nav" aria-label="Primary">
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a class="active" href="reports.html">Reports</a></li>
+        <li><a class="active" href="reports.html" aria-current="page">Reports</a></li>
         <li><a href="media/certifications.html">Certifications</a></li>
-        <li class="theme-toggle">
-          <button id="darkModeToggle" title="Toggle Dark Mode">🌓</button>
-        </li>
+        <!-- Dark-mode toggle intentionally removed on this page -->
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h2>📘 Project Reports</h2>
-      <p style="max-width: 720px; margin: 0 auto;">
-        Browse full technical documentation from my most intensive engineering projects. These reports include detailed analyses, design choices, results, and key takeaways from design through delivery.
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero reports-hero" aria-labelledby="reports-title">
+      <h2 id="reports-title">📘 Project Reports</h2>
+      <p>
+        Full technical documentation from my most intensive engineering projects.
+        Each report summarizes objectives, requirements, design decisions, analysis and validation,
+        test results, and lessons learned—reflecting an end-to-end engineering methodology.
       </p>
     </section>
 
-    <section class="project-grid">
-      <div class="card" data-title="Trike Report" data-category="Design">
+    <!-- Tiny toolbar: search + count -->
+    <div class="reports-toolbar" role="region" aria-label="Search reports">
+      <label for="reportSearch" class="visually-hidden" style="position:absolute;left:-9999px;">Search reports</label>
+      <input id="reportSearch" type="search" inputmode="search" autocomplete="off"
+             placeholder="🔍 Search by title, topic, course, or keywords…" />
+      <span id="reportCount" aria-live="polite"></span>
+    </div>
+
+    <!-- Cards -->
+    <section class="reports-grid" aria-label="Report list">
+      <!-- Trike -->
+      <article class="card"
+               data-title="Senior Trike Final Report"
+               data-tags="trike design manufacturing fea testing race">
         <h3>🏁 Senior Trike Final Report</h3>
         <p>Complete engineering documentation of the Acadiana 500 trike build and race analysis.</p>
+        <ul>
+          <li>CAD/FEA, weld procedures, CNC workflows</li>
+          <li>DFM/DFA, risk analysis (PFMEA), validation testing</li>
+          <li>Bill of Materials, cost/weight trade-offs, race metrics</li>
+        </ul>
         <div class="cta-row">
-          <a class="btn primary" href="media/Trike_Final_Report.pdf" target="_blank" download>⬇️ Download PDF</a>
-          <a class="btn outline" href="media/Trike_Final_Report.pdf" target="_blank">🔍 View</a>
+          <a class="btn primary" href="media/reports/Trike_Final_Report.pdf" download>📥 Download PDF</a>
+          <a class="btn outline" href="media/reports/Trike_Final_Report.pdf" target="_blank" rel="noopener">🔎 View</a>
         </div>
-      </div>
+      </article>
 
-      <div class="card" data-title="Mechatronics Report" data-category="Mechatronics">
+      <!-- Mechatronics -->
+      <article class="card"
+               data-title="Mechatronics Payload Report"
+               data-tags="mechatronics sensors control pwm pid integration wiring">
         <h3>🛰️ Mechatronics Payload Report</h3>
-        <p>Design rationale, sensor integration, wiring diagrams, and logic behind autonomous drone system.</p>
+        <p>Design rationale, sensor integration, wiring diagrams, and logic behind an autonomous payload.</p>
+        <ul>
+          <li>Sensor fusion (IMU, thermal, distance), PWM/servo logic</li>
+          <li>Control design: PID and signal conditioning</li>
+          <li>System diagrams, test plans, firmware notes</li>
+        </ul>
         <div class="cta-row">
-          <a class="btn primary" href="media/Mechatronics_Report.pdf" target="_blank" download>⬇️ Download PDF</a>
-          <a class="btn outline" href="media/Mechatronics_Report.pdf" target="_blank">🔍 View</a>
+          <a class="btn primary" href="media/reports/Mechatronics_Report.pdf" download>📥 Download PDF</a>
+          <a class="btn outline" href="media/reports/Mechatronics_Report.pdf" target="_blank" rel="noopener">🔎 View</a>
         </div>
-      </div>
+      </article>
 
-      <div class="card" data-title="Robot Report" data-category="Robotics">
+      <!-- Robot -->
+      <article class="card"
+               data-title="Avatar Robot Project Report"
+               data-tags="robot automation python control autonomy lidar ultrasonic">
         <h3>🤖 Avatar Robot Project Report</h3>
-        <p>Python-controlled system writeup including task automation, mechanical design, and scoring evaluation.</p>
+        <p>Python-controlled system write-up including task automation, mechanical design, and scoring evaluation.</p>
+        <ul>
+          <li>Architecture, control flow, and safety interlocks</li>
+          <li>Mechanism design and integration constraints</li>
+          <li>Performance results and improvement roadmap</li>
+        </ul>
         <div class="cta-row">
-          <a class="btn primary" href="media/Robot_Report.pdf" target="_blank" download>⬇️ Download PDF</a>
-          <a class="btn outline" href="media/Robot_Report.pdf" target="_blank">🔍 View</a>
+          <a class="btn primary" href="media/reports/Robot_Report.pdf" download>📥 Download PDF</a>
+          <a class="btn outline" href="media/reports/Robot_Report.pdf" target="_blank" rel="noopener">🔎 View</a>
         </div>
-      </div>
+      </article>
     </section>
+
+    <noscript>
+      <p style="text-align:center;color:var(--muted);max-width:60ch;margin:1rem auto;">
+        JavaScript is disabled. Use the View or Download buttons above to access each report.
+      </p>
+    </noscript>
   </main>
 
   <footer>
-    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mtdubea@gmail.com">mattdubea@outlook.com</a></p>
+    <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
+
+  <script>
+    // Lightweight client-side search across titles/tags/text
+    const input = document.getElementById('reportSearch');
+    const count = document.getElementById('reportCount');
+    const cards = Array.from(document.querySelectorAll('.reports-grid .card'));
+
+    function applyFilter() {
+      const q = (input.value || '').trim().toLowerCase();
+      let visible = 0;
+      cards.forEach(card => {
+        const hay =
+          (card.dataset.title || '').toLowerCase() + ' ' +
+          (card.dataset.tags || '').toLowerCase() + ' ' +
+          card.textContent.toLowerCase();
+        const show = !q || hay.includes(q);
+        card.style.display = show ? 'block' : 'none';
+        if (show) visible++;
+      });
+      count.textContent = q
+        ? (visible ? `${visible} shown` : 'No results')
+        : '';
+    }
+    input.addEventListener('input', applyFilter);
+  </script>
 </body>
 </html>
