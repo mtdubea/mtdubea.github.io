@@ -2,57 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Certifications & Training | Matthew Dubea</title>
+
+  <link rel="canonical" href="https://mtdubea.github.io/media/certifications.html" />
   <meta name="description" content="Verified certifications, technical training, and professional memberships for Matthew Dubea." />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
+
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="../style.css" />
   <script defer src="../theme.js"></script>
-
-  <style>
-    /* Page-local cosmetics that complement style.css */
-    .toolbar-sticky {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: var(--bg-light);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: .5rem;
-    }
-    body.dark-mode .toolbar-sticky {
-      background: var(--bg-dark);
-      border-bottom: 1px solid var(--border-dark);
-    }
-    .hint {
-      text-align: center; color: var(--muted); margin: .5rem 0 0;
-      font-size: .95rem;
-    }
-
-    /* When we disable embeds on mobile, show a neutral doc placeholder */
-    .no-embed .cert-card .media {
-      background: linear-gradient(180deg, #f7f7f7, #eee);
-      display: grid; place-items: center;
-    }
-    .no-embed .cert-card .media::after {
-      content: "Document preview not available on mobile";
-      font-size: .85rem; color: var(--muted);
-    }
-
-    /* Make the lightbox slightly larger on desktops */
-    #lightbox.open #lightbox-frame { width: 90vw; height: 86vh; }
-
-    /* Shimmer for lazy <object> PDFs (style.css already handles img/embed/iframe) */
-    object.media[data-src]:not([data]) {
-      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 37%, #f3f4f6 63%);
-      background-size: 400% 100%;
-      animation: shimmer 1.2s infinite linear;
-    }
-  </style>
 </head>
 
 <body class="fade-in">
@@ -68,35 +28,26 @@
         <li><a href="../resume.html">Resume</a></li>
         <li><a href="../reports.html">Reports</a></li>
         <li><a class="active" href="certifications.html" aria-current="page">Certifications</a></li>
-        <li class="theme-toggle"><button id="darkModeToggle" title="Toggle color theme" aria-label="Toggle color theme">🖥️</button></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="hero" style="padding-bottom:1rem">
-      <h2>Certifications & Training</h2>
-      <p>All certifications are from verified technical training, professional associations, and engineering coursework.</p>
-
-      <!-- Quick index (filled after JSON) -->
+    <section class="hero hero--tight">
+      <h2>Certifications &amp; Training</h2>
+      <p>Credentials from verified training providers, standards bodies, and professional associations.</p>
       <nav id="sectionIndex" class="section-index" aria-label="Section index"></nav>
     </section>
 
-    <!-- Sticky toolbar: search + filters -->
     <div class="toolbar-sticky">
       <div class="searchbar" role="search" aria-label="Search certifications">
         <input id="certSearch" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
-        <span id="certCount" aria-live="polite" style="margin-left:.5rem;"></span>
+        <span id="certCount" aria-live="polite" class="search-count"></span>
       </div>
       <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
     </div>
     <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
 
-    <!-- Inline error surface (filled if JSON cannot load) -->
-    <p id="errorBox" hidden style="text-align:center;color:var(--muted);margin:.5rem 0;"></p>
-
-    <!-- Sections target (rendered from JSON) -->
     <div id="certSections" style="margin-top:.75rem"></div>
   </main>
 
@@ -129,56 +80,29 @@
     const indexHost    = $('#sectionIndex');
     const searchInput  = $('#certSearch');
     const resultCount  = $('#certCount');
-    const errorBox     = $('#errorBox');
 
-    // ======= Fetch JSON with robust path fallback =======
-    (async function loadAndRender() {
-      const candidates = [
-        '/certs.json',              // root (recommended)
-        'certs.json',               // same folder (if you keep it beside this file)
-        '../certs.json',            // parent
-        '/media/certs.json'         // legacy path
-      ];
+    // Robust path so it works whether certs.json is at root or in /media
+    const CERTS_PATH = location.pathname.includes('/media/') ? '../certs.json' : 'certs.json';
 
-      let data = null, lastErr = null;
+    // ======= Fetch & render =======
+    fetch(CERTS_PATH, { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(json => render(json))
+      .catch(err => {
+        console.error('Failed to load certs.json', err);
+        sectionsHost.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v2H3zm3 4h12v2H6zm-3 4h18v2H3zm3 4h12v2H6z"></path></svg>
+            <p>Unable to load certifications right now.</p>
+          </div>`;
+      });
 
-      for (const url of candidates) {
-        try {
-          const res = await fetch(url, { cache: 'no-store' });
-          if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
-          data = await res.json();
-          break;
-        } catch (e) {
-          lastErr = e;
-        }
-      }
-
-      if (!data) {
-        showError(`Could not load certs.json → ${String(lastErr?.message || lastErr || 'Unknown error')}`);
-        sectionsHost.innerHTML = '<p style="text-align:center;color:var(--muted)">Unable to load certifications right now.</p>';
-        return;
-      }
-
-      try {
-        render(data);
-      } catch (e) {
-        showError(`Render error: ${String(e.message || e)}`);
-      }
-    })();
-
-    function showError(msg) {
-      if (!errorBox) return;
-      errorBox.hidden = false;
-      errorBox.textContent = msg;
-    }
-
-    // ======= Render =======
     function render(json) {
       const groups = (json.groups || []).sort((a,b) => (a.order || 0) - (b.order || 0));
 
       // Section index with counts
       indexHost.innerHTML = groups
-        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span style="color:var(--muted)">(${(g.items||[]).length})</span></a>`)
+        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span class="muted">(${(g.items||[]).length})</span></a>`)
         .join(' · ');
 
       // Filters + deep link
@@ -231,8 +155,8 @@
         } else {
           media = `
             <object class="media" type="application/pdf" data="" data-src="${file}">
-              <div style="padding:1rem;text-align:center">
-                <p style="margin:.25rem 0 .5rem;color:var(--muted)">Preview failed to load.</p>
+              <div class="media-fallback">
+                <p class="muted">Preview failed to load.</p>
                 ${openBtn}
               </div>
             </object>`;
@@ -265,13 +189,8 @@
             const src = el.getAttribute('data-src');
             if (src && !el.getAttribute('data')) {
               el.setAttribute('data', src);
-              // If the PDF plug-in errors, show the inline fallback
               el.addEventListener('error', () => {
-                el.outerHTML = `
-                  <div style="padding:1rem;text-align:center">
-                    <p style="margin:.25rem 0 .5rem;color:var(--muted)">Preview unavailable.</p>
-                    <a class="btn outline" href="${src}" target="_blank" rel="noopener">Open</a>
-                  </div>`;
+                el.outerHTML = `<div class="media-fallback"><p class="muted">Preview unavailable.</p><a class="btn outline" href="${src}" target="_blank" rel="noopener">Open</a></div>`;
               });
               io.unobserve(el);
             }
@@ -314,7 +233,6 @@
       buttons.forEach(btn => {
         btn.addEventListener('click', () => {
           active = btn.dataset.filter.toLowerCase();
-          // update URL (no navigation)
           const url = new URL(location.href);
           if (active === 'all') url.searchParams.delete('filter');
           else url.searchParams.set('filter', active);
@@ -326,13 +244,11 @@
         });
       });
 
-      // initial application
       apply((searchInput?.value || '').toLowerCase());
     }
 
     function setupSearch() {
       searchInput?.addEventListener('input', () => {
-        // re-apply current filter after text changes
         const activeBtn = $('#filters button.active') || $('#filters button[data-filter="all"]');
         activeBtn?.click();
       });
@@ -389,11 +305,10 @@
       closeBtn.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
       lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 
-      // Only cards (not the explicit Open/Download links) open the lightbox
       document.addEventListener('click', e => {
         const card = e.target.closest('.cert-card');
         if (!card) return;
-        if (e.target.closest('a')) return; // let links work
+        if (e.target.closest('a')) return;
         const src = card.getAttribute('data-file');
         if (src) openLightbox(src);
       });
@@ -403,5 +318,20 @@
       return (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
     }
   </script>
+
+  <!-- Page-local polish that complements style.css -->
+  <style>
+    .toolbar-sticky {
+      position: sticky; top: 0; z-index: 30;
+      background: var(--bg-light);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: .5rem;
+    }
+    .hint { text-align: center; color: var(--muted); margin: .5rem 0 0; font-size: .95rem; }
+    .no-embed .cert-card .media { background: linear-gradient(180deg, #f7f7f7, #eee); display: grid; place-items: center; }
+    .no-embed .cert-card .media::after { content: "Document preview not available on mobile"; font-size: .85rem; color: var(--muted); }
+    #lightbox.open #lightbox-frame { width: 90vw; height: 86vh; }
+    .media-fallback { padding:1rem; text-align:center; }
+  </style>
 </body>
 </html>
