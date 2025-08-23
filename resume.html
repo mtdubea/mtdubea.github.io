@@ -6,7 +6,7 @@
   <title>Resume | Matthew Dubea</title>
 
   <link rel="canonical" href="https://mtdubea.github.io/resume.html" />
-  <meta name="description" content="Resume for Matthew Dubea — Mechanical Engineer focused on manufacturing, reliability, DFM/DFA, and practical automation." />
+  <meta name="description" content="Resume for Matthew Dubea — Mechanical Engineer focused on manufacturable design, lean process optimization, and practical automation." />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
 
@@ -14,61 +14,53 @@
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <script defer src="theme.js"></script>
 
-  <!-- Page-scoped polish (kept local so you can paste this file as-is) -->
+  <!-- Page-scoped enhancements -->
   <style>
-    /* Tight hero for resume */
-    .hero--tight { padding-block: 2.2rem 1.2rem; }
-    .hero .contact-cta { display:flex; flex-wrap:wrap; gap:.6rem; justify-content:center; margin-top:.6rem; }
-    .hero .contact-cta a { min-height:40px; display:inline-flex; align-items:center; gap:.4rem; padding:.55rem .9rem; }
+    .edge-grad{position:fixed;top:0;bottom:0;width:28vw;pointer-events:none;z-index:-1;filter:blur(30px);opacity:.45}
+    .edge-left{left:-18vw;background:radial-gradient(60% 50% at 70% 40%,#cfe6ff 0%,transparent 70%)}
+    .edge-right{right:-18vw;background:radial-gradient(60% 50% at 30% 60%,#e4ecff 0%,transparent 70%)}
 
-    /* Resume grid + cards */
-    .resume-page { max-width: 1100px; margin: 0 auto; padding-inline: 1rem; }
-    .resume-grid { display: grid; gap: 1rem; }
-    .resume-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px var(--shadow);
-      padding: 1rem 1.1rem;
+    .hero--tight{padding-block:1.8rem 1rem;text-align:center}
+    .hero .contact-cta{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-top:.6rem}
+    .hero .contact-cta a{min-height:40px;display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .9rem}
+
+    .resume-page{max-width:1100px;margin:0 auto;padding-inline:1rem}
+    .resume-grid{display:grid;gap:1rem}
+    .resume-section{
+      background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;
+      box-shadow:0 10px 30px var(--shadow);
     }
-    .resume-section h3 { margin: 0 0 .5rem; }
-    .resume-card {
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: .8rem .9rem;
-      background: var(--surface-2);
-      margin-top: .6rem;
-    }
-    body.dark-mode .resume-section { background: var(--surface-dark); border-color: var(--border-dark); }
-    body.dark-mode .resume-card { background: var(--surface-dark-2); }
+    .resume-section h3{margin:.1rem 0 .6rem}
+    .resume-card{border:1px solid var(--border);border-radius:10px;background:var(--surface-2);padding:.85rem .95rem;margin-top:.55rem}
+    body.dark-mode .resume-section{background:var(--surface-dark);border-color:var(--border-dark)}
+    body.dark-mode .resume-card{background:var(--surface-dark-2)}
 
-    .cols-2 { columns: 2; column-gap: 1.25rem; margin: .4rem 0 0; }
-    .cols-2 li { break-inside: avoid; margin: .25rem 0; }
-    @media (max-width: 820px) { .cols-2 { columns: 1; } }
+    .cols-2{columns:2;column-gap:1.25rem;margin:.3rem 0 0}
+    .cols-2 li{break-inside:avoid;margin:.25rem 0}
+    @media (max-width:860px){ .cols-2{columns:1} }
 
-    /* Experience layout */
-    .xp-grid { display:grid; gap:.75rem; grid-template-columns: repeat(2, minmax(0,1fr)); }
-    @media (max-width: 900px) { .xp-grid { grid-template-columns: 1fr; } }
-    .xp-item h4 { margin: 0 0 .15rem; }
-    .xp-item .meta { color: var(--muted); font-size: .92rem; margin-bottom: .35rem; }
+    .xp-grid{display:grid;gap:.75rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+    @media (max-width:960px){ .xp-grid{grid-template-columns:1fr} }
+    .xp-item h4{margin:0 0 .15rem}
+    .xp-item .meta{color:var(--muted);font-size:.92rem;margin-bottom:.35rem}
 
     /* PDF viewer (desktop only) */
-    .pdf-viewer { border:1px solid var(--border); border-radius: 12px; overflow: hidden; }
-    .pdf-viewer object { width: 100%; height: min(86vh, 1000px); display:block; }
-    .no-embed .pdf-viewer { display:none; }
+    .pdf-viewer{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .pdf-viewer object{width:100%;height:min(86vh,1000px);display:block}
+    .no-embed .pdf-viewer{display:none}
 
     /* Print refinements */
-    @media print {
-      body { background: #fff !important; color: #111 !important; }
-      header.site-header, footer, .edge-grad, .hero .contact-cta, .pdf-viewer { display: none !important; }
-      .resume-page { padding: 0 !important; }
-      .resume-section { break-inside: avoid; page-break-inside: avoid; margin-bottom: .8rem; box-shadow: none; }
-      .resume-card { break-inside: avoid; page-break-inside: avoid; }
+    @media print{
+      body{background:#fff !important;color:#111 !important}
+      header.site-header, .edge-grad, footer, .hero .contact-cta, .pdf-viewer{display:none !important}
+      .resume-page{padding:0 !important}
+      .resume-section{break-inside:avoid;page-break-inside:avoid;margin-bottom:.8rem;box-shadow:none}
+      .resume-card{break-inside:avoid;page-break-inside:avoid}
     }
   </style>
 
   <script>
-    // Disable inline PDF preview on iOS/small screens for reliability.
+    // Disable inline PDF preview on iOS/smaller screens for reliability.
     (function () {
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -79,7 +71,6 @@
 </head>
 
 <body class="fade-in">
-  <!-- Decorative edges from the global theme (kept for consistency) -->
   <div class="edge-grad edge-left" aria-hidden="true"></div>
   <div class="edge-grad edge-right" aria-hidden="true"></div>
 
@@ -103,55 +94,56 @@
     <!-- HERO -->
     <section class="hero hero--tight">
       <h2>Resume</h2>
-      <p class="lead">Matthew Dubea — Mechanical Engineer</p>
+      <p class="lead">Manufacturing-minded Mechanical Engineer focused on reliability, throughput, and cost-effective design.</p>
       <div class="contact-cta">
         <a class="btn outline" href="mailto:mattdubea@outlook.com">✉️ mattdubea@outlook.com</a>
-        <a class="btn outline" href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener" aria-label="LinkedIn profile">🔗 LinkedIn</a>
-        <a class="btn outline" href="https://github.com/mtdubea" target="_blank" rel="noopener" aria-label="GitHub profile">💻 GitHub</a>
+        <a class="btn outline" href="https://www.linkedin.com/in/mdubea/" target="_blank" rel="noopener">🔗 LinkedIn</a>
+        <a class="btn outline" href="https://github.com/mtdubea" target="_blank" rel="noopener">💻 GitHub</a>
       </div>
       <div class="cta-row">
         <a class="btn primary" href="media/resume.pdf" download>⬇️ Download PDF</a>
         <a class="btn outline" href="media/resume.pdf" target="_blank" rel="noopener">🔍 View in new tab</a>
+        <button class="btn outline" onclick="window.print()">🖨️ Print</button>
       </div>
     </section>
 
-    <!-- Optional inline PDF preview (desktop only) -->
-    <section class="resume-section pdf-viewer">
-      <object data="media/resume.pdf" type="application/pdf" aria-label="Resume PDF preview">
-        <div style="padding:1rem; text-align:center">
-          <p class="muted">Inline preview unavailable. Use the buttons above to view or download.</p>
-        </div>
-      </object>
+    <!-- SUMMARY -->
+    <section class="resume-section">
+      <h3>Professional Summary</h3>
+      <p>
+        Hands-on engineer with a bias for manufacturable design and measurable outcomes. Strengths in
+        <strong>tooling/fixtures (DFM/DFA)</strong>, <strong>lean process improvement</strong>, and
+        <strong>automation</strong> using Python + Power&nbsp;BI—supported by disciplined CAD/CAE practice (SOLIDWORKS, AutoCAD, Siemens NX).
+      </p>
     </section>
-    
+
     <!-- CORE COMPETENCIES -->
     <section class="resume-section">
       <h3>Core Competencies</h3>
       <ul class="cols-2">
-        <li>Tooling &amp; fixture design (DFM/DFA)</li>
-        <li>Process &amp; throughput optimization (Lean, DMAIC)</li>
-        <li>Quality &amp; reliability — GD&amp;T, PFMEA, PPAP/FAI exposure</li>
-        <li>Automation — Python, C++, Power&nbsp;BI dashboards</li>
-        <li>CAD/CAE/CAM — SOLIDWORKS (CSWA), CATIA 3DX, AutoCAD (2D/3D), Siemens NX, Fusion 360, Mastercam</li>
-        <li>Simulation — FEA/CFD, MATLAB / Simulink, ANSYS Granta</li>
-        <li>PLM/ERP — SAP (BOM/ECN), Siemens PLM; MS Project, MS Office</li>
-        <li>Process modeling — Aspen Plus</li>
-        <li>BIM (Revit)</li>
+        <li>Tooling &amp; Fixture Design (DFM/DFA)</li>
+        <li>CAD/CAE/CAM — SOLIDWORKS (CSWA), CATIA 3DX, AutoCAD (2D/3D), Siemens NX, Fusion&nbsp;360, MasterCAM</li>
+        <li>Python, C++; MATLAB / Simulink; Power BI; MS Project</li>
+        <li>ERP &amp; Documentation — SAP (BOM/ECN), fabrication drawings, ECN control</li>
+        <li>Process &amp; Throughput Optimization — Lean, DMAIC</li>
+        <li>Quality &amp; Reliability — GD&amp;T, PFMEA, PPAP/FAI exposure</li>
+        <li>Mechatronics &amp; Controls — sensors, PWM/servo, PID tuning</li>
+        <li>Safety &amp; Compliance — OSHA-10; standards awareness (ASME)</li>
       </ul>
     </section>
 
-    <!-- PROJECT HIGHLIGHTS -->
+    <!-- PROJECTS -->
     <section class="resume-section">
       <h3>Selected Engineering Projects</h3>
 
       <div class="resume-card">
-        <h4>Design &amp; Fabrication of Race Tricycle — 1st Place (Acadiana 500)</h4>
+        <h4>Design &amp; Fabrication of Race Tricycle — <em>1st Place (Acadiana 500)</em></h4>
         <ul>
-          <li>3D CAD + FEA of 4130/1018 steel frame; achieved <strong>FOS ≈ 2.2</strong> while meeting performance and safety targets.</li>
-          <li>Applied DFM/DFA to TIG/CNC workflows; <strong>cut assembly time ~25%</strong> and simplified reassembly.</li>
-          <li>Ran PFMEA to mitigate weld-fatigue risk; revised bushings/gussets and weld-prep tolerances.</li>
-          <li>Machined axle, bushings, and CNC seat insert to <strong>±0.005″</strong> tolerance.</li>
-          <li>Reused MTB components to reduce <strong>BOM cost ~60%</strong> and material waste ~40%; total budget <strong>$211.94</strong>.</li>
+          <li>3D CAD + FEA of 4130/1018 frame; achieved <strong>FOS 2.2</strong> within weight targets.</li>
+          <li>DFM/DFA changes to TIG/CNC flow <strong>cut assembly time 25%</strong> and simplified reassembly.</li>
+          <li>PFMEA addressed weld-fatigue risk; revised bushings, gussets, and weld-prep tolerances.</li>
+          <li>Machined axle, bushings, and seat insert to <strong>±0.005″</strong>.</li>
+          <li>Reused MTB components to reduce <strong>BOM cost 60%</strong>; total budget <strong>$211.94</strong>.</li>
         </ul>
         <p class="muted"><a href="trike/" target="_blank" rel="noopener">Project page</a> • <a href="media/Trike_Final_Report.pdf" target="_blank" rel="noopener">Report (PDF)</a></p>
       </div>
@@ -159,17 +151,17 @@
       <div class="resume-card">
         <h4>Multi-Sensor Payload System (UAV)</h4>
         <ul>
-          <li>Arduino + C++/Python logic for auto-release based on temperature/range; integrated on UAV platform.</li>
+          <li>Arduino + C++/Python logic for auto-release using temperature/range; integrated on UAV platform.</li>
           <li>Tuned IMU &amp; thermistor; verified sensor-fusion diagnostics; isolated power rails to prevent resets.</li>
-          <li>Deployed servo/buzzer triggers; authored fabrication drawings and documentation.</li>
+          <li>Deployed servo/buzzer triggers; authored fabrication drawings and assembly documentation.</li>
         </ul>
         <p class="muted"><a href="mechatronics/" target="_blank" rel="noopener">Project page</a> • <a href="media/Mechatronics_Report.pdf" target="_blank" rel="noopener">Report (PDF)</a></p>
       </div>
 
       <div class="resume-card">
-        <h4>Autonomous Rescue Robot — 1st in Design</h4>
+        <h4>Autonomous Rescue Robot — <em>1st in Design</em></h4>
         <ul>
-          <li>Led mechanical design &amp; Python integration from concept to deployment; met spec/test criteria.</li>
+          <li>Led mechanical design &amp; Python integration from concept to field testing.</li>
           <li>Built boom with actuator + solenoid hook; tuned stepper <strong>PID</strong> to reduce overshoot.</li>
           <li>Placed <strong>1st</strong> in judged design; <strong>10th</strong> live due to early collision.</li>
         </ul>
@@ -185,9 +177,9 @@
           <h4>Safelite AutoGlass — Auto Glass Technician</h4>
           <div class="meta">Scott, LA • 2022–2024</div>
           <ul>
-            <li>Replaced <strong>2,600+</strong> windshields with a <strong>98% QA/QC</strong> pass rate; calibrated <strong>1,500+</strong> ADAS systems to OEM specs.</li>
-            <li>Cut cycle time ~<strong>15%</strong> by redesigning tool workflow and layout; drove continuous improvement.</li>
-            <li>Minimized rework by adhering to OEM calibration/install procedures and introducing process checks.</li>
+            <li>Replaced <strong>2,600+</strong> windshields with ~<strong>98% QA/QC</strong> pass rate; calibrated <strong>1,500+</strong> ADAS systems to OEM specs.</li>
+            <li>Cut cycle time ~<strong>15%</strong> by redesigning tool workflow and layout.</li>
+            <li>Reduced rework through adherence to OEM procedures and continuous improvement.</li>
           </ul>
         </div>
 
@@ -195,9 +187,9 @@
           <h4>Ernest P. Breaux Electrical — Electrician / Operator</h4>
           <div class="meta">New Iberia, LA • 2019–2021</div>
           <ul>
-            <li>Installed MV/LV systems for a <strong>34.5 kV</strong> yard; executed ground grid and ~<strong>800 ft</strong> conduit/cable tray routing.</li>
-            <li>Completed underground copper ground grid, erected steel, and routed MV/LV conduit for harmonic-filter yard.</li>
-            <li>Assembled mechanical/electrical components with QC adjustments to meet install deadlines; supported MOC/PSSR/JSA.</li>
+            <li>Installed MV/LV systems for a <strong>34.5&nbsp;kV</strong> yard; completed ground grid and ~<strong>800&nbsp;ft</strong> of conduit/tray routing.</li>
+            <li>Assembled mechanical/electrical components with QC adjustments to meet install deadlines.</li>
+            <li>Logged up-time and supported <strong>MOC / PSSR / JSA</strong> documentation.</li>
           </ul>
         </div>
 
@@ -205,9 +197,8 @@
           <h4>Guy Thibodeaux Air Conditioning — HVAC Installer</h4>
           <div class="meta">Broussard, LA • 2018</div>
           <ul>
-            <li>Installed HVAC systems across 25+ jobs: ductwork, brazed copper lines, thermostats, electrical tie-ins.</li>
-            <li>Charged refrigerants and balanced airflow for optimal performance; verified against mechanical code.</li>
-            <li>Interpreted blueprints to ensure design compliance and clean installation.</li>
+            <li>Installed HVAC systems across 25+ jobs: ductwork, brazed copper lines, thermostats, and electrical tie-ins.</li>
+            <li>Charged refrigerants; balanced airflow and performed start-up checks.</li>
           </ul>
         </div>
 
@@ -215,9 +206,8 @@
           <h4>Chicago Bridge &amp; Iron (CB&amp;I) — Instrument Man / Rodman</h4>
           <div class="meta">Baton Rouge / Plaquemines, LA • 2017–2018</div>
           <ul>
-            <li>Surveyed <strong>500+</strong> equipment pads/compressor foundations to <strong>±1/16″</strong> with total stations &amp; GPS.</li>
-            <li>Verified anchor-bolt layouts and foundation geometry to maintain vibration/performance specifications.</li>
-            <li>Supported rotating-equipment installs during foundation layout, column placement, and pipe-rack integration.</li>
+            <li>Surveyed <strong>500+</strong> equipment pads and compressor foundations to <strong>±1/16″</strong> using total stations &amp; GPS.</li>
+            <li>Delivered as-builts; verified anchor bolt layouts to meet vibration/performance specs.</li>
           </ul>
         </div>
 
@@ -225,9 +215,9 @@
           <h4>Triad Electric &amp; Controls — Electrical Apprentice</h4>
           <div class="meta">Baton Rouge, LA • 2015–2017</div>
           <ul>
-            <li>Installed ~<strong>8,000 ft</strong> of conduit and wired <strong>100+</strong> control panels; maintained ~<strong>98%</strong> QC pass rate with zero safety incidents.</li>
-            <li>Read electrical blueprints; performed terminations, junction-box installs, and NEC-compliant tie-ins.</li>
-            <li>Supported shutdowns, <strong>LOTO</strong> procedures, and turnarounds during major plant outages.</li>
+            <li>Installed ~<strong>8,000&nbsp;ft</strong> of conduit; wired <strong>100+</strong> control panels with ~<strong>98%</strong> QC pass rate.</li>
+            <li>Interpreted electrical drawings; performed terminations and NEC-compliant tie-ins.</li>
+            <li>Supported shutdowns, <strong>LOTO</strong>, and turnarounds during plant outages.</li>
           </ul>
         </div>
       </div>
@@ -237,45 +227,47 @@
     <section class="resume-section">
       <h3>Education</h3>
       <ul>
-        <li><strong>B.S. Mechanical Engineering</strong> — University of Louisiana at Lafayette; Minor in Mathematics, <em>May 2025</em>.</li>
-        <li>UCL, London — Study Abroad: Energy Systems &amp; Sustainability; Evolution of Engineering Design, <em>Summer 2024</em>.</li>
+        <li><strong>B.S. Mechanical Engineering</strong> — University of Louisiana at Lafayette (Minor in Mathematics), <em>May 2025</em>.</li>
+        <li>UCL London — Energy Systems &amp; Sustainability; Evolution of Engineering Design, <em>Summer 2024</em>.</li>
       </ul>
     </section>
 
     <!-- CONTINUOUS DEVELOPMENT -->
     <section class="resume-section">
       <h3>Continuous Development</h3>
-      <ul>
-        <li>FE Mechanical exam — <strong>Oct 2025</strong> (scheduled)</li>
-        <li>CSWP — <strong>Sept 2025</strong></li>
-        <li>OSHA PSM — <strong>Aug 2025</strong></li>
+      <ul class="cols-2">
+        <li>FE Mechanical: <strong>Oct&nbsp;2025</strong> (scheduled)</li>
+        <li>CSWP (SOLIDWORKS Professional): <strong>Sept&nbsp;2025</strong></li>
+        <li>OSHA PSM: <strong>Aug&nbsp;2025</strong></li>
       </ul>
     </section>
 
-    <!-- CERTIFICATIONS & SKILLS -->
+    <!-- CERTIFICATIONS -->
     <section class="resume-section">
-      <h3>Certifications</h3>
+      <h3>Certifications (selected)</h3>
       <ul class="cols-2">
-        <li>CSWA — Certified SOLIDWORKS Associate</li>
         <li>Six Sigma Black Belt (CSSC)</li>
-        <li>ASME: Hydrogen Piping &amp; Pipelines (B31.12)</li>
-        <li>ASME: Boiler &amp; Pressure Vessel (overview)</li>
-        <li>ASME: GD&amp;T &amp; NDE (overview)</li>
-        <li>Agile Project Management</li>
+        <li>CSWA — SOLIDWORKS</li>
+        <li>ASME B31.12: Hydrogen Piping &amp; Pipelines (Intro + Advanced)</li>
+        <li>ASME BPVC Sec V: NDE (overview), GD&amp;T</li>
+        <li>PCAP — Programming Essentials in Python (OpenEDG)</li>
+        <li>SAP MM fundamentals</li>
+        <li>Power BI coursework</li>
         <li>OSHA 10-Hour</li>
       </ul>
       <p class="muted" style="margin-top:.5rem">Full listing: <a href="media/certifications.html">Certifications &amp; Training</a>.</p>
     </section>
 
+    <!-- TECHNICAL TOOLBOX -->
     <section class="resume-section">
       <h3>Technical Toolbox</h3>
       <ul class="cols-2">
-        <li>SOLIDWORKS, AutoCAD, Siemens NX; Fusion 360; CATIA 3DX</li>
-        <li>FEA/CFD, Simulink, ANSYS Granta</li>
-        <li>Python, C++, MATLAB; mechatronics &amp; PLC exposure</li>
+        <li>SOLIDWORKS, AutoCAD, Siemens NX; FEA/CFD; Simulink</li>
+        <li>Python, C++, MATLAB; mechatronics &amp; mechanisms</li>
         <li>DFMA, PFMEA, GD&amp;T; fabrication drawings</li>
-        <li>SAP (BOM/ECN), Siemens PLM; P&amp;ID, JSA; Lean/DMAIC</li>
-        <li>Mastercam, CNC; mechanisms &amp; robotics</li>
+        <li>SAP/BOM, P&amp;ID, JSA; Lean/DMAIC</li>
+        <li>MasterCAM, CNC; shop safety &amp; QA/QC</li>
+        <li>Power BI dashboards; process monitoring</li>
       </ul>
     </section>
 
@@ -291,11 +283,10 @@
       </ul>
     </section>
 
-    <section class="resume-section" style="text-align:center">
-      <div class="cta-row" style="justify-content:center">
-        <a class="btn primary" href="media/resume.pdf" download>⬇️ Download PDF</a>
-        <button class="btn outline" onclick="window.print()">🖨️ Print</button>
-      </div>
+    <!-- (Optional) Inline PDF on desktop -->
+    <section class="resume-section pdf-viewer">
+      <h3 style="margin-bottom:.6rem">Resume (PDF Preview)</h3>
+      <object type="application/pdf" data="media/resume.pdf">Your browser can’t preview PDFs. Use the “Download PDF” button above.</object>
     </section>
   </main>
 
