@@ -7,91 +7,44 @@
   <meta name="description" content="Verified certifications, technical training, and professional memberships for Matthew Dubea." />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#0a66c2" />
+
   <link rel="icon" href="../assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="../style.css" />
 
-  <!-- Page-scoped styles (keep here so you can paste once) -->
+  <!-- Page-scoped polish -->
   <style>
-    /* Page chrome */
-    .hero { padding-bottom: 1rem; }
-    .hint  { text-align:center; color:var(--muted); margin:.5rem 0 .25rem; font-size:.95rem; }
+    /* Sticky tools */
+    .toolbar-sticky{position:sticky;top:0;z-index:20;background:var(--bg-light);border-bottom:1px solid var(--border);padding:.6rem .75rem}
+    .hint{color:var(--muted);text-align:center;font-size:.95rem;margin:.5rem 0 0}
 
-    /* Sticky toolbar: search + filter chips */
-    .toolbar {
-      position: sticky; top: 0; z-index: 20;
-      background: var(--bg-light);
-      border-bottom: 1px solid var(--border);
-      padding: .75rem 0 .5rem;
-    }
-    @media (max-width: 720px){ .toolbar { padding-top:.5rem; } }
+    /* Grid + card */
+    .cert-section{margin:1rem auto;max-width:1100px;padding:0 1rem}
+    .certifications-grid{display:grid;grid-template-columns:repeat( auto-fill, minmax(280px,1fr) );gap:1rem}
+    .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 10px 30px var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+    .cert-body{padding:.85rem}
+    .cert-title{font-weight:700;margin:.15rem 0 .35rem}
+    .cert-badges{display:flex;flex-wrap:wrap;gap:.35rem;margin:.25rem 0}
+    .badge{font-size:.75rem;border:1px solid var(--border);padding:.18rem .5rem;border-radius:999px;background:var(--surface-2)}
+    .cta-row{display:flex;gap:.5rem;justify-content:flex-end;padding:.75rem .85rem .9rem;flex-wrap:wrap}
+    .cta-row .btn{min-height:38px}
 
-    /* Filters */
-    .filters {
-      display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin:.5rem auto 0;
-      max-width: 1160px; padding: 0 1rem;
-    }
-    .filters button {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      padding: .45rem .75rem;
-      border-radius: 999px;
-      font-size: .9rem;
-      cursor: pointer;
-    }
-    .filters button.active {
-      background: #eef6ff;
-      border-color: var(--border-strong, #c9d7e8);
-      font-weight: 600;
-    }
+    /* PDF “thumbnail” area */
+    .frame{position:relative;isolation:isolate;background:linear-gradient(180deg,#f6f7fb,#edf0f6);border-bottom:1px solid var(--border)}
+    .frame--ratio{aspect-ratio:16/9;min-height:160px}
+    .frame object{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .frame__fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:.9rem}
 
-    /* Section index pills under hero */
-    .section-index {
-      display:flex; flex-wrap:wrap; gap:.35rem; justify-content:center; margin-top:.75rem;
-    }
-    .section-index a {
-      display:inline-block; padding:.25rem .6rem; border:1px solid var(--border);
-      border-radius:999px; font-size:.88rem; background:var(--surface);
-    }
+    /* Mobile: don’t inline PDFs — keep clean lightweight cards */
+    .no-embed object{display:none}
+    .no-embed .frame__fallback{display:grid}
 
-    /* Certification grid/cards */
-    .cert-section { margin: 1rem auto; max-width: 1160px; padding: 0 1rem; }
-    .cert-section summary { list-style:none; cursor:default; }
-    .cert-section summary::-webkit-details-marker { display:none; }
-    .cert-section .section-title { margin: .25rem 0 1rem; text-align:left; }
-    .certifications-grid {
-      display:grid; gap:.9rem;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    @media (max-width: 1024px){ .certifications-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    @media (max-width: 640px){ .certifications-grid { grid-template-columns: 1fr; } }
+    /* Section headings */
+    .section-title{display:flex;align-items:center;gap:.5rem;font-size:1.15rem;margin:.25rem 0 .6rem}
+    .section-title::before{content:"📂"}
 
-    .cert-card {
-      display:grid; grid-template-columns: 72px 1fr; gap: .85rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: .9rem 1rem;
-      box-shadow: 0 10px 30px var(--shadow);
-      align-items: start;
-    }
-    .cert-card .ico {
-      width: 56px; height: 56px; border-radius: 10px; display:grid; place-items:center;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg,#f7faff,#eef4fb);
-      font-size: 1.25rem;
-    }
-    .cert-title { font-weight: 700; margin: 0 0 .25rem; }
-    .cert-badges { display:flex; flex-wrap:wrap; gap:.35rem; margin:.35rem 0 .5rem; }
-    .badge { display:inline-block; padding:.18rem .5rem; border:1px solid var(--border); border-radius:999px; font-size:.78rem; background:#f7fbff; }
-
-    .cta-row { display:flex; gap:.5rem; flex-wrap:wrap; }
-    .cta-row .btn { flex: 0 0 auto; }
-
-    /* Compact “no-preview” doc placeholder when desired */
-    .doc-chip {
-      font-size:.85rem; color:var(--muted);
-      user-select:none;
-    }
+    /* Minor tweaks in dark */
+    body.dark-mode .toolbar-sticky{background:var(--bg-dark);border-color:var(--border-dark)}
+    body.dark-mode .cert-card{background:var(--surface-dark);border-color:var(--border-dark)}
   </style>
 </head>
 
@@ -112,186 +65,203 @@
     </nav>
   </header>
 
-  <main>
-    <!-- Hero -->
-    <section class="hero">
-      <h2>Certifications & Training</h2>
-      <p>All credentials are from verified technical training, professional associations, and engineering coursework.</p>
-      <nav id="sectionIndex" class="section-index" aria-label="Quick index"></nav>
-    </section>
+  <!-- Hero -->
+  <section class="hero" style="padding-bottom:.75rem">
+    <h2>Certifications & Training</h2>
+    <p>All certifications are from verified technical training, professional associations, and engineering coursework.</p>
+    <nav id="sectionIndex" class="section-index" aria-label="Section index"></nav>
+  </section>
 
-    <!-- Sticky toolbar -->
-    <div class="toolbar">
-      <div class="searchbar" role="search" aria-label="Search certifications">
-        <input id="certSearch" type="search" placeholder="Search title, issuer, category…" aria-label="Search by title, issuer, or category" />
-        <span id="certCount" aria-live="polite" style="margin-left:.5rem;"></span>
-      </div>
-      <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
+  <!-- Sticky search + filters -->
+  <div class="toolbar-sticky">
+    <div class="searchbar" role="search" aria-label="Search certifications">
+      <input id="certSearch" type="search" placeholder="Search title, issuer, category" aria-label="Search by title, issuer, or category" />
+      <span id="certCount" aria-live="polite" style="margin-left:.5rem;"></span>
     </div>
-    <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
+    <div id="filters" class="filters" role="tablist" aria-label="Filter categories"></div>
+  </div>
+  <p class="hint">Tip: use the filter chips or type to search across titles, issuers, and categories.</p>
 
-    <!-- Sections are rendered here -->
-    <div id="certSections"></div>
-  </main>
+  <!-- Sections render here -->
+  <div id="certSections" class="cert-section"></div>
 
   <footer>
     <p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p>
   </footer>
 
   <script>
-    /* ========= Helpers ========= */
+    /* ---------- device policy: inline PDFs only on desktop/laptop ---------- */
+    const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    const isIOS   = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const canInlinePDF = !isIOS && !isTouch && window.matchMedia('(min-width: 900px)').matches;
+    if (!canInlinePDF) document.body.classList.add('no-embed');
+
+    /* ---------- small helpers ---------- */
     const $  = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
     const qs = new URLSearchParams(location.search);
+    const BASE = location.pathname.replace(/\/[^/]*$/, '/'); // "/media/"
 
-    const filtersHost  = $('#filters');
-    const indexHost    = $('#sectionIndex');
+    function join(p1, p2) {
+      if (!p1) return p2 || '';
+      if (/^https?:\/\//.test(p2) || p2?.startsWith('/')) return p2;
+      return (p1.endsWith('/') ? p1 : p1 + '/') + (p2?.replace(/^\//,'') || '');
+    }
+    function escapeHTML(s){return (s||'').replace(/[&<>"']/g,m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+
     const sectionsHost = $('#certSections');
+    const filtersHost  = $('#filters');
     const searchInput  = $('#certSearch');
     const resultCount  = $('#certCount');
+    const indexHost    = $('#sectionIndex');
 
-    // We keep all documents in /media; this page lives in /media/, so the base is that folder.
-    // Build robust media URL regardless of trailing path.
-    const MEDIA_BASE = location.pathname.replace(/\/[^\/]*$/, '/') || '/media/';
-
-    function fileHref(file){
-      // Ensure spaces are encoded but keep slashes intact.
-      return encodeURI(MEDIA_BASE + (file || ''));
-    }
-
-    function escapeHTML(s){
-      return (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-    }
-
-    /* ========= Fetch & Render ========= */
-    fetch('../certs.json', { cache: 'no-store' })
-      .then(r => r.ok ? r.json() : Promise.reject(r.status))
-      .then(json => render(json))
-      .catch(err => {
-        console.error('Failed to load certs.json', err);
+    /* ---------- load certs.json (try root, then local) ---------- */
+    (async function load() {
+      try {
+        const urls = ['/certs.json', '../certs.json', 'certs.json'];
+        let json = null, lastErr = null;
+        for (const u of urls) {
+          try { const r = await fetch(u, {cache:'no-store'}); if (r.ok) { json = await r.json(); break; } }
+          catch (e) { lastErr = e; }
+        }
+        if (!json) throw lastErr || new Error('No certs.json found');
+        render(json);
+      } catch (err) {
+        console.error(err);
         sectionsHost.innerHTML = '<p style="text-align:center;color:var(--muted)">Unable to load certifications right now.</p>';
-      });
+      }
+    })();
 
-    function render(data){
-      const groups = (data.groups || []).slice().sort((a,b)=> (a.order||0)-(b.order||0));
+    function render(json){
+      const groups = (json.groups||[]).sort((a,b)=>(a.order||0)-(b.order||0));
 
-      // Index with group counts
-      indexHost.innerHTML = groups
-        .map(g => `<a href="#sec-${g.id}">${escapeHTML(g.title)} <span style="color:var(--muted)">(${(g.items||[]).length})</span></a>`)
-        .join('');
+      // section index
+      indexHost.innerHTML = groups.map(g=>`<a href="#sec-${g.id}">${escapeHTML(g.title)} <span style="color:var(--muted)">(${(g.items||[]).length})</span></a>`).join(' · ');
 
-      // Filters (All + group ids)
-      const initial = (qs.get('filter') || 'all').toLowerCase();
+      // filters
+      const initial = (new URLSearchParams(location.search).get('filter') || 'all').toLowerCase();
       filtersHost.innerHTML = [
         `<button data-filter="all" class="${initial==='all'?'active':''}" role="tab" aria-selected="${initial==='all'}">All</button>`,
-        ...groups.map(g => {
-          const active = initial === String(g.id).toLowerCase();
-          return `<button data-filter="${g.id}" class="${active?'active':''}" role="tab" aria-selected="${active}">${escapeHTML(g.title)}</button>`;
+        ...groups.map(g=>{
+          const on = initial === (g.id||'').toLowerCase();
+          return `<button data-filter="${g.id}" class="${on?'active':''}" role="tab" aria-selected="${on}">${escapeHTML(g.title)} <span class="muted">(${(g.items||[]).length})</span></button>`;
         })
       ].join('');
 
-      // Sections -> cards (no <embed>, consistent cards)
-      sectionsHost.innerHTML = groups.map(sectionTemplate).join('');
+      // sections
+      sectionsHost.innerHTML = groups.map(g => `
+        <section id="sec-${g.id}">
+          <h3 class="section-title">${escapeHTML(g.title)}</h3>
+          <div class="certifications-grid" id="grid-${g.id}"></div>
+        </section>
+      `).join('');
+
       groups.forEach(g => {
-        const grid = document.getElementById(`grid-${g.id}`);
+        const grid = $('#grid-'+g.id);
         (g.items||[]).forEach(item => grid.insertAdjacentHTML('beforeend', cardTemplate(item)));
       });
 
+      // lazy-load PDFs
+      if (canInlinePDF) lazyObjects();
+
+      // interactions
       setupFilters(initial);
       setupSearch();
-    }
-
-    function sectionTemplate(group){
-      return `
-        <section id="sec-${group.id}" class="cert-section" data-section data-id="${escapeHTML(group.id)}">
-          <h3 class="section-title">${escapeHTML(group.title)}</h3>
-          <div class="certifications-grid" id="grid-${group.id}"></div>
-        </section>`;
-    }
-
-    // Simple doc icon based on type
-    function iconFor(item){
-      const t = (item.type||'pdf').toLowerCase();
-      if (t === 'image') return '🖼️';
-      if (t === 'pdf')   return '📄';
-      return '📁';
+      applyFilter(initial, (searchInput?.value||'').toLowerCase());
     }
 
     function cardTemplate(item){
-      const issuer  = item.issuer ? `Issuer: ${escapeHTML(item.issuer)}` : '';
-      const badges  = (item.badges||[]).map(b => `<span class="badge">${escapeHTML(b)}</span>`).join('');
-      const href    = fileHref(item.file);
-      const openBtn = `<a class="btn outline" href="${href}" target="_blank" rel="noopener">Open</a>`;
-      const dlBtn   = `<a class="btn outline" href="${href}" download>Download</a>`;
-      const cats    = (item.category || []).join(' ').toLowerCase();
+      const filePath = join(BASE, item.file);
+      const issuer   = escapeHTML(item.issuer||'');
+      const title    = escapeHTML(item.title||'');
+      const badges   = (item.badges||[]).map(b=>`<span class="badge">${escapeHTML(b)}</span>`).join('');
+
+      const media = canInlinePDF
+        ? `<div class="frame frame--ratio">
+             <object type="application/pdf" data="" data-src="${filePath}">
+               <div class="frame__fallback">Preview unavailable</div>
+             </object>
+             <div class="frame__fallback" aria-hidden="true" style="display:none">Preview unavailable</div>
+           </div>`
+        : `<div class="frame frame--ratio"><div class="frame__fallback">Preview not shown on mobile</div></div>`;
 
       return `
-        <article class="cert-card" data-category="${cats}">
-          <div class="ico" aria-hidden="true">${iconFor(item)}</div>
+        <article class="cert-card" data-category="${(item.category||[]).join(' ').toLowerCase()}">
+          ${media}
           <div class="cert-body">
-            <div class="cert-title">${escapeHTML(item.title)}</div>
+            <div class="cert-title">${title}</div>
             <div class="cert-badges">
-              ${issuer ? `<span class="badge">${issuer}</span>` : ''}${badges}
+              ${issuer ? `<span class="badge">Issuer: ${issuer}</span>` : ''}${badges}
             </div>
-            <div class="doc-chip">Preview not shown for consistency · opens in a new tab</div>
-            <div class="cta-row" style="margin-top:.5rem">${openBtn}${dlBtn}</div>
+          </div>
+          <div class="cta-row">
+            <a class="btn outline" href="${filePath}" target="_blank" rel="noopener">Open</a>
+            <a class="btn outline" href="${filePath}" download>Download</a>
           </div>
         </article>`;
     }
 
-    /* ========= Interactions ========= */
+    function lazyObjects(){
+      const objs = $$('object[data-src]');
+      if (!objs.length) return;
+
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const src = el.getAttribute('data-src');
+          if (!src) return;
+          el.setAttribute('data', src);
+          el.addEventListener('error', ()=> {
+            const parent = el.closest('.frame');
+            if (parent) parent.querySelector('.frame__fallback').style.display='grid';
+            el.remove();
+          });
+          io.unobserve(el);
+        });
+      }, {rootMargin:'200px'});
+
+      objs.forEach(o=>io.observe(o));
+    }
+
     function setupFilters(initial){
-      let active = (initial || 'all').toLowerCase();
-      const buttons  = $$('#filters button');
-      const sections = $$('[data-section]');
-
-      function apply(needle){
-        const cards = $$('.cert-card');
-        let visible = 0;
-
-        cards.forEach(card => {
-          const cats = (card.getAttribute('data-category') || '');
-          const body = card.textContent.toLowerCase();
-          const fOK  = active === 'all' || cats.split(/\s+/).includes(active);
-          const sOK  = !needle || body.includes(needle);
-          const show = fOK && sOK;
-          card.hidden = !show;
-          if (show) visible++;
-        });
-
-        // Hide sections with no visible cards
-        sections.forEach(sec => {
-          const hasVisible = sec.querySelector('.cert-card:not([hidden])');
-          sec.hidden = !hasVisible;
-        });
-
-        if (resultCount) resultCount.textContent = visible ? `${visible} shown` : 'No results';
-      }
-
-      buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          active = String(btn.dataset.filter).toLowerCase();
-          // update URL quietly
+      let active = (initial||'all').toLowerCase();
+      $$('#filters button').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          active = btn.dataset.filter.toLowerCase();
+          $$('#filters button').forEach(b=>{
+            b.classList.toggle('active', b===btn);
+            b.setAttribute('aria-selected', b===btn ? 'true' : 'false');
+          });
           const url = new URL(location.href);
-          if (active === 'all') url.searchParams.delete('filter');
-          else url.searchParams.set('filter', active);
-          history.replaceState({}, '', url);
-
-          buttons.forEach(b => b.classList.toggle('active', b === btn));
-          buttons.forEach(b => b.setAttribute('aria-selected', b === btn ? 'true' : 'false'));
-          apply((searchInput?.value || '').toLowerCase());
+          if (active==='all') url.searchParams.delete('filter'); else url.searchParams.set('filter',active);
+          history.replaceState({},'',url);
+          applyFilter(active, (searchInput?.value||'').toLowerCase());
         });
       });
-
-      apply('');
     }
 
     function setupSearch(){
-      searchInput?.addEventListener('input', () => {
+      searchInput?.addEventListener('input', ()=>{
         const activeBtn = $('#filters button.active') || $('#filters button[data-filter="all"]');
-        // Re-apply current filter after text change
-        activeBtn?.click();
+        applyFilter(activeBtn?.dataset.filter || 'all', (searchInput?.value||'').toLowerCase());
       });
+    }
+
+    function applyFilter(active, needle){
+      const cards = $$('.cert-card');
+      let shown = 0;
+      cards.forEach(card=>{
+        const cats   = card.getAttribute('data-category') || '';
+        const text   = card.textContent.toLowerCase();
+        const passF  = active==='all' || cats.split(/\s+/).includes(active);
+        const passQ  = !needle || text.includes(needle);
+        const show   = passF && passQ;
+        card.hidden  = !show;
+        if (show) shown++;
+      });
+      if (resultCount) resultCount.textContent = shown ? `${shown} shown` : 'No results';
     }
   </script>
 </body>
