@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "updated": "2025-08-22",
+  "version": 2,
+  "updated": "2025-08-23",
   "groups": [
     {
       "id": "cswa",
@@ -19,7 +19,6 @@
         }
       ]
     },
-
     {
       "id": "ssbb",
       "title": "Six Sigma Black Belt",
@@ -37,7 +36,6 @@
         }
       ]
     },
-
     {
       "id": "asme",
       "title": "ASME & Engineering Standards",
@@ -46,7 +44,7 @@
       "items": [
         {
           "title": "ASME B31.12: Hydrogen Piping & Pipelines (Intro)",
-          "file": "ASME_B31.12_Hydrogen Piping and Pipelines.pdf",
+          "file": "ASME_B31.12_Hydrogen%20Piping%20and%20Pipelines.pdf",
           "type": "pdf",
           "category": ["asme"],
           "issuer": "ASME",
@@ -72,7 +70,7 @@
         },
         {
           "title": "ASME Boiler & Pressure Vessel: Certification Process",
-          "file": "ASME Boiler & Pressure Vessel.pdf",
+          "file": "ASME%20Boiler%20%26%20Pressure%20Vessel.pdf",
           "type": "pdf",
           "category": ["asme"],
           "issuer": "ASME",
@@ -88,7 +86,6 @@
         }
       ]
     },
-
     {
       "id": "pm",
       "title": "Project Management & PMI",
@@ -128,7 +125,6 @@
         }
       ]
     },
-
     {
       "id": "autocad",
       "title": "AutoCAD",
@@ -160,7 +156,6 @@
         }
       ]
     },
-
     {
       "id": "sap",
       "title": "SAP",
@@ -176,7 +171,7 @@
         },
         {
           "title": "SAP Business One: Essential Training",
-          "file": "CertificateOfCompletion_SAP Business One Essential Training.pdf",
+          "file": "CertificateOfCompletion_SAP%20Business%20One%20Essential%20Training.pdf",
           "type": "pdf",
           "category": ["sap"],
           "issuer": "LinkedIn Learning",
@@ -184,7 +179,7 @@
         },
         {
           "title": "SAP ERP: Essential Training",
-          "file": "CertificateOfCompletion_SAP ERP Essential Training.pdf",
+          "file": "CertificateOfCompletion_SAP%20ERP%20Essential%20Training.pdf",
           "type": "pdf",
           "category": ["sap"],
           "issuer": "LinkedIn Learning",
@@ -192,7 +187,7 @@
         },
         {
           "title": "SAP Financials: Essential Training",
-          "file": "CertificateOfCompletion_SAP Financials Essential Training.pdf",
+          "file": "CertificateOfCompletion_SAP%20Financials%20Essential%20Training.pdf",
           "type": "pdf",
           "category": ["sap"],
           "issuer": "LinkedIn Learning",
@@ -200,7 +195,6 @@
         }
       ]
     },
-
     {
       "id": "nx",
       "title": "Siemens NX",
@@ -216,7 +210,6 @@
         }
       ]
     },
-
     {
       "id": "revit",
       "title": "Revit (MEP)",
@@ -232,7 +225,6 @@
         }
       ]
     },
-
     {
       "id": "arch-cad",
       "title": "Architecture CAD Technician",
@@ -248,7 +240,6 @@
         }
       ]
     },
-
     {
       "id": "power-bi",
       "title": "Power BI",
@@ -256,7 +247,7 @@
       "items": [
         {
           "title": "Power BI: Data Methods",
-          "file": "CertificateOfCompletion_Power BI Data Methods.pdf",
+          "file": "CertificateOfCompletion_Power%20BI%20Data%20Methods.pdf",
           "type": "pdf",
           "category": ["power-bi"],
           "issuer": "LinkedIn Learning",
@@ -272,7 +263,7 @@
         },
         {
           "title": "Power BI: Essential Training (2024)",
-          "file": "CertificateOfCompletion_Power BI Essential Training 2024.pdf",
+          "file": "CertificateOfCompletion_Power%20BI%20Essential%20Training%202024.pdf",
           "type": "pdf",
           "category": ["power-bi"],
           "issuer": "LinkedIn Learning",
@@ -280,7 +271,7 @@
         },
         {
           "title": "Complete Guide to Power BI for Data Analysts",
-          "file": "CertificateOfCompletion_Complete Guide to Power BI for Data Analysts by Microsoft Press.pdf",
+          "file": "CertificateOfCompletion_Complete%20Guide%20to%20Power%20BI%20for%20Data%20Analysts%20by%20Microsoft%20Press.pdf",
           "type": "pdf",
           "category": ["power-bi"],
           "issuer": "Microsoft Press",
@@ -288,7 +279,6 @@
         }
       ]
     },
-
     {
       "id": "programming",
       "title": "Programming & GitHub",
@@ -304,7 +294,7 @@
         },
         {
           "title": "Career Essentials: GitHub Copilot (Professional Certificate)",
-          "file": "CertificateOfCompletion_Career Essentials in GitHub Copilot Professional Certificate.pdf",
+          "file": "CertificateOfCompletion_Career%20Essentials%20in%20GitHub%20Copilot%20Professional%20Certificate.pdf",
           "type": "pdf",
           "category": ["programming"],
           "issuer": "Microsoft / LinkedIn",
@@ -320,7 +310,6 @@
         }
       ]
     },
-
     {
       "id": "data",
       "title": "Data Science & Analytics",
@@ -344,7 +333,6 @@
         }
       ]
     },
-
     {
       "id": "matlab",
       "title": "MATLAB",
@@ -368,7 +356,6 @@
         }
       ]
     },
-
     {
       "id": "lean",
       "title": "Lean / Business",
@@ -384,7 +371,7 @@
         },
         {
           "title": "Process Improvement: Foundations",
-          "file": "CertificateOfCompletion_Process Improvement Foundations.pdf",
+          "file": "CertificateOfCompletion_Process%20Improvement%20Foundations.pdf",
           "type": "pdf",
           "category": ["lean"],
           "issuer": "LinkedIn Learning",
@@ -400,7 +387,6 @@
         }
       ]
     },
-
     {
       "id": "safety",
       "title": "Safety",
@@ -408,7 +394,7 @@
       "items": [
         {
           "title": "OSHA 10-Hour: Health & Safety",
-          "file": "OSHA_10_Hour_Health_&_Safety.png",
+          "file": "OSHA_10_Hour_Health_%26_Safety.png",
           "type": "image",
           "category": ["safety"],
           "issuer": "OSHA",
@@ -416,7 +402,6 @@
         }
       ]
     },
-
     {
       "id": "memberships",
       "title": "Professional Memberships",
