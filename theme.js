@@ -1,18 +1,19 @@
 // theme.js — shared lightweight enhancements for the full portfolio
 
 (function loadEnhancementAssets(){
+  const version = '2026-05-03-v2';
   const base = document.currentScript ? new URL('.', document.currentScript.src).href : '/';
-  const cssHref = new URL('enhancements.css', base).href;
-  const jsHref = new URL('enhancements.js', base).href;
+  const cssHref = new URL('enhancements.css?v=' + version, base).href;
+  const jsHref = new URL('enhancements.js?v=' + version, base).href;
 
-  if(!document.querySelector('link[href$="enhancements.css"]')){
+  if(!document.querySelector('link[href*="enhancements.css"]')){
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = cssHref;
     document.head.appendChild(link);
   }
 
-  if(!document.querySelector('script[src$="enhancements.js"]')){
+  if(!document.querySelector('script[src*="enhancements.js"]')){
     const script = document.createElement('script');
     script.defer = true;
     script.src = jsHref;
