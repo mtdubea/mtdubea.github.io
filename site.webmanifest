@@ -1,0 +1,23 @@
+{
+  "name": "Matthew Dubea Engineering Portfolio",
+  "short_name": "Dubea Portfolio",
+  "description": "Mechanical engineering portfolio for CAD, manufacturing, mechatronics, robotics, reports, certifications, and automation projects.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#0a66c2",
+  "icons": [
+    {
+      "src": "/assets/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/assets/images/profile-headshot.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
