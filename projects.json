@@ -3,25 +3,25 @@
     {
       "title": "Senior Trike Project",
       "icon": "🏁",
-      "url": "https://mtdubea.github.io/trike",
-      "description": "Competition trike engineered end-to-end: CAD + FEA of a 4130/1018 steel frame, TIG welding and machining, drivetrain optimization, and DFM/DFA changes that cut assembly time and reduced BOM cost while preserving safety factors.",
-      "category": "Mechanical",
-      "tags": ["CAD", "FEA", "DFM/DFA", "Manufacturing", "Welding"],
+      "url": "https://mtdubea.github.io/trike/",
+      "description": "Race-winning senior capstone tricycle engineered end-to-end: CAD, FEA, steel-frame fabrication, TIG welding, machining, drivetrain optimization, DFM/DFA improvements, and final competition validation.",
+      "category": "Mechanical Design & Manufacturing",
+      "tags": ["CAD", "FEA", "DFM/DFA", "Manufacturing", "Welding", "Capstone"],
       "year": 2025,
       "order": 1,
       "featured": true,
       "thumbnail": "assets/images/thumb-trike.jpg",
       "report": "media/Trike_Final_Report.pdf",
-      "source": "https://github.com/mtdubea/trike",
-      "repo": "https://github.com/mtdubea/trike"
+      "source": "https://github.com/mtdubea/Tricycle-Project",
+      "repo": "https://github.com/mtdubea/Tricycle-Project"
     },
     {
       "title": "Mechatronics Sensor Payload",
       "icon": "🛰️",
-      "url": "https://mtdubea.github.io/mechatronics",
-      "description": "Multi-sensor payload for a UAV: IMU, temperature, and distance sensing; PWM motor/servo control; PID tuning to minimize overshoot; C++/Python logic; safe states and telemetry validated in field tests.",
-      "category": "Mechatronics",
-      "tags": ["Embedded", "Sensors", "Control", "PID", "C++", "Python", "PWM"],
+      "url": "https://mtdubea.github.io/mechatronics/",
+      "description": "Autonomous multi-sensor drone payload with IMU, ultrasonic, water, and thermal sensing; servo actuation; embedded C++/Arduino firmware; telemetry; safe states; and field-test validation.",
+      "category": "Mechatronics & Controls",
+      "tags": ["Embedded", "Sensors", "Control", "PID", "C++", "Arduino", "Telemetry"],
       "year": 2024,
       "order": 2,
       "featured": true,
@@ -33,28 +33,30 @@
     {
       "title": "Autonomous Rescue Robot",
       "icon": "🤖",
-      "url": "https://mtdubea.github.io/robot",
-      "description": "Autonomous ground robot that navigates to and retrieves targets using ultrasonic and IR sensing with a Python control stack. Modular hook/actuator, robust behaviors, and reliability proven on obstacle courses.",
-      "category": "Autonomous Systems",
-      "tags": ["Robotics", "Python", "Autonomy", "Ultrasonic", "Infrared", "Mechanisms"],
+      "url": "https://mtdubea.github.io/robot/",
+      "description": "Autonomous ground robot with Python control logic, ultrasonic and IR/magnetic sensing, PID-tuned drive behavior, telescoping actuator, solenoid hook, and reliability improvements after live testing.",
+      "category": "Robotics & Automation",
+      "tags": ["Robotics", "Python", "Autonomy", "PID", "Ultrasonic", "Infrared", "Mechanisms"],
       "year": 2023,
       "order": 3,
       "featured": true,
       "thumbnail": "assets/images/thumb-robot.jpg",
       "report": "media/Robot_Report.pdf",
-      "source": "https://github.com/mtdubea/robot",
-      "repo": "https://github.com/mtdubea/robot"
+      "source": "https://github.com/mtdubea/mtdubea.github.io/tree/main/robot",
+      "repo": "https://github.com/mtdubea/mtdubea.github.io/tree/main/robot"
     },
     {
       "title": "Portfolio Website & Design System",
       "icon": "💻",
       "url": "https://mtdubea.github.io/",
-      "description": "This responsive portfolio: accessible, mobile-first HTML/CSS/JS with JSON-driven sections and a focus on performance and semantics.",
-      "category": "Web",
-      "tags": ["HTML", "CSS", "Accessibility", "Performance"],
+      "description": "Responsive portfolio and project microsite system built with accessible, mobile-first HTML/CSS/JS, JSON-driven content, SEO metadata, and progressive enhancement.",
+      "category": "Web & Documentation",
+      "tags": ["HTML", "CSS", "JavaScript", "Accessibility", "SEO", "Performance"],
       "year": 2025,
       "order": 99,
-      "featured": false
+      "featured": false,
+      "source": "https://github.com/mtdubea/mtdubea.github.io",
+      "repo": "https://github.com/mtdubea/mtdubea.github.io"
     }
   ]
 }
