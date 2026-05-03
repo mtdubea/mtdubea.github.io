@@ -1,0 +1,96 @@
+%PDF-1.4
+% ASCII resume PDF
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+6 0 obj
+<< /Length 6294 >>
+stream
+BT /F2 17.0 Tf 36.0 760.0 Td (Matthew Dubea) Tj ET
+BT /F1 8.2 Tf 36.0 745.0 Td (\(337\) 781-2829 | mattdubea@outlook.com | linkedin.com/in/mdubea | github.com/mtdubea) Tj ET
+BT /F2 9.0 Tf 36.0 730.0 Td (EXPERIENCE) Tj ET
+36.0 727.8 m 576.0 727.8 l S
+BT /F2 7.7 Tf 36.0 720.0 Td (Ernest P. Breaux Electrical, New Iberia / Jackson, MS | Assistant Project Manager | 2025 - Present) Tj ET
+BT /F1 7.3 Tf 44.0 711.6 Td (- Support $30M+ in Jackson/JXN Water electrical infrastructure across OBC SCADA, Corrosion Control, Chemical Building, Treatment) Tj ET
+BT /F1 7.3 Tf 44.0 702.9 Td (  Process Renewals, remote-site, and J.H. Fewell work.) Tj ET
+BT /F1 7.3 Tf 44.0 694.2 Td (- Coordinate EPB field crews, subcontractors, materials, instrumentation, equipment, and work sequencing around critical-path) Tj ET
+BT /F1 7.3 Tf 44.0 685.5 Td (  priorities to maintain daily progress.) Tj ET
+BT /F1 7.3 Tf 44.0 676.8 Td (- Price WCDs/RFCs from Jacobs, Wharton-Smith, field conditions, and plant operations; assemble change-order proposals with) Tj ET
+BT /F1 7.3 Tf 44.0 668.1 Td (  estimates, backup, scope notes, and drawing redlines.) Tj ET
+BT /F1 7.3 Tf 44.0 659.4 Td (- Track proposal logs, drawing revisions, material deliveries, weekly meeting action items, subcontractor work, and monthly) Tj ET
+BT /F1 7.3 Tf 44.0 650.7 Td (  billing to support approvals and timely payment.) Tj ET
+BT /F2 7.7 Tf 36.0 642.0 Td (Safelite AutoGlass, Scott, LA | Auto Glass Technician / ADAS Calibration Specialist | 2022 - 2024) Tj ET
+BT /F1 7.3 Tf 44.0 633.6 Td (- Completed 2,600+ windshield replacements and 1,500+ ADAS/LiDAR calibrations to OEM requirements with 98% QA/QC performance.) Tj ET
+BT /F1 7.3 Tf 44.0 624.9 Td (- Reduced cycle time 15% by improving tool layout, preparation workflow, and technician handoff process.) Tj ET
+BT /F2 7.7 Tf 36.0 616.2 Td (Ernest P. Breaux Electrical, Plaquemines / New Iberia, LA | EHB Electrician / Machine Operator | 2019 - 2021) Tj ET
+BT /F1 7.3 Tf 44.0 607.8 Td (- Installed MV/LV panels, conduit, cable tray, steel supports, and grounding for Shintech 34.5 kV harmonic-filter yard.) Tj ET
+BT /F1 7.3 Tf 44.0 599.1 Td (- Built copper grounding/lightning-protection grid and routed 800+ ft of conduit/cable tray while supporting daily reports, JSAs,) Tj ET
+BT /F1 7.3 Tf 44.0 590.4 Td (  and field QC.) Tj ET
+BT /F2 7.7 Tf 36.0 581.7 Td (Chicago Bridge & Iron \(CB&I\), Baton Rouge / Plaquemines, LA | Instrument Man / Rodman | 2017 - 2018) Tj ET
+BT /F1 7.3 Tf 44.0 573.3 Td (- Surveyed 500+ foundations on Shintech $1.4B ethane cracker expansion using Trimble total station, GPS, and laser levels.) Tj ET
+BT /F1 7.3 Tf 44.0 564.6 Td (- Verified anchor-bolt layouts/elevations to within 1/16 in and produced as-built documentation for engineering review.) Tj ET
+BT /F2 7.7 Tf 36.0 555.9 Td (Triad Electric & Controls, Baton Rouge, LA | Electrical Apprentice | 2015 - 2017) Tj ET
+BT /F1 7.3 Tf 44.0 547.5 Td (- Installed 8,000+ ft of conduit and terminated wiring for field devices, junction boxes, MCCs, and control panels during plant) Tj ET
+BT /F1 7.3 Tf 44.0 538.8 Td (  work and shutdowns.) Tj ET
+BT /F2 9.0 Tf 36.0 528.1 Td (PROJECTS) Tj ET
+36.0 525.9 m 576.0 525.9 l S
+BT /F2 7.7 Tf 36.0 518.1 Td (Racing Tricycle: Design and Fabrication | mtdubea.github.io/trike | 2025) Tj ET
+BT /F1 7.3 Tf 44.0 509.7 Td (- Fabricated 4130/1018 steel frame; validated FoS = 2.2 with SolidWorks FEA and machined key parts to within 0.005 inch.) Tj ET
+BT /F1 7.3 Tf 44.0 501.0 Td (- Applied DFM/DFA and reused MTB components; reduced design BOM cost 60%, and won 1st place in the annual Acadiana 500 Race in) Tj ET
+BT /F1 7.3 Tf 44.0 492.3 Td (  New Iberia, LA.) Tj ET
+BT /F2 7.7 Tf 36.0 483.6 Td (Multi-Sensor Payload System | mtdubea.github.io/mechatronics | 2024) Tj ET
+BT /F1 7.3 Tf 44.0 475.2 Td (- Built Arduino Python UAV payload for timed release at specified temperature >= 32 deg C and range <10 in.) Tj ET
+BT /F1 7.3 Tf 44.0 466.5 Td (- Integrated IMU, thermistor, ultrasonic sensor, PID servo, isolated power rails, and preflight for reliable actuation.) Tj ET
+BT /F2 7.7 Tf 36.0 457.8 Td (Autonomous Rescue Robot | mtdubea.github.io/robot | 2023) Tj ET
+BT /F1 7.3 Tf 44.0 449.4 Td (- Led mechanical design and Python integration for an autonomous rescue robot that completed five course tasks.) Tj ET
+BT /F1 7.3 Tf 44.0 440.7 Td (- Fabricated boom/solenoid retrieval system and tuned stepper PID to reduce overshoot 70%; earned 2nd in functionality design.) Tj ET
+BT /F2 9.0 Tf 36.0 430.0 Td (EDUCATION) Tj ET
+36.0 427.8 m 576.0 427.8 l S
+BT /F1 7.3 Tf 44.0 420.0 Td (- University of Louisiana at Lafayette - B.S. Mechanical Engineering, Minor Mathematics | May 2025) Tj ET
+BT /F1 7.3 Tf 44.0 411.3 Td (- UCL, London, UK - Study Abroad in Energy Systems and Engineering Design | Summer 2024) Tj ET
+BT /F2 9.0 Tf 36.0 400.6 Td (CONTINUOUS LEARNING) Tj ET
+36.0 398.4 m 576.0 398.4 l S
+BT /F1 7.3 Tf 44.0 390.6 Td (- FE Exam - Mechanical \(NCEES\) | Expected: Aug 2026) Tj ET
+BT /F2 9.0 Tf 36.0 379.9 Td (CERTIFICATIONS) Tj ET
+36.0 377.7 m 576.0 377.7 l S
+BT /F1 7.3 Tf 44.0 369.9 Td (- CSSC: Six Sigma Black Belt | 2025) Tj ET
+BT /F1 7.3 Tf 44.0 361.2 Td (- ASME: Hydrogen Piping & Pipelines, Boiler & Pressure Vessel, GD&T, BPV Code: NDE \(Section V\) | 2025) Tj ET
+BT /F1 7.3 Tf 44.0 352.5 Td (- Dassault Systemes: Certified SOLIDWORKS Associate \(CSWA\) | 2023) Tj ET
+BT /F1 7.3 Tf 44.0 343.8 Td (- OSHA: 10-Hour General Industry | 2019) Tj ET
+BT /F2 9.0 Tf 36.0 333.1 Td (SKILLS) Tj ET
+36.0 330.9 m 576.0 330.9 l S
+BT /F1 7.3 Tf 36.0 323.1 Td (RFCs/Change Orders, RFIs, Submittals, Scheduling, Estimating, Vendor/Subcontractor Coordination, AutoCAD \(2D/3D\), Revit/BIM, MS) Tj ET
+BT /F1 7.3 Tf 36.0 314.4 Td (Project, Excel, SAP/ERP, SolidWorks, CATIA 3DX, Siemens NX, ANSYS Granta, MATLAB & Simulink, Python & C++, PLC, Robotics/Automation,) Tj ET
+BT /F1 7.3 Tf 36.0 305.7 Td (P&ID, GD&T, Root Cause Analysis, Lean Six Sigma) Tj ET
+BT /F2 9.0 Tf 36.0 295.0 Td (INVOLVEMENT) Tj ET
+36.0 292.8 m 576.0 292.8 l S
+BT /F1 7.3 Tf 36.0 285.0 Td (College of Engineering - S.A. College of Engineering Ambassador \(ULL\) 2023-2026 | ASME 2023-2026 | Louisiana Engineering Society \(LES\)) Tj ET
+BT /F1 7.3 Tf 36.0 276.3 Td (2024-2026 | SME 2024-2026 | ASTM 2025-2026) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000028 00000 n 
+0000000077 00000 n 
+0000000134 00000 n 
+0000000270 00000 n 
+0000000340 00000 n 
+0000000415 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+6760
+%%EOF
