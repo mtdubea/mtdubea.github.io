@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Projects | Matthew Dubea</title>
+  <meta name="description" content="Engineering project case studies for Matthew Dubea: race tricycle, multi-sensor payload, autonomous rescue robot, CAD/FEA, fabrication, automation, and technical reports." />
+  <meta name="theme-color" content="#0a66c2" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="enhancements.css?v=2026-05-03-v4" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <script defer src="theme.js?v=2026-05-03-v4"></script>
+  <style>
+    .page{width:min(100% - 2rem,1240px);margin:0 auto;padding:1.5rem 0 2.5rem;}
+    .project-hero{padding:clamp(2.8rem,6vw,5rem) 1rem;text-align:center;}
+    .project-hero__inner{width:min(100% - 2rem,1000px);margin:0 auto;display:grid;gap:1rem;justify-items:center;}
+    .project-hero h2{font-size:clamp(2.4rem,6vw,5rem);line-height:.96;letter-spacing:-.06em;margin:0;color:#fff;}
+    .project-hero p{max-width:760px;margin:0;color:rgba(255,255,255,.88);font-size:1.08rem;line-height:1.65;}
+    .filters{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin:1rem 0 1.25rem;}
+    .filter-btn{border:1px solid rgba(10,102,194,.18);background:rgba(255,255,255,.9);color:#0b2f57;border-radius:999px;padding:.55rem .85rem;font-weight:800;cursor:pointer;}
+    .filter-btn.active{background:linear-gradient(135deg,#0a66c2,#073b73);color:#fff;border-color:transparent;}
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:stretch;}
+    .case-card{display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+    .case-card img{width:100%;aspect-ratio:16/10;object-fit:contain;background:#eaf6ff;border-bottom:1px solid rgba(10,102,194,.12);}
+    .case-body{display:grid;gap:.65rem;padding:1rem;flex:1;}
+    .case-body h3{margin:0;color:#0b2f57;}
+    .case-body p{color:#64748b;margin:0;line-height:1.55;}
+    .proof-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem;margin-top:auto;}
+    .proof{border:1px solid rgba(10,102,194,.13);border-radius:14px;background:#f7fbff;padding:.55rem;}
+    .proof strong{display:block;color:#073b73;font-size:.95rem;}.proof span{display:block;color:#64748b;font-size:.78rem;}
+    .case-actions{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;padding:0 1rem 1rem;}
+    .case-actions .btn{width:100%;font-size:.88rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .matrix{margin-top:1.25rem;padding:1rem;overflow:auto;}
+    .matrix table{width:100%;border-collapse:collapse;min-width:760px;}.matrix th,.matrix td{text-align:left;padding:.75rem;border-bottom:1px solid rgba(10,102,194,.12);vertical-align:top}.matrix th{color:#0b2f57;background:#eef7ff;}
+    .mode-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem;}
+    .mode-card{padding:1.1rem;}.mode-card h3{margin-top:0;color:#0b2f57}.mode-card ul{margin:.5rem 0 0;padding-left:1.1rem}.mode-card li{margin:.35rem 0;}
+    @media(max-width:980px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.mode-grid{grid-template-columns:1fr;}}
+    @media(max-width:620px){.project-grid{grid-template-columns:1fr;}.case-actions,.proof-grid{grid-template-columns:1fr;}.project-hero h2{font-size:clamp(2.2rem,12vw,3.4rem);}}
+  </style>
+</head>
+<body class="fade-in" id="top">
+  <a href="#main" class="visually-hidden-focusable" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+  <header class="site-header">
+    <div class="brand"><h1>Matthew Dubea</h1><p class="tagline">Mechanical Engineer · CAD/CAE · Manufacturing · Automation</p></div>
+    <nav class="site-nav" aria-label="Primary"><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="projects.html" class="active" aria-current="page">Projects</a></li><li><a href="resume.html">Resume</a></li><li><a href="reports.html">Reports</a></li><li><a href="media/certifications.html">Certifications</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+  </header>
+  <section class="hero project-hero"><div class="project-hero__inner"><h2>Engineering Case Studies</h2><p>Project pages organized like professional technical deliverables: objective, constraints, approach, proof, results, reports, and links.</p><div class="filters" aria-label="Project filters"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="Mechanical">Mechanical</button><button class="filter-btn" data-filter="Mechatronics">Mechatronics</button><button class="filter-btn" data-filter="Autonomous Systems">Robotics</button><button class="filter-btn" data-filter="Web">Web</button></div></div></section>
+  <main class="page" id="main">
+    <section id="projectGrid" class="project-grid" aria-live="polite"></section>
+    <section class="matrix surface" aria-labelledby="matrix-title"><h2 id="matrix-title">Project Comparison Matrix</h2><table><thead><tr><th>Project</th><th>Discipline</th><th>Tools / Methods</th><th>Deliverable</th><th>Measured Result</th></tr></thead><tbody><tr><td>Senior Trike Project</td><td>Mechanical design + manufacturing</td><td>SolidWorks, FEA, DFM/DFA, TIG welding, machining</td><td>Race-ready fabricated vehicle</td><td>1st place; FoS 2.2; 60% BOM cost reduction</td></tr><tr><td>Mechatronics Sensor Payload</td><td>Embedded controls + payload design</td><td>Arduino, Python/C++, sensors, PID, PWM</td><td>Timed UAV payload release system</td><td>Reliable actuation validated through field testing</td></tr><tr><td>Autonomous Rescue Robot</td><td>Robotics + mechanisms</td><td>Python, ultrasonic/IR sensing, stepper PID, solenoid hook</td><td>Autonomous rescue/retrieval robot</td><td>Five task capability; 70% overshoot reduction</td></tr></tbody></table></section>
+    <section class="mode-grid" aria-label="Audience views"><div class="mode-card surface"><h3>For Recruiters</h3><ul><li>Clear proof of outcomes, tools, and engineering judgment.</li><li>Resume PDF, quantified project metrics, and contact links are one click away.</li><li>Experience connects field execution, estimating, coordination, and mechanical engineering.</li></ul><p><a class="btn primary" href="resume.html">View Resume</a></p></div><div class="mode-card surface"><h3>For Engineers</h3><ul><li>Each project links to technical pages and reports.</li><li>Projects emphasize constraints, analysis, fabrication, testing, and lessons learned.</li><li>Reports and calculations are preserved as technical documentation.</li></ul><p><a class="btn outline" href="reports.html">Open Report Library</a></p></div></section>
+  </main>
+  <footer><p>© 2026 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p></footer>
+  <script>
+    (function(){
+      const grid=document.getElementById('projectGrid');
+      const buttons=[...document.querySelectorAll('.filter-btn')];
+      let projects=[];
+      function safe(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+      function render(filter='all'){
+        const visible=projects.filter(p=>filter==='all'||p.category===filter);
+        grid.innerHTML=visible.map(p=>`<article class="case-card surface" data-category="${safe(p.category)}"><img src="${safe(p.thumbnail||'assets/images/profile-headshot.jpg')}" alt="${safe(p.title)} thumbnail" loading="lazy"><div class="case-body"><h3>${p.icon?safe(p.icon)+' ':''}${safe(p.title)}</h3><p>${safe(p.description)}</p><div class="proof-grid"><div class="proof"><strong>${safe(p.year)}</strong><span>Year</span></div><div class="proof"><strong>${safe(p.category)}</strong><span>Discipline</span></div></div><div class="chip-list">${(p.tags||[]).slice(0,6).map(t=>`<span class="chip">${safe(t)}</span>`).join('')}</div></div><div class="case-actions"><a class="btn primary" href="${safe(p.url)}">Open Case Study</a>${p.report?`<a class="btn outline" href="${safe(p.report)}" target="_blank" rel="noopener">Read Report</a>`:''}</div></article>`).join('');
+      }
+      fetch('projects.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{projects=(data.projects||[]).sort((a,b)=>(a.order||9999)-(b.order||9999));render();});
+      buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');render(btn.dataset.filter);}));
+    })();
+  </script>
+</body>
+</html>
