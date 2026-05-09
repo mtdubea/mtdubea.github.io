@@ -4,155 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Matthew Dubea | Mechanical Engineer</title>
-  <meta name="description" content="Mechanical engineering portfolio of Matthew Dubea featuring CAD/CAE, FEA, manufacturing, automation, reports, and certifications." />
-  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Matthew Dubea portfolio: Assistant Project Manager and Mechanical Engineer with project delivery, CAD/CAE, manufacturing, automation, reports, and certifications." />
   <meta name="theme-color" content="#0a66c2" />
   <meta property="og:title" content="Matthew Dubea | Mechanical Engineer" />
-  <meta property="og:description" content="Projects, certifications, and technical work in design, manufacturing, quality, and automation." />
+  <meta property="og:description" content="Engineering portfolio with project case studies, resume, reports, certifications, and measurable outcomes." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mtdubea.github.io/" />
   <meta property="og:image" content="assets/images/profile-headshot.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="enhancements.css?v=2026-05-03-v3" />
-  <script defer src="theme.js?v=2026-05-03-v3"></script>
+  <link rel="stylesheet" href="enhancements.css?v=2026-05-03-v4" />
+  <script defer src="theme.js?v=2026-05-03-v4"></script>
   <style>
-    .home-hero{padding:clamp(3rem,7vw,5.75rem) 1rem 3.2rem;text-align:center;}
-    .home-hero__inner{width:min(100% - 2rem,1120px);margin:0 auto;display:grid;gap:1.15rem;justify-items:center;}
-    .home-hero h2{margin:0;font-size:clamp(2.25rem,5.6vw,4.6rem);line-height:.98;letter-spacing:-.06em;max-width:16ch;}
-    .home-hero p{max-width:760px;margin:0;font-size:clamp(1rem,1.4vw,1.18rem);line-height:1.65;}
+    .home-hero{padding:clamp(3.2rem,7vw,6.4rem) 1rem 3.4rem;text-align:center;}
+    .home-hero__inner{width:min(100% - 2rem,1160px);margin:0 auto;display:grid;gap:1.15rem;justify-items:center;}
+    .eyebrow{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .75rem;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);color:#fff;font-weight:900;font-size:.9rem;}
+    .home-hero h2{margin:0;font-size:clamp(2.4rem,6.4vw,5.25rem);line-height:.96;letter-spacing:-.065em;max-width:17ch;color:#fff;}
+    .home-hero p{max-width:790px;margin:0;font-size:clamp(1rem,1.45vw,1.18rem);line-height:1.65;color:rgba(255,255,255,.88);}
     .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.35rem;}
     .hero-actions .btn{min-width:165px;}
-    .hero-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;width:min(100%,900px);margin:1.1rem auto 0;}
+    .hero-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;width:min(100%,980px);margin:1.25rem auto 0;}
     .hero-metrics .metric{padding:1rem .9rem;min-height:112px;display:grid;place-items:center;gap:.2rem;}
-    .hero-metrics .num{font-size:clamp(1.55rem,3.2vw,2.05rem);font-weight:900;line-height:1;color:#073b73;}
+    .hero-metrics .num{font-size:clamp(1.55rem,3.2vw,2.1rem);font-weight:900;line-height:1;color:#073b73;}
     .hero-metrics .label{color:#64748b;font-size:.95rem;}
-    .home-shell{width:min(100% - 2rem,1320px);margin:0 auto;padding:1.25rem 0 2rem;display:grid;grid-template-columns:minmax(210px,250px) minmax(0,1fr) minmax(210px,250px);gap:1.25rem;align-items:start;}
-    .rail{display:grid;gap:1rem;position:sticky;top:112px;}
-    .rail-card{padding:1.05rem;}
-    .rail-card h4{margin:0 0 .45rem;font-size:1rem;}
-    .rail-list{margin:.25rem 0 0;padding-left:1.15rem;}
-    .rail-list li{margin:.35rem 0;}
-    .center{min-width:0;display:grid;gap:1rem;}
-    .search-filter{margin:0;}
-    #searchInput{height:46px;}
-    .featured-projects h2{margin:.25rem 0 .85rem;font-size:clamp(1.35rem,2.2vw,1.8rem);}
-    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:stretch;}
-    .card{display:flex;flex-direction:column;min-width:0;overflow:hidden;}
-    .card-thumb{width:100%;aspect-ratio:16/10;object-fit:contain;background:#eaf6ff;border-bottom:1px solid rgba(10,102,194,.12);}
-    .card-body{padding:1rem;display:flex;flex-direction:column;gap:.55rem;flex:1 1 auto;min-width:0;}
-    .card h3{margin:0;font-size:1.03rem;line-height:1.25;}
-    .card h3 a{text-decoration:none;}
-    .card .muted{font-size:.94rem;line-height:1.55;color:#64748b;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden;}
-    .tag-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:auto;}
-    .tag{font-size:.72rem;padding:.18rem .48rem;border-radius:999px;}
-    .card-cta{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;padding:0 1rem 1rem;margin-top:auto;}
-    .card-cta .btn{width:100%;min-width:0;min-height:38px;padding:.55rem .58rem;font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .skeleton{height:330px;border-radius:22px;background:linear-gradient(90deg,#eef5ff 25%,#dcecff 37%,#eef5ff 63%);background-size:400% 100%;animation:sk 1.2s infinite linear;}
-    @keyframes sk{0%{background-position:-200% 0}100%{background-position:200% 0}}
-    @media (max-width:1180px){.home-shell{grid-template-columns:1fr;}.rail{position:static;grid-template-columns:repeat(3,minmax(0,1fr));}.right-rail{grid-template-columns:repeat(3,minmax(0,1fr));}.project-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
-    @media (max-width:900px){.project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.hero-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}.rail,.right-rail{grid-template-columns:1fr;}}
-    @media (max-width:600px){.home-hero{padding:2.25rem 1rem 2rem;}.home-hero h2{font-size:clamp(2rem,12vw,3.2rem);}.hero-actions .btn{width:100%;}.hero-metrics{grid-template-columns:1fr;}.project-grid{grid-template-columns:1fr;}.card-cta{grid-template-columns:1fr;}}
+    .page{width:min(100% - 2rem,1280px);margin:0 auto;padding:1.4rem 0 2.8rem;display:grid;gap:1.25rem;}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:.8rem;}.section-head h2{margin:0;font-size:clamp(1.45rem,2.4vw,2.05rem);}.section-head p{margin:0;color:#64748b;max-width:680px;}
+    .proof-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem;}.proof-card{padding:1.05rem;}.proof-card strong{display:block;color:#073b73;font-size:clamp(1.35rem,3vw,2rem);line-height:1;}.proof-card span{display:block;color:#64748b;margin-top:.35rem;line-height:1.35;}
+    .spotlight{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;align-items:stretch;}.spotlight-main,.spotlight-side{padding:1.2rem;}.spotlight-main h2{font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-.04em;margin:.15rem 0 .5rem;color:#0b2f57;}.spotlight-main p,.spotlight-side p{color:#64748b;line-height:1.65;}.spotlight-actions{display:flex;gap:.65rem;flex-wrap:wrap;margin-top:1rem;}.timeline{display:grid;gap:.75rem;margin-top:.7rem}.timeline-item{display:grid;grid-template-columns:86px 1fr;gap:.75rem;align-items:start}.timeline-item strong{color:#073b73}.timeline-item span{color:#64748b;}
+    .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:stretch;}.card{display:flex;flex-direction:column;min-width:0;overflow:hidden;}.card-thumb{width:100%;aspect-ratio:16/10;object-fit:contain;background:#eaf6ff;border-bottom:1px solid rgba(10,102,194,.12);}.card-body{padding:1rem;display:flex;flex-direction:column;gap:.55rem;flex:1;}.card h3{margin:0;font-size:1.05rem;line-height:1.25}.card h3 a{text-decoration:none}.card .muted{font-size:.94rem;line-height:1.55;color:#64748b;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}.tag-row{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:auto}.card-cta{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;padding:0 1rem 1rem;margin-top:auto}.card-cta .btn{width:100%;min-width:0;min-height:38px;padding:.55rem .58rem;font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .audience-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;}.audience-card{padding:1.15rem;}.audience-card h3{margin-top:0;color:#0b2f57}.audience-card li{margin:.35rem 0;}.audience-card ul{padding-left:1.1rem;}
+    .skill-map{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem;}.skill-tile{padding:1rem;}.skill-tile strong{display:block;color:#0b2f57;margin-bottom:.35rem;}.skill-tile span{color:#64748b;font-size:.92rem;line-height:1.45;}
+    @media(max-width:980px){.proof-strip,.project-grid,.skill-map{grid-template-columns:repeat(2,minmax(0,1fr));}.spotlight,.audience-grid{grid-template-columns:1fr}.hero-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    @media(max-width:600px){.hero-actions .btn{width:100%;}.hero-metrics,.proof-strip,.project-grid,.skill-map,.card-cta{grid-template-columns:1fr}.timeline-item{grid-template-columns:1fr}.home-hero h2{font-size:clamp(2.2rem,12vw,3.45rem);}}
   </style>
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Person","name":"Matthew Dubea","jobTitle":"Mechanical Engineer","url":"https://mtdubea.github.io/","sameAs":["https://www.linkedin.com/in/mdubea/","https://github.com/mtdubea"]}
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Matthew Dubea","jobTitle":"Mechanical Engineer / Assistant Project Manager","url":"https://mtdubea.github.io/","sameAs":["https://www.linkedin.com/in/mdubea/","https://github.com/mtdubea"]}</script>
 </head>
 <body class="fade-in" id="top">
   <a href="#main" class="visually-hidden-focusable" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
-
-  <header class="site-header" role="banner">
-    <div class="brand">
-      <h1>Matthew Dubea</h1>
-      <p class="tagline">Mechanical Engineer · Design (CAD/CAE) · Lean Manufacturing · Process Automation</p>
-    </div>
-    <nav class="site-nav" aria-label="Primary">
-      <ul class="nav-links">
-        <li><a class="active" href="index.html" aria-current="page">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="media/certifications.html">Certifications</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="hero home-hero" aria-labelledby="home-hero-title">
-    <div class="home-hero__inner">
-      <h2 id="home-hero-title">Designing for Reliability, Manufacturability, and Speed</h2>
-      <p>Practical, production-ready solutions across CAD/FEA, fabrication, process optimization, and automation—balancing hands-on execution with engineering rigor.</p>
-      <div class="hero-actions" role="group" aria-label="Primary actions">
-        <a class="btn primary" href="resume.html">View Resume</a>
-        <a class="btn outline" href="about.html">About Me</a>
-        <a class="btn outline" href="media/certifications.html">Certifications</a>
-      </div>
-      <div class="hero-metrics" aria-live="polite">
-        <div class="metric"><div><div class="num" id="metric-projects">—</div><div class="label">Projects</div></div></div>
-        <div class="metric"><div><div class="num" id="metric-certs">—</div><div class="label">Certifications</div></div></div>
-        <div class="metric"><div><div class="num" id="metric-reports">—</div><div class="label">Technical Reports</div></div></div>
-        <div class="metric"><div><div class="num">Oct 2025</div><div class="label">FE Mechanical</div><span class="badge">Scheduled</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <main id="main" class="home-shell" role="main">
-    <aside class="rail" aria-label="Focus Areas">
-      <div class="rail-card"><h4>Focus Areas</h4><ul class="rail-list"><li>Tooling &amp; fixture design</li><li>Manufacturing process optimization</li><li>Python &amp; Power BI automation</li><li>GD&amp;T, FEA, quality, and reliability</li></ul></div>
-      <div class="rail-card"><h4>Toolchain</h4><p class="muted">SOLIDWORKS, AutoCAD, Siemens NX, MATLAB, Python, SAP, Power BI.</p></div>
-      <div class="rail-card"><h4>Standards &amp; Safety</h4><p class="muted">ASME B31.12, BPVC Section V, OSHA-10, DFM/DFA, FMEA.</p></div>
-    </aside>
-
-    <section class="center" aria-label="Featured content">
-      <section class="search-filter" aria-labelledby="site-search-title">
-        <h3 id="site-search-title" class="visually-hidden">Search</h3>
-        <label for="searchInput" class="visually-hidden">Search site content</label>
-        <input type="text" id="searchInput" placeholder="🔍 Search this site..." inputmode="search" autocomplete="off" />
-        <div id="searchCount" aria-live="polite" style="margin-top:.5rem;color:var(--muted);"></div>
-      </section>
-      <section class="featured-projects" aria-labelledby="featured-title">
-        <h2 id="featured-title">📂 Featured Projects</h2>
-        <div id="projectGrid" class="project-grid" role="list"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
-      </section>
-    </section>
-
-    <aside class="rail right-rail" aria-label="Status and links">
-      <div class="rail-card"><h4>Current Status</h4><ul class="rail-list"><li>FE Mechanical: <strong>Oct 2025</strong></li><li>Automating BOM/ECN workflows</li><li>Refining GD&amp;T + FEA toolchains</li></ul></div>
-      <div class="rail-card"><h4>Quick Links</h4><ul class="rail-list"><li><a href="media/certifications.html">All Certifications</a></li><li><a href="reports.html">Project Reports</a></li><li><a href="about.html">Profile &amp; Background</a></li><li><a href="resume.html">Resume</a></li></ul></div>
-      <div class="rail-card"><h4>Contact</h4><p class="muted"><a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p></div>
-    </aside>
+  <header class="site-header" role="banner"><div class="brand"><h1>Matthew Dubea</h1><p class="tagline">Mechanical Engineer · Assistant Project Manager · CAD/CAE · Infrastructure Delivery</p></div><nav class="site-nav" aria-label="Primary"><ul class="nav-links"><li><a class="active" href="index.html" aria-current="page">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="resume.html">Resume</a></li><li><a href="reports.html">Reports</a></li><li><a href="media/certifications.html">Certifications</a></li><li><a href="contact.html">Contact</a></li></ul></nav></header>
+  <section class="hero home-hero" aria-labelledby="home-hero-title"><div class="home-hero__inner"><span class="eyebrow">2026 Engineering Portfolio</span><h2 id="home-hero-title">Engineering reliable systems from concept to field execution.</h2><p>Mechanical engineering, electrical infrastructure coordination, CAD/CAE, manufacturing, automation, and technical documentation—organized as a professional, evidence-driven portfolio.</p><div class="hero-actions"><a class="btn primary" href="projects.html">Explore Projects</a><a class="btn outline" href="resume.html">View Resume</a><a class="btn outline" href="contact.html">Contact</a></div><div class="hero-metrics"><div class="metric"><div><div class="num">$30M+</div><div class="label">Infrastructure supported</div></div></div><div class="metric"><div><div class="num">2,600+</div><div class="label">Windshields completed</div></div></div><div class="metric"><div><div class="num">1,500+</div><div class="label">ADAS calibrations</div></div></div><div class="metric"><div><div class="num">60%</div><div class="label">Trike BOM cost reduction</div></div></div></div></div></section>
+  <main id="main" class="page">
+    <section class="spotlight"><div class="spotlight-main surface"><span class="badge">Professional Focus</span><h2>Project delivery with hands-on engineering credibility.</h2><p>I connect field execution, estimating, design review, documentation, fabrication, and automation. The result is practical engineering work that is easier to build, track, justify, and maintain.</p><div class="spotlight-actions"><a class="btn primary" href="resume.html">2026 Resume</a><a class="btn outline" href="media/2026-Resume.pdf" target="_blank" rel="noopener">Open PDF</a></div></div><aside class="spotlight-side surface"><h3>Career Timeline</h3><div class="timeline"><div class="timeline-item"><strong>2015-17</strong><span>Electrical apprentice: conduit, terminations, plant work.</span></div><div class="timeline-item"><strong>2017-18</strong><span>Survey / instrument work on large industrial foundations.</span></div><div class="timeline-item"><strong>2019-21</strong><span>EPB field electrical work on MV/LV systems and grounding.</span></div><div class="timeline-item"><strong>2022-24</strong><span>ADAS calibration and high-volume technical service.</span></div><div class="timeline-item"><strong>2025+</strong><span>Assistant Project Manager supporting JXN Water infrastructure.</span></div></div></aside></section>
+    <section><div class="section-head"><div><h2>Featured Project Case Studies</h2><p>Each project is framed around engineering constraints, tools, proof, and measurable outcomes.</p></div><a class="btn outline" href="projects.html">Open Project Hub</a></div><div id="projectGrid" class="project-grid"><p class="muted">Loading projects…</p></div></section>
+    <section><div class="section-head"><div><h2>Proof Points</h2><p>Quantified outcomes from project work, field experience, and technical execution.</p></div></div><div class="proof-strip"><div class="proof-card surface"><strong>FoS 2.2</strong><span>Trike frame validated with SolidWorks FEA.</span></div><div class="proof-card surface"><strong>8,000+ ft</strong><span>Conduit installed during plant and shutdown work.</span></div><div class="proof-card surface"><strong>98%</strong><span>QA/QC performance in ADAS and windshield work.</span></div><div class="proof-card surface"><strong>70%</strong><span>Robot stepper PID overshoot reduction.</span></div></div></section>
+    <section><div class="section-head"><div><h2>Skill Map</h2><p>Core capabilities connected to evidence throughout the portfolio.</p></div></div><div class="skill-map"><div class="skill-tile surface"><strong>Project Controls</strong><span>RFCs, WCDs, RFIs, submittals, billing, proposal logs.</span></div><div class="skill-tile surface"><strong>Mechanical Design</strong><span>CAD/CAE, DFM/DFA, FEA, GD&amp;T, fabrication drawings.</span></div><div class="skill-tile surface"><strong>Field Execution</strong><span>Electrical installation, coordination, safety, QA/QC, sequencing.</span></div><div class="skill-tile surface"><strong>Automation</strong><span>Python, C++, MATLAB, sensors, PID, Power BI, workflow improvement.</span></div></div></section>
+    <section class="audience-grid"><div class="audience-card surface"><h3>For Recruiters</h3><ul><li>Fast access to resume, contact links, and quantified outcomes.</li><li>Projects show technical judgment, hands-on work, and communication ability.</li><li>Experience spans field work, infrastructure delivery, and mechanical engineering.</li></ul><p><a class="btn primary" href="contact.html">Contact Matthew</a></p></div><div class="audience-card surface"><h3>For Engineers</h3><ul><li>Reports, project pages, and technical case studies are separated and easy to review.</li><li>Each project emphasizes constraints, analysis, build decisions, and results.</li><li>Documentation style supports engineering review rather than just visual browsing.</li></ul><p><a class="btn outline" href="reports.html">View Reports</a></p></div></section>
   </main>
-
-  <footer role="contentinfo"><p>© 2025 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p></footer>
-
+  <footer role="contentinfo"><p>© 2026 Matthew Dubea &nbsp;|&nbsp; <a href="mailto:mattdubea@outlook.com">mattdubea@outlook.com</a></p></footer>
   <script>
-    (function(){
-      const grid=document.getElementById('projectGrid');
-      const input=document.getElementById('searchInput');
-      const count=document.getElementById('searchCount');
-      const elProj=document.getElementById('metric-projects');
-      const elCert=document.getElementById('metric-certs');
-      const elRept=document.getElementById('metric-reports');
-      const reports=['media/Trike_Final_Report.pdf','media/Mechatronics_Report.pdf','media/Robot_Report.pdf'];
-      function safe(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-      function card(p){
-        const tags=Array.isArray(p.tags)?p.tags.slice(0,4):[];
-        const report=p.report?`<a class="btn outline sm" href="${safe(p.report)}" target="_blank" rel="noopener">Read Report</a>`:'';
-        return `<article class="card" role="listitem" data-title="${safe((p.title||'').toLowerCase())}" data-category="${safe((p.category||'').toLowerCase())}">
-          ${p.thumbnail?`<img class="card-thumb" src="${safe(p.thumbnail)}" alt="${safe(p.title)} thumbnail" loading="lazy" />`:''}
-          <div class="card-body"><h3><a href="${safe(p.url)}">${p.icon?safe(p.icon)+' ':''}${safe(p.title)}</a></h3><p class="muted">${safe(p.description)}</p>${tags.length?`<div class="tag-row">${tags.map(t=>`<span class="tag">${safe(t)}</span>`).join('')}</div>`:''}</div>
-          <div class="card-cta"><a class="btn primary sm" href="${safe(p.url)}">View Project</a>${report}</div>
-        </article>`;
-      }
-      function attachSearch(){
-        const cards=Array.from(grid.querySelectorAll('.card'));
-        input.addEventListener('input',()=>{const q=input.value.toLowerCase();let shown=0;cards.forEach(c=>{const show=!q||c.textContent.toLowerCase().includes(q)||c.dataset.title.includes(q)||c.dataset.category.includes(q);c.style.display=show?'flex':'none';if(show)shown++;});count.textContent=shown===cards.length?'':shown?`${shown} shown`:'No results';});
-      }
-      function certCount(groups){return Array.isArray(groups)?groups.reduce((n,g)=>n+(Array.isArray(g.items)?g.items.length:0),0):0;}
-      Promise.all([fetch('projects.json',{cache:'no-store'}).then(r=>r.json()),fetch('certs.json',{cache:'no-store'}).then(r=>r.json())])
-        .then(([projectsData,certsData])=>{const list=(projectsData.projects||[]).filter(p=>p.featured!==false).sort((a,b)=>(a.order||9999)-(b.order||9999));grid.innerHTML=list.map(card).join('');attachSearch();elProj.textContent=list.length;elCert.textContent=certCount(certsData.groups||[]);elRept.textContent=reports.length;})
-        .catch(()=>{elProj.textContent='3';elCert.textContent='39';elRept.textContent='3';grid.innerHTML='<p class="muted">Projects are loading. Please refresh if they do not appear.</p>';});
-    })();
+    (function(){const grid=document.getElementById('projectGrid');function safe(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}function card(p){const tags=Array.isArray(p.tags)?p.tags.slice(0,4):[];return `<article class="card surface"><img class="card-thumb" src="${safe(p.thumbnail)}" alt="${safe(p.title)} thumbnail" loading="lazy"><div class="card-body"><h3><a href="${safe(p.url)}">${p.icon?safe(p.icon)+' ':''}${safe(p.title)}</a></h3><p class="muted">${safe(p.description)}</p><div class="tag-row">${tags.map(t=>`<span class="tag">${safe(t)}</span>`).join('')}</div></div><div class="card-cta"><a class="btn primary sm" href="${safe(p.url)}">View Project</a>${p.report?`<a class="btn outline sm" href="${safe(p.report)}" target="_blank" rel="noopener">Read Report</a>`:''}</div></article>`}fetch('projects.json',{cache:'no-store'}).then(r=>r.json()).then(data=>{const list=(data.projects||[]).filter(p=>p.featured!==false).sort((a,b)=>(a.order||9999)-(b.order||9999));grid.innerHTML=list.map(card).join('');}).catch(()=>grid.innerHTML='<p class="muted">Projects are loading. Please refresh.</p>');})();
   </script>
 </body>
 </html>
