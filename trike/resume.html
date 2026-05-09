@@ -1,12 +1,47 @@
-<!-- resume.html – full replacement -->
+<!-- trike/resume.html - updated to shared 2026 resume -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Résumé – Matthew Dubea</title>
+  <title>2026 Résumé - Matthew Dubea</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="2026 résumé for Matthew Dubea, Mechanical Engineer and Assistant Project Manager." />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    .resume-actions{
+      display:flex;
+      gap:.75rem;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin:1rem 0;
+    }
+    .resume-actions .btn{min-width:180px;text-align:center;}
+    .pdf-frame{
+      width:100%;
+      height:min(82vh,920px);
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:10px;
+      overflow:hidden;
+      background:#f8fbff;
+    }
+    .pdf-frame object,
+    .pdf-frame iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+    .resume-note{
+      color:#5f6b7a;
+      text-align:center;
+      margin:.35rem 0 0;
+    }
+    @media(max-width:800px){
+      .pdf-frame{height:70vh;}
+      .resume-actions .btn{width:100%;}
+    }
+  </style>
 </head>
 
 <body>
@@ -21,34 +56,33 @@
         <li><a href="reports.html">Reports</a></li>
         <li><a href="resume.html" aria-current="page">Résumé</a></li>
         <li><a href="calculations.html">Calculations</a></li>
-        <li class="theme-toggle"><button id="themeToggle">🌓</button></li>
+        <li class="theme-toggle"><button id="themeToggle" type="button" aria-label="Toggle theme">🌓</button></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main class="container">
-
-  <!-- résumé viewer -->
   <section class="card">
-    <h2>📄 Résumé (2025)</h2>
-    <embed class="pdf-embed"
-           style="height:700px;"
-           src="assets/images/9_docs/MTD%20Resume.pdf"
-           type="application/pdf">
-    <p class="center" style="margin-top:1rem;">
-      <a class="btn primary"
-         href="assets/images/9_docs/MTD%20Resume.pdf"
-         download>
-         ⬇️ Download PDF&nbsp;(1&nbsp;MB)
-      </a>
-    </p>
-  </section>
+    <h2>📄 Résumé (2026)</h2>
+    <p class="resume-note">This page now uses the current 2026 résumé file shared by the main portfolio.</p>
 
+    <div class="resume-actions" role="group" aria-label="Résumé actions">
+      <a class="btn primary" href="../media/2026-Resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+      <a class="btn primary" href="../media/2026-Resume.pdf" download>Download PDF</a>
+      <a class="btn" href="../resume.html">Full Resume Page</a>
+    </div>
+
+    <div class="pdf-frame">
+      <object type="application/pdf" data="../media/2026-Resume.pdf">
+        <iframe src="../media/2026-Resume.pdf" title="Matthew Dubea 2026 résumé PDF"></iframe>
+      </object>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
-  <div class="container">© 2025 Matthew Dubea</div>
+  <div class="container">© 2026 Matthew Dubea</div>
 </footer>
 
 <script src="theme.js"></script>
